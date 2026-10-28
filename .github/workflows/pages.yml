@@ -41,6 +41,14 @@ jobs:
       - name: Validate routes and asset paths
         run: npm run validate
 
+      - name: Validate corpus, records and index artifact
+        run: npm run index:check
+
+      - name: Browser checks (Chromium preinstalled on the runner)
+        run: npm run browser
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5

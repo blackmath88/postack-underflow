@@ -1,6 +1,10 @@
 # Artifact integration contract
 
-**Status:** Proposed, 2026-10-28. Describes how the two Lumpesammlig studies can join the editorial site without redesigning it. Nothing here is integrated yet.
+**Status:** Superseded in part by [ADR-0003](adr/0003-native-experiments-and-offline-index.md), 2026-10-28.
+
+> **Update.** Both studies were merged in Lumpesammlig at `23c9c443686e5e49138ddd336d27b590421bd605`. Postack now implements its own interactions (Four Words, the community assembler) using the studies' transferable principles, and links to the live specimens through `StudyNote` instead of embedding them. The contract below stays in force if a specimen is ever embedded later.
+
+Original status: Proposed, 2026-10-28. Describes how the two Lumpesammlig studies can join the editorial site without redesigning it.
 
 | | The Impossible Index | The Switchboard |
 |---|---|---|

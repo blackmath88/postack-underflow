@@ -25,19 +25,40 @@ The first article **“We Already Solved This”** describes the problem while i
 This is **not** a replacement for Stack Overflow, a new centralized social network, or a Weavr mission. Weavr may later consume verified knowledge, but execution is not the center. No public publishing, account writes, or harvesting of private agent sessions without explicit authorization. Human authorship, licenses, source provenance, and disagreement remain visible.
 
 ## Status
-**Concept / research scaffold with an editorial site V1 (draft).** No live index, ATProto adapter, comment federation, or measured retrieval benchmark is claimed. This public repo starts with questions and testable hypotheses.
+**Research prototype.** One small, measured retrieval experiment (Four Words) and a fixture-only community demonstration. No live search service, ATProto adapter or comment federation exists, and nothing is published to ATProto. This public repo starts with questions and testable hypotheses.
 
 ## The site
 A narrative-first essay: one observation → two problems → two rabbit holes → one possible convergence. Routes: `/`, `/indexing/`, `/community/`, `/convergence/`, `/notes/`, `/about/`. Built with TanStack Start, React and TypeScript, prerendered to static HTML for GitHub Pages at `https://blackmath88.github.io/postack-underflow/` (deploys from `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml); see [ADR-0002](docs/adr/0002-editorial-site-direction.md)).
 
 ```bash
 npm ci
-npm run dev        # development server
-npm run check      # typecheck, tests, static build, route/asset validation
-npm run preview    # serve dist/client like GitHub Pages at http://localhost:4173/postack-underflow/
+npm run dev           # development server
+npm run check         # typecheck, tests, static build, route/asset validation
+npm run index:check   # shipped index matches committed corpus and records (offline)
+npm run browser       # real-browser checks against a Pages-like server (needs Chromium)
+npm run preview       # serve dist/client like GitHub Pages at http://localhost:4173/postack-underflow/
+npm run smoke -- URL  # check what a deployed site actually serves
 ```
 
-Content lives in `src/routes/` (prose) and `src/content/` (source registry, artifact contracts). The two interactive studies are developed in Lumpesammlig; see the [artifact integration contract](docs/ARTIFACT-INTEGRATION.md). Verification evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
+**Four Words experiment** (index-first retrieval, see [docs/research/FOUR-WORDS.md](docs/research/FOUR-WORDS.md)):
+
+```bash
+npm run corpus:fetch  # snapshot the 30 pinned sources into corpus/.cache (needs network and gh)
+npm run index         # build src/data/four-words-index.json deterministically
+npm run evaluate v1   # write results/four-words-v1.json from corpus/queries.json
+```
+
+Layout:
+- `src/routes/`: the prose.
+- `src/components/`: Four Words, the community assembler and the scrollytelling.
+- `src/lib/`: retrieval and the record format.
+- `src/content/`: source registry and study lineage.
+- `src/data/`: index artifact and community fixtures.
+- `corpus/`: pinned sources, labelled queries and records.
+- `results/`: evaluation output.
+- `knowledge/`: this essay as a structured record.
+
+Decisions: [ADR-0002](docs/adr/0002-editorial-site-direction.md) (framework) and [ADR-0003](docs/adr/0003-native-experiments-and-offline-index.md) (experiments, index artifact, fixtures). Community research: [docs/research/ATPROTO-COMMUNITY.md](docs/research/ATPROTO-COMMUNITY.md). Verification evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
 
 ## Principles
 Index first, search second · Sources over synthesis · Community without platform captivity · Identity is not correctness · AI proposes, humans adjudicate · Own the content, not the audience · Small reproducible experiments.

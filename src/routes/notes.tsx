@@ -24,13 +24,13 @@ const EXPERIMENTS = [
   },
   {
     name: 'P1 · Four Words',
-    status: 'not-built' as const,
-    text: 'Index-first retrieval over 20–50 public documents with hand-labelled queries; report Recall@5, MRR@10, latency, build cost and failures.',
+    status: 'implemented' as const,
+    text: 'Index-first retrieval over 30 pinned public sources on GitHub Pages subpath deployment, with 27 queries labelled before any record existed. Measured once against plain keyword search; see the Indexing page and FOUR-WORDS.md.',
   },
   {
     name: 'P2 · Portable discussion',
-    status: 'not-built' as const,
-    text: 'One article, three views (comments, channel, graph); fixture records first, then real ATProto reads. Publishing only with explicit review.',
+    status: 'hypothesis' as const,
+    text: 'Partly: fixture contributions and relations, two views (assembled discussion, source ledger), availability and deletion cases. No real ATProto reads; publishing only with explicit review.',
   },
   {
     name: 'P3 · Community signals',
@@ -45,7 +45,12 @@ const DOCS = [
   ['Origins and provenance', 'docs/PROVENANCE.md'],
   ['Experiments and decision gates', 'docs/EXPERIMENTS.md'],
   ['Essay draft', 'writing/WE-ALREADY-SOLVED-THIS.md'],
-  ['Artifact integration contract', 'docs/ARTIFACT-INTEGRATION.md'],
+  ['Four Words: method and results', 'docs/research/FOUR-WORDS.md'],
+  ['ATProto and portable communities', 'docs/research/ATPROTO-COMMUNITY.md'],
+  ['Corpus: sources, queries, records', 'corpus/'],
+  ['Evaluation results', 'results/four-words-v1.json'],
+  ['The essay as a structured record', 'knowledge/we-already-solved-this.json'],
+  ['Verification evidence', 'docs/VERIFICATION.md'],
   ['Architecture decisions', 'docs/adr/'],
 ] as const
 
@@ -79,8 +84,9 @@ function Notes() {
         </li>
       </ul>
       <p>
-        No benchmark result, user activity or community participation is reported anywhere on this
-        site, because none exists yet.
+        The only measured result on this site is the Four Words evaluation, and it is reported
+        with its weaknesses. No user activity or community participation is reported anywhere:
+        every community contribution shown is an invented fixture under a reserved name.
       </p>
 
       <h2>Sources and provenance</h2>

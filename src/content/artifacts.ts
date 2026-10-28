@@ -1,58 +1,51 @@
-// Integration contracts for the two Lumpesammlig studies. The site renders an
-// ArtifactSlot from these entries; until `status` becomes 'integrated' the slot
-// shows the editorial fallback and links to the study's source.
-// Full contract: docs/ARTIFACT-INTEGRATION.md
+// The two Lumpesammlig studies this site learned from. They are independent
+// specimens with their own visual development; Postack does not embed or copy
+// them (ADR-0003). The site links to each and states the principle it carries.
 
-export type ArtifactStatus = 'in-development' | 'integrated'
-
-export interface ArtifactContract {
+export interface StudyReference {
   id: string
   title: string
   study: string
-  status: ArtifactStatus
-  /** Where the study is developed. */
   sourceRepo: string
-  /** Branch or PR the study currently lives on. */
-  sourceRef: string
-  /** Revision last inspected by this site; integration must pin one. */
-  inspectedRevision: string
-  /** Path of the study's entry inside the source repository. */
-  entryPoint: string
-  /** One sentence describing what the reader can do once it is integrated. */
-  promise: string
-  /** Shown instead of the artifact; must make sense on its own. */
-  fallback: string
+  /** Merge commit the principles were read at. */
+  revision: string
+  sourcePath: string
+  /** Public page of the specimen. */
+  liveUrl: string
+  /** The finding Postack carries over, in our words. */
+  principle: string
+  /** Where on this site the principle is applied. */
+  appliedIn: string
 }
 
-export const ARTIFACTS = {
+const LUMPESAMMLIG = 'https://github.com/blackmath88/lumpesammlig'
+const MERGE = '23c9c443686e5e49138ddd336d27b590421bd605'
+
+export const STUDIES = {
   impossibleIndex: {
     id: 'impossible-index',
     title: 'The Impossible Index',
     study: '012-impossible-index',
-    status: 'in-development',
-    sourceRepo: 'https://github.com/blackmath88/lumpesammlig',
-    sourceRef: 'https://github.com/blackmath88/lumpesammlig/pull/8',
-    inspectedRevision: 'f525449b77a00d9ac442eccdbd9bccacf0dcedd5',
-    entryPoint: 'src/pages/samples/012-impossible-index.astro',
-    promise:
-      'Type a short problem and watch an already-indexed cabinet reorganise itself into ranked, source-linked solution cards whose evidence and constraints you can inspect.',
-    fallback:
-      'The index is a thought experiment for now. Imagine a card catalogue filed by problem rather than by author or repository: each card names a problem, the constraints under which a solution holds, where the solution lives, and what evidence supports it. A four-word query does not send anyone into the archive; it only decides which drawer opens.',
+    sourceRepo: LUMPESAMMLIG,
+    revision: MERGE,
+    sourcePath: 'src/samples/012-impossible-index/sample.md',
+    liveUrl: 'https://blackmath88.github.io/lumpesammlig/samples/012-impossible-index/',
+    principle:
+      'Classification exists before the question. A query changes the ordering, never the records, and records that did not match stay recoverable.',
+    appliedIn: 'Four Words keeps every unmatched record one click away and shows which fields each match came from.',
   },
   switchboard: {
     id: 'switchboard',
     title: 'The Switchboard',
     study: '013-switchboard',
-    status: 'in-development',
-    sourceRepo: 'https://github.com/blackmath88/lumpesammlig',
-    sourceRef: 'https://github.com/blackmath88/lumpesammlig/pull/8',
-    inspectedRevision: 'f525449b77a00d9ac442eccdbd9bccacf0dcedd5',
-    entryPoint: 'src/pages/samples/013-switchboard.astro',
-    promise:
-      'Patch together contributions that live on different people’s sites, switch between views of the same conversation, and see disagreement stay where its author put it.',
-    fallback:
-      'Picture an old telephone switchboard. Every line belongs to someone else: a blog, a personal data repository, a forum post. The operator does not own the calls; they only decide which lines are connected in this view. Pull the cords out and every contribution is still where its author left it.',
+    sourceRepo: LUMPESAMMLIG,
+    revision: MERGE,
+    sourcePath: 'src/samples/013-switchboard/sample.md',
+    liveUrl: 'https://blackmath88.github.io/lumpesammlig/samples/013-switchboard/',
+    principle:
+      'Contributions exist independently of the connections between them. Unplug every cable and the relationships leave the view while every voice stays intact.',
+    appliedIn: 'The community demonstration separates records from relations; removing every relation changes nothing in the source ledger.',
   },
-} as const satisfies Record<string, ArtifactContract>
+} as const satisfies Record<string, StudyReference>
 
-export type ArtifactId = keyof typeof ARTIFACTS
+export type StudyId = keyof typeof STUDIES

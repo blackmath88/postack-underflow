@@ -16,7 +16,9 @@
     "smoke": "node scripts/smoke-deployed.mjs",
     "corpus:fetch": "node scripts/corpus-fetch.mjs",
     "index": "node scripts/build-index.mjs",
-    "evaluate": "node scripts/evaluate.mjs"
+    "evaluate": "node scripts/evaluate.mjs",
+    "browser": "node scripts/browser-check.mjs",
+    "index:check": "node scripts/check-index.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "1.170.46",

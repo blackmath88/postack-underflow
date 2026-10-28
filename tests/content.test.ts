@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { SOURCES } from '../src/content/sources.ts'
-import { ARTIFACTS } from '../src/content/artifacts.ts'
+import { STUDIES } from '../src/content/artifacts.ts'
 
 test('every source has an https URL, a title and a stated contribution', () => {
   for (const [key, source] of Object.entries(SOURCES)) {
@@ -27,14 +27,12 @@ test('the provenance sources named in the brief are all registered', () => {
   }
 })
 
-test('every artifact contract is complete and has a usable fallback', () => {
-  for (const [key, artifact] of Object.entries(ARTIFACTS)) {
-    assert.match(artifact.sourceRepo, /^https:\/\/github\.com\//, `${key}: sourceRepo`)
-    assert.match(artifact.sourceRef, /^https:\/\//, `${key}: sourceRef`)
-    assert.match(artifact.inspectedRevision, /^[0-9a-f]{40}$/, `${key}: pin a full commit SHA`)
-    assert.ok(artifact.entryPoint.length > 0, `${key}: entryPoint`)
-    assert.ok(artifact.fallback.length > 120, `${key}: fallback must stand on its own`)
-    assert.ok(['in-development', 'integrated'].includes(artifact.status), `${key}: status`)
+test('every study reference pins the Lumpesammlig merge and states a principle', () => {
+  for (const [key, study] of Object.entries(STUDIES)) {
+    assert.match(study.revision, /^[0-9a-f]{40}$/, `${key}: pin a full commit SHA`)
+    assert.match(study.liveUrl, /^https:\/\/blackmath88\.github\.io\/lumpesammlig\//, `${key}: liveUrl`)
+    assert.ok(study.principle.length > 60, `${key}: principle`)
+    assert.ok(study.appliedIn.length > 30, `${key}: appliedIn`)
   }
 })
 
@@ -42,9 +40,4 @@ test('private repositories are flagged so they are not linked publicly', () => {
   for (const id of ['colors', 'developmentPractice'] as const) {
     assert.equal(SOURCES[id].private, true, `${id} is private on GitHub`)
   }
-})
-
-test('artifact ids are unique', () => {
-  const ids = Object.values(ARTIFACTS).map((a) => a.id)
-  assert.equal(new Set(ids).size, ids.length)
 })

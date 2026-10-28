@@ -45,7 +45,34 @@ function RelationNote({ r }: { r: Relation }) {
   )
 }
 
-function Node({ c, relations, via, depth }: { c: Contribution; relations: Relation[]; via?: Relation; depth: number }) {
+function AlsoRelated({ c, all, shown }: { c: Contribution; all: Relation[]; shown?: Relation }) {
+  const extra = all.filter((r) => r.from === c.id && r.id !== shown?.id)
+  if (!extra.length) return null
+  return (
+    <div className="cm-also">
+      {extra.map((r) => (
+        <div key={r.id}>
+          <RelationNote r={r} />
+          <p className="cm-small">→ {byId.get(r.to)?.author.handle}’s {byId.get(r.to)?.kind}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function Node({
+  c,
+  relations,
+  all,
+  via,
+  depth,
+}: {
+  c: Contribution
+  relations: Relation[]
+  all: Relation[]
+  via?: Relation
+  depth: number
+}) {
   const children = relations.filter((r) => r.to === c.id)
   return (
     <li className="cm-node" data-depth={depth}>
@@ -53,12 +80,13 @@ function Node({ c, relations, via, depth }: { c: Contribution; relations: Relati
       <article className={`cm-card cm-card--${c.availability}`} aria-label={`${c.kind} by ${c.author.handle}`}>
         <Meta c={c} />
         <Body c={c} />
+        <AlsoRelated c={c} all={all} shown={via} />
       </article>
       {children.length > 0 && depth < 4 && (
         <ul className="cm-children">
           {children.map((r) => {
             const child = byId.get(r.from)
-            return child ? <Node key={r.id} c={child} relations={relations} via={r} depth={depth + 1} /> : null
+            return child ? <Node key={r.id} c={child} relations={relations} all={all} via={r} depth={depth + 1} /> : null
           })}
         </ul>
       )}
@@ -139,7 +167,7 @@ export function CommunityAssembler() {
       {view === 'assembled' ? (
         <div className="cm-assembled">
           <ul className="cm-tree">
-            <Node c={byId.get('c1')!} relations={treeRelations} depth={0} />
+            <Node c={byId.get('c1')!} relations={treeRelations} all={relations} depth={0} />
           </ul>
           {unconnected.length > 0 && (
             <>
@@ -151,6 +179,7 @@ export function CommunityAssembler() {
                     <article className={`cm-card cm-card--${c.availability}`} aria-label={`${c.kind} by ${c.author.handle}`}>
                       <Meta c={c} />
                       <Body c={c} />
+                      <AlsoRelated c={c} all={relations} />
                     </article>
                   </li>
                 ))}
