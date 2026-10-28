@@ -916,7 +916,7 @@ details > summary {
   border-left: 2px solid var(--blue);
   margin-top: var(--space-2);
 }
-.fw-detail h5 {
+.fw-detail .fw-label {
   font-size: 0.72rem;
   font-family: var(--font-mono);
   text-transform: uppercase;

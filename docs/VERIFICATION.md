@@ -66,6 +66,24 @@ This file records what was actually checked. It is not a claim that the public s
   - On mobile, the checkbox notes are laid out below their labels.
   - A fixture's "twenty-odd records" now says "thirty".
 
+### Independent review (AI reviewer, read-only)
+A separate agent reviewed the site as a sceptical reader. It re-ran retrieval, fetched the Syntax transcript, and spot-checked five records against their snapshots. Findings acted on:
+
+- **Wrong results diagnosis.** The diagnosis was corrected and reframed as a post-hoc analysis; run v1's labels and records were not changed. 7 of 10 structured wins rely on vocabulary the record writer supplied; one win is a tokenizer artefact (`trailingSlash`); the CSS loss was partly a labelling gap (rank 7 becomes rank 2 if the two missed sources are added post hoc).
+- **Caveats.** They now sit next to the numbers on the Indexing page, and "rank 1 correct" was added as a metric: baseline 17 of 27, structured 25 of 27.
+- **Syntax paraphrase.** Stack Overflow "built agents of its own", with Wes's doubt; "anonymised" removed.
+- **ATProto claims.** Hedged to match the research notes. The niche vote and question/answer Lexicons were added to the table; recommend is marked "adoption unmeasured".
+- **Knowledge record.** Removed the palette source, narrowed E3 (issues are not truly pinned), and added corpus pointers; revision 0.2.1.
+- **Unsupported phrasing.** Softened the slogan and the "clean, confident and alone" line; acknowledged agent-made issues and PRs; sourced the stacked-PR anecdote with a link.
+- **Convergence.** It now argues through the CSS miss as a worked example of the community → index loop, and marks that loop as not built (H3).
+- **Assembler wording.** Offline and deleted records say their metadata comes from an index's earlier copy, and the contribution count is correct.
+- **Smaller fixes.** The diagram's probes now go to docs, issues and READMEs, not the old thread. About no longer says there is no index. Notes statuses are consistent.
+- **Accessibility.** No `h5` flood (headings h1, h2, h3 only on the Indexing page); a space after status chips; source links carry the repository name for screen readers.
+
+Not acted on, and recorded as v2 work:
+- Records with known defects (the vite#8073 "blank page" alias; the upload-pages-artifact#129 wording) were kept as written, because changing them would change run v1.
+- Re-labelling with a second labeller.
+
 ### Sizes
 - Index artifact: 448 KiB JSON. The Indexing route chunk is 475 KB minified, 69 KB gzipped.
 - The shared client bundle is about 351 KB minified.

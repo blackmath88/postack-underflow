@@ -37,18 +37,20 @@ const SHORTCUT_STEPS = [
     <p>
       The next person with the same problem gets the same careful exploration, from the
       beginning. Their agent cannot see what yours found. While this site was being built, a
-      sibling project’s GitHub Pages deployment was reported to come up largely unstyled despite a green workflow,
-      and this one’s first deployment never happened because of how the pull requests were
-      stacked. Both are small, well-documented problems. Both were worked out again.
+      sibling project’s GitHub Pages deployment was reported by the project owner to come up largely
+      unstyled despite a green workflow, and this site’s first deployment never happened because
+      its <a href="https://github.com/blackmath88/postack-underflow/pull/3">pull requests were
+      stacked</a> and none reached <code>main</code>. Both are small, well-documented kinds of
+      problem. Both were worked out again.
     </p>
   </>,
   <>
     <h3>Nothing returns</h3>
     <p>
-      Each of those explorations ends in a working diff and a private transcript. None of them
-      leaves behind a question someone else could find, an answer someone could vote on, or a
-      correction for the next version. The knowledge was produced; it just did not go anywhere
-      shared.
+      Most of those explorations end in a working diff and a private transcript. Some do leave
+      something public, an issue or a pull request, but rarely a question someone else could find
+      by its symptom, an answer others could vote on, or a correction for the next version. The
+      knowledge was produced; most of it did not go anywhere shared.
     </p>
   </>,
 ]
@@ -57,7 +59,6 @@ const PROBLEMS: Array<[string, string, string]> = [
   ['What is missing', 'A way to find solutions that already exist', 'A place where judgement about solutions accumulates'],
   ['The symptom', 'Rediscovering a known fix from scratch', 'Fixes that nobody else can see, check or correct'],
   ['A typical unit today', 'Repository, file, commit', 'Private chat, agent session, one platform’s thread'],
-  ['Fixing it alone gives you', 'A fast route to unreviewed answers', 'A thoughtful conversation nobody can find'],
 ]
 
 function Home() {
@@ -84,11 +85,11 @@ function Home() {
       <p>
         The hosts do not simply agree. Scott points to projects where reusable building blocks are
         shared in a community space so they need not be reinvented. Wes notes that sharing is
-        already happening in places: Stack Overflow has added agent access, agents open issues and
-        pull requests on public repositories, and he floats agents publishing write-ups of what
-        they fixed. When a listener objects that the solutions are on GitHub anyway, CJ answers
-        that much problem solving happens in private codebases, where anonymised public questions
-        used to be the bridge.
+        already happening in places: Stack Overflow has built agents of its own, though he doubts
+        they are catching on, and other people’s agents have opened a couple of hundred issues and
+        pull requests on one of his public repositories. He floats agents publishing write-ups of
+        what they fixed. When a listener objects that the solutions are on GitHub anyway, CJ answers
+        that many developers work on closed-source code.
       </p>
       <p className="aside">
         Our paraphrase of a spoken conversation, not a quotation; the discussion starts roughly 55
@@ -108,10 +109,12 @@ function Home() {
         An agent that reconstructs a solution and a reader who retrieves one may end up with the
         same code. They do not end up with the same knowledge. A retrieved answer arrives with
         context: who wrote it, under which versions, who disagreed, what was corrected later. A
-        reconstructed answer arrives clean, confident and alone.
+        reconstructed answer may cite the documentation it read, but it arrives without that
+        history of other people checking it.
       </p>
       <p className="pull">
-        Reconstruction is paid for again on every attempt. Retrieval is paid for once and shared.
+        Reconstruction is paid for on every attempt. Retrieval shares a cost someone already paid,
+        though keeping what is retrieved accurate is a cost of its own.
       </p>
       <p>
         This is not an argument against agents, nor nostalgia for an old Q&amp;A site. Public
@@ -154,8 +157,9 @@ function Home() {
         </table>
       </div>
       <p>
-        <strong>Indexing</strong> is about discovery. Public code holds a great many solved
-        problems, but it is organised by repository, file and commit, not by problem solved. To
+        <strong>Indexing</strong> is about discovery. Public repositories, documentation and issues
+        hold a great many solved problems, but they are organised by project, page and thread, not
+        by problem solved. To
         find a fix you often need to know where it lives before you know it exists.
       </p>
       <p>
@@ -166,7 +170,7 @@ function Home() {
       <p>
         <Status kind="hypothesis" />
         Each problem is easier to see through the other. A fast index of unreviewed answers
-        spreads mistakes efficiently. A thoughtful community nobody can find gets rediscovered
+        spreads mistakes efficiently; a thoughtful community nobody can find gets rediscovered
         from scratch. That coupling is what this project is trying to test.
       </p>
 
@@ -174,7 +178,10 @@ function Home() {
       <p>
         Each one has something you can try. The Indexing page runs a small, measured retrieval
         experiment; the Community page assembles a conversation from records nobody on this site
-        owns.
+        owns. Neither involves an agent yet. Four Words tests short human queries over
+        documentation, the shortcut the opening describes. Whether an agent would check such an
+        index before exploring, and whether agents could write records back, are open questions
+        (H5 in the record).
       </p>
       <RabbitHoles />
 

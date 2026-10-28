@@ -18,16 +18,20 @@
     {
       "id": "H1",
       "subproblem": "indexing",
-      "statement": "Offline, structured problem–solution records retrieve the right source for short queries more often than plain keyword search over the same sources.",
+      "statement": "Offline, structured problem–solution records retrieve the right source for short queries more often than plain keyword search over the same sources. (Run v1: better on this corpus; much of the gain comes from vocabulary the record writer supplied, and one loss was partly a labelling error. See E1.)",
       "status": "tested",
-      "evidence": ["E1"]
+      "evidence": [
+        "E1"
+      ]
     },
     {
       "id": "H2",
       "subproblem": "community",
       "statement": "A discussion can be assembled by an interface from independently owned contributions without the interface owning them: removing every relation the interface draws leaves every contribution intact and attributed.",
       "status": "demonstrated-on-fixtures",
-      "evidence": ["E2"]
+      "evidence": [
+        "E2"
+      ]
     },
     {
       "id": "H3",
@@ -41,7 +45,9 @@
       "subproblem": "both",
       "statement": "A reader can follow any indexed answer back to its author, source and exact revision.",
       "status": "partially-demonstrated",
-      "evidence": ["E3"]
+      "evidence": [
+        "E3"
+      ]
     },
     {
       "id": "H5",
@@ -65,7 +71,14 @@
       "implementation": "src/data/community-fixtures.ts (fixtures only)"
     }
   ],
-  "sources": ["syntax1050", "githubAtlas", "brainstorm", "lumpesammlig", "colors", "atproto", "standardSite"],
+  "sources": [
+    "syntax1050",
+    "githubAtlas",
+    "brainstorm",
+    "lumpesammlig",
+    "atproto",
+    "standardSite"
+  ],
   "evidence": [
     {
       "id": "E1",
@@ -83,7 +96,7 @@
     {
       "id": "E3",
       "kind": "implementation",
-      "summary": "Every corpus record links to its source at a pinned commit or retrieval timestamp, with licence; every site claim links to a registered source.",
+      "summary": "Every corpus record links to its source with licence; files are pinned to a commit, issues only to their last-updated time (not a true revision). External sources cited by the site are registered in src/content/sources.ts; some framing claims (Stack Overflow's signals, the project's own deployment anecdotes) are the authors' reading or experience and are labelled as such.",
       "artifact": "corpus/sources.json"
     }
   ],
@@ -97,18 +110,31 @@
   "provenance": {
     "author": "Postack Underflow project owner (blackmath88)",
     "assistance": "Drafted and implemented with AI coding agents under the repository's development practice; editorial decisions by the project owner.",
-    "derivedFrom": ["writing/WE-ALREADY-SOLVED-THIS.md", "docs/PROBLEM.md", "docs/CONCEPT.md"],
+    "derivedFrom": [
+      "writing/WE-ALREADY-SOLVED-THIS.md",
+      "docs/PROBLEM.md",
+      "docs/CONCEPT.md"
+    ],
     "inspiration": "Syntax #1050, paraphrased and attributed; not affiliated."
   },
   "revision": {
-    "version": "0.2.0",
+    "version": "0.2.1",
     "date": "2026-10-28",
-    "changes": "First structured record; H1 tested by the Four Words experiment."
+    "changes": "After independent review: removed a palette study from sources, added corpus and research pointers, narrowed E3, annotated H1 with the post-hoc findings."
   },
   "publication": {
     "status": "not-published",
     "plannedCarrier": "site.standard.document (exists) with this record as a payload in its open `content` union, which no reader interprets today",
     "discussion": "Replies would live in their authors' own repositories and reference this record by strongRef (uri + cid), optionally a specific hypothesis id. A site.standard.document can point to a Bluesky thread through bskyPostRef; endorsement, correction and dispute records have no existing Lexicon.",
     "requiresApproval": true
+  },
+  "corpus": {
+    "sources": "corpus/sources.json",
+    "queries": "corpus/queries.json",
+    "records": "corpus/records.json",
+    "research": [
+      "docs/research/FOUR-WORDS.md",
+      "docs/research/ATPROTO-COMMUNITY.md"
+    ]
   }
 }

@@ -2,7 +2,7 @@
 
 **Question (H1).** Do offline, structured problem–solution records retrieve the right source for short queries more often than plain keyword search over the same sources?
 
-**Short answer.** On this corpus, in one run: yes, clearly, with one instructive failure. The test is small and friendly, so the result does not generalise.
+**Short answer.** On this corpus, in one run: yes. But a post-hoc look shows that much of the gain is vocabulary the record writer added. The one loss was partly a labelling mistake. The test is small and friendly, and the result does not generalise.
 
 ## Corpus
 - **30 public sources** on one problem area: publishing a static site under a GitHub Pages subpath. The topic was chosen because this project had just met the problem itself.
@@ -50,10 +50,11 @@ Both systems share one tokenizer: lowercase, alphanumeric tokens, a small stopwo
 - **Paired comparison.** By reciprocal rank of the first relevant source, the structured index was better on 10 queries, worse on 1, and tied on 16.
 - **Source data.** Full per-query output, including the top three results and any unknown terms: [`results/four-words-v1.json`](../../results/four-words-v1.json).
 - **Build cost.** The index was built in about 50 ms. The artifact is 448 KiB and contains 3,020 baseline terms.
+- **Rank 1 correct.** Queries whose top result is labelled relevant: baseline 17 of 27, structured 25, ablation 22. Counted post-hoc from the same per-query output. Recall@1 is capped below 1 when a query has several relevant sources, so it reads oddly.
 - **Not tested.** No significance testing was done; with 27 queries it would mean little.
 
 ### Where it helped
-The largest gains came where the problem appears as a symptom inside a long document about something broader:
+The largest gains:
 
 | Query | Plain search: first relevant at rank | Structured: first relevant at rank |
 |---|---|---|
@@ -63,28 +64,37 @@ The largest gains came where the problem appears as a symptom inside a long docu
 | `site shows 404 everywhere` | 6 | 2 |
 | `artifact too large` | 4 | 1 |
 
-### Where it failed
-**`css missing after deploy`** is the essay's own opening example. Plain search ranked a relevant source first; the structured index ranked one only seventh.
+### Post-hoc analysis (after run v1; nothing re-ranked)
+An independent review of the run found that the first draft of this write-up misdiagnosed both the wins and the loss. What the data shows:
 
-- **Vocabulary.** The records for the base-path fix (Vite's deploy guide, vite#8073) describe the symptom as a blocked JavaScript module and missing assets, never as missing CSS.
-- **Weighting.** The generic words left in the query, *missing*, *after* and *deploy*, then matched heavily weighted fields of an unrelated record. The top result was the dotfiles issue.
-
-The failure is the clearest finding of the run. A structured index is only as good as the vocabulary its writers anticipated, and field weights amplify generic words. The explanation panel in the interface makes this visible: the top hit matched only on *after*, *missing* and *deploy*.
+- **Supplied vocabulary.** Most wins depend on vocabulary the record writer supplied.
+  - In 7 of the 10 queries where the structured index won, its first relevant record matched at least one query word that does not occur anywhere in that source's snapshot. The words were `blank`, `underscore`, `refresh`, `found`, `large`, `show`, and `trailing`/`slash`. This was checked with the shared tokenizer against `corpus/.cache`.
+  - That is the intended effect of editorial work: records use the words people search with. It is also a risk. The vite#8073 record's alias "blank page … works locally" is not supported by its source.
+- **Tokenizer artefact.** One win is partly a tokenizer artefact. Next.js writes `trailingSlash`, which the tokenizer keeps as a single token, `trailingslash`, so the baseline cannot match `trailing slash`. A camelCase-splitting tokenizer would help both systems; it was not used in v1.
+- **The loss was partly mislabelled.** The structured results at ranks 2 and 4 for `css missing after deploy` (`angular-router-reference`, `tanstack-router-deploy`) both describe missing CSS after deployment, and neither was labelled relevant.
+  - Adding them post hoc would move the structured index's first relevant result from rank 7 to rank 2; the baseline stays at rank 1.
+  - The other cause also stands: generic words (*missing*, *after*, *deploy*) matching heavily weighted fields put the dotfiles issue first.
+  - The labels were frozen before the run and are not changed. The episode lowers confidence in the labels for every query.
+- **Records with known defects.** These are kept as written for v1 and listed for v2:
+  - the vite#8073 "blank page" alias;
+  - the upload-pages-artifact#129 record overstating agreement that `.nojekyll` is unnecessary, and omitting a counterpoint in the thread.
 
 ### What the ablation suggests
-The aliases and symptoms fields account for some of the gain (MRR 0.892 without them, 0.950 with them). Most of the gain, though, comes simply from indexing a short, plain statement of problem and solution instead of a whole document.
+The aliases and symptoms fields account for part of the gain (MRR 0.892 without them, 0.950 with them). A short, plain statement of problem and solution already beats whole-document matching on this corpus.
 
 ## Threats to validity
 - **Topic.** One narrow topic and 30 documents. All but one document is labelled relevant to at least one query, which is unlike real search.
 - **Authorship.** The same project wrote queries and labels; one AI agent wrote all records; no human has reviewed them.
 - **Labeller knowledge.** The labeller knew the source summaries when writing queries.
 - **No real users.** No query comes from anyone who has not seen the corpus.
+- **Shared vocabulary.** Queries and records came from the same project and the same model family, which may share vocabulary habits; the supplied-vocabulary finding above is consistent with that.
 - **Corpus scale.** The baseline is disadvantaged by long documents that cover many topics. That is realistic, but a passage-level baseline (chunked raw text) would be a fairer comparison and has not been run.
 - **Timing.** Latency was measured in Node on one machine and says nothing about scale.
 
 ## Next steps that would make this a real test
-1. Collect short queries from developers who have never seen the index. For example, ask people how they would search for each issue's symptom before showing them anything.
-2. Add a passage-level BM25 baseline, and possibly a hybrid embedding baseline.
-3. Have a person review a sample of records against their sources, and report the error rate.
-4. Grow the corpus with off-topic and near-duplicate documents.
-5. Rerun from a clean clone (`npm run corpus:fetch && npm run index && npm run evaluate v2`) and keep every run's results.
+1. Re-label with a second labeller, starting with q01, and keep the v1 labels for comparison.
+2. Collect short queries from developers who have never seen the index. For example, ask people how they would search for each issue's symptom before showing them anything.
+3. Add a passage-level BM25 baseline, and possibly a hybrid embedding baseline.
+4. Have a person review a sample of records against their sources, and report the error rate.
+5. Grow the corpus with off-topic and near-duplicate documents.
+6. Rerun from a clean clone (`npm run corpus:fetch && npm run index && npm run evaluate v2`) and keep every run's results.

@@ -17,10 +17,10 @@ const byId = new Map(CONTRIBUTIONS.map((c) => [c.id, c]))
 
 function Body({ c }: { c: Contribution }) {
   if (c.availability === 'source-offline') {
-    return <p className="cm-unavailable">Source unreachable. The author’s repository is offline, so there is no text to show. This view does not keep its own copy.</p>
+    return <p className="cm-unavailable">Source unreachable. The author’s repository is offline, so there is no text to show. The type and target above come from an index’s earlier copy of the record’s metadata; this view keeps no copy of its text.</p>
   }
   if (c.availability === 'deleted') {
-    return <p className="cm-unavailable">Deleted by its author. Nothing remains to show; only an index’s memory of the reference.</p>
+    return <p className="cm-unavailable">Deleted by its author. Nothing remains at the source; the address and type above are an index’s memory of the reference.</p>
   }
   return <p className="cm-text">{c.text}</p>
 }
@@ -130,8 +130,8 @@ export function CommunityAssembler() {
         <p className="kicker">Demonstration · fixture records</p>
         <h2 id="assembler-title">One discussion, owned by nobody here</h2>
         <p>
-          Eight invented contributions about this essay, each stored in its author’s own repository.
-          This page only draws the connections. Turn relation layers off, or remove all of them, and
+          Seven invented responses to this essay, plus the essay itself, each stored in its author’s
+          own repository. This page only draws the connections. Turn relation layers off, or remove all of them, and
           watch what stays.
         </p>
       </header>
@@ -190,7 +190,9 @@ export function CommunityAssembler() {
       ) : (
         <div className="table-wrap">
           <table className="cm-ledger">
-            <caption className="kicker table-caption">As stored at each source. Relation settings never change this table.</caption>
+            <caption className="kicker table-caption">
+              As stored at each source, or as an index last saw it where the source is offline or the record deleted. Relation settings never change this table.
+            </caption>
             <thead>
               <tr>
                 <th scope="col">Author</th>

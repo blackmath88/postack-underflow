@@ -20,7 +20,7 @@ const EXPERIMENTS = [
   {
     name: 'P0 · Editorial showcase',
     status: 'implemented' as const,
-    text: 'This site: the narrative, source trail and artifact placeholders. Visual design is preliminary.',
+    text: 'This site: the narrative, the source trail, two working experiments and the essay as a structured record. Visual design is preliminary.',
   },
   {
     name: 'P1 · Four Words',
@@ -29,7 +29,7 @@ const EXPERIMENTS = [
   },
   {
     name: 'P2 · Portable discussion',
-    status: 'hypothesis' as const,
+    status: 'demonstrated' as const,
     text: 'Partly: fixture contributions and relations, two views (assembled discussion, source ledger), availability and deletion cases. No real ATProto reads; publishing only with explicit review.',
   },
   {
@@ -134,7 +134,7 @@ function Notes() {
 
       <h2>Open questions</h2>
       <ul>
-        <li>Which existing ATProto Lexicons already cover replies, endorsements and corrections well enough to reuse?</li>
+        <li>Should endorsement, correction and dispute reuse the nearest niche patterns (Leaflet’s author-curated interactions, Frontpage’s versioned comments) or get a new shared Lexicon, and who would maintain it?</li>
         <li>Is a problem a stable enough unit to index, or does it fragment into versions and contexts too quickly?</li>
         <li>How should an index represent disagreement without either hiding it or amplifying noise?</li>
         <li>What stops a portable community from becoming one more aggregator that everyone depends on?</li>

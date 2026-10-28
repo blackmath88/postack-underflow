@@ -27,8 +27,10 @@ const PROTOCOL: Array<[string, string, 'exists' | 'niche' | 'proposal' | 'missin
   ['Point at one exact version of a record', 'com.atproto.repo.strongRef (uri + cid)', 'exists'],
   ['Reply in a thread', 'app.bsky.feed.post reply (root, parent)', 'exists'],
   ['Use a Bluesky thread as a blog’s comments', 'site.standard.document bskyPostRef', 'exists'],
-  ['Recommend a document', 'site.standard.graph.recommend', 'exists'],
+  ['Recommend a document', 'site.standard.graph.recommend', 'niche'],
   ['Comment on a document', 'pub.leaflet.comment, fyi.frontpage.feed.comment', 'niche'],
+  ['Vote on a link or post', 'fyi.frontpage.feed.vote', 'niche'],
+  ['Ask an author a question; the author answers', 'pub.leaflet.interactions.question / .answer', 'niche'],
   ['Label content for moderation', 'com.atproto.label.defs#label', 'exists'],
   ['Groups with shared spaces', 'Atmospheric Groups / opensocial.group', 'proposal'],
   ['Endorse a specific solution', '—', 'missing'],
@@ -40,7 +42,7 @@ const PROTOCOL: Array<[string, string, 'exists' | 'niche' | 'proposal' | 'missin
 
 const PROTOCOL_LABEL = {
   exists: 'Exists, in use',
-  niche: 'Exists, app-specific',
+  niche: 'Exists; app-specific or adoption unmeasured',
   proposal: 'Proposal',
   missing: 'No Lexicon found',
 }
@@ -92,11 +94,13 @@ function Community() {
 
       <h2>Where the conversation went</h2>
       <p>
-        <Status kind="observation" />
-        A lot of problem solving now happens in a private chat with a model, or in an agent run
-        that leaves behind a diff and nothing else. Nobody votes; nobody adds the comment saying
-        it breaks on Windows. The judgement still happens, inside one person’s head, and then it
-        is gone.
+        <Status kind="hypothesis" />
+        Our reading, not a measurement: a lot of problem solving now happens in a private chat with
+        a model, or in an agent run that leaves behind a diff. Some of it does surface. Wes
+        mentions agents opening issues and pull requests on his repositories. But a pull request
+        is a fix, not a question others can find by its symptom, and nobody votes on it or adds the
+        comment saying it breaks on Windows. Much of the judgement happens in one person’s head
+        and stays there.
       </p>
       <p>
         Moving everyone back onto one big site is not obviously the answer. Platforms change
@@ -178,11 +182,13 @@ function Community() {
         </table>
       </div>
       <p>
-        Two details matter more than they look. Records can be edited and deleted without trace,
-        so a correction needs to point at the exact version it corrects. And the main Bluesky
-        app view only indexes its own record types: a reply aimed at a blog document is stored,
-        but that app treats it as an invalid reply. Portability of records is real; portability
-        of conversation is not automatic.
+        Two details matter more than they look. Records can be edited in place and deleted without
+        a tombstone; a reference that pins a version can tell that its target changed, but not what
+        it used to say, though caches may still hold copies. So a correction needs to point at the
+        exact version it corrects. And the main Bluesky app view indexes only its own record
+        types: a reply aimed at a blog document is stored, but judging from the app view’s code
+        (not tested live) it would be treated as an invalid reply. Portability of records is real;
+        portability of conversation is not automatic.
       </p>
       <p className="aside">
         Full notes with field names, pinned lexicon revisions and caveats:{' '}
@@ -196,8 +202,8 @@ function Community() {
         Owning your records does not mean anyone sees them, that they stay online, or that they
         are right. Moderation labels apply only where an interface chooses to honour them.
         Whoever runs the popular view still decides what most people see; portability moves that
-        power around rather than removing it. One of the fixture voices above says exactly this,
-        and it deserves an answer this project does not have yet.
+        power around rather than removing it. The fixture dispute above stands in for that
+        objection; it is a real problem, and this project does not have an answer to it yet.
       </p>
 
       <nav className="next" aria-label="Continue reading">

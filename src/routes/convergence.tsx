@@ -40,8 +40,8 @@ function Convergence() {
     <>
       <PageIntro index="03" kicker="Convergence" title="An index that remembers its arguments">
         <p>
-          Indexing without community gives you confident strangers. Community without indexing gives
-          you a good conversation nobody can find. Each is the other’s missing half.
+          The hypothesis, still untested as a whole: each half supplies what the other lacks. Run v1
+          of Four Words happens to contain a worked example.
         </p>
       </PageIntro>
 
@@ -61,6 +61,37 @@ function Convergence() {
         The trade is concrete. Records give the community something stable to point at: a specific
         problem and a specific claim, at a specific version. Contributions give the index something
         it cannot compute by itself: evidence about whether the claim holds up.
+      </p>
+
+      <h2>A worked example: the CSS miss</h2>
+      <p>
+        Four Words’ worst query was the essay’s own example, <code>css missing after deploy</code>.
+        Two things went wrong. The records for the base-path fix never mention CSS, and the labels
+        missed two sources that do. No ranking formula can repair either. Both are exactly what a
+        community contributes when it can see the record.
+      </p>
+      <ol>
+        <li>
+          Someone searches, finds the wrong record first, and reads why it matched: only{' '}
+          <em>missing</em>, <em>after</em> and <em>deploy</em>.
+        </li>
+        <li>
+          They publish a correction from their own repository, pointing at the exact version of the
+          Vite record: “the symptom people report is missing CSS”.
+        </li>
+        <li>
+          Someone else endorses it; a third person disputes the labels on the Angular reference.
+        </li>
+        <li>
+          The index’s next build reads those contributions as evidence and adds the symptom, with the
+          correction cited, not silently merged.
+        </li>
+      </ol>
+      <p>
+        <Status kind="not-built" />
+        Steps 2 to 4 do not exist. The community demonstration shows what such contributions could look
+        like and how a view can assemble them without owning them; nothing feeds them back into the
+        index. That feedback is H3, the untested centre of the whole idea.
       </p>
 
       <h2>A portable problem commons</h2>
@@ -114,7 +145,7 @@ function Convergence() {
             <a href={recordUrl} download="we-already-solved-this.json">
               Download JSON
             </a>{' '}
-            · <a href={repoFile('knowledge/we-already-solved-this.json')}>Source on GitHub</a>
+            · <a href={repoFile('knowledge/we-already-solved-this.json')}>Record file on GitHub</a>
           </p>
         </header>
         <div className="krecord__body">

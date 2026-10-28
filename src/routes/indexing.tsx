@@ -26,6 +26,24 @@ const queryText = new Map(queryFile.queries.map((q) => [q.id, q.query]))
 const rankOf = (system: string, id: string) =>
   results.perQuery.find((p) => p.system === system && p.query === id)?.firstRelevantRank ?? null
 const fmtRank = (r: number | null) => (r === null ? 'not found' : String(r))
+const successAt1 = (system: string) =>
+  results.perQuery.filter((p) => p.system === system && p.firstRelevantRank === 1).length
+
+/**
+ * Post-hoc analysis (2026-10-28, after run v1): queries the structured index
+ * won where its first relevant record matched a query word absent from that
+ * source's snapshot text. Computed with the shared tokenizer against
+ * corpus/.cache; see docs/research/FOUR-WORDS.md.
+ */
+const INJECTED = [
+  { query: 'blank page github pages', word: 'blank' },
+  { query: 'underscore folder not served', word: 'underscore' },
+  { query: 'refresh gives 404', word: 'refresh' },
+  { query: 'custom not found page', word: 'found' },
+  { query: 'artifact too large', word: 'large' },
+  { query: 'site shows 404 everywhere', word: 'shows' },
+  { query: 'trailing slash index html', word: 'trailing slash' },
+]
 
 function Indexing() {
   const diffs = queryFile.queries
@@ -52,7 +70,7 @@ function Indexing() {
         Take the problem this site’s own deployment had to avoid: a static site published under a
         GitHub Pages subpath. The knowledge needed is scattered across a build tool’s option
         reference, a hosting provider’s note about folders that start with an underscore, a router’s
-        API docs, and a three-year-old issue where someone confirmed what fixed it. None of those
+        API docs, and a years-old issue where someone confirmed what fixed it. None of those
         documents is <em>about</em> “my CSS is missing after deploy”. Each one solves a piece of it.
       </p>
       <p className="aside">
@@ -97,7 +115,7 @@ function Indexing() {
           <thead>
             <tr>
               <th scope="col">System</th>
-              <th scope="col">Recall@1</th>
+              <th scope="col">Rank 1 correct</th>
               <th scope="col">Recall@5</th>
               <th scope="col">MRR@10</th>
               <th scope="col">Mean query time</th>
@@ -107,7 +125,9 @@ function Indexing() {
             {Object.entries(results.summary).map(([name, m]) => (
               <tr key={name}>
                 <th scope="row">{SYSTEM_LABEL[name] ?? name}</th>
-                <td>{pct(m.recallAt1)}</td>
+                <td>
+                  {successAt1(name)} / {results.queries}
+                </td>
                 <td>{pct(m.recallAt5)}</td>
                 <td>{m.mrrAt10.toFixed(3)}</td>
                 <td>{m.meanQueryMs.toFixed(3)} ms</td>
@@ -120,7 +140,9 @@ function Indexing() {
         Paired by query, the structured index ranked the first relevant source higher on{' '}
         {results.paired.structuredBetter}, lower on {results.paired.baselineBetter} and the same on{' '}
         {results.paired.tied} of {results.queries} queries. Query times were measured in Node on one
-        machine ({results.environment}) and say nothing about scale.
+        machine ({results.environment}) and say nothing about scale. “Rank 1 correct” counts queries whose
+        top result is labelled relevant; Recall@5 is the average share of each query’s relevant sources in
+        the top five.
       </p>
 
       <h3>Where the two disagreed</h3>
@@ -216,34 +238,48 @@ function ResultsReading() {
     <>
       <p>
         <Status kind="observation" />
-        On this corpus, the prior work helped. On average the problem-oriented index placed{' '}
-        {pct(s.structured.recallAt5)} of each query’s relevant sources in its top five, against{' '}
-        {pct(s.baseline.recallAt5)} for plain keyword search, and its first relevant result sat
-        higher on average (MRR {s.structured.mrrAt10.toFixed(2)} against {s.baseline.mrrAt10.toFixed(2)}).
-        The gains are concentrated in queries phrased as symptoms, such as <code>blank page github pages</code>{' '}
-        or <code>trailing slash index html</code>, where raw documents bury the relevant passage in a
-        long page about something broader.
+        In this one run the structured index did better: a relevant source at rank 1 for{' '}
+        {successAt1('structured')} of {results.queries} queries, against {successAt1('baseline')} for
+        plain keyword search, and MRR {s.structured.mrrAt10.toFixed(2)} against{' '}
+        {s.baseline.mrrAt10.toFixed(2)}. Why it did better matters more than the margin.
       </p>
       <p>
-        The ablation says part of that comes from the fields describing how people report a problem.
-        Without aliases and symptoms the structured index still beat raw text (MRR{' '}
-        {s['structured-without-aliases-symptoms'].mrrAt10.toFixed(2)}), so the plain statement of
-        the problem and its fix already does much of the work.
+        <strong>Much of the gain is vocabulary the record writer added.</strong> In {INJECTED.length} of
+        the {results.paired.structuredBetter} queries where the structured index won, its first relevant
+        record matched on at least one query word that never appears in that source’s text:{' '}
+        {INJECTED.map((x, i) => (
+          <span key={x.query}>
+            {i > 0 && ', '}
+            <code>{x.word}</code> for <code>{x.query}</code>
+          </span>
+        ))}
+        . That is what editorial work is supposed to add, the words people use rather than the words
+        documentation uses. It is also a risk: one record describes a “blank page” symptom its source
+        never mentions. One win, <code>trailing slash index html</code>, is partly a tokenizer artefact:
+        the source writes <code>trailingSlash</code>, which this tokenizer keeps as one word.
       </p>
       <p>
-        <strong>It failed on the essay’s own example.</strong> For <code>css missing after deploy</code>,
-        plain search put a relevant source at rank {fmtRank(css.b)}; the structured index only at rank{' '}
-        {fmtRank(css.s)}. The records for the base-path fix describe the symptom as a blocked JavaScript
-        module and missing assets, never as missing CSS. The generic words left over, <em>missing</em>,{' '}
-        <em>after</em> and <em>deploy</em>, then matched heavily weighted fields of unrelated records.
-        A structured index is only as good as the vocabulary its writers anticipated, and a
-        confident ranking hides that gap unless the explanation is shown.
+        The ablation points the same way. Without the aliases and symptoms fields the structured index
+        still beat raw text (MRR {s['structured-without-aliases-symptoms'].mrrAt10.toFixed(2)}), so a short,
+        plain statement of problem and fix does real work, but the reader-facing vocabulary adds more.
       </p>
       <p>
-        Treat all of this as one run on a small, friendly corpus. Queries and records were written
-        independently but by the same project, and one AI agent wrote every record. A fair test
-        needs queries collected from people who never saw the index, a corpus nobody chose to suit
-        the method, and records checked by someone other than their writer.
+        <strong>The one loss was a labelling mistake as much as a ranking one.</strong> For the essay’s
+        own example, <code>css missing after deploy</code>, plain search put a labelled source at rank{' '}
+        {fmtRank(css.b)} and the structured index only at rank {fmtRank(css.s)}. But the structured
+        index’s second and fourth results (Angular’s router reference and TanStack Router’s deploy guide)
+        both describe missing CSS after deployment, and neither was labelled relevant. A post-hoc audit
+        that adds them would put the structured index’s first relevant result at rank 2. The labels were
+        frozen before the run and are not changed here; the miss says as much about the labels as about
+        the index.
+      </p>
+      <p className="aside">
+        <strong>Read these numbers with the caveats beside them.</strong> One run, 30 documents on one
+        narrow topic, all but one of them labelled relevant to something. The same project wrote the
+        queries and the labels, and the labeller had read summaries of every source. The baseline indexes
+        whole documents, not passages, which handicaps long pages. One AI agent wrote every record, and
+        no person has reviewed them. A fair test needs queries from people who have never seen the
+        index, a passage-level baseline, and reviewed records.
       </p>
     </>
   )

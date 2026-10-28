@@ -25,7 +25,7 @@ const recordBySource = new Map(artifact.records.map((r) => [r.sourceId, r]))
 const sourceById = new Map(artifact.sources.map((s) => [s.id, s]))
 
 /** Examples for trying the interface; deliberately not the evaluation queries. */
-const EXAMPLES = ['blank page after deploy', 'images missing subfolder', 'router links wrong prefix']
+const EXAMPLES = ['images missing subfolder', 'router links wrong prefix', 'workflow cannot publish']
 
 const WEAK_SHARE = 0.35
 const SHOWN = 5
@@ -40,16 +40,20 @@ const FIELD_LABEL: Record<string, string> = {
   text: 'source text',
 }
 
-export function shortRevision(revision: string) {
-  return /^[0-9a-f]{40}$/.test(revision) ? revision.slice(0, 7) : revision.slice(0, 10)
+/** Files are pinned to a commit; issues only to their last update. */
+export function revisionLabel(revision: string) {
+  return /^[0-9a-f]{40}$/.test(revision) ? `commit ${revision.slice(0, 7)}` : `updated ${revision.slice(0, 10)}, not pinned`
 }
 
 function SourceLine({ source }: { source: CorpusSource }) {
   return (
     <p className="fw-source">
-      <a href={source.url}>{source.title}</a>
+      <a href={source.url}>
+        {source.title}
+        <span className="visually-hidden"> ({source.repo})</span>
+      </a>
       <span className="fw-source__meta">
-        {source.repo} · {source.kind} · {shortRevision(source.revision)} · {source.license}
+        {source.repo} · {source.kind} · {revisionLabel(source.revision)} · {source.license}
       </span>
     </p>
   )
@@ -77,7 +81,7 @@ function RecordDetail({ record }: { record: ProblemRecord }) {
     <div className="fw-detail">
       {record.context.length > 0 && (
         <>
-          <h5>Context and constraints</h5>
+          <p className="fw-label">Context and constraints</p>
           <ul>
             {record.context.map((c) => (
               <li key={c}>{c}</li>
@@ -85,9 +89,9 @@ function RecordDetail({ record }: { record: ProblemRecord }) {
           </ul>
         </>
       )}
-      <h5>Solution</h5>
+      <p className="fw-label">Solution</p>
       <p>{record.solution}</p>
-      <h5>Evidence</h5>
+      <p className="fw-label">Evidence</p>
       <ul>
         {record.evidence.map((e, i) => (
           <li key={i}>
@@ -97,7 +101,7 @@ function RecordDetail({ record }: { record: ProblemRecord }) {
       </ul>
       {record.limitations.length > 0 && (
         <>
-          <h5>Known limitations</h5>
+          <p className="fw-label">Known limitations</p>
           <ul>
             {record.limitations.map((l) => (
               <li key={l}>{l}</li>
@@ -107,7 +111,7 @@ function RecordDetail({ record }: { record: ProblemRecord }) {
       )}
       {record.related.length > 0 && (
         <>
-          <h5>Related and competing approaches</h5>
+          <p className="fw-label">Related and competing approaches</p>
           <ul>
             {record.related.map((r) => (
               <li key={r.sourceId}>

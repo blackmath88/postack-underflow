@@ -19,5 +19,9 @@ const LABELS: Record<StatusKind, string> = {
 }
 
 export function Status({ kind }: { kind: StatusKind }) {
-  return <span className={`status status--${kind}`}>{LABELS[kind]}</span>
+  return (
+    <>
+      <span className={`status status--${kind}`}>{LABELS[kind]}</span>{' '}
+    </>
+  )
 }
