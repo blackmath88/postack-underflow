@@ -75,7 +75,7 @@ export const CONTRIBUTIONS: Contribution[] = [
     createdAt: '2026-10-29',
     claim: 'H1',
     availability: 'available',
-    text: 'Twenty-odd records on one narrow topic is a fair start, but the queries and the records were written by the same project. I would like to see queries collected from people who never saw the index.',
+    text: 'Thirty records on one narrow topic is a fair start, but the queries and the records were written by the same project. I would like to see queries collected from people who never saw the index.',
     refs: [{ uri: ARTICLE_URI, cid: 'bafy-example-article-v020', role: 'parent' }],
   },
   {

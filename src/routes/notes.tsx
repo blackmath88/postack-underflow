@@ -80,6 +80,12 @@ function Notes() {
           <Status kind="implemented" /> exists and can be inspected in the repository;
         </li>
         <li>
+          <Status kind="tested" /> measured, with the result and its caveats published;
+        </li>
+        <li>
+          <Status kind="demonstrated" /> shown working on fixtures or in part, not proven at scale;
+        </li>
+        <li>
           <Status kind="not-built" /> planned or imagined, with nothing to show yet.
         </li>
       </ul>

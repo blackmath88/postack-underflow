@@ -1,5 +1,12 @@
 // Labels that keep the epistemic status of a claim visible.
-export type StatusKind = 'observation' | 'hypothesis' | 'implemented' | 'not-built' | 'paraphrase'
+export type StatusKind =
+  | 'observation'
+  | 'hypothesis'
+  | 'implemented'
+  | 'not-built'
+  | 'paraphrase'
+  | 'tested'
+  | 'demonstrated'
 
 const LABELS: Record<StatusKind, string> = {
   observation: 'Observation',
@@ -7,6 +14,8 @@ const LABELS: Record<StatusKind, string> = {
   implemented: 'Implemented',
   'not-built': 'Not built',
   paraphrase: 'Paraphrase',
+  tested: 'Tested',
+  demonstrated: 'Demonstrated',
 }
 
 export function Status({ kind }: { kind: StatusKind }) {

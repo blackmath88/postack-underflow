@@ -1,49 +1,83 @@
-# Verification — editorial site V1
+# Verification
 
-**Date:** 2026-10-28 · **Environment:** Linux, Node 26.8.1, npm 11.19.0; browser checks in the Claude desktop app's built-in Chromium browser pane against `scripts/serve-pages.mjs`.
+This file records what was actually checked. It is not a claim that the public site is live.
 
-This records what was actually checked. It is not a claim that the public site is live.
+## Phase 2 — 2026-10-28
 
-## Automated (`npm run check`, also run in CI)
+**Environment:** Linux, Node 26.8.1, npm 11.19.0, Chromium 154 (system), playwright-core 1.64.1.
+
+### Deployment state at the start of Phase 2
+- **What was on `main`.** PRs #1 → #2 → #3 were merged *as a stack*: #2 into #1's branch and #3 into #2's branch. Only PR #1 reached `main` (`eebc4c8`), so `main` held documentation only.
+  - No Pages workflow had ever run on `main`.
+  - `https://blackmath88.github.io/postack-underflow/` returned **404 on every route** (`npm run smoke` against the public URL: 7 failures).
+- **What Phase 2 does about it.** The Phase 2 branch is based on the tip of the stack (`cf19112`), so its pull request against `main` carries V1 and Phase 2 together. Merging it is the first time the site can deploy. **Nothing has been deployed by this work.**
+- **Regression coverage added for "green build, broken page":**
+  - `scripts/validate-build.mjs` fails if any output path starts with `_`, if `.nojekyll` is missing, if a page links no stylesheet, or if a stylesheet is suspiciously small.
+  - `scripts/smoke-deployed.mjs` runs as a new `smoke` job after `deploy`. It fetches every route at the real Pages URL and checks HTML, CSS (content type and size), module JS (content type) and 404 behaviour.
+  - `scripts/browser-check.mjs` asserts in a real browser that the stylesheet is *applied* (computed body background), at three widths.
+
+### Automated checks (all run locally and wired into CI)
 | Check | Result |
 |---|---|
-| `npm ci` from a clean `node_modules` | pass, 0 vulnerabilities reported |
-| `tsc --noEmit` | pass |
-| `node --test tests/` (source registry, provenance coverage, artifact contracts, private-repo flags) | 5/5 pass |
-| `vite build` with prerender (`failOnError: true`) | 7 HTML pages: `/`, `/indexing/`, `/community/`, `/convergence/`, `/notes/`, `/about/`, `404.html` |
-| `scripts/validate-build.mjs` | 186 internal URLs, all under `/postack-underflow/` and resolving to built files; `404.html` script-free |
-| Validator negative test (injected `/about/` and a missing stylesheet) | correctly failed with 3 errors |
+| `npm ci` (clean install from the lockfile) | pass |
+| `npm run typecheck` | pass |
+| `npm test`: retrieval, metrics, content registry, corpus schema, queries, knowledge record, fixtures | 15/15 pass |
+| `npm run build` | 7 pages; `404.html` is script-free |
+| `npm run validate` | 202 internal URLs, all under `/postack-underflow/`, all resolving; no underscore paths; `.nojekyll` present; stylesheet linked on every page |
+| `npm run index:check` | artifact matches `corpus/`; structured index reproduced byte-for-byte from the committed records |
+| `npm run browser` | **101/101 pass**, stable across repeated runs (details below) |
+| `npm run smoke` against the local Pages emulation | pass (6 routes, 9 URLs) |
 
-## Static serving (Pages emulation)
-| Request | Result |
-|---|---|
-| `/postack-underflow` | 301 → `/postack-underflow/`, then 200 |
-| `/postack-underflow/indexing` | 301 → `/postack-underflow/indexing/` |
-| `/postack-underflow/indexing/` | 200 |
-| `/postack-underflow/nope` | 404 with `404.html` |
+### Browser checks (`npm run browser`, Chromium, Pages-like server)
+- **Every route at 390, 768 and 1440 px:**
+  - HTTP 200;
+  - stylesheet applied (paper ground `rgb(245, 243, 236)`);
+  - no horizontal overflow;
+  - an `h1`;
+  - no console or page errors.
+- **Dark scheme.** The night ground applies.
+- **Routing.**
+  - A folder route without a trailing slash redirects to the canonical form.
+  - An unknown route returns HTTP 404 with the site's 404 page.
+  - Header navigation is client-side (no reload), and the title updates.
+- **Keyboard.** The first Tab reaches the skip link, which has a visible solid outline; Enter moves focus to `main`.
+- **Reduced motion** (emulated `prefers-reduced-motion: reduce`). `scroll-behavior: auto`; zero running animations after scrolling.
+- **Four Words.**
+  - A query returns ranked records with field-level explanations, and unmatched records stay listed.
+  - A nonsense query reports "No record matched" and names the unknown words.
+  - A stopword-only query is handled.
+  - No errors.
+- **Community.**
+  - "Remove every relation" leaves every contribution shown.
+  - The source ledger lists all of them.
+  - Model proposals appear only when switched on. This check caught a real bug (a second relation was dropped); it was fixed.
+- **JavaScript disabled.**
+  - The record catalogue on the Indexing page renders all 30 records.
+  - Every scrolly step has its own figure.
+  - The knowledge record renders.
 
-GitHub Pages' own redirect and 404 behaviour is expected to match this, but it has **not** been verified on Pages itself, because nothing has been deployed.
+### Manual review in the browser pane
+- **Home at 1440 px.** The sticky diagram follows the active step.
+- **Four Words.** Query `spa refresh 404` shows the structured and baseline columns side by side; record details expand with context, solution, evidence, limitations and related records.
+- **Community at 390 px.** With every relation removed, the 8 contributions remain, shown under "Not connected in this view".
+- **Convergence at 768 px, dark.** The knowledge record renders from the JSON file, and its download link resolves to a hashed asset.
+- **Fixes made after review:**
+  - The H1 and H2 status pills read "Implemented"; they now read "Tested" and "Demonstrated".
+  - On mobile, the checkbox notes are laid out below their labels.
+  - A fixture's "twenty-odd records" now says "thirty".
 
-## Browser
-| Check | Result |
-|---|---|
-| Hydration and client-side navigation through all header links | no full reload (window marker preserved), titles update, `aria-current="page"` on the active link, no console errors |
-| Direct load / refresh of every route | correct page and title |
-| Unknown path | static "Nobody has solved this one yet." page, correct title, no scripts. An earlier hydrated 404 caused React #418; fixed by `scripts/finalize-404.mjs` |
-| 390 px, all 7 pages | no horizontal overflow; text column 343 px with 16 px gutters; nav wraps to two rows, no JS needed |
-| 768 px, all 7 pages | no horizontal overflow; 608 px reading column; rabbit-hole fork in two columns |
-| 1440 px | 608 px reading column centred; table, fork and artifact slots at 1024 px |
-| Light and dark (`prefers-color-scheme`) | both render with explicit backgrounds |
-| Keyboard | first Tab reaches "Skip to content"; Enter moves focus to `main`; next Tab lands on the first link in the content; 3 px rose focus outline on every link checked |
-| Artifact fallbacks | both slots render `data-artifact-status="in-development"` with notice, fallback prose, PR link and pinned revision |
-| External links (`curl -L`) | all 200 after private repos (`colors`, `development-practice`) were changed to unlinked "private repository" credits. Repository doc links to `docs/adr/` and `docs/ARTIFACT-INTEGRATION.md` will 404 until this work is on `main` |
+### Sizes
+- Index artifact: 448 KiB JSON. The Indexing route chunk is 475 KB minified, 69 KB gzipped.
+- The shared client bundle is about 351 KB minified.
 
-## Contrast (WCAG 2.x, computed)
-Paper ground: ink 13.0, muted 5.7, blue links 5.6, violet text shade `#7440D6` 5.5, rose text shade `#C22A5A` 5.0, focus ring `#EE4F7E` 3.1 (non-text, ≥ 3). Raw violet `#A36BFF` (3.1) and rose (3.1) are used only for marks and rules, never body text. Dark ground: all text pairs ≥ 6.9; focus ring 5.1.
+### Not verified / limitations
+- **Not deployed.** The live site, the Pages deploy and the new `smoke` job have not run. They run only after a merge to `main`.
+- **CI browser step.** It relies on the runner's preinstalled Chrome at `/usr/bin/google-chrome`. It will first run on this PR.
+- **Accessibility.** No screen-reader test (NVDA, VoiceOver). Focus is not moved on client-side route changes.
+- **Devices.** No real-device or touch testing, and no cross-browser testing beyond Chromium.
+- **Corpus baseline.** The baseline index can only be rebuilt with network access and the `gh` CLI (`npm run corpus:fetch`). CI checks the structured index only.
+- **Record review.** The records have not been reviewed by a human. An independent agent review spot-checked five of them (see the PR).
 
-## Not verified / limitations
-- **Reduced motion:** the browser tool cannot emulate `prefers-reduced-motion`. Verified statically only: the site has no animations, smooth scrolling and 120 ms border transitions sit behind `no-preference`, and a `reduce` block zeroes durations.
-- **Screen readers:** not tested with NVDA, VoiceOver or similar. Focus is not moved on client-side route changes (TanStack Router default); worth reviewing.
-- **Real devices and touch:** viewport emulation only.
-- **GitHub Pages and Actions:** the workflow has not run yet; it will run on the draft PR (checks only). Deployment and public access are unverified and require merging to `main`.
-- **Fonts:** Inter is requested but not bundled; readers without it get the system sans.
+## V1 — 2026-10-28 (summary)
+- **Framework spike and baseline checks.** TanStack Start static-export spike, build validation, Pages-emulated serving, and a manual browser review at 390/768/1440 px, with keyboard, contrast and external-link checks. See [ADR-0002](adr/0002-editorial-site-direction.md).
+- **Contrast.** Computed WCAG ratios: every text pair meets AA in both schemes, and the focus ring is 3.1:1 or better.

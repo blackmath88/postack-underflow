@@ -14,9 +14,9 @@ export const Route = createFileRoute('/convergence')({
 })
 
 const HYPOTHESIS_STATUS: Record<string, StatusKind> = {
-  tested: 'implemented',
-  'demonstrated-on-fixtures': 'implemented',
-  'partially-demonstrated': 'hypothesis',
+  tested: 'tested',
+  'demonstrated-on-fixtures': 'demonstrated',
+  'partially-demonstrated': 'demonstrated',
   untested: 'not-built',
 }
 

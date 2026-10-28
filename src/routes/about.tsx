@@ -32,7 +32,7 @@ function About() {
       <h2>What it is not</h2>
       <ul>
         <li>Not a replacement for Stack Overflow, and not a new centralised social network.</li>
-        <li>Not a live search engine. There is no index, backend or AI service behind this site.</li>
+        <li>Not a live search service. The Four Words index is a static file built offline; there is no backend, crawler or AI service behind this site.</li>
         <li>Not a claim that the approach works. That is what the experiments are for.</li>
       </ul>
 
