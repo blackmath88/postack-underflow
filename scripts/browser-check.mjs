@@ -49,12 +49,18 @@ try {
       const state = await page.evaluate(() => ({
         bg: getComputedStyle(document.body).backgroundColor,
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        // Elements poking past the viewport, ignoring content inside scroll containers.
+        wide: [...document.querySelectorAll('body *')]
+          .filter((e) => e.getBoundingClientRect().right > document.documentElement.clientWidth + 1)
+          .filter((e) => !e.closest('.table-wrap, pre, .record'))
+          .slice(0, 4)
+          .map((e) => `${e.tagName.toLowerCase()}.${e.className} "${(e.textContent ?? '').trim().slice(0, 30)}"`),
         h1: document.querySelector('h1')?.textContent ?? '',
       }))
       const label = `${width}px /${route}`
       check(res?.status() === 200, `${label}: HTTP 200`)
       check(state.bg === PAPER, `${label}: stylesheet applied (body ${state.bg})`)
-      check(!state.overflow, `${label}: no horizontal overflow`)
+      check(!state.overflow, `${label}: no horizontal overflow ${state.overflow ? state.wide.join(' | ') : ''}`)
       check(state.h1.length > 0, `${label}: has h1`)
       if (shotDir) await page.screenshot({ path: `${shotDir}/${width}-${route.replace(/\//g, '') || 'home'}.png`, fullPage: true })
     }
@@ -111,9 +117,13 @@ try {
     const state = await page.evaluate(() => ({
       scroll: getComputedStyle(document.documentElement).scrollBehavior,
       animations: document.getAnimations().length,
+      detail: document
+        .getAnimations()
+        .slice(0, 4)
+        .map((x) => `${x.constructor.name}:${x.transitionProperty ?? x.animationName ?? ''}@${x.effect?.target?.className ?? ''}`),
     }))
     check(state.scroll === 'auto', 'reduced motion: scroll-behavior auto')
-    check(state.animations === 0, `reduced motion: no running animations (${state.animations})`)
+    check(state.animations === 0, `reduced motion: no running animations (${state.animations}) ${state.detail.join(' | ')}`)
     await context.close()
   }
 
