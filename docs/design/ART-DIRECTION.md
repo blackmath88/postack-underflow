@@ -1,6 +1,6 @@
 # Art direction — The Lost & Found Office
 
-**Status: proposed design direction, 2026-10-28.** Approved intent: editorial narrative, two rabbit holes, artifact-led interactions, blue plus two contrasting Kanji Signal-derived colours. Community artifact not yet selected.
+**Status: selected visual direction, 2026-10-28.** Approved intent: editorial narrative, two rabbit holes, artifact-led interactions, blue plus two contrasting Kanji Signal-derived colours. Community artifact: **The Switchboard** (selected by owner); detailed interaction design remains to be tested.
 
 ## Identity
 Postack Underflow is an experimental publication / research exhibition, not a SaaS dashboard. Opening: **We already solved this.** Structure: one observation → two problems → two rabbit holes → convergence → this article as a source-linked, indexable example. Restraint with wit; modern technical specimen rather than costume nostalgia.
@@ -33,12 +33,12 @@ These links are **user-supplied inspiration**, not licensed assets or verified r
 
 **Transferable behavior:** a short query reorganizes an already-indexed cabinet into ranked source-linked solution cards; inspect evidence, constraints, disagreements, and source provenance. Not a literal 3D cabinet simulator. Test keyboard navigation, retrieval correctness and reduced motion. Source text remains accessible without the animation.
 
-## Artifact B — Community (alternatives, decision open)
-1. **Switchboard** (preferred for trial): independently owned contributions connect through visible routes; user patches together problem-related threads, switches perspectives and sees disagreement. Risk: suggests a central operator controls speech; show connections as view-layer proposals, not canonical truth.
+## Artifact B — The Switchboard (selected)
+1. **Switchboard** (selected): independently owned contributions connect through visible routes; user patches together problem-related threads, switches perspectives and sees disagreement. Risk: suggests a central operator controls speech; show connections as view-layer proposals, not canonical truth.
 2. **Frequency Receiver**: tune into overlapping problem conversations across hosts; elegant narrative motion. Risk: metaphor obscures precise authorship/reply structure.
 3. **Overlays**: translucent independent annotations align around one shared source; disagreements remain separate and inspectable. Risk: may become a static comparison tool rather than a community experience.
 
-Choose through a small interaction sketch and actual reader comprehension test. Do not silently mark Switchboard accepted.
+The owner selected Switchboard on 2026-10-28. Next: develop a focused interaction specimen and test reader comprehension, attribution and disagreement visibility. The other metaphors remain documented alternatives, not selected directions.
 
 ## Convergence
 Both artifacts dissolve into shared source-linked records. The essay exposes its own problem, claims, evidence, provenance, index entry and portable conversation. No third fake machine.
