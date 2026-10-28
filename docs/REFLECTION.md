@@ -47,3 +47,19 @@ PR #5 warned that a switchboard routed live speech and kept nothing. Saying so o
 1. **Comprehension against a plain baseline.** Give five readers the Disputed Neighbour and the same content as a plain table, and ask PR #5's five questions.
 2. **Four Words v2.** Use a second labeller, queries from people who never saw the index, and a passage-level baseline. Count an alias as supported only if its words occur in the source.
 3. **A review step on the desk.** Require evidence before a preview can be "accepted", and record the decision as its own attributable record.
+
+## 7. Making the story lighter (editorial pass, 2026-10-28)
+The brief: make people actually read it. The essay asked for too much technical patience before anything was enjoyable. This pass moved material between three levels without changing the evidence. The decisions are recorded in [editorial/CONTENT-INVENTORY.md](editorial/CONTENT-INVENTORY.md).
+
+**What the process revealed:**
+- **Most of the cut prose was qualification, not argument.** On the indexing page the argument fitted in about ten sentences. The other 1,000 words were method, caveats and tables, all of them necessary, but not on the way in. Moving them made the experiment's surprise (same words, different problems) the opening rather than the twelfth paragraph.
+- **The surprise was already in the data.** The Disputed Neighbour had been placed after the method, as an illustration. Leading with it reversed the page's logic: the reader meets the problem before the mechanism that explains it.
+- **Margin notes impose discipline on the prose.** On a phone a note opens under its phrase, so a noted phrase has to end a clause. Several sentences became shorter and clearer in consequence. Our first version underlined whole sentences and made every line look like a link. Notes now hang off short clause-final phrases.
+- **The router fought the reading position.** Writing the open note into the address made TanStack Router scroll to it, which broke the one promise the notes make. Each note carries its own deep link instead (ADR-0005).
+- **Margins collide with wide figures.** A note that would cover an experiment moves up beside its paragraph, or opens inline. Notes just above a figure open inline at every width. This is a layout limit we accept rather than hide.
+- **Tables became pictures, where a picture said the same thing.** The two-problem comparison became a pair of questions. The Stack Overflow signals table became a four-step thread of an answer improving. The tables are still in the archive for readers who want the costs as well as the benefits.
+
+**What we did not do:**
+- **No reader has tested it.** Whether the lighter surface is actually easier, and whether people open notes, is unmeasured. The comprehension test in §6 still stands.
+- **The 40–50% target was overshot.** Visible story prose fell 63%, or 57% without the afterword, whose history moved wholesale to the archive. We checked each turning point by hand rather than by number.
+- **Motte was not integrated.** The note registry gives it a single place to read history notes from, with an evidence status. Only notes marked *checked* would pass its `verified` filter, and none of the history notes is checked yet.

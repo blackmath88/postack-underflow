@@ -33,7 +33,12 @@ This is **not** a replacement for Stack Overflow, a new centralized social netwo
 **Research prototype.** One small, measured retrieval experiment (Four Words) and a fixture-only community demonstration. No live search service, ATProto adapter or comment federation exists, and nothing is published to ATProto. This public repo starts with questions and testable hypotheses.
 
 ## The site
-An interactive essay in six movements: an encounter (a hacked photo frame) → the lost shortcut → two problems → The Impossible Index → The Switchboard → the Problem Desk, ending with an afterword on how the essay was made. Routes: `/`, `/indexing/`, `/community/`, `/convergence/`, `/afterword/`, `/notes/`, `/about/`. Built with TanStack Start, React and TypeScript, prerendered to static HTML for GitHub Pages at `https://blackmath88.github.io/postack-underflow/` (deploys from `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml); see [ADR-0002](docs/adr/0002-editorial-site-direction.md)).
+An interactive essay in six movements: an encounter (a hacked photo frame) → the lost shortcut → two problems → The Impossible Index → The Switchboard → the Problem Desk, ending with an afterword on how the essay was made. It works at three levels of attention:
+- **The story:** short, and readable without a footnote.
+- **Margin notes:** numbered phrases open history, sources, mechanisms and counterpoints beside the text.
+- **The archive:** full results, method, protocol research, history and the knowledge record.
+
+Story routes: `/`, `/indexing/`, `/community/`, `/convergence/`, `/afterword/`. Archive routes: `/archive/`, `/archive/four-words/`, `/archive/community/`, `/archive/history/`, `/notes/`. Plus `/about/`. Built with TanStack Start, React and TypeScript, prerendered to static HTML for GitHub Pages at `https://blackmath88.github.io/postack-underflow/` (deploys from `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml); see [ADR-0002](docs/adr/0002-editorial-site-direction.md)).
 
 ```bash
 npm ci
@@ -57,13 +62,13 @@ Layout:
 - `src/routes/`: the prose.
 - `src/components/`: Four Words, the community assembler and the scrollytelling.
 - `src/lib/`: retrieval and the record format.
-- `src/content/`: source registry and study lineage.
+- `src/content/`: source registry, study lineage and the margin-note registry (`margin.tsx`).
 - `src/data/`: index artifact and community fixtures.
 - `corpus/`: pinned sources, labelled queries and records.
 - `results/`: evaluation output.
 - `knowledge/`: this essay as a structured record.
 
-Decisions: [ADR-0002](docs/adr/0002-editorial-site-direction.md) (framework), [ADR-0003](docs/adr/0003-native-experiments-and-offline-index.md) (experiments, index artifact, fixtures) and [ADR-0004](docs/adr/0004-living-essay-and-claim-accountability.md) (movements, claim accountability, frozen core). What building it changed: [docs/REFLECTION.md](docs/REFLECTION.md). Community research: [docs/research/ATPROTO-COMMUNITY.md](docs/research/ATPROTO-COMMUNITY.md). Verification evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
+Decisions: [ADR-0002](docs/adr/0002-editorial-site-direction.md) (framework), [ADR-0003](docs/adr/0003-native-experiments-and-offline-index.md) (experiments, index artifact, fixtures), [ADR-0004](docs/adr/0004-living-essay-and-claim-accountability.md) (movements, claim accountability, frozen core) and [ADR-0005](docs/adr/0005-three-levels-and-margin-notes.md) (three levels, margin notes; proposed). What moved where: [docs/editorial/CONTENT-INVENTORY.md](docs/editorial/CONTENT-INVENTORY.md). What building it changed: [docs/REFLECTION.md](docs/REFLECTION.md). Community research: [docs/research/ATPROTO-COMMUNITY.md](docs/research/ATPROTO-COMMUNITY.md). Verification evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
 
 ## Principles
 Index first, search second · Sources over synthesis · Community without platform captivity · Identity is not correctness · AI proposes, humans adjudicate · Own the content, not the audience · Small reproducible experiments.

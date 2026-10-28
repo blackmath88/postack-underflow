@@ -123,8 +123,26 @@ export const SOURCES = {
     url: 'https://github.com/blackmath88/postack-underflow/pull/6',
     kind: 'prior-work',
     contribution:
-      'Proposed concept (not merged): the six-movement story, three kinds of success, and the north-star question this site closes with.',
+      'The concept behind the six-movement story, three kinds of success, and the north-star question this site closes with. Merged 2026-10-28.',
     checked: 'head 92fc25a, read 2026-10-28',
+  },
+  soTour: {
+    id: 'soTour',
+    title: 'Stack Overflow — Tour',
+    url: 'https://stackoverflow.com/tour',
+    kind: 'prior-work',
+    contribution:
+      'Stack Overflow’s own description of its mechanisms: one question per problem, voting, accepted answers, editing and reputation.',
+    checked: 'read 2026-10-28',
+  },
+  googleRanking: {
+    id: 'googleRanking',
+    title: 'Google Search — How results are automatically generated (ranking)',
+    url: 'https://www.google.com/search/howsearchworks/how-search-works/ranking-results/',
+    kind: 'prior-work',
+    contribution:
+      'Google’s public description of ranking: the words of a query, relevance, and quality signals such as other prominent sites linking to a page.',
+    checked: 'read 2026-10-28',
   },
   repo: {
     id: 'repo',

@@ -150,16 +150,7 @@ export function ProblemDesk() {
                   : accepted.grounded && !accepted.inferred
                     ? 'Now try the inferred part on its own: it helps exactly as much. '
                     : 'Either part alone would have produced the same improvement. '}
-                That is guaranteed, not discovered: the same words go into two similar records, and a ranking
-                function cannot see where a field came from. It is also close to circular, because the added
-                symptom nearly restates the query. What the preview illustrates is that a better number says
-                nothing about whether a change is supported. Only the contribution’s evidence can, which is why
-                accepting a change should need more than a better number.
-              </p>
-              <p>
-                And the top result is still the dotfiles issue, matched only on <em>missing</em>, <em>after</em>{' '}
-                and <em>deploy</em>. A correction can repair a description. It cannot repair the weighting that
-                let generic words win, and nobody has written that correction yet.
+                A ranking cannot see where a word came from.
               </p>
             </>
           )}

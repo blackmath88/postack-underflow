@@ -103,4 +103,12 @@ export const HISTORY: HistoryEntry[] = [
     what: 'Previewing a correction showed a guessed change improving retrieval as much as a sourced one. A reviewer pointed out this is true by construction, and that our first draft also mislabelled a supported symptom as unsupported.',
     changed: 'The weight of the idea moved from indexing to review, and the essay caught itself making the error it describes.',
   },
+  {
+    date: '28 Oct',
+    kind: 'decision',
+    title: 'A lighter surface, the same evidence',
+    what: 'An editorial pass cut the default reading path by more than half. Methods, tables, history and qualifications moved into margin notes and an archive; frozen data and results did not change.',
+    changed: 'The essay now works at three levels of attention: a story, notes beside it, and an archive underneath.',
+    link: { label: 'Content inventory', url: `${REPO}/blob/main/docs/editorial/CONTENT-INVENTORY.md` },
+  },
 ]

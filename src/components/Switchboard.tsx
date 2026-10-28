@@ -178,10 +178,8 @@ export function Switchboard() {
         <p className="kicker">Experiment · relationship claims over fixture records</p>
         <h2 id="sb-title">The Connection Contract</h2>
         <p>
-          Eight invented contributions sit in their authors’ own repositories. Every line between them is
-          a claim with a contract: who proposed it, why, on what evidence, and where it stands. Select a
-          line to read its contract, or propose one of your own. (H1, H2 and H4 are hypotheses in this
-          essay’s own record; see the afterword.)
+          Eight invented contributions in their authors’ own repositories. Select a line to read its
+          contract, or propose one of your own.
         </p>
       </header>
 

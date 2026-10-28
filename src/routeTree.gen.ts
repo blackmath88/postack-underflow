@@ -17,6 +17,10 @@ import { Route as CommunityRouteImport } from './routes/community'
 import { Route as ConvergenceRouteImport } from './routes/convergence'
 import { Route as IndexingRouteImport } from './routes/indexing'
 import { Route as NotesRouteImport } from './routes/notes'
+import { Route as ArchiveIndexRouteImport } from './routes/archive/index'
+import { Route as ArchiveCommunityRouteImport } from './routes/archive/community'
+import { Route as ArchiveFourWordsRouteImport } from './routes/archive/four-words'
+import { Route as ArchiveHistoryRouteImport } from './routes/archive/history'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +62,26 @@ const NotesRoute = NotesRouteImport.update({
   path: '/notes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArchiveIndexRoute = ArchiveIndexRouteImport.update({
+  id: '/archive/',
+  path: '/archive/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiveCommunityRoute = ArchiveCommunityRouteImport.update({
+  id: '/archive/community',
+  path: '/archive/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiveFourWordsRoute = ArchiveFourWordsRouteImport.update({
+  id: '/archive/four-words',
+  path: '/archive/four-words',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiveHistoryRoute = ArchiveHistoryRouteImport.update({
+  id: '/archive/history',
+  path: '/archive/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +92,10 @@ export interface FileRoutesByFullPath {
   '/convergence': typeof ConvergenceRoute
   '/indexing': typeof IndexingRoute
   '/notes': typeof NotesRoute
+  '/archive/community': typeof ArchiveCommunityRoute
+  '/archive/four-words': typeof ArchiveFourWordsRoute
+  '/archive/history': typeof ArchiveHistoryRoute
+  '/archive/': typeof ArchiveIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +106,10 @@ export interface FileRoutesByTo {
   '/convergence': typeof ConvergenceRoute
   '/indexing': typeof IndexingRoute
   '/notes': typeof NotesRoute
+  '/archive/community': typeof ArchiveCommunityRoute
+  '/archive/four-words': typeof ArchiveFourWordsRoute
+  '/archive/history': typeof ArchiveHistoryRoute
+  '/archive': typeof ArchiveIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +121,10 @@ export interface FileRoutesById {
   '/convergence': typeof ConvergenceRoute
   '/indexing': typeof IndexingRoute
   '/notes': typeof NotesRoute
+  '/archive/community': typeof ArchiveCommunityRoute
+  '/archive/four-words': typeof ArchiveFourWordsRoute
+  '/archive/history': typeof ArchiveHistoryRoute
+  '/archive/': typeof ArchiveIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +137,10 @@ export interface FileRouteTypes {
     | '/convergence'
     | '/indexing'
     | '/notes'
+    | '/archive/community'
+    | '/archive/four-words'
+    | '/archive/history'
+    | '/archive/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +151,10 @@ export interface FileRouteTypes {
     | '/convergence'
     | '/indexing'
     | '/notes'
+    | '/archive/community'
+    | '/archive/four-words'
+    | '/archive/history'
+    | '/archive'
   id:
     | '__root__'
     | '/'
@@ -121,6 +165,10 @@ export interface FileRouteTypes {
     | '/convergence'
     | '/indexing'
     | '/notes'
+    | '/archive/community'
+    | '/archive/four-words'
+    | '/archive/history'
+    | '/archive/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +180,10 @@ export interface RootRouteChildren {
   ConvergenceRoute: typeof ConvergenceRoute
   IndexingRoute: typeof IndexingRoute
   NotesRoute: typeof NotesRoute
+  ArchiveCommunityRoute: typeof ArchiveCommunityRoute
+  ArchiveFourWordsRoute: typeof ArchiveFourWordsRoute
+  ArchiveHistoryRoute: typeof ArchiveHistoryRoute
+  ArchiveIndexRoute: typeof ArchiveIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +244,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/archive/': {
+      id: '/archive/'
+      path: '/archive'
+      fullPath: '/archive/'
+      preLoaderRoute: typeof ArchiveIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archive/community': {
+      id: '/archive/community'
+      path: '/archive/community'
+      fullPath: '/archive/community'
+      preLoaderRoute: typeof ArchiveCommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archive/four-words': {
+      id: '/archive/four-words'
+      path: '/archive/four-words'
+      fullPath: '/archive/four-words'
+      preLoaderRoute: typeof ArchiveFourWordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archive/history': {
+      id: '/archive/history'
+      path: '/archive/history'
+      fullPath: '/archive/history'
+      preLoaderRoute: typeof ArchiveHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +284,10 @@ const rootRouteChildren: RootRouteChildren = {
   ConvergenceRoute: ConvergenceRoute,
   IndexingRoute: IndexingRoute,
   NotesRoute: NotesRoute,
+  ArchiveCommunityRoute: ArchiveCommunityRoute,
+  ArchiveFourWordsRoute: ArchiveFourWordsRoute,
+  ArchiveHistoryRoute: ArchiveHistoryRoute,
+  ArchiveIndexRoute: ArchiveIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
