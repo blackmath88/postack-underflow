@@ -1,0 +1,1114 @@
+{
+  "run": "v1",
+  "date": "2026-10-28",
+  "commit": "9ad53a352b41eab9e041abb7c047b1e2e699dc85",
+  "environment": "Node v26.8.1, linux",
+  "indexDigest": "c1fca1e237ce188200a03e68305c9111efda7ceb9295c4e279f8ec21d55c7e53",
+  "queries": 27,
+  "sources": 30,
+  "summary": {
+    "baseline": {
+      "recallAt1": 0.404320987654321,
+      "recallAt5": 0.7049382716049382,
+      "mrrAt10": 0.7417695473251029,
+      "meanQueryMs": 0.03861050125925928
+    },
+    "structured": {
+      "recallAt1": 0.5598765432098766,
+      "recallAt5": 0.8722222222222222,
+      "mrrAt10": 0.9497354497354498,
+      "meanQueryMs": 0.06206288770370366
+    },
+    "structured-without-aliases-symptoms": {
+      "recallAt1": 0.49506172839506174,
+      "recallAt5": 0.8228395061728394,
+      "mrrAt10": 0.8919753086419754,
+      "meanQueryMs": 0.040549866444444416
+    }
+  },
+  "paired": {
+    "structuredBetter": 10,
+    "baselineBetter": 1,
+    "tied": 16
+  },
+  "perQuery": [
+    {
+      "system": "baseline",
+      "query": "q01",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "ghdocs-pages-jekyll",
+        "vite-build-base",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q02",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 0.16666666666666666,
+      "top3": [
+        "next-issue-15588-nojekyll",
+        "tanstack-router-deploy",
+        "vite-build-base"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q03",
+      "firstRelevantRank": 15,
+      "reciprocalRank": 0,
+      "recallAt5": 0,
+      "top3": [
+        "mdn-base-element",
+        "jekyll-github-pages",
+        "spa-github-pages-readme"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q04",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 0.2,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "ghdocs-pages-jekyll",
+        "cra-deployment"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q05",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 0.25,
+      "top3": [
+        "ghdocs-pages-jekyll",
+        "ghdocs-create-site-nojekyll",
+        "spa-github-pages-readme"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q06",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vite-issue-8073-base-mime",
+        "ghdocs-create-site-nojekyll",
+        "tanstack-router-options"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q07",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "deploy-pages-readme",
+        "ghdocs-custom-workflows",
+        "sveltekit-adapter-static"
+      ],
+      "unknownTerms": [
+        "denied"
+      ]
+    },
+    {
+      "system": "baseline",
+      "query": "q08",
+      "firstRelevantRank": 9,
+      "reciprocalRank": 0.1111111111111111,
+      "recallAt5": 0,
+      "top3": [
+        "vite-config-base",
+        "jekyll-github-pages",
+        "tanstack-router-options"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q09",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "sveltekit-adapter-static",
+        "ghdocs-pages-jekyll"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q10",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 1,
+      "top3": [
+        "tanstack-router-deploy",
+        "react-router-create-browser-router",
+        "cra-deployment"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q11",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vue-router-history-mode",
+        "vite-build-base",
+        "next-static-exports"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q12",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "angular-deployment",
+        "angular-router-reference",
+        "spa-github-pages-readme"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q13",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "next-static-exports",
+        "next-issue-15588-nojekyll",
+        "next-basepath"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q14",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 1,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "next-basepath",
+        "next-static-exports"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q15",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "sveltekit-adapter-static",
+        "jekyll-github-pages",
+        "tanstack-router-options"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q16",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "astro-deploy-github",
+        "vite-static-deploy",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q17",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "gatsby-path-prefix",
+        "spa-github-pages-readme",
+        "next-basepath"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q18",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "cra-deployment",
+        "vite-config-base",
+        "next-basepath"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q19",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.6666666666666666,
+      "top3": [
+        "jekyll-github-pages",
+        "next-static-exports",
+        "cra-deployment"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q20",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "mdn-base-element",
+        "angular-router-reference",
+        "vite-build-base"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q21",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "spa-github-pages-readme",
+        "tanstack-router-deploy",
+        "next-static-exports"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q22",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "tanstack-router-options",
+        "next-basepath",
+        "gatsby-path-prefix"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q23",
+      "firstRelevantRank": 4,
+      "reciprocalRank": 0.25,
+      "recallAt5": 1,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "sveltekit-adapter-static",
+        "gatsby-path-prefix"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q24",
+      "firstRelevantRank": 6,
+      "reciprocalRank": 0.16666666666666666,
+      "recallAt5": 0,
+      "top3": [
+        "tanstack-router-deploy",
+        "vue-router-history-mode",
+        "mdn-base-element"
+      ],
+      "unknownTerms": [
+        "everywhere"
+      ]
+    },
+    {
+      "system": "baseline",
+      "query": "q25",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vite-build-base",
+        "vite-issue-8073-base-mime",
+        "next-static-exports"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q26",
+      "firstRelevantRank": 13,
+      "reciprocalRank": 0,
+      "recallAt5": 0,
+      "top3": [
+        "tanstack-router-options",
+        "astro-deploy-github",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "baseline",
+      "query": "q27",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.75,
+      "top3": [
+        "deploy-pages-readme",
+        "ghdocs-custom-workflows",
+        "upload-pages-artifact-readme"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q01",
+      "firstRelevantRank": 7,
+      "reciprocalRank": 0.14285714285714285,
+      "recallAt5": 0,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "angular-router-reference",
+        "ghdocs-troubleshoot-404"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q02",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.6666666666666666,
+      "top3": [
+        "vue-router-history-mode",
+        "spa-github-pages-readme",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q03",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.75,
+      "top3": [
+        "cra-deployment",
+        "vite-issue-8073-base-mime",
+        "vite-static-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q04",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.8,
+      "top3": [
+        "jekyll-structure",
+        "ghdocs-pages-jekyll",
+        "ghdocs-create-site-nojekyll"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q05",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "ghdocs-create-site-nojekyll",
+        "jekyll-structure",
+        "jekyll-github-pages"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q06",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vite-issue-8073-base-mime",
+        "ghdocs-pages-jekyll"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q07",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "deploy-pages-readme",
+        "ghdocs-custom-workflows",
+        "vite-static-deploy"
+      ],
+      "unknownTerms": [
+        "denied"
+      ]
+    },
+    {
+      "system": "structured",
+      "query": "q08",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "ghdocs-custom-404",
+        "ghdocs-troubleshoot-404",
+        "angular-deployment"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q09",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "upload-pages-artifact-readme",
+        "sveltekit-adapter-static"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q10",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "react-router-create-browser-router",
+        "cra-deployment",
+        "next-basepath"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q11",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vue-router-history-mode",
+        "vite-issue-9119-underscore-chunk",
+        "react-router-create-browser-router"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q12",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "angular-deployment",
+        "angular-router-reference",
+        "spa-github-pages-readme"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q13",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "next-static-exports",
+        "next-issue-15588-nojekyll",
+        "vite-issue-9119-underscore-chunk"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q14",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "next-basepath",
+        "next-static-exports",
+        "mdn-base-element"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q15",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "sveltekit-adapter-static",
+        "jekyll-github-pages",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q16",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "astro-deploy-github",
+        "vite-static-deploy",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q17",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "gatsby-path-prefix",
+        "next-basepath",
+        "react-router-create-browser-router"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q18",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "cra-deployment"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q19",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.6666666666666666,
+      "top3": [
+        "jekyll-github-pages",
+        "cra-deployment",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q20",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "mdn-base-element",
+        "angular-router-reference",
+        "vite-build-base"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q21",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.6666666666666666,
+      "top3": [
+        "spa-github-pages-readme",
+        "tanstack-router-deploy",
+        "vue-router-history-mode"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q22",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "tanstack-router-options",
+        "next-basepath",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q23",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "upload-pages-artifact-readme",
+        "upload-pages-artifact-issue-129-hidden-files",
+        "deploy-pages-readme"
+      ],
+      "unknownTerms": [
+        "too"
+      ]
+    },
+    {
+      "system": "structured",
+      "query": "q24",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 1,
+      "top3": [
+        "ghdocs-custom-404",
+        "ghdocs-troubleshoot-404",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": [
+        "everywhere"
+      ]
+    },
+    {
+      "system": "structured",
+      "query": "q25",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vite-build-base",
+        "vite-issue-8073-base-mime",
+        "gatsby-path-prefix"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q26",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "next-static-exports",
+        "vite-issue-8073-base-mime",
+        "angular-router-reference"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured",
+      "query": "q27",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "ghdocs-custom-workflows",
+        "astro-deploy-github",
+        "deploy-pages-readme"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q01",
+      "firstRelevantRank": 4,
+      "reciprocalRank": 0.25,
+      "recallAt5": 0.3333333333333333,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "angular-router-reference",
+        "ghdocs-troubleshoot-404"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q02",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "tanstack-router-deploy",
+        "vue-router-history-mode",
+        "ghdocs-custom-404"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q03",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 0.25,
+      "top3": [
+        "ghdocs-custom-workflows",
+        "vite-static-deploy",
+        "deploy-pages-readme"
+      ],
+      "unknownTerms": [
+        "blank"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q04",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.8,
+      "top3": [
+        "jekyll-structure",
+        "ghdocs-pages-jekyll",
+        "jekyll-github-pages"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q05",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "ghdocs-create-site-nojekyll",
+        "ghdocs-pages-jekyll",
+        "jekyll-structure"
+      ],
+      "unknownTerms": [
+        "disable"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q06",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vite-issue-8073-base-mime"
+      ],
+      "unknownTerms": [
+        "mime",
+        "type"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q07",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "deploy-pages-readme",
+        "ghdocs-custom-workflows",
+        "vite-static-deploy"
+      ],
+      "unknownTerms": [
+        "denied"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q08",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "ghdocs-custom-404",
+        "vue-router-history-mode",
+        "ghdocs-troubleshoot-404"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q09",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "upload-pages-artifact-issue-129-hidden-files",
+        "ghdocs-troubleshoot-404",
+        "sveltekit-adapter-static"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q10",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "react-router-create-browser-router",
+        "cra-deployment",
+        "tanstack-router-options"
+      ],
+      "unknownTerms": [
+        "subdirectory"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q11",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vue-router-history-mode",
+        "vite-issue-9119-underscore-chunk",
+        "react-router-create-browser-router"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q12",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "angular-deployment",
+        "angular-router-reference",
+        "next-basepath"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q13",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "next-static-exports",
+        "next-issue-15588-nojekyll",
+        "next-basepath"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q14",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "next-basepath",
+        "next-static-exports",
+        "next-issue-15588-nojekyll"
+      ],
+      "unknownTerms": [
+        "wrong"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q15",
+      "firstRelevantRank": 3,
+      "reciprocalRank": 0.3333333333333333,
+      "recallAt5": 1,
+      "top3": [
+        "jekyll-github-pages",
+        "tanstack-router-deploy",
+        "sveltekit-adapter-static"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q16",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "astro-deploy-github",
+        "tanstack-router-deploy",
+        "vite-issue-8073-base-mime"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q17",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "gatsby-path-prefix",
+        "react-router-create-browser-router",
+        "tanstack-router-options"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q18",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "cra-deployment"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q19",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.6666666666666666,
+      "top3": [
+        "jekyll-github-pages",
+        "cra-deployment",
+        "gatsby-path-prefix"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q20",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "angular-router-reference",
+        "mdn-base-element",
+        "vite-build-base"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q21",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.6666666666666666,
+      "top3": [
+        "spa-github-pages-readme",
+        "tanstack-router-deploy",
+        "angular-deployment"
+      ],
+      "unknownTerms": [
+        "trick"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q22",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 0.5,
+      "top3": [
+        "tanstack-router-options",
+        "next-basepath",
+        "tanstack-router-deploy"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q23",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 1,
+      "top3": [
+        "deploy-pages-readme",
+        "upload-pages-artifact-readme",
+        "upload-pages-artifact-issue-129-hidden-files"
+      ],
+      "unknownTerms": [
+        "too",
+        "large"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q24",
+      "firstRelevantRank": 2,
+      "reciprocalRank": 0.5,
+      "recallAt5": 1,
+      "top3": [
+        "ghdocs-custom-404",
+        "ghdocs-troubleshoot-404",
+        "sveltekit-adapter-static"
+      ],
+      "unknownTerms": [
+        "everywhere"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q25",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "vite-build-base",
+        "gatsby-path-prefix",
+        "jekyll-github-pages"
+      ],
+      "unknownTerms": [
+        "dynamic"
+      ]
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q26",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "next-static-exports",
+        "sveltekit-adapter-static",
+        "vite-issue-8073-base-mime"
+      ],
+      "unknownTerms": []
+    },
+    {
+      "system": "structured-without-aliases-symptoms",
+      "query": "q27",
+      "firstRelevantRank": 1,
+      "reciprocalRank": 1,
+      "recallAt5": 1,
+      "top3": [
+        "ghdocs-custom-workflows",
+        "deploy-pages-readme",
+        "astro-deploy-github"
+      ],
+      "unknownTerms": []
+    }
+  ]
+}

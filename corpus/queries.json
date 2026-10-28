@@ -1,0 +1,231 @@
+{
+ "protocol": "Written and labelled on 2026-10-28 by the implementing agent, after the source list was pinned and before any problem\u2013solution record existed and before any ranking was run. A source is relevant if its content would let a reader fix the described problem. Labels are binary. The record-writing agent never saw this file.",
+ "queries": [
+  {
+   "id": "q01",
+   "query": "css missing after deploy",
+   "relevant": [
+    "vite-static-deploy",
+    "vite-build-base",
+    "vite-issue-8073-base-mime",
+    "next-issue-15588-nojekyll",
+    "vite-issue-9119-underscore-chunk",
+    "ghdocs-pages-jekyll"
+   ]
+  },
+  {
+   "id": "q02",
+   "query": "refresh gives 404",
+   "relevant": [
+    "spa-github-pages-readme",
+    "vue-router-history-mode",
+    "cra-deployment",
+    "tanstack-router-deploy",
+    "angular-deployment",
+    "sveltekit-adapter-static"
+   ]
+  },
+  {
+   "id": "q03",
+   "query": "blank page github pages",
+   "relevant": [
+    "vite-issue-8073-base-mime",
+    "vite-static-deploy",
+    "vite-build-base",
+    "cra-deployment"
+   ]
+  },
+  {
+   "id": "q04",
+   "query": "underscore folder not served",
+   "relevant": [
+    "ghdocs-pages-jekyll",
+    "jekyll-structure",
+    "vite-issue-9119-underscore-chunk",
+    "next-issue-15588-nojekyll",
+    "ghdocs-create-site-nojekyll"
+   ]
+  },
+  {
+   "id": "q05",
+   "query": "disable jekyll",
+   "relevant": [
+    "ghdocs-create-site-nojekyll",
+    "next-issue-15588-nojekyll",
+    "vite-issue-9119-underscore-chunk",
+    "upload-pages-artifact-issue-129-hidden-files"
+   ]
+  },
+  {
+   "id": "q06",
+   "query": "module blocked mime type",
+   "relevant": [
+    "vite-issue-8073-base-mime"
+   ]
+  },
+  {
+   "id": "q07",
+   "query": "deploy pages permission denied",
+   "relevant": [
+    "deploy-pages-readme",
+    "ghdocs-custom-workflows"
+   ]
+  },
+  {
+   "id": "q08",
+   "query": "custom not found page",
+   "relevant": [
+    "ghdocs-custom-404",
+    "sveltekit-adapter-static"
+   ]
+  },
+  {
+   "id": "q09",
+   "query": "dotfiles missing from artifact",
+   "relevant": [
+    "upload-pages-artifact-readme",
+    "upload-pages-artifact-issue-129-hidden-files"
+   ]
+  },
+  {
+   "id": "q10",
+   "query": "react router subdirectory",
+   "relevant": [
+    "react-router-create-browser-router",
+    "cra-deployment"
+   ]
+  },
+  {
+   "id": "q11",
+   "query": "vue history mode 404",
+   "relevant": [
+    "vue-router-history-mode"
+   ]
+  },
+  {
+   "id": "q12",
+   "query": "angular deep links 404",
+   "relevant": [
+    "angular-deployment",
+    "angular-router-reference"
+   ]
+  },
+  {
+   "id": "q13",
+   "query": "next export github pages",
+   "relevant": [
+    "next-static-exports",
+    "next-basepath",
+    "next-issue-15588-nojekyll"
+   ]
+  },
+  {
+   "id": "q14",
+   "query": "next images wrong path",
+   "relevant": [
+    "next-basepath"
+   ]
+  },
+  {
+   "id": "q15",
+   "query": "sveltekit repository subpath",
+   "relevant": [
+    "sveltekit-adapter-static"
+   ]
+  },
+  {
+   "id": "q16",
+   "query": "astro base repository name",
+   "relevant": [
+    "astro-deploy-github"
+   ]
+  },
+  {
+   "id": "q17",
+   "query": "gatsby prefix paths",
+   "relevant": [
+    "gatsby-path-prefix"
+   ]
+  },
+  {
+   "id": "q18",
+   "query": "homepage field package json",
+   "relevant": [
+    "cra-deployment"
+   ]
+  },
+  {
+   "id": "q19",
+   "query": "relative links break subpath",
+   "relevant": [
+    "jekyll-github-pages",
+    "mdn-base-element",
+    "angular-router-reference"
+   ]
+  },
+  {
+   "id": "q20",
+   "query": "base href relative urls",
+   "relevant": [
+    "mdn-base-element",
+    "angular-router-reference"
+   ]
+  },
+  {
+   "id": "q21",
+   "query": "spa redirect 404 trick",
+   "relevant": [
+    "spa-github-pages-readme",
+    "tanstack-router-deploy",
+    "cra-deployment"
+   ]
+  },
+  {
+   "id": "q22",
+   "query": "router basepath subpath",
+   "relevant": [
+    "tanstack-router-options",
+    "react-router-create-browser-router"
+   ]
+  },
+  {
+   "id": "q23",
+   "query": "artifact too large",
+   "relevant": [
+    "upload-pages-artifact-readme",
+    "ghdocs-custom-workflows"
+   ]
+  },
+  {
+   "id": "q24",
+   "query": "site shows 404 everywhere",
+   "relevant": [
+    "ghdocs-troubleshoot-404"
+   ]
+  },
+  {
+   "id": "q25",
+   "query": "dynamic asset url base",
+   "relevant": [
+    "vite-build-base"
+   ]
+  },
+  {
+   "id": "q26",
+   "query": "trailing slash index html",
+   "relevant": [
+    "next-static-exports"
+   ]
+  },
+  {
+   "id": "q27",
+   "query": "pages actions workflow",
+   "relevant": [
+    "ghdocs-custom-workflows",
+    "deploy-pages-readme",
+    "vite-static-deploy",
+    "astro-deploy-github"
+   ]
+  }
+ ]
+}

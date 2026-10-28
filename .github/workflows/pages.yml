@@ -1,0 +1,90 @@
+# Build, check and deploy the static site to GitHub Pages.
+# Pull requests run the checks only; pushes to main also deploy.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install (lockfile only)
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Tests
+        run: npm test
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Validate routes and asset paths
+        run: npm run validate
+
+      - name: Validate corpus, records and index artifact
+        run: npm run index:check
+
+      - name: Browser checks (Chromium preinstalled on the runner)
+        run: npm run browser
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/client
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
+
+  # A green deploy is not evidence the page works: fetch what Pages actually
+  # serves and check HTML, CSS, JS and 404 behaviour at the real URL.
+  smoke:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+      - name: Check deployed site
+        run: |
+          for attempt in 1 2 3 4 5; do
+            node scripts/smoke-deployed.mjs "${{ needs.deploy.outputs.page_url }}" && exit 0
+            echo "Attempt $attempt failed; waiting for Pages to propagate"; sleep 20
+          done
+          exit 1

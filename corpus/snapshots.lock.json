@@ -1,0 +1,152 @@
+{
+  "angular-deployment": {
+    "sha256": "b9b0719c09cb3cb58736d23eab7e35a7e7824a8d242eb82c7863068376758c1f",
+    "bytes": 9998,
+    "revision": "14a2dcc89cd9ef111899a8e2abd7c5370c6224e2"
+  },
+  "angular-router-reference": {
+    "sha256": "98fe703245fce56fdb7e77b2c8c7753e5a1466b33b0fbc5f83a92276aaca1abb",
+    "bytes": 12254,
+    "revision": "3064f3f1dccd78177bf3b86f8ea231102884f0d7"
+  },
+  "astro-deploy-github": {
+    "sha256": "b90275d6d9e56deff4076e6ce8b40006152c6427eef88374d66e5158d3450526",
+    "bytes": 8047,
+    "revision": "cf734fdde84050583c2cf292015c2844394ef331"
+  },
+  "cra-deployment": {
+    "sha256": "29b5396b3b8f27198804ac8e8d7a22ae7c4d55ef42aa8502e89f526b835aed5f",
+    "bytes": 23828,
+    "revision": "ee7ce83fc0554ed05701efa52bca3039be36541c"
+  },
+  "deploy-pages-readme": {
+    "sha256": "1b4f2ff21a06ad31a4f33e97cdc53f3e17b9bb35011aaddc3463a52721190102",
+    "bytes": 9336,
+    "revision": "7e97763d1f8271fc88f351a0c275f37de7f32094"
+  },
+  "gatsby-path-prefix": {
+    "sha256": "a51439d6525ae888e201167ae57523544fa921645723af844a8a86b12dd8f1c3",
+    "bytes": 4625,
+    "revision": "2a06fff9cbf17de41cc814ad7b7d62d68048c272"
+  },
+  "ghdocs-create-site-nojekyll": {
+    "sha256": "12c1218206b37ab481416af9407495961db4795886a0655f81d9c1c38eddc19a",
+    "bytes": 6863,
+    "revision": "db000397daa6322605f9b1bd0b40d250b2cac8f3"
+  },
+  "ghdocs-custom-404": {
+    "sha256": "5a8160aea25a2d72cb958d6c318acec3cc4d69a6c747d850eb689719386d9500",
+    "bytes": 1297,
+    "revision": "e6ae0255a7a17389152aebbd54167db89013c439"
+  },
+  "ghdocs-custom-workflows": {
+    "sha256": "687dee02817159c3ae718d7519008c038b1db8cf10ed4d4451b3da320e12c492",
+    "bytes": 6464,
+    "revision": "a5290f876bdfa8ec062ab38043de2b886e17be9e"
+  },
+  "ghdocs-pages-jekyll": {
+    "sha256": "7f9159579ca4ea5921cffeb71ae29d1b2aa1acaa960cde01496f903812d933ea",
+    "bytes": 9147,
+    "revision": "e6ae0255a7a17389152aebbd54167db89013c439"
+  },
+  "ghdocs-troubleshoot-404": {
+    "sha256": "2bcdea17b61b5bfcf0520e0938df857b0e3318f7145289ccc84b8bb1f0c62667",
+    "bytes": 5506,
+    "revision": "e6ae0255a7a17389152aebbd54167db89013c439"
+  },
+  "jekyll-github-pages": {
+    "sha256": "2efe742d94d2a0806b354e18df423ceccbeaafe6592a6a2b3495a36063f425f0",
+    "bytes": 6107,
+    "revision": "10a73596d94c3138eba1a330b52864efecf08a05"
+  },
+  "jekyll-structure": {
+    "sha256": "6dc291323aca5366900818b528443d0c08fe99155e04fdb08833750287f0bf46",
+    "bytes": 7957,
+    "revision": "d85c89e8b4b53482115b77a6dc63dc7ec28595cc"
+  },
+  "mdn-base-element": {
+    "sha256": "04b439a18525f9b587f10ced33bcc687efa9a07f3b8f3e38b7bf5dfbf41441f3",
+    "bytes": 4578,
+    "revision": "599ae8b7ad414e91df473d91983f4ffc5cafabb3"
+  },
+  "next-basepath": {
+    "sha256": "083c853ad4fd8cfbdca1bda686037da145ef5880102d38e69647419953416d2e",
+    "bytes": 2164,
+    "revision": "2e2ee08b604ca44a344eb304890daf5326425181"
+  },
+  "next-issue-15588-nojekyll": {
+    "sha256": "06b98cdfe7dff4f36f26a35fbefcf6b51f2abed2db5c7a4f66096d5d28f90c26",
+    "bytes": 2396,
+    "revision": "2022-01-29T19:05:57Z"
+  },
+  "next-static-exports": {
+    "sha256": "857d9950350613e144a7f5d86874521c24a1ccc3eee5b34b79d3d40fa54df180",
+    "bytes": 12923,
+    "revision": "2759ad0fe2e95fd732699a6b413d382204434a7e"
+  },
+  "react-router-create-browser-router": {
+    "sha256": "07632c5787f158a120d06502b7ad2ffbb5a6329d786abaa48383a05e8f0eb400",
+    "bytes": 16873,
+    "revision": "89b7a8dc98e31119eb74967cf939f54dd178078a"
+  },
+  "spa-github-pages-readme": {
+    "sha256": "b3584358fc80e88269bc9de4a56478b5c1685eced94d91fe49f4dfea2041b97b",
+    "bytes": 14190,
+    "revision": "038c0afecfac4ec6ece92b0ecb52e95788f2867c"
+  },
+  "sveltekit-adapter-static": {
+    "sha256": "bd02bcb333d0eb3216da304acfdb3f50f5d661b6699e229b1ab54ebccd83190c",
+    "bytes": 7043,
+    "revision": "23ac35b02f28128e821ad518b72e1a5642010f73"
+  },
+  "tanstack-router-deploy": {
+    "sha256": "4d3fcad8136cb828fad8e9d62be1b742700b339a37a3e45bc13ad0e8808811b8",
+    "bytes": 8149,
+    "revision": "e8c5dd0b116bad1c2decf5b5e4695289f5483e44"
+  },
+  "tanstack-router-options": {
+    "sha256": "a02adb6519b44bfa6007b3d9222641d2d0e066766db6db15ffcf860011901c2a",
+    "bytes": 14732,
+    "revision": "634da9176e16fa8aa49af459bbb054fcae7d85ef"
+  },
+  "upload-pages-artifact-issue-129-hidden-files": {
+    "sha256": "94284b38f17b231b4f6dc9c28ba8b602976599d534253cfab4cf338629179e29",
+    "bytes": 9806,
+    "revision": "2026-04-10T19:06:34Z"
+  },
+  "upload-pages-artifact-readme": {
+    "sha256": "866ca49996b0debddcdff491a57c30ef625783089ef609e49b227ffa474c8f11",
+    "bytes": 4550,
+    "revision": "f7615f5917213b24245d49ba96693d0f5375a414"
+  },
+  "vite-build-base": {
+    "sha256": "8713a9bf49e470f220234944ded8e3c73d8c2ddb4a540fa4638dba5be967ee18",
+    "bytes": 14566,
+    "revision": "b65a4b55a8d3fc4674ebda272f6612c29b01de84"
+  },
+  "vite-config-base": {
+    "sha256": "8081e6b75660b49d2536c23c2d58a6cc12930f1e1e4b02c20e34b32601688230",
+    "bytes": 24756,
+    "revision": "8a4c19cfc035f2dd203f2fa6d00ab9256a5e77c9"
+  },
+  "vite-issue-8073-base-mime": {
+    "sha256": "bb51b70491824d719761b20aa9b5ff1d2c1d112436599df71b838a6d6854c789",
+    "bytes": 4462,
+    "revision": "2022-05-24T00:26:26Z"
+  },
+  "vite-issue-9119-underscore-chunk": {
+    "sha256": "a26a8794831be077f08042aeaf28a12e9bc68ad23748442956439e61a4473556",
+    "bytes": 5317,
+    "revision": "2022-08-04T00:26:40Z"
+  },
+  "vite-static-deploy": {
+    "sha256": "d2de45903bdc6d2ecbb82e05234d7bcd012e062f40cea96e8107ab118aec30e6",
+    "bytes": 14478,
+    "revision": "8a4c19cfc035f2dd203f2fa6d00ab9256a5e77c9"
+  },
+  "vue-router-history-mode": {
+    "sha256": "13544df8e791213af25e18accc382b3435b4aaf790f9535480a4f2519f6dcf9d",
+    "bytes": 7599,
+    "revision": "f1f6382236a0c9a5a1d2ee49f01baecc5282f961"
+  }
+}
