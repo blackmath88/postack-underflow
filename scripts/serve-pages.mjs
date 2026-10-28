@@ -9,7 +9,6 @@ import { fileURLToPath } from 'node:url'
 import { BASE, OUT_DIR } from './pages-config.mjs'
 
 const out = fileURLToPath(OUT_DIR)
-const port = Number(process.env.PORT ?? 4173)
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript',
@@ -26,7 +25,7 @@ const send = (res, status, file) => {
   res.end(readFileSync(file))
 }
 
-createServer((req, res) => {
+function handle(req, res) {
   const url = new URL(req.url ?? '/', 'http://localhost')
   if (url.pathname === BASE.slice(0, -1)) {
     res.writeHead(301, { location: BASE }).end()
@@ -45,4 +44,17 @@ createServer((req, res) => {
   }
   if (existsSync(path)) return send(res, 200, path)
   send(res, 404, join(out, '404.html'))
-}).listen(port, () => console.log(`Serving dist/client at http://localhost:${port}${BASE}`))
+}
+
+/** Starts the server; resolves with its origin once listening. */
+export function startPagesServer(port = 0) {
+  const server = createServer(handle)
+  return new Promise((resolve) =>
+    server.listen(port, () => resolve({ server, origin: `http://localhost:${server.address().port}` })),
+  )
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const { origin } = await startPagesServer(Number(process.env.PORT ?? 4173))
+  console.log(`Serving dist/client at ${origin}${BASE}`)
+}

@@ -4,3 +4,4 @@ dist/
 .tanstack/
 .vinxi/
 *.log
+corpus/.cache/

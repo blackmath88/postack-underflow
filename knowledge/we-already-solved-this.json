@@ -1,0 +1,114 @@
+{
+  "id": "postack:we-already-solved-this",
+  "type": "example.postack.problem",
+  "typeStatus": "hypothetical — no Lexicon exists for problem records (docs/research/ATPROTO-COMMUNITY.md §7)",
+  "title": "We Already Solved This",
+  "problem": "Solved software problems are increasingly rediscovered from scratch instead of retrieved, and the knowledge produced while solving them rarely returns to a shared, findable place.",
+  "subproblems": [
+    {
+      "id": "indexing",
+      "statement": "Existing public solutions are organised by repository, file and commit rather than by problem solved, so finding one requires knowing where it lives."
+    },
+    {
+      "id": "community",
+      "statement": "The collective judgement that made public answers usable (votes, acceptance, correction, moderation) belonged to single platforms, and problem solving is moving into private contexts where it cannot form."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "subproblem": "indexing",
+      "statement": "Offline, structured problem–solution records retrieve the right source for short queries more often than plain keyword search over the same sources.",
+      "status": "tested",
+      "evidence": ["E1"]
+    },
+    {
+      "id": "H2",
+      "subproblem": "community",
+      "statement": "A discussion can be assembled by an interface from independently owned contributions without the interface owning them: removing every relation the interface draws leaves every contribution intact and attributed.",
+      "status": "demonstrated-on-fixtures",
+      "evidence": ["E2"]
+    },
+    {
+      "id": "H3",
+      "subproblem": "both",
+      "statement": "Community signals such as endorsements, corrections and accepted fixes improve retrieval without turning it into a popularity contest.",
+      "status": "untested",
+      "evidence": []
+    },
+    {
+      "id": "H4",
+      "subproblem": "both",
+      "statement": "A reader can follow any indexed answer back to its author, source and exact revision.",
+      "status": "partially-demonstrated",
+      "evidence": ["E3"]
+    },
+    {
+      "id": "H5",
+      "subproblem": "community",
+      "statement": "Agents can publish opt-in, sanitised write-ups of fixes without leaking private context.",
+      "status": "untested",
+      "evidence": []
+    }
+  ],
+  "approaches": [
+    {
+      "id": "A1",
+      "name": "Precomputed problem-oriented index",
+      "summary": "Extract problem–solution records offline from pinned public sources; retrieve them at query time with cheap, deterministic, explainable ranking.",
+      "implementation": "src/lib/retrieval.ts, scripts/build-index.mjs"
+    },
+    {
+      "id": "A2",
+      "name": "Portable community records",
+      "summary": "Contributions live in their authors' own repositories; interfaces assemble them through declared references and clearly labelled view relations.",
+      "implementation": "src/data/community-fixtures.ts (fixtures only)"
+    }
+  ],
+  "sources": ["syntax1050", "githubAtlas", "brainstorm", "lumpesammlig", "colors", "atproto", "standardSite"],
+  "evidence": [
+    {
+      "id": "E1",
+      "kind": "measured-result",
+      "summary": "Four Words evaluation on the labelled query set; see results for the outcome, including failures.",
+      "artifact": "results/four-words-v1.json",
+      "report": "docs/research/FOUR-WORDS.md"
+    },
+    {
+      "id": "E2",
+      "kind": "fixture-demonstration",
+      "summary": "The Community page assembles eight fixture contributions; disconnecting all view relations leaves all eight intact. Demonstrates the boundary structurally, not federation.",
+      "artifact": "src/data/community-fixtures.ts"
+    },
+    {
+      "id": "E3",
+      "kind": "implementation",
+      "summary": "Every corpus record links to its source at a pinned commit or retrieval timestamp, with licence; every site claim links to a registered source.",
+      "artifact": "corpus/sources.json"
+    }
+  ],
+  "openQuestions": [
+    "Can four words find the right answer more often than plain search over the same text, on a corpus nobody tuned?",
+    "Can one conversation be shown in independent interfaces without losing identity, order, edits or attribution?",
+    "Do endorsements, accepted fixes and tests improve relevance without becoming a popularity contest?",
+    "Is a problem a stable enough unit to index, or does it fragment into versions and contexts too quickly?",
+    "Who writes and maintains problem records, and what does that work cost?"
+  ],
+  "provenance": {
+    "author": "Postack Underflow project owner (blackmath88)",
+    "assistance": "Drafted and implemented with AI coding agents under the repository's development practice; editorial decisions by the project owner.",
+    "derivedFrom": ["writing/WE-ALREADY-SOLVED-THIS.md", "docs/PROBLEM.md", "docs/CONCEPT.md"],
+    "inspiration": "Syntax #1050, paraphrased and attributed; not affiliated."
+  },
+  "revision": {
+    "version": "0.2.0",
+    "date": "2026-10-28",
+    "changes": "First structured record; H1 tested by the Four Words experiment."
+  },
+  "publication": {
+    "status": "not-published",
+    "plannedCarrier": "site.standard.document (exists) with this record as a payload in its open `content` union, which no reader interprets today",
+    "discussion": "Replies would live in their authors' own repositories and reference this record by strongRef (uri + cid), optionally a specific hypothesis id. A site.standard.document can point to a Bluesky thread through bskyPostRef; endorsement, correction and dispute records have no existing Lexicon.",
+    "requiresApproval": true
+  }
+}

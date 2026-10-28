@@ -1,5 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { RabbitHoles } from '../components/RabbitHoles'
+import { Scrolly } from '../components/Scrolly'
+import { ShortcutDiagram, type ShortcutStep } from '../components/ShortcutDiagram'
 import { Src } from '../components/Src'
 import { Status } from '../components/Status'
 import { pageTitle } from '../content/site'
@@ -8,6 +10,55 @@ export const Route = createFileRoute('/')({
   head: () => ({ meta: [{ title: pageTitle() }] }),
   component: Home,
 })
+
+const SHORTCUT_STEPS = [
+  <>
+    <h3>Four words and someone else’s afternoon</h3>
+    <p>
+      Say a site deployed to GitHub Pages loads without its stylesheet. For a long stretch of
+      software history the next move was to type a few words, something like{' '}
+      <code>github pages css 404</code>, and land on a public question someone had asked years
+      earlier. Under it sat an accepted answer, a competing one, and a comment noting that the fix
+      changed in a later version. Somebody spent an afternoon so that you could spend five
+      minutes.
+    </p>
+  </>,
+  <>
+    <h3>An agent reconstructs the answer</h3>
+    <p>
+      Today you might ask an agent instead. It reads your build configuration, opens the
+      framework’s documentation, compares the generated asset paths with the URL the site is
+      served from, and proposes a base-path setting. That is good engineering. It works from
+      primary sources rather than from a stale answer, and it adapts the fix to your project.
+    </p>
+  </>,
+  <>
+    <h3>And then again</h3>
+    <p>
+      The next person with the same problem gets the same careful exploration, from the
+      beginning. Their agent cannot see what yours found. While this site was being built, a
+      sibling project’s GitHub Pages deployment was reported to come up largely unstyled despite a green workflow,
+      and this one’s first deployment never happened because of how the pull requests were
+      stacked. Both are small, well-documented problems. Both were worked out again.
+    </p>
+  </>,
+  <>
+    <h3>Nothing returns</h3>
+    <p>
+      Each of those explorations ends in a working diff and a private transcript. None of them
+      leaves behind a question someone else could find, an answer someone could vote on, or a
+      correction for the next version. The knowledge was produced; it just did not go anywhere
+      shared.
+    </p>
+  </>,
+]
+
+const PROBLEMS: Array<[string, string, string]> = [
+  ['What is missing', 'A way to find solutions that already exist', 'A place where judgement about solutions accumulates'],
+  ['The symptom', 'Rediscovering a known fix from scratch', 'Fixes that nobody else can see, check or correct'],
+  ['A typical unit today', 'Repository, file, commit', 'Private chat, agent session, one platform’s thread'],
+  ['Fixing it alone gives you', 'A fast route to unreviewed answers', 'A thoughtful conversation nobody can find'],
+]
 
 function Home() {
   return (
@@ -20,103 +71,123 @@ function Home() {
 
       <hr />
 
-      <h2>Four words and someone else’s afternoon</h2>
-      <p>
-        For a long stretch of software history, being stuck went something like this. You typed
-        four or five words into a search box, half a phrase and half an error message, and landed
-        on a question someone had asked years earlier. Underneath it sat an accepted answer, a few
-        competing ones, a comment pointing out that the accepted answer broke in version 3, and an
-        edit fixing it. Somebody had spent an afternoon on your problem so that you could spend
-        five minutes.
-      </p>
-      <p>
-        That shortcut was never a single product. It was a habit spread across a lot of people:
-        ask in public, answer in public, vote, correct, link. Search engines made the result
-        findable, and a Q&amp;A site made it legible. None of it was guaranteed to be right, but
-        all of it was out in the open.
-      </p>
-
       <h2>The observation</h2>
       <p>
         <Status kind="paraphrase" />
-        In <Src id="syntax1050">Syntax episode #1050</Src>, CJ worries about what happens to that
-        shortcut now that developers increasingly ask agents instead of each other. An agent can
-        read the code, reason about it and arrive at a working fix. Then the next person’s agent
-        does the same work again, privately, and the solution never lands anywhere others can find
-        it. The main party that learns from the repetition, CJ suggests, is whoever trains the
-        models. The question CJ leaves on the table is whether there is a better way to share.
+        In <Src id="syntax1050">Syntax episode #1050</Src>, CJ worries about what happens to
+        shared problem-solving knowledge now that developers increasingly ask agents rather than
+        each other. An agent can read the code, reason about it and reach a working fix. Then the
+        next person’s agent does the same work again, privately, and the solution never lands
+        anywhere others can find it. CJ suggests the main party learning from the repetition is
+        whoever trains the models, and asks whether there is a better way to share.
       </p>
       <p>
         The hosts do not simply agree. Scott points to projects where reusable building blocks are
-        shared in a community space so they need not be reinvented each time. Wes notes that some
-        sharing is already happening: Stack Overflow has added agent access, and agents now open
-        issues and pull requests on public repositories. He also floats the idea of agents
-        publishing write-ups of what they fixed. When a listener objects that solutions are on
-        GitHub anyway, CJ clarifies that much problem solving happens in private codebases, where
-        anonymised public questions used to be the bridge.
+        shared in a community space so they need not be reinvented. Wes notes that sharing is
+        already happening in places: Stack Overflow has added agent access, agents open issues and
+        pull requests on public repositories, and he floats agents publishing write-ups of what
+        they fixed. When a listener objects that the solutions are on GitHub anyway, CJ answers
+        that much problem solving happens in private codebases, where anonymised public questions
+        used to be the bridge.
       </p>
       <p className="aside">
-        This is our paraphrase of a spoken conversation, not a quotation. The discussion runs from
-        roughly 55 minutes into the episode. Read <Src id="syntax1050">the transcript</Src> for
-        the exact wording. Postack Underflow is not affiliated with or endorsed by the show.
+        Our paraphrase of a spoken conversation, not a quotation; the discussion starts roughly 55
+        minutes in. Read <Src id="syntax1050">the transcript</Src> for the exact wording.
+        Postack Underflow is not affiliated with or endorsed by the show.
       </p>
+
+      <h2>The lost shortcut</h2>
+      <Scrolly
+        label="The lost shortcut, in four steps"
+        steps={SHORTCUT_STEPS}
+        figure={(step) => <ShortcutDiagram step={step as ShortcutStep} />}
+      />
 
       <h2>Retrieving is not the same as reconstructing</h2>
       <p>
         An agent that reconstructs a solution and a reader who retrieves one may end up with the
-        same code. What they do not end up with is the same knowledge. A retrieved answer arrives
-        with context: who wrote it, when, under which versions, who disagreed, and what was
-        corrected later. A reconstructed answer arrives clean, confident and alone.
+        same code. They do not end up with the same knowledge. A retrieved answer arrives with
+        context: who wrote it, under which versions, who disagreed, what was corrected later. A
+        reconstructed answer arrives clean, confident and alone.
       </p>
       <p className="pull">
-        Reconstruction is a cost paid again on every attempt. Retrieval is a cost paid once and
-        shared.
+        Reconstruction is paid for again on every attempt. Retrieval is paid for once and shared.
       </p>
       <p>
-        This does not mean agents are the problem. They are very good at the reconstructing, and
-        the reconstructing is sometimes the right thing to do. The question is about
-        infrastructure: where solutions go once they exist, and whether anyone, human or agent,
-        can find them again without doing the work twice.
+        This is not an argument against agents, nor nostalgia for an old Q&amp;A site. Public
+        answers went stale, duplicates were closed with a curt link, and the questions people were
+        afraid to ask never got asked. Reconstruction is often the right call: when the context is
+        private, when the old answer is wrong, or when nothing has been written down. The question
+        is narrower. Once a solution exists, where does it go, and can anyone, human or agent, find
+        it again without doing the work twice?
       </p>
 
-      <h2>Two problems that keep each other up at night</h2>
+      <h2>Two problems, not one</h2>
       <p>
-        Pull on that question and it splits in two.
+        Pull on that question and it comes apart into two problems that are easy to blur together.
+      </p>
+      <div className="table-wrap wide">
+        <table className="compare">
+          <caption className="kicker table-caption">Indexing and community, side by side</caption>
+          <thead>
+            <tr>
+              <th scope="col">
+                <span className="visually-hidden">Aspect</span>
+              </th>
+              <th scope="col" className="compare__index">
+                01 · Indexing
+              </th>
+              <th scope="col" className="compare__community">
+                02 · Community
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {PROBLEMS.map(([aspect, index, community]) => (
+              <tr key={aspect}>
+                <th scope="row">{aspect}</th>
+                <td>{index}</td>
+                <td>{community}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Indexing</strong> is about discovery. Public code holds a great many solved
+        problems, but it is organised by repository, file and commit, not by problem solved. To
+        find a fix you often need to know where it lives before you know it exists.
       </p>
       <p>
-        <strong>The first problem is indexing.</strong> Public code already contains an enormous
-        number of solved problems, but we organise it by repository, file and commit, not by
-        problem solved. To find a fix you often have to know where it lives before you know that it
-        exists.
-      </p>
-      <p>
-        <strong>The second problem is community.</strong> The judgement that made old answers
-        trustworthy (votes, accepted answers, corrections, reputation, moderation) belonged to a
-        community, and that community lived on one platform. Problem solving is now moving into
-        private chats and one-off agent sessions where none of those signals form at all.
+        <strong>Community</strong> is about judgement. Votes, accepted answers, corrections and
+        moderation made strangers’ answers usable, and they belonged to a community that lived on
+        one platform. Problem solving is moving into places where none of those signals can form.
       </p>
       <p>
         <Status kind="hypothesis" />
-        Each problem is easier to see through the other. An excellent index of unreviewed answers
-        is fragile. A thoughtful community that nobody can discover is just as fragile. That
-        coupling is what this project wants to test.
+        Each problem is easier to see through the other. A fast index of unreviewed answers
+        spreads mistakes efficiently. A thoughtful community nobody can find gets rediscovered
+        from scratch. That coupling is what this project is trying to test.
       </p>
 
       <h2>Choose a rabbit hole</h2>
-      <p>Both lead to the same place eventually. Start wherever your curiosity is.</p>
+      <p>
+        Each one has something you can try. The Indexing page runs a small, measured retrieval
+        experiment; the Community page assembles a conversation from records nobody on this site
+        owns.
+      </p>
       <RabbitHoles />
 
       <h2>Where they meet</h2>
       <p>
-        At the bottom of both holes is the same idea: a <em>portable problem commons</em>. Problems
-        and solutions published where their authors control them, discussed from wherever people
-        already are, and indexed by anyone who wants to build a better way to find them. This essay
-        is meant to become its first record.
+        At the bottom of both holes is the same idea: a <em>portable problem commons</em>. This
+        essay is written down as its first record, a structured object with its own problem,
+        sources, evidence and open questions, which a discussion could attach to without living
+        on this site.
       </p>
       <p>
         <Link to="/convergence/">Read the convergence</Link>, or check{' '}
-        <Link to="/notes/">the notes</Link> to see what is actually built and what is still a
-        hypothesis.
+        <Link to="/notes/">the notes</Link> for what is built and what is still a hypothesis.
       </p>
     </>
   )

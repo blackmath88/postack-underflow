@@ -578,3 +578,158 @@ a.ledger__title,
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- Scrollytelling ---------- */
+
+.scrolly {
+  margin: var(--space-5) 0;
+}
+
+.scrolly__figure {
+  display: none;
+}
+
+.scrolly__step {
+  padding: var(--space-3) 0 var(--space-5);
+  max-width: var(--measure);
+}
+
+.scrolly__inline-figure {
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 60rem) {
+  .scrolly--enhanced {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+  .scrolly--enhanced .scrolly__figure {
+    display: block;
+    position: sticky;
+    top: 20vh;
+    order: 2;
+  }
+  .scrolly--enhanced .scrolly__inline-figure {
+    display: none;
+  }
+  .scrolly--enhanced .scrolly__step {
+    min-height: 60vh;
+    padding-top: 20vh;
+    color: var(--muted);
+  }
+  .scrolly--enhanced .scrolly__step.is-active {
+    color: var(--fg);
+  }
+  .scrolly--enhanced .scrolly__step:last-child {
+    min-height: 50vh;
+  }
+}
+
+/* ---------- Shortcut diagram ---------- */
+
+.shortcut-diagram {
+  margin: 0;
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-3);
+}
+
+.shortcut-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shortcut-diagram__caption {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+.sd-frame {
+  fill: var(--bg);
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+}
+.sd-frame--closed {
+  fill: var(--surface);
+}
+.sd-faded {
+  opacity: 0.35;
+}
+.sd-label,
+.sd-mono,
+.sd-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--fg);
+  letter-spacing: 0.06em;
+}
+.sd-mono {
+  font-size: 13px;
+}
+.sd-note {
+  fill: var(--muted);
+}
+.sd-note--signal {
+  fill: var(--accent-signal);
+}
+.sd-query {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2;
+}
+.sd-text-line {
+  stroke: var(--rule);
+  stroke-width: 4;
+}
+.sd-mark--blue {
+  fill: var(--blue);
+}
+.sd-mark--violet {
+  fill: var(--violet);
+}
+.sd-mark--rose {
+  fill: var(--rose);
+}
+.sd-route {
+  stroke: var(--blue);
+  stroke-width: 2;
+  fill: none;
+}
+.sd-arrowhead {
+  fill: var(--blue);
+}
+.sd-probe {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+.sd-loop {
+  fill: none;
+  stroke: var(--accent-signal);
+  stroke-width: 1.5;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.compare th[scope='col'] {
+  font-size: 0.8rem;
+}
+.compare__index {
+  border-bottom: 3px solid var(--blue) !important;
+}
+.compare__community {
+  border-bottom: 3px solid var(--violet) !important;
+}
+.compare tbody th {
+  width: 22%;
+}

@@ -12,7 +12,11 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/",
     "validate": "node scripts/validate-build.mjs",
-    "check": "npm run typecheck && npm test && npm run build && npm run validate"
+    "check": "npm run typecheck && npm test && npm run build && npm run validate",
+    "smoke": "node scripts/smoke-deployed.mjs",
+    "corpus:fetch": "node scripts/corpus-fetch.mjs",
+    "index": "node scripts/build-index.mjs",
+    "evaluate": "node scripts/evaluate.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "1.170.46",
@@ -25,6 +29,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.2",
+    "playwright-core": "1.64.1",
     "typescript": "7.0.2",
     "vite": "8.3.5"
   }

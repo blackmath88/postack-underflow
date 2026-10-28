@@ -24,10 +24,16 @@ for (const route of [...ROUTES.map((r) => `${r}index.html`), '404.html']) {
   if (!existsSync(join(out, route))) errors.push(`missing page: ${route}`)
 }
 
+// Jekyll-style processing on Pages drops paths whose segments start with "_"
+// (the failure mode that left another project's deploy unstyled). We deploy
+// via Actions without Jekyll and ship .nojekyll, but refuse such paths anyway.
+if (!existsSync(join(out, '.nojekyll'))) errors.push('missing .nojekyll')
+
 const htmlFiles = []
 const walk = (dir) => {
   for (const name of readdirSync(dir)) {
     const path = join(dir, name)
+    if (name.startsWith('_')) errors.push(`underscore path would be dropped by Jekyll: ${relative(out, path)}`)
     if (statSync(path).isDirectory()) walk(path)
     else if (name.endsWith('.html')) htmlFiles.push(path)
   }
@@ -51,6 +57,16 @@ for (const file of htmlFiles) {
     ...[...html.matchAll(/"(\/[^"\s]*\.(?:js|css))"/g)].map((m) => m[1]),
   ]
   if (!/<title>[^<]+<\/title>/.test(html)) errors.push(`${name}: missing <title>`)
+  // Every page must link a non-trivial stylesheet; a green build with an
+  // unstyled page is the regression this guards against.
+  const css = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => m[1])
+  if (css.length === 0) errors.push(`${name}: no stylesheet linked`)
+  for (const href of css) {
+    const file = join(out, href.slice(BASE.length))
+    if (href.startsWith(BASE) && existsSync(file) && statSync(file).size < 2000) {
+      errors.push(`${name}: stylesheet ${href} is suspiciously small`)
+    }
+  }
   for (const url of urls) {
     if (!url.startsWith('/') || url.startsWith('//')) continue
     checked++
