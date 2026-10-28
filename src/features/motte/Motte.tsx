@@ -88,7 +88,7 @@ export function Motte({
         </button>}
         <button type="button" onClick={dismiss} aria-label="Dismiss Motte">×</button>
       </div>
-      {showNote && <section id="motte-note" className="motte__note" aria-label="What history tells us">
+      {showNote && note && <section id="motte-note" className="motte__note" aria-label="What history tells us">
         <span className="motte__eyebrow">WHAT HISTORY TELLS US</span>
         <h3>{note.heading}</h3>
         <p>{note.observation}</p>
