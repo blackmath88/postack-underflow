@@ -1,0 +1,31 @@
+{
+  "name": "postack-underflow",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && node scripts/finalize-404.mjs",
+    "preview": "node scripts/serve-pages.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/",
+    "validate": "node scripts/validate-build.mjs",
+    "check": "npm run typecheck && npm test && npm run build && npm run validate"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "1.170.46",
+    "@tanstack/react-start": "1.169.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.5"
+  }
+}
