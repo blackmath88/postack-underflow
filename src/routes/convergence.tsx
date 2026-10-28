@@ -18,13 +18,15 @@ function Convergence() {
       </PageIntro>
 
       <p className="beat">
-        Here is the smallest version of both at once. A search puts the right page seventh. A correction arrives. You inspect it,
+        Here is the smallest version of both at once. Take the opening’s four words,{' '}
+        <code>css missing after deploy</code>. Our description index, which won overall, puts the first labelled
+        answer seventh; plain search had it first. A correction arrives. You inspect it,
         accept it if you like, and watch the index change. The source it describes stays exactly as it was.
       </p>
 
       <ProblemDesk />
 
-      <p className="statement">The guess helped exactly as much as the better-supported change.</p>
+      <p className="statement">By construction, the guess helps exactly as much as the better-supported change.</p>
       <p className="beat">
         A ranking <Ref id="byConstruction">cannot tell a supported correction from a plausible one.</Ref> A
         better number is not proof that a change is right. Only review can say that.
@@ -34,9 +36,9 @@ function Convergence() {
       </p>
       <p className="beat">
         <Status kind="hypothesis" />
-        Corrections that are their own attributable records, pointing at the exact claim they challenge, kept
-        apart from the sources they never touch. Whether that works anywhere beyond this page depends on people
-        doing the reviewing.
+        Our guess: corrections should be records of their own, signed by their author, pointing at the exact
+        claim they challenge, and never editing the source. Whether that works anywhere beyond this page depends
+        on people doing the reviewing.
       </p>
       <p className="beat">
         This essay <Ref id="selfCorrection">needed exactly that kind of review.</Ref>

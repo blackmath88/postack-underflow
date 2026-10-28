@@ -61,5 +61,13 @@ The brief: make people actually read it. The essay asked for too much technical 
 
 **What we did not do:**
 - **No reader has tested it.** Whether the lighter surface is actually easier, and whether people open notes, is unmeasured. The comprehension test in §6 still stands.
-- **The 40–50% target was overshot.** Visible story prose fell 63%, or 57% without the afterword, whose history moved wholesale to the archive. We checked each turning point by hand rather than by number.
+- **The 40–50% target was overshot.** Visible story prose fell 62%, or 56% without the afterword, whose history moved wholesale to the archive. We checked each turning point by hand rather than by number.
+
+**What the independent review caught.** Shortening made the surface flatter than the evidence in exactly the ways the essay warns about:
+- **"Filed under one heading" was the essay's own hypothetical claim.** The index only gave both reports the same controlled term. A short sentence had turned an illustration into a fact.
+- **"The guess helped exactly as much" read as a finding.** The long version had said it was true by construction; the short one dropped that. The surface now says "By construction". The note's evidence label moved from *measured* to *our reading*, because the correction is invented.
+- **The desk's opening query was the one query the description index lost.** That fact had moved entirely into a note. It is back on the surface.
+- **Smaller overstatements:** "owned their own line", "any shared way to endorse", "did not type the notes themselves", and the underscore case's confirmed fix (renaming files; `.nojekyll` the reporter called "not a good solution").
+
+Each correction cost a few words. The lesson: compression strips hedges first, so a lighter surface needs a reviewer who reads it against the archive.
 - **Motte was not integrated.** The note registry gives it a single place to read history notes from, with an evidence status. Only notes marked *checked* would pass its `verified` filter, and none of the history notes is checked yet.

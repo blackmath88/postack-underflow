@@ -264,6 +264,24 @@ try {
       return r.top < innerHeight && r.bottom > 0
     })
     check(inView, 'notes: a deep-linked note is scrolled into view')
+    await page.mouse.click(5, 5) // move focus away from the note
+    await page.keyboard.press('Escape')
+    check(!(await page.locator('#note-switchboardHistory').isVisible()), 'notes: Escape closes a note when focus is elsewhere')
+    await page.locator('#ref-twoLayers').click()
+    await page.click(`header a[href="${BASE}indexing/"]`)
+    await page.waitForURL(`${site}indexing/`)
+    await page.waitForSelector('#ref-frozenIndex') // the community page has unmounted
+    await page.goBack()
+    await page.waitForSelector('#ref-twoLayers[role="button"]')
+    check(!(await page.locator('#note-twoLayers').isVisible()), 'notes: a note does not reopen after navigating away and back')
+    await page.locator('#ref-twoLayers').click()
+    await page.setViewportSize({ width: 390, height: 900 })
+    await page.waitForTimeout(200)
+    const fits = await page.locator('#note-twoLayers').evaluate((el) => {
+      const r = el.getBoundingClientRect()
+      return r.left >= 0 && r.right <= document.documentElement.clientWidth
+    })
+    check(fits, 'notes: an open note is placed again after a resize')
     await page.goto(`${site}archive/`)
     const listed = await page.locator('.note-index li').count()
     check(listed >= 30, `notes: the archive lists every margin note (${listed})`)

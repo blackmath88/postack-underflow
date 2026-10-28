@@ -396,7 +396,7 @@ const notes = {
     ),
   },
   controlledVocab: {
-    title: 'Why would a shared heading cause trouble?',
+    title: 'Why would a shared label cause trouble?',
     kind: 'history',
     chapter: 'indexing',
     evidence: 'measured',
@@ -405,11 +405,11 @@ const notes = {
       <>
         <P>
           Libraries call it controlled vocabulary: an agreed heading, so that everything about one subject sits
-          together. Our record writer gave both reports the same heading, <code>asset-404</code>.
+          together. Our record writer gave both reports the same controlled term, <code>asset-404</code>.
         </P>
         <P>
           One report never says 404. It describes a JavaScript file blocked because the server returned a web
-          page. The heading made them neighbours.
+          page. The shared term made them neighbours.
         </P>
       </>
     ),
@@ -496,7 +496,7 @@ const notes = {
     kind: 'research',
     chapter: 'indexing',
     evidence: 'measured',
-    summary: 'In six of the ten queries the descriptions won, the winning record matched a word its source never uses, such as “blank”.',
+    summary: 'In six of the ten queries where the descriptions won, the winning record matched a word its source never uses, such as “blank”.',
     body: (
       <>
         <P>
@@ -638,7 +638,7 @@ const notes = {
     body: (
       <>
         <P>
-          A manual switchboard joined separate lines. Each caller owned their endpoint; the operator answered a
+          A manual switchboard joined separate lines. Each caller had their own line; the operator answered a
           request, made a temporary connection, and pulled the cord when the call ended. Every connection was a
           choice, and the operator had real power over who could reach whom.
         </P>
@@ -735,7 +735,7 @@ const notes = {
     title: 'Why does the guess help just as much?',
     kind: 'counterpoint',
     chapter: 'convergence',
-    evidence: 'measured',
+    evidence: 'reading',
     summary: 'The same words go into two similar records, and a ranking cannot see where a word came from; this is guaranteed, not discovered.',
     body: (
       <>
@@ -749,8 +749,13 @@ const notes = {
           result is still an unrelated issue, matched on generic words; a correction to a description cannot
           fix the weighting.
         </P>
+        <P>
+          Rank 7 is also partly a labelling problem: the second and fourth results describe missing CSS after a
+          deploy, but were not labelled relevant before the run.
+        </P>
       </>
     ),
+    archive: { label: 'How to read the v1 results', to: '/archive/four-words/', hash: 'reading' },
   },
   review: {
     title: 'Who would do the reviewing?',

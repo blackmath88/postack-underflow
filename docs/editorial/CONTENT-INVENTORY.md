@@ -39,7 +39,7 @@ Each margin note carries a question as its title, a kind, an evidence status, it
 | "Everything is filed by where it lives", GitHub Atlas | Margin | `githubAtlas` |
 | "Indexing as work done before the question" | Archive | `/archive/four-words/` "Why index before the question" |
 | What an index adds; doc2query | One sentence on the surface; the rest moves to a margin note | `whatIndexAdds` |
-| **New opening:** "Same words. Different problems." | **Surface**, before any mechanism | The Disputed Neighbour now comes first |
+| **New opening:** "Same words. Different problems." | **Surface**, before any mechanism | The Disputed Neighbour now comes first. The surface says the index gave both reports the same *label* (`asset-404`); the shared *heading* is the essay's hypothetical claim. |
 | Source layer vs index layer | Margin | `rawVsAuthored` |
 | Controlled term `asset-404`; the source never says 404 | One sentence on the surface; the explanation moves to a margin note | `controlledVocab` |
 | Four Words experiment | **Keep** | Surface; header shortened |
@@ -101,11 +101,11 @@ Visible prose on the story routes, measured at 1440 px by `scripts/measure-surfa
 
 | Route | Before | After | Change |
 |---|---:|---:|---:|
-| `/` | 1,422 | 716 | −50% |
-| `/indexing/` | 1,575 | 527 | −67% |
-| `/community/` | 1,123 | 504 | −55% |
-| `/convergence/` | 492 | 235 | −52% |
+| `/` | 1,422 | 722 | −49% |
+| `/indexing/` | 1,575 | 538 | −66% |
+| `/community/` | 1,123 | 505 | −55% |
+| `/convergence/` | 492 | 259 | −47% |
 | `/afterword/` | 1,433 | 252 | −82% |
-| **Story total** | **6,045** | **2,234** | **−63%** |
+| **Story total** | **6,045** | **2,276** | **−62%** |
 
-Without the afterword, whose history moved wholesale to the archive, the reduction is 57%. That is beyond the 40–50% target. The reader review (`docs/REFLECTION.md` §7) checked that each turning point is still visible on the surface. Total page height at 1440 px fell 36%, from 45,643 to 29,024 px. Tables on the story routes went from 5 to 0.
+Without the afterword, whose history moved wholesale to the archive, the reduction is 56%. That is beyond the 40–50% target. The reader review (`docs/REFLECTION.md` §7) checked that each turning point is still visible on the surface. Total page height at 1440 px fell 36%, from 45,643 to 29,187 px. Tables on the story routes went from 5 to 0.

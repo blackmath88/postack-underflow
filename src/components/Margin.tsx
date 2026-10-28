@@ -33,13 +33,20 @@ function fromHash(): NoteId | null {
   return m && m[1]! in NOTES ? (m[1] as NoteId) : null
 }
 
-let hashListening = false
-function listenToHash() {
-  if (hashListening) return
-  hashListening = true
+let listening = false
+function listenGlobally() {
+  if (listening) return
+  listening = true
   window.addEventListener('hashchange', () => {
     openId = fromHash()
     emit()
+  })
+  // Escape closes the open note wherever focus is (Safari does not focus links on click).
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !openId) return
+    const id = openId
+    setOpen(null)
+    document.getElementById(`ref-${id}`)?.focus()
   })
 }
 
@@ -49,19 +56,35 @@ export function Ref({ id, children }: { id: NoteId; children: ReactNode }) {
   const [enhanced, setEnhanced] = useState(false)
   const [inline, setInline] = useState(false)
   const [shift, setShift] = useState(0)
+  const [layoutTick, setLayoutTick] = useState(0)
+  const [copied, setCopied] = useState(false)
   const open = enhanced && current === id
   const refId = `ref-${id}`
   const noteId = `note-${id}`
 
   useEffect(() => {
     setEnhanced(true)
-    listenToHash()
+    listenGlobally()
     if (fromHash() === id) {
       openId = id
       emit()
       document.getElementById(noteId)?.scrollIntoView({ block: 'center' })
     }
+    // Leaving the page closes its note, so it does not reopen on return.
+    return () => {
+      if (openId === id) {
+        openId = null
+        emit()
+      }
+    }
   }, [id, noteId])
+
+  useEffect(() => {
+    if (!open) return setCopied(false)
+    const onResize = () => setLayoutTick((t) => t + 1)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [open])
 
   // A note in the margin must not cover a wide figure or experiment. If one
   // is in the way below, the note moves up to clear it, as long as it stays
@@ -70,7 +93,11 @@ export function Ref({ id, children }: { id: NoteId; children: ReactNode }) {
     setShift(0)
     if (!open) return setInline(false)
     const el = document.getElementById(noteId)
-    if (!el || getComputedStyle(el).position !== 'absolute') return setInline(false)
+    if (!el) return
+    // Measure from the unadjusted margin position; React reapplies state below.
+    el.classList.remove('mnote--inline')
+    el.style.marginTop = ''
+    if (getComputedStyle(el).position !== 'absolute') return setInline(false)
     const r = el.getBoundingClientRect()
     const para = el.closest('p')!.getBoundingClientRect()
     const blockers = [...document.querySelectorAll('main .wide, main .fork, main figure, main table')]
@@ -84,7 +111,7 @@ export function Ref({ id, children }: { id: NoteId; children: ReactNode }) {
       top >= para.top - 240 && !blockers.some((o) => o.top < para.top && o.bottom > top) && top + r.height <= limit
     setInline(!clear)
     setShift(clear ? up : 0)
-  }, [open, noteId])
+  }, [open, noteId, layoutTick])
 
   const toggle = (e: MouseEvent | KeyboardEvent) => {
     e.preventDefault()
@@ -148,8 +175,21 @@ export function Ref({ id, children }: { id: NoteId; children: ReactNode }) {
           )}
           {note.archive && <span className="mnote__archive">Go deeper: {noteArchiveLink(note)} →</span>}
         </span>
-        <a href={`#${noteId}`} className="mnote__close">
-          Link to this note
+        <a
+          href={`#${noteId}`}
+          className="mnote__close"
+          onClick={
+            enhanced
+              ? (e) => {
+                  // Following the link would jump the page; copy it instead.
+                  e.preventDefault()
+                  const url = `${location.origin}${location.pathname}#${noteId}`
+                  navigator.clipboard?.writeText(url).then(() => setCopied(true), () => {})
+                }
+              : undefined
+          }
+        >
+          {copied ? 'Link copied' : 'Link to this note'}
         </a>{' '}
         ·{' '}
         <a

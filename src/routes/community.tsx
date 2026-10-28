@@ -61,7 +61,7 @@ function Community() {
       </p>
       <p className="beat">
         A telephone switchboard <Ref id="switchboardHistory">did something like it with calls.</Ref> Every
-        caller owned their own line. The operator joined lines for a while, then pulled the cord.
+        caller had their own line. The operator joined lines for a while, then pulled the cord.
       </p>
       <p className="beat">
         Below, eight contributions sit on two rails. <Ref id="fixtures">All of them are invented.</Ref> Every line
@@ -86,7 +86,7 @@ function Community() {
       <h2>Does this exist?</h2>
       <p className="beat">
         <Ref id="atproto">Partly.</Ref> Open protocols already let people own and publish their own records.
-        What we could not find is any shared way to endorse, correct or dispute one. This page is a
+        What we could not find is any shared record type for endorsing, correcting or disputing one. This page is a
         demonstration on fixtures; nothing here touches a real network.
       </p>
       <p>

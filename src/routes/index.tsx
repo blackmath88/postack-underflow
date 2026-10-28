@@ -59,6 +59,9 @@ function Home() {
         <p className="kicker">An open research essay · draft</p>
         <h1>We already solved this.</h1>
         <p className="question">So why are we solving it again?</p>
+        <p className="opening__hint">
+          Numbered phrases open notes in the margin. You never need them to follow the story.
+        </p>
       </div>
 
       <section className="movement" aria-labelledby="m1">
@@ -95,7 +98,7 @@ function Home() {
           <Ref id="frameCounts">Most of it was merged.</Ref>
         </p>
         <p className="beat">
-          Many of them did not type the notes themselves. They pointed their AI agents at it.{' '}
+          Many, Wes says, did not type the notes themselves. They pointed their AI agents at it.{' '}
           <Ref id="forAgents">The repository asks for exactly that.</Ref>
         </p>
         <p className="statement statement--quiet">
@@ -128,7 +131,7 @@ function Home() {
         </p>
         <p className="beat">
           <Ref id="notNostalgia">This is not nostalgia.</Ref> Rebuilding an answer is often the right call. It is
-          also easy to do without noticing. <Ref id="ownExample">We did it twice making this site.</Ref>
+          also easy to do without noticing. <Ref id="ownExample">It happened twice around this site.</Ref>
         </p>
         <p className="statement statement--quiet">When a useful investigation ends, where does it go?</p>
       </section>
@@ -160,15 +163,15 @@ function Home() {
         </div>
 
         <p className="beat">
-          <Ref id="eachThroughOther">Each is easier to see through the other.</Ref>{' '}
+          <Ref id="eachThroughOther">Each problem makes the other easier to see.</Ref>{' '}
           They are <Ref id="otherProblems">not the only problems.</Ref> But they are two you can try for yourself.
         </p>
 
         <h3>Choose a rabbit hole</h3>
         <RabbitHoles />
         <p>
-          Both lead to <Link to="/convergence/">the Problem Desk</Link>, where they meet. The numbered phrases
-          open notes in the margin; the <Link to="/archive/">archive</Link> holds the full research.
+          Both lead to <Link to="/convergence/">the Problem Desk</Link>, where they meet. The{' '}
+          <Link to="/archive/">archive</Link> holds the full research.
         </p>
       </section>
     </>

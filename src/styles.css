@@ -370,6 +370,12 @@ hr {
   margin-bottom: var(--space-5);
 }
 
+.opening__hint {
+  margin-top: var(--space-4);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 .opening .question {
   font-size: clamp(1.35rem, 3vw, 2rem);
   line-height: 1.3;
@@ -2093,6 +2099,7 @@ main {
 }
 
 .mnote {
+  text-wrap: wrap;
   margin: var(--space-3) 0;
   padding: var(--space-3) var(--space-3) var(--space-3) var(--space-3);
   border-left: 3px solid var(--accent);

@@ -28,20 +28,20 @@ function Indexing() {
         Pages, a free host for websites built from code, one of its script files will not load.
       </p>
       <p className="beat">
-        One fix is a setting that puts the repository’s name in front of every path. The other is an empty file
-        that stops GitHub Pages from skipping files whose names start with an underscore. Neither fix repairs the
-        other case.
+        One fix is a setting that puts the repository’s name in front of every path. The other is renaming a file,
+        or adding an empty <code>.nojekyll</code> file, so that GitHub Pages stops skipping names that start with
+        an underscore. Neither fix repairs the other case.
       </p>
       <p className="beat">
-        Our small index filed them side by side, <Ref id="frozenIndex">under one heading.</Ref> Look at what each
-        report says, and <Ref id="rawVsAuthored">what the index added.</Ref>
+        <Ref id="frozenIndex">Our small index gave both the same label.</Ref> Suppose an editor then files them
+        under one heading. Look at what each report says, and <Ref id="rawVsAuthored">what the index added.</Ref>
       </p>
 
       <DisputedNeighbour />
 
       <p className="beat">
         The resemblance was partly written in.{' '}
-        One report never says “404”; <Ref id="controlledVocab">the heading it was filed under does.</Ref>
+        One report never says “404”; <Ref id="controlledVocab">the label the index gave it does.</Ref>
       </p>
 
       <h2>An index is somebody’s reading</h2>

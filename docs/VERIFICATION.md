@@ -12,7 +12,7 @@ This file records what was actually checked. It is not a claim that the public s
 | `npm run check` (typecheck, tests, build, validate) | pass. Tests 25/25, including 5 new margin-note registry tests: every note used exactly once, on its chapter's page; sources registered; archive anchors exist; reported history notes say they are not independently verified. Build: 12 pages, 443 internal URLs. |
 | `npm run index:check` | frozen artifact reproduced exactly |
 | Frozen data | `git diff main -- corpus results src/data/four-words-index.json src/features/motte` is empty |
-| `npm run browser` (local Pages emulation) | **211/211**. Every route at 390, 768 and 1440 px: styled, no overflow, no errors. The original experiment, keyboard, reduced-motion and no-JS checks still pass. New checks are listed below. |
+| `npm run browser` (local Pages emulation) | **214/214**. Every route at 390, 768 and 1440 px: styled, no overflow, no errors. The original experiment, keyboard, reduced-motion and no-JS checks still pass. New checks are listed below. |
 
 **New browser checks, margin notes, at 390 and 1440 px:**
 - a click opens the note and the marker reports `aria-expanded="true"`;
@@ -23,7 +23,10 @@ This file records what was actually checked. It is not a claim that the public s
 - Enter opens a note and Space toggles it;
 - the Close control returns focus;
 - a deep link (`/community/#note-switchboardHistory`) opens the note after hydration, is announced as expanded, and scrolls it into view;
-- the archive lists every note.
+- the archive lists every note;
+- Escape closes a note when focus is elsewhere (Safari does not focus links on click);
+- a note does not reopen after navigating away and back;
+- an open note is placed again after a resize from 1440 to 390 px.
 
 **New checks without JavaScript:**
 - notes start closed;
@@ -35,7 +38,11 @@ This file records what was actually checked. It is not a claim that the public s
 - **Screenshots:** reviewed at 1440 px and 390 px for every story route, in light and dark. Before/after and note screenshots are in `docs/screenshots/08–14`.
 - **Note placement at 1440 px:** checked one by one with a script. Most notes open in the margin. Notes directly above a wide figure or experiment open inline: `episode`, `frameRepo`, `googleSo`, `eachThroughOther`, `otherProblems`, `frozenIndex`, `whatIndexAdds`, `ranking`, `switchboardHistory`. Two notes, `rawVsAuthored` and `fixtures`, move up to clear the figure below them.
 - **Accessibility tree** (Playwright aria snapshot): a closed marker is a `button` named by its phrase plus "(margin note: <title>)". Open, it reports `[expanded]` and is followed by a `note` with the same name, containing ordinary source links, "Link to this note" and "Close note and return to the text".
-- **Prose measurement:** `scripts/measure-surface.mjs` counts visible prose on the story routes: 6,045 → 2,234 words (−63%). See the content inventory.
+- **Prose measurement:** `scripts/measure-surface.mjs` counts visible prose on the story routes: 6,045 → 2,276 words (−62%). See the content inventory.
+- **Independent review (AI reviewer, read-only):** confirmed the numbers (25 vs 17 of 27; rank 7 → 2; 201/150/21/30; six of ten wins plus one artefact), the reported status of PR #5 history and the quote lengths, and found no hydration mismatch. Acted on, and listed in REFLECTION §7:
+  - three must-fix items: "one heading" vs the shared label, "by construction" back on the surface, and the desk's lost query back on the surface;
+  - eight should-fix wording, accuracy and interaction items: global Escape, reset on navigation, re-measure on resize, and "Link to this note" copying instead of jumping.
+  - Not acted on: after closing a deep-linked note, its hash stays in the address, so reloading reopens it. Rewriting the address makes the router scroll (ADR-0005).
 - **New sources:** the Stack Overflow tour and Google's ranking page were fetched with `curl`, which returned 200 for both, and checked for the claims cited. The tour covers votes, accepted answers, reputation and edits. Google's page covers query words, relevance, and links from prominent sites as a quality signal.
 
 ### Not verified
