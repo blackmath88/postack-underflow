@@ -273,6 +273,24 @@ hr {
   padding: var(--space-3) var(--gutter);
 }
 
+.draft-banner {
+  max-width: var(--wide);
+  margin: 0 auto var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--accent-signal);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.draft-banner strong {
+  color: var(--accent-signal);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+}
+
 .site-header__inner {
   max-width: var(--wide);
   margin-inline: auto;

@@ -15,6 +15,10 @@ export function SiteHeader() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <p className="draft-banner">
+        <strong>Draft</strong> · an open research essay in progress. Claims, experiments and wording may
+        change; each page marks what was tested and what is only argued.
+      </p>
       <div className="site-header__inner">
         <Link to="/" className="wordmark" activeOptions={{ exact: true }}>
           Postack Underflow
