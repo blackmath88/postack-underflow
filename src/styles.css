@@ -572,12 +572,13 @@ a.ledger__title,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Disable outright: a near-zero duration with the default
+     transition-property (all) still creates a transition on every change. */
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
   }
 }
@@ -860,6 +861,10 @@ details > summary {
   padding: var(--space-3) 0;
   border-bottom: 1px solid var(--rule);
 }
+.fw-result h4,
+.ledger__title {
+  overflow-wrap: anywhere;
+}
 .fw-result h4 {
   margin: var(--space-1) 0 var(--space-2);
   font-size: 1.02rem;
@@ -903,6 +908,7 @@ details > summary {
 }
 .fw-source a {
   margin-right: var(--space-2);
+  overflow-wrap: anywhere;
 }
 .fw-source__meta {
   display: block;
