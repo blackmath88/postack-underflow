@@ -1,0 +1,464 @@
+{
+  "schema": "postack.research.interface-study/v1",
+  "id": "physical-information-systems-2026-10-28",
+  "title": "From Physical Information Systems to Digital Public Knowledge",
+  "status": "external-research-received; internal-analysis-proposed; not independently source-verified",
+  "date": "2026-10-28",
+  "sourceType": "user-supplied Perplexity Deep Research report",
+  "centralQuestion": "How can the distinctive intelligence embedded in the card catalogue and manual telephone switchboard be transgressed into digital interfaces that rethink indexing and community in the age of AI?",
+  "project": {
+    "repository": "https://github.com/blackmath88/postack-underflow",
+    "inspiration": "https://syntax.fm/show/1050/everyone-is-hacking-their-tv/transcript",
+    "independentStudies": [
+      "https://github.com/blackmath88/lumpesammlig/tree/main/src/samples/012-impossible-index",
+      "https://github.com/blackmath88/lumpesammlig/tree/main/src/samples/013-switchboard"
+    ],
+    "related": [
+      "https://github.com/blackmath88/colors",
+      "https://github.com/blackmath88/br-ai-nstorm",
+      "https://github.com/blackmath88/github-atlas"
+    ]
+  },
+  "epistemicPolicy": {
+    "classes": [
+      "historical-evidence",
+      "documented-behaviour",
+      "interpretation",
+      "proposal"
+    ],
+    "note": "References and reported historical facts are transcribed/synthesized from user-provided research; their verification has not been independently performed in this ingestion. This is not a benchmark or user study.",
+    "syntaxCaveat": "The report questions verification of the exact Syntax passage; this conflicts with earlier conversation-level transcript attribution. Verify timestamp and wording against the primary transcript before public quotation."
+  },
+  "thesis": {
+    "summary": "Translate accountability rather than furniture.",
+    "index": "A catalogue exposes previous descriptive labour, access routes, omissions, and review authority.",
+    "community": "A switchboard exposes the establishment, supervision, and release of mediated connections, not a persistent message archive.",
+    "convergence": "A temporary problem desk can keep source records, classification claims, and conversational relations separate and inspectable."
+  },
+  "objects": [
+    {
+      "id": "card-catalogue",
+      "historicalMechanisms": [
+        "author/title/subject access points and filing rules",
+        "controlled vocabulary and cross-references",
+        "drawers, dividers, rods and filing position",
+        "tentative insertion above retaining rod prior to review (documented NLM example)",
+        "maintenance, corrections, withdrawals and disputed headings"
+      ],
+      "distinctiveReading": "A maintained landscape of descriptions allowing a stranger to navigate other people's earlier decisions.",
+      "haptics": [
+        "part and scan",
+        "hold place while inspecting adjacent entries",
+        "stable landmarks and bounded filing positions",
+        "friction and resistance",
+        "reversible browsing versus governed maintenance"
+      ],
+      "importantCorrections": [
+        "Accession order is not necessarily the public browsing order; dictionary catalogues may file alphabetically.",
+        "Ordinary browsing does not require removing and refiling cards.",
+        "Subject heading, shelf classification, call number and accession identifier are different things."
+      ],
+      "competingReadings": [
+        {
+          "id": "prior-labour",
+          "claim": "description precedes retrieval",
+          "risk": "classification appears finished"
+        },
+        {
+          "id": "adjacency",
+          "claim": "stable neighbourhoods support comparison and serendipity",
+          "risk": "one privileged order"
+        },
+        {
+          "id": "vocabulary",
+          "claim": "cross-references negotiate different words",
+          "risk": "additional interaction friction"
+        },
+        {
+          "id": "governed-maintenance",
+          "claim": "proposed placement differs from accepted filing",
+          "risk": "central authority naturalized"
+        },
+        {
+          "id": "gaps",
+          "claim": "absence may reflect coverage, vocabulary or maintenance",
+          "risk": "invented certainty about unknown gaps"
+        },
+        {
+          "id": "institutional-power",
+          "claim": "headings shape visibility and responsibility",
+          "risk": "overcomplicates first encounter"
+        }
+      ],
+      "digitalTransgressions": [
+        "hold a record while changing its classification neighbourhood",
+        "show competing classifications simultaneously",
+        "make cross-reference equivalence attributable and contestable",
+        "preview how provisional headings alter retrieval",
+        "distinguish unmatched from unindexed, stale, or unavailable"
+      ],
+      "falsification": "Without paper or drawer styling, can the visitor explain why a record is in this neighbourhood and what would change its position?"
+    },
+    {
+      "id": "manual-switchboard",
+      "historicalMechanisms": [
+        "line request and acknowledgement",
+        "answering/calling plugs, jacks, ringing keys",
+        "circuit establishment and supervision",
+        "limited cord circuits and capacity",
+        "release/clearing after call",
+        "operator mediates but does not author speech"
+      ],
+      "distinctiveReading": "An instrument for accountable temporary commitment under finite capacity.",
+      "haptics": [
+        "locate jack, reach for cord, insert plug",
+        "request/acknowledge/establish/supervise/release rhythm",
+        "distinct visual and auditory indicators",
+        "occupied circuits persist while operator attention shifts",
+        "releasing restores capacity"
+      ],
+      "importantCorrections": [
+        "Historical switchboards connect parties; they do not ordinarily preserve authored contributions.",
+        "Persistent source records plus temporary views is a deliberate digital transformation, not an original telephony property.",
+        "A relation line does not imply agreement or endorsement."
+      ],
+      "competingReadings": [
+        {
+          "id": "routing",
+          "claim": "establish connections between endpoints",
+          "risk": "generic graph"
+        },
+        {
+          "id": "commitment",
+          "claim": "connections occupy resources",
+          "risk": "artificial scarcity"
+        },
+        {
+          "id": "lifecycle",
+          "claim": "request, proposal, establishment and release differ",
+          "risk": "state complexity"
+        },
+        {
+          "id": "attention",
+          "claim": "circuits persist outside operator's immediate attention",
+          "risk": "dashboard overload"
+        },
+        {
+          "id": "mediation",
+          "claim": "routing policy shapes who is heard",
+          "risk": "hidden gatekeeping"
+        },
+        {
+          "id": "operator-withdrawal",
+          "claim": "mediator can withdraw while endpoints persist",
+          "risk": "falsely implies no intermediary power"
+        }
+      ],
+      "digitalTransgressions": [
+        "typed, attributable relationship claims with reasons and status",
+        "compare independent routing policies over unchanged sources",
+        "remove local interpretations without erasing original records",
+        "distinguish author-declared relations from curator or machine proposals",
+        "export a view as references and claims rather than claiming to archive sources"
+      ],
+      "falsification": "With no cable graphic, can a visitor tell what the operator may change, and what remains independent?"
+    }
+  ],
+  "hciFrameworks": [
+    {
+      "name": "Direct manipulation",
+      "principle": "visible objects, incremental operations, reversible actions and feedback",
+      "source": "https://www.cs.umd.edu/~ben/papers/Shneiderman1983Direct.pdf"
+    },
+    {
+      "name": "Epistemic versus pragmatic action",
+      "principle": "some gestures change the environment to support thinking rather than complete a task",
+      "source": "https://adrenaline.ucsd.edu/kirsh/Articles/CogsciJournal/DistinguishingEpi_prag.pdf"
+    },
+    {
+      "name": "Tangible interaction framework",
+      "principle": "physical arrangement, social participation and embodied configuration matter beyond touch",
+      "source": "http://www.ehornecker.de/TangiblesFramework.html"
+    }
+  ],
+  "precedents": [
+    {
+      "name": "Flamenco",
+      "url": "https://flamenco.berkeley.edu/",
+      "learn": "faceted browsing and search coexist",
+      "limit": "does not expose disputed classification authorship"
+    },
+    {
+      "name": "Generous Interfaces",
+      "url": "https://mtchl.net/generous-interfaces-for-digital-cultural-collections/",
+      "learn": "show scope and collection before demanding a query",
+      "limit": "abundance can become spectacle"
+    },
+    {
+      "name": "NYPL Public Domain Collections",
+      "url": "https://www.nypl.org/research/resources/public-domain-collections",
+      "learn": "stable holdings support different views",
+      "limit": "visual mosaic is not a software knowledge model"
+    },
+    {
+      "name": "Ladder of Abstraction",
+      "url": "https://worrydream.com/LadderOfAbstraction/",
+      "learn": "linked concrete and abstract representations",
+      "limit": "demonstration is not retrieval-performance evidence"
+    },
+    {
+      "name": "Reactable",
+      "url": "https://reactable.com/experience/",
+      "learn": "configuration itself becomes interaction",
+      "limit": "sound-feedback and proximity do not transfer directly to text claims"
+    },
+    {
+      "name": "Polis",
+      "url": "https://pol.is/home",
+      "learn": "collective disagreement need not be a reply tree",
+      "limit": "opinion structure is not technical correctness"
+    },
+    {
+      "name": "Bluesky composable moderation",
+      "url": "https://bsky.social/about/blog/4-13-2023-moderation",
+      "learn": "separate authored content, labels, and view policy",
+      "limit": "defaults and service control remain powerful"
+    },
+    {
+      "name": "Change the Subject",
+      "url": "https://www.library.dartmouth.edu/digital/digital-collections/change-the-subject",
+      "learn": "classification and its contestation are part of archive history",
+      "limit": "political history is not a drop-in UI pattern"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "A1",
+      "name": "The Held Place",
+      "kind": "material-behavioural",
+      "action": "Pin one record, change ordering, inspect changing neighbours",
+      "tests": "stable orientation versus query-only ranking",
+      "risk": "becomes generic pin button",
+      "priority": "independent-lumpesammlig"
+    },
+    {
+      "id": "A2",
+      "name": "Above the Rod",
+      "kind": "governance",
+      "action": "Propose classification, preview retrieval difference, keep accepted map intact",
+      "tests": "distinction between source and governed index",
+      "risk": "approval theatre",
+      "priority": "postack-second"
+    },
+    {
+      "id": "A3",
+      "name": "The Disputed Neighbour",
+      "kind": "classification",
+      "action": "Inspect two apparently equivalent problems and compare competing placement reasons",
+      "tests": "similarity versus applicability",
+      "risk": "generic side-by-side comparison",
+      "priority": "postack-first"
+    },
+    {
+      "id": "A4",
+      "name": "The Unfinished Catalogue",
+      "kind": "uncertainty",
+      "action": "Submit failure query, inspect supported coverage and vocabulary gaps",
+      "tests": "not found versus does not exist",
+      "risk": "invented explanation for missing results",
+      "priority": "postack-first"
+    },
+    {
+      "id": "B1",
+      "name": "The Connection Contract",
+      "kind": "relation-governance",
+      "action": "Select two sources, type and justify an attributed relation, preview then commit locally",
+      "tests": "author intent versus viewer proposal",
+      "risk": "false author endorsement",
+      "priority": "postack-first"
+    },
+    {
+      "id": "B2",
+      "name": "Several Operators",
+      "kind": "view-policy",
+      "action": "Compare chronology, correction-first, maintainer and personal lenses",
+      "tests": "visible mediation policy",
+      "risk": "cosmetic theme switch",
+      "priority": "postack-second"
+    },
+    {
+      "id": "B3",
+      "name": "The Limited Desk",
+      "kind": "attention",
+      "action": "Work with bounded active comparisons and release capacity",
+      "tests": "commitment and clearing",
+      "risk": "artificial scarcity",
+      "priority": "independent-lumpesammlig"
+    },
+    {
+      "id": "B4",
+      "name": "The Operator Leaves",
+      "kind": "source-independence",
+      "action": "Remove a reading while original source ledger remains",
+      "tests": "view authority versus source authority",
+      "risk": "overstates portability or availability",
+      "priority": "postack-first"
+    }
+  ],
+  "convergence": {
+    "name": "The Problem Desk",
+    "status": "proposal",
+    "recordLayers": [
+      "source record",
+      "classification claim",
+      "author-declared contribution",
+      "curator-declared relation",
+      "machine-proposed relation",
+      "view policy and index revision"
+    ],
+    "coreAction": "Propose an index correction from an independent contribution, preview changed retrieval, preserve unchanged original source and separate acceptance from proposal.",
+    "workedExample": "A symptom classified as cache invalidation is challenged as authentication-state mismatch for a bounded version range; compare old and proposed retrieval.",
+    "boundaries": [
+      "No automatic publication or acceptance",
+      "No source mutation by local view changes",
+      "No inferred endorsement",
+      "No fabricated source availability",
+      "Do not force convergence if editorial comprehension suffers"
+    ]
+  },
+  "visual": {
+    "direction": "The Lost & Found Office",
+    "palette": {
+      "paper": "#F5F3EC",
+      "ink": "#252A30",
+      "archiveBlue": "#4A6288",
+      "signalViolet": "#A36BFF",
+      "signalRose": "#EE4F7E"
+    },
+    "rules": [
+      "Use typography and metadata to distinguish source speech from classification and interpretation.",
+      "Blue for established reference structure, violet for proposed relations, rose for contested claims; never color-only status.",
+      "Motion follows meaningful state changes; reduced motion retains meaning.",
+      "Avoid fake verification stamps, decorative distress, fake handwriting, ornamental Japanese characters, and retro furniture imitation."
+    ]
+  },
+  "evaluation": {
+    "method": "Compare comprehension with simpler conventional alternatives; separate mechanism comprehension from retrieval quality and enjoyment.",
+    "tasks": [
+      "Find record using different vocabulary",
+      "Explain why two records are grouped",
+      "Spot misleading near-match",
+      "Distinguish author reply from machine-proposed relation",
+      "Remove view and identify what persists",
+      "Propose classification correction without editing source"
+    ],
+    "comparators": [
+      "faceted list",
+      "plain change-request form",
+      "textual relation table",
+      "two labelled lists",
+      "unlimited comparison workspace"
+    ],
+    "killConditions": [
+      "absence read as nonexistence",
+      "line read as endorsement",
+      "clear view read as delete source",
+      "proposal read as accepted fact",
+      "metaphor needed for basic controls",
+      "graph spectacle dominates evidence"
+    ]
+  },
+  "references": [
+    {
+      "id": 1,
+      "url": "https://github.com/blackmath88/lumpesammlig",
+      "role": "project method"
+    },
+    {
+      "id": 2,
+      "url": "https://syntax.fm/show/1050/everyone-is-hacking-their-tv/transcript",
+      "role": "reported inspiration; exact passage requires verification"
+    },
+    {
+      "id": 3,
+      "url": "https://guides.loc.gov/card-catalog/using-the-card-catalog",
+      "role": "historical catalogue filing"
+    },
+    {
+      "id": 4,
+      "url": "https://americanhistory.si.edu/collections/nmah_1247621",
+      "role": "physical cabinet"
+    },
+    {
+      "id": 5,
+      "url": "https://circulatingnow.nlm.nih.gov/2020/02/06/card-tricks-the-decline-fall-of-a-bibliographic-tool/",
+      "role": "retaining rod and review"
+    },
+    {
+      "id": 7,
+      "url": "https://mtchl.net/generous-interfaces-for-digital-cultural-collections/",
+      "role": "generous browsing"
+    },
+    {
+      "id": 9,
+      "url": "https://www.library.dartmouth.edu/digital/digital-collections/change-the-subject",
+      "role": "contested classification"
+    },
+    {
+      "id": 11,
+      "url": "http://www.johnhearfield.com/Telephone/CBS2.htm",
+      "role": "switchboard technical reconstruction"
+    },
+    {
+      "id": 13,
+      "url": "https://www.sciencemuseum.org.uk/objects-and-stories/goodbye-hello-girls-automating-telephone-exchange",
+      "role": "operator social history"
+    },
+    {
+      "id": 14,
+      "url": "https://bsky.social/about/blog/4-13-2023-moderation",
+      "role": "view and moderation layers"
+    },
+    {
+      "id": 15,
+      "url": "https://www.cs.umd.edu/~ben/papers/Shneiderman1983Direct.pdf",
+      "role": "direct manipulation"
+    },
+    {
+      "id": 16,
+      "url": "https://adrenaline.ucsd.edu/kirsh/Articles/CogsciJournal/DistinguishingEpi_prag.pdf",
+      "role": "epistemic action"
+    },
+    {
+      "id": 17,
+      "url": "http://www.ehornecker.de/TangiblesFramework.html",
+      "role": "tangible interaction"
+    },
+    {
+      "id": 20,
+      "url": "https://flamenco.berkeley.edu/",
+      "role": "faceted search"
+    },
+    {
+      "id": 24,
+      "url": "https://worrydream.com/LadderOfAbstraction/",
+      "role": "interactive explanation"
+    },
+    {
+      "id": 25,
+      "url": "https://pol.is/home",
+      "role": "collective opinion"
+    },
+    {
+      "id": 27,
+      "url": "https://standard.site/docs/lexicons/publication/",
+      "role": "ATProto publication model"
+    }
+  ],
+  "provenance": {
+    "suppliedBy": "user in conversation",
+    "originalReportTitle": "Postack Underflow: from physical information systems to digital public knowledge",
+    "transformation": "Structured research synthesis with distinct historical assertions, interpretations, proposals, risks, experiments and source links; not a verbatim archival copy.",
+    "reviewStatus": "pending primary-source audit"
+  }
+}
