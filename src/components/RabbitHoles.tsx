@@ -6,16 +6,17 @@ export function RabbitHoles() {
     <div className="fork">
       <Link to="/indexing/" className="fork__path fork__path--index">
         <span className="fork__number">01</span>
-        <span className="fork__title">Indexing</span>
+        <span className="fork__title">The Impossible Index</span>
         <span className="fork__text">
-          Finding what is already solved, without sending an agent to rediscover it.
+          Inspect what an index adds to its sources, and watch one helpful description mislead.
         </span>
       </Link>
       <Link to="/community/" className="fork__path fork__path--community">
         <span className="fork__number">02</span>
-        <span className="fork__title">Community</span>
+        <span className="fork__title">The Switchboard</span>
         <span className="fork__text">
-          Keeping collective judgement alive outside any single platform or private chat.
+          Connect independent contributions, read who claimed each connection, then let the operator
+          leave.
         </span>
       </Link>
     </div>

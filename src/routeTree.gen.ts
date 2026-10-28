@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AfterwordRouteImport } from './routes/afterword'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as ConvergenceRouteImport } from './routes/convergence'
 import { Route as IndexingRouteImport } from './routes/indexing'
@@ -30,6 +31,11 @@ const R404Route = R404RouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AfterwordRoute = AfterwordRouteImport.update({
+  id: '/afterword',
+  path: '/afterword',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityRoute = CommunityRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/about': typeof AboutRoute
+  '/afterword': typeof AfterwordRoute
   '/community': typeof CommunityRoute
   '/convergence': typeof ConvergenceRoute
   '/indexing': typeof IndexingRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/about': typeof AboutRoute
+  '/afterword': typeof AfterwordRoute
   '/community': typeof CommunityRoute
   '/convergence': typeof ConvergenceRoute
   '/indexing': typeof IndexingRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/about': typeof AboutRoute
+  '/afterword': typeof AfterwordRoute
   '/community': typeof CommunityRoute
   '/convergence': typeof ConvergenceRoute
   '/indexing': typeof IndexingRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/404'
     | '/about'
+    | '/afterword'
     | '/community'
     | '/convergence'
     | '/indexing'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/404'
     | '/about'
+    | '/afterword'
     | '/community'
     | '/convergence'
     | '/indexing'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/404'
     | '/about'
+    | '/afterword'
     | '/community'
     | '/convergence'
     | '/indexing'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
   AboutRoute: typeof AboutRoute
+  AfterwordRoute: typeof AfterwordRoute
   CommunityRoute: typeof CommunityRoute
   ConvergenceRoute: typeof ConvergenceRoute
   IndexingRoute: typeof IndexingRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/afterword': {
+      id: '/afterword'
+      path: '/afterword'
+      fullPath: '/afterword'
+      preLoaderRoute: typeof AfterwordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
   AboutRoute: AboutRoute,
+  AfterwordRoute: AfterwordRoute,
   CommunityRoute: CommunityRoute,
   ConvergenceRoute: ConvergenceRoute,
   IndexingRoute: IndexingRoute,

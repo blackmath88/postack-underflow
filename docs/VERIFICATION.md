@@ -2,6 +2,70 @@
 
 This file records what was actually checked. It is not a claim that the public site is live.
 
+## Living essay — 2026-10-28
+
+**Environment:** Linux, Node 26.8.1, Chromium 154 (system), playwright-core 1.64.1.
+
+### The deployed site before this slice
+- **Live URL check:** `node scripts/browser-check.mjs --url https://blackmath88.github.io/postack-underflow/` passed **101/101** against the public URL after PR #4. Styles were applied, routes and refresh worked, the 404 page and navigation worked, and keyboard, reduced-motion, no-JS and interaction checks passed.
+- **Main run:** the Pages workflow on `main` (deploy + smoke) was green. Nothing about the deployment needed fixing.
+- **New option:** browser checks can now run against any deployed root with `--url`.
+
+### Automated checks
+| Check | Result |
+|---|---|
+| `npm run typecheck` | pass |
+| `npm test` | 20/20, including claim-accountability tests (no reader or model connection attributed to an author; author connections must be backed by a reference in the record; model proposals never shown as accepted), and quotation checks against cited snapshot lines (run locally with snapshots present; skipped in CI) |
+| `npm run build` / `npm run validate` | 8 pages, 228 internal URLs under the base path |
+| `npm run index:check` | frozen artifact reproduced exactly |
+| Frozen v1 data | `git diff main -- corpus results src/data/four-words-index.json` is empty |
+| `npm run browser` (local Pages emulation) | **131/131**, including the Disputed Neighbour (flags, verdict, undo, URL check in both directions), the Switchboard (model contract labelled, reader proposal attributed, operator leaves after the 600 ms fade and returns, all eight records listed), the Problem Desk (no preview, 7 → 2 for each part alone), and no-JS rendering of the history, contracts and frozen ranking |
+
+### External links
+- 70 external links in the built pages were checked with `curl`.
+- **Not resolving yet:** links to repository files that exist only on this branch (`REFLECTION.md`, `CASE-PHOTO-FRAME.md`, the new data files) return 404 until merge.
+- **Not fetchable:** the BM25 DOI resolves (doi.org → Emerald, *The Probabilistic Relevance Framework: BM25 and Beyond*), but the publisher refuses automated requests, so the target page itself was not fetched.
+
+### Manual review in the browser pane
+- **Opening at 1440 px:** the first build placed movement content in the wrong grid columns, because `display: contents` sections were not covered by the column rules. Fixed.
+- **Disputed Neighbour:** checked at 1440 px in light and dark.
+- **Switchboard:** checked at 1440 px, before and after the operator leaves, light and dark. An endpoint highlight showed while the operator was present; fixed.
+- **Problem Desk:** checked at 390 px.
+- **Afterword timeline:** checked at 390 px.
+- **Screenshots:** in `docs/screenshots/`.
+
+### Independent reader review (AI reviewer, read-only)
+- **Confirmed:** the frozen data is untouched, the photo-frame counts and keyword scan reproduce, and the identification is presented as inference. The desk numbers reproduce (7; 2; 2; 2; baseline 1).
+- **Must-fix items acted on:**
+  - A symptom was wrongly flagged as absent from its source: "works just fine on local" is in the issue. The flag was removed, and the genuinely absent "404" and "blank" are now flagged and test-verified against the snapshot tokens.
+  - The opening example now matches the desk query.
+  - The photo-frame identification is labelled as inference everywhere.
+  - The desk result is reframed as true by construction and near-circular, with the baseline's rank 1 stated. The "grounded" part is described as describing a mechanism, not the symptom.
+  - Afterword and Convergence headings fixed.
+- **Should-fix items acted on:**
+  - Transcript timestamps and wording.
+  - Reconstructed URL and paraphrase labels.
+  - The URL-check limit stated.
+  - Stale Notes and About text.
+  - The real photo-frame maintenance case brought into the Switchboard.
+  - Repeated questions trimmed.
+  - The win count corrected to "6 plus one tokenizer artefact".
+  - Link text.
+  - A `declared` status for author connections.
+  - The operator-leaves reference count.
+  - Tally markup, a labelled speculative example, glosses for Lumpesammlig and H1–H5.
+  - A source link for the sibling project's stylesheet repair.
+- **Not acted on:**
+  - Repository links still use `blob/main`.
+  - The disputed cable's status is shown by colour on the board; it is written out in the contract list.
+  - The opening tally keeps its three numbers.
+
+### Not verified
+- **Comprehension:** no reader has used the experiments; there is no plain-table comparison.
+- **Assistive technology:** no screen reader tested.
+- **Devices and browsers:** no real devices, and no browsers other than Chromium.
+- **The live site after this slice:** nothing is deployed until this PR is merged.
+
 ## Phase 2 — 2026-10-28
 
 **Environment:** Linux, Node 26.8.1, npm 11.19.0, Chromium 154 (system), playwright-core 1.64.1.

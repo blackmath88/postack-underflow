@@ -20,7 +20,7 @@ const EXPERIMENTS = [
   {
     name: 'P0 · Editorial showcase',
     status: 'implemented' as const,
-    text: 'This site: the narrative, the source trail, two working experiments and the essay as a structured record. Visual design is preliminary.',
+    text: 'This site: the narrative, the source trail, four working experiments and the essay as a structured record. Visual design is preliminary.',
   },
   {
     name: 'P1 · Four Words',
@@ -30,7 +30,22 @@ const EXPERIMENTS = [
   {
     name: 'P2 · Portable discussion',
     status: 'demonstrated' as const,
-    text: 'Partly: fixture contributions and relations, two views (assembled discussion, source ledger), availability and deletion cases. No real ATProto reads; publishing only with explicit review.',
+    text: 'Partly, through the Connection Contract: fixture contributions, relationship claims with histories, offline and deleted records. No real ATProto reads; publishing only with explicit review.',
+  },
+  {
+    name: 'The Disputed Neighbour',
+    status: 'demonstrated' as const,
+    text: 'Two frozen v1 records filed under one term; source evidence that their causes differ; a local verdict and a URL check. Uses real sources; the shared heading is hypothetical.',
+  },
+  {
+    name: 'The Connection Contract and the Operator Leaves',
+    status: 'demonstrated' as const,
+    text: 'Nine relationship claims over eight fixture contributions, each with proposer, reason, evidence and status history. Model and reader proposals can never become author statements.',
+  },
+  {
+    name: 'The Problem Desk',
+    status: 'demonstrated' as const,
+    text: 'One invented correction previewed against the frozen index (rank 7 → 2). Illustrates, by construction, that a better number is not evidence a change is supported.',
   },
   {
     name: 'P3 · Community signals',
@@ -50,6 +65,8 @@ const DOCS = [
   ['Corpus: sources, queries, records', 'corpus/'],
   ['Evaluation results', 'results/four-words-v1.json'],
   ['The essay as a structured record', 'knowledge/we-already-solved-this.json'],
+  ['The photo-frame case study', 'docs/research/CASE-PHOTO-FRAME.md'],
+  ['What building it changed', 'docs/REFLECTION.md'],
   ['Verification evidence', 'docs/VERIFICATION.md'],
   ['Architecture decisions', 'docs/adr/'],
 ] as const
@@ -91,8 +108,9 @@ function Notes() {
       </ul>
       <p>
         The only measured result on this site is the Four Words evaluation, and it is reported
-        with its weaknesses. No user activity or community participation is reported anywhere:
-        every community contribution shown is an invented fixture under a reserved name.
+        with its weaknesses. No user activity or community participation in this project is reported:
+        every community contribution in the experiments is an invented fixture under a reserved name.
+        The photo-frame figures on the home page describe a real, separate repository.
       </p>
 
       <h2>Sources and provenance</h2>

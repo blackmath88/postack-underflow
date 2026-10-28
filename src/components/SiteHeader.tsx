@@ -1,9 +1,10 @@
 import { Link } from '@tanstack/react-router'
 
 const NAV = [
-  { to: '/indexing/', label: 'Indexing' },
-  { to: '/community/', label: 'Community' },
-  { to: '/convergence/', label: 'Convergence' },
+  { to: '/indexing/', label: 'The Index' },
+  { to: '/community/', label: 'The Switchboard' },
+  { to: '/convergence/', label: 'Problem Desk' },
+  { to: '/afterword/', label: 'Afterword' },
   { to: '/notes/', label: 'Notes' },
   { to: '/about/', label: 'About' },
 ] as const

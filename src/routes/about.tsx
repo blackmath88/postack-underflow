@@ -64,8 +64,8 @@ function About() {
       <p>
         Research, direction and editorial decisions by the project owner. Drafting and
         implementation were assisted by AI coding agents working under the repository’s{' '}
-        <Src id="developmentPractice">development practice</Src>; the two interactive studies are
-        developed separately in Lumpesammlig. Contributions, critique and prior art are welcome on{' '}
+        <Src id="developmentPractice">development practice</Src>; the card-catalogue and switchboard
+        studies are developed separately in Lumpesammlig. Contributions, critique and prior art are welcome on{' '}
         <a href={REPO_URL}>GitHub</a>.
       </p>
       <p>

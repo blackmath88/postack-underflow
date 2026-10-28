@@ -84,6 +84,48 @@ export const SOURCES = {
     checked: 'main @ f83d29c, read 2026-10-28',
     private: true,
   },
+  photoFrame: {
+    id: 'photoFrame',
+    title: 'wesbos/photo-frame-dashboard',
+    url: 'https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/README.md',
+    kind: 'prior-work',
+    contribution:
+      'Wes Bos’s notes and scripts for taking over Android photo frames, written for people and their agents, with an explicit way to send findings back. The opening encounter; identified by us, not named in the episode.',
+    checked: 'commit 0bff55e, counts observed 2026-10-28 13:05 UTC',
+  },
+  doc2query: {
+    id: 'doc2query',
+    title: 'Nogueira et al., “Document Expansion by Query Prediction” (doc2query, 2019)',
+    url: 'https://arxiv.org/abs/1904.08375',
+    kind: 'prior-work',
+    contribution:
+      'Prior art for adding predicted query vocabulary to documents before indexing, the effect behind much of Four Words’ gain.',
+  },
+  bm25f: {
+    id: 'bm25f',
+    title: 'Robertson & Zaragoza, “The Probabilistic Relevance Framework: BM25 and Beyond” (2009)',
+    url: 'https://doi.org/10.1561/1500000019',
+    kind: 'prior-work',
+    contribution: 'The BM25 and BM25F ranking functions Four Words uses for both systems.',
+  },
+  pr5: {
+    id: 'pr5',
+    title: 'PR #5 — Research: physical information systems and Postack interface implications',
+    url: 'https://github.com/blackmath88/postack-underflow/pull/5',
+    kind: 'prior-work',
+    contribution:
+      'Proposed research (not merged): classification claims and relationship claims as the unit of accountability; experiment briefs for the Disputed Neighbour, Connection Contract, Operator Leaves and Problem Desk. Historical claims in it are reported, not independently verified.',
+    checked: 'head 66287f0, read 2026-10-28',
+  },
+  pr6: {
+    id: 'pr6',
+    title: 'PR #6 — Reframe Postack as an exploratory story about collective knowledge',
+    url: 'https://github.com/blackmath88/postack-underflow/pull/6',
+    kind: 'prior-work',
+    contribution:
+      'Proposed concept (not merged): the six-movement story, three kinds of success, and the north-star question this site closes with.',
+    checked: 'head 92fc25a, read 2026-10-28',
+  },
   repo: {
     id: 'repo',
     title: 'postack-underflow repository',

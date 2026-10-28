@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { CommunityAssembler } from '../components/CommunityAssembler'
+import { Switchboard } from '../components/Switchboard'
 import { PageIntro } from '../components/PageIntro'
 import { Src } from '../components/Src'
 import { Status } from '../components/Status'
@@ -50,12 +50,28 @@ const PROTOCOL_LABEL = {
 function Community() {
   return (
     <>
-      <PageIntro index="02" kicker="Rabbit hole" title="Community">
+      <PageIntro index="B" kicker="Rabbit hole · community" title="The Switchboard">
         <p>
-          An answer is only as good as the people who argued about it. So where does the arguing
-          happen now, and does it have to happen in one place?
+          The knowledge exists. Who keeps it alive? An answer is only as good as the people who checked,
+          corrected and argued about it, and that work has to happen somewhere.
         </p>
       </PageIntro>
+
+      <h2>Who keeps it alive</h2>
+      <p>
+        Go back to the photo-frame repository from the opening. On the day we counted, strangers and their
+        agents had opened 201 pull requests: 150 merged, 21 waiting, 30 closed without merging. Each merge
+        is somebody reading a stranger’s notes about a board they may not own, deciding whether to trust
+        them, and taking responsibility for publishing them. The repository’s instructions ask
+        contributors to check what is already open before adding more, to keep observations apart from
+        guesses, and to strip private data first. That is a community’s rulebook, and one person enforces
+        it.
+      </p>
+      <p>
+        It works, and it depends on that person. If they stop, the notes stay readable but nobody checks
+        the next pull request. The same was true, at much larger scale, of the site that taught a
+        generation of developers to search for their error messages.
+      </p>
 
       <h2>It was never just answers</h2>
       <p>
@@ -131,20 +147,37 @@ function Community() {
         interface disappears, the contributions are still where their authors put them.
       </p>
 
-      <CommunityAssembler />
+      <h2>What a switchboard knew</h2>
+      <p>
+        A manual telephone switchboard joined separate lines. Each caller owned their own endpoint; the
+        operator answered a request, made a temporary connection, could listen in to supervise, and pulled
+        the cord when the call ended. Every connection was a choice somebody made, and the operator had
+        real power over who could reach whom.
+      </p>
+      <p>
+        It also kept nothing. A switchboard routed live speech; when the cord came out, the conversation
+        was gone. Persistent, authored records are not part of the historical object. They are the
+        change this experiment makes to it: the voices stay, and only the connections are temporary.
+      </p>
+      <p className="aside">
+        The operational details are reported in research compiled for this project and not independently
+        verified here (<Src id="pr5">PR #5</Src>).
+      </p>
+
+      <Switchboard />
 
       <StudyNote id="switchboard" />
 
       <p>
-        Try removing every relation. The discussion falls apart into separate voices, but none of
-        them changes, and the source ledger stays identical. Then switch on the model’s proposals:
-        a suggested connection appears, marked as unreviewed, beside the authors’ own references.
-        It may well be right. It is still a proposal, not a fact about what anyone said.
+        Look at the model’s proposal first. It sits beside the authors’ own references with a different
+        line, a different label and a history that ends in a dispute. It may sometimes be right. It never
+        becomes an author’s statement, and neither does yours.
       </p>
       <p>
-        Two of the eight are there to show what portability cannot fix. One author’s server is
-        offline, so there is nothing to show; one author deleted their reply, and the protocol
-        keeps no tombstone. An honest interface says so rather than quietly serving a stale copy.
+        Then let the operator leave. Every line goes, including the ones you drew, and the eight records
+        remain, each with its own references inside it. Two of them show what portability cannot fix: one
+        author’s server is offline, so there is nothing to show; one author deleted their reply, and the
+        protocol keeps no tombstone. An honest interface says so rather than quietly serving a stale copy.
       </p>
 
       <h2>What exists today, and what does not</h2>
@@ -209,10 +242,10 @@ function Community() {
       <nav className="next" aria-label="Continue reading">
         <p className="kicker">Next</p>
         <p>
-          <Link to="/convergence/">Convergence: an index that remembers its arguments</Link>
+          <Link to="/convergence/">The Problem Desk: where a correction meets the index</Link>
         </p>
         <p>
-          Or go back to <Link to="/indexing/">Indexing</Link> and try Four Words.
+          Or go back to <Link to="/indexing/">the Impossible Index</Link> and try Four Words.
         </p>
       </nav>
     </>
