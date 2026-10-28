@@ -5,6 +5,11 @@ An open research and prototype project about two intertwined failures in the age
 
 > The answer may already exist. Why does every agent have to discover it again?
 
+
+## Current direction — an open experiment, not a product pitch
+
+**How does knowledge get found, connected, challenged, and remembered?** Postack uses software as a research medium: indexing and community are two rabbit holes, and their possible connection is something to test, not a platform to sell. Read the [updated conceptual argument](docs/CONCEPT-2026-10-28.md), [narrative plan](docs/plans/EXPLORATORY-NARRATIVE-PLAN.md), and [shared-knowledge case-study leads](docs/research/CASE-STUDY-LEADS.md). The existing Four Words evaluation remains frozen.
+
 ## Start here
 - [The problem and hypotheses](docs/PROBLEM.md)
 - [Concept and architecture](docs/CONCEPT.md)
