@@ -21,7 +21,8 @@
       "statement": "Offline, structured problem–solution records retrieve the right source for short queries more often than plain keyword search over the same sources. (Run v1: better on this corpus; much of the gain comes from vocabulary the record writer supplied, and one loss was partly a labelling error. See E1.)",
       "status": "tested",
       "evidence": [
-        "E1"
+        "E1",
+        "E5"
       ]
     },
     {
@@ -36,7 +37,7 @@
     {
       "id": "H3",
       "subproblem": "both",
-      "statement": "Community signals such as endorsements, corrections and accepted fixes improve retrieval without turning it into a popularity contest.",
+      "statement": "Community signals such as endorsements, corrections and accepted fixes improve retrieval without turning it into a popularity contest. (The Problem Desk demonstrates a mechanism on one fixture, not an effect.)",
       "status": "untested",
       "evidence": []
     },
@@ -77,7 +78,11 @@
     "brainstorm",
     "lumpesammlig",
     "atproto",
-    "standardSite"
+    "standardSite",
+    "photoFrame",
+    "doc2query",
+    "pr5",
+    "pr6"
   ],
   "evidence": [
     {
@@ -90,14 +95,26 @@
     {
       "id": "E2",
       "kind": "fixture-demonstration",
-      "summary": "The Community page assembles eight fixture contributions; disconnecting all view relations leaves all eight intact. Demonstrates the boundary structurally, not federation.",
-      "artifact": "src/data/community-fixtures.ts"
+      "summary": "The Connection Contract shows nine relationship claims over eight fixture contributions, each with proposer, reason, evidence and status history; letting the operator leave removes every drawn connection while all eight records and their own references remain. Demonstrates the boundary structurally, not federation.",
+      "artifact": "src/data/connection-contracts.ts"
     },
     {
       "id": "E3",
       "kind": "implementation",
       "summary": "Every corpus record links to its source with licence; files are pinned to a commit, issues only to their last-updated time (not a true revision). External sources cited by the site are registered in src/content/sources.ts; some framing claims (Stack Overflow's signals, the project's own deployment anecdotes) are the authors' reading or experience and are labelled as such.",
       "artifact": "corpus/sources.json"
+    },
+    {
+      "id": "E4",
+      "kind": "fixture-demonstration",
+      "summary": "The Problem Desk previews an invented correction against the frozen v1 index: the first relevant source for 'css missing after deploy' moves from rank 7 to rank 2, and a guessed correction improves the ranking exactly as much as a sourced one.",
+      "artifact": "src/data/problem-desk.ts"
+    },
+    {
+      "id": "E5",
+      "kind": "classification-audit",
+      "summary": "The Disputed Neighbour shows two frozen v1 records filed together under a shared term, with source evidence that their causes and fixes differ, and writer-added symptoms absent from one source.",
+      "artifact": "src/data/disputed-neighbour.ts"
     }
   ],
   "openQuestions": [
@@ -105,7 +122,8 @@
     "Can one conversation be shown in independent interfaces without losing identity, order, edits or attribution?",
     "Do endorsements, accepted fixes and tests improve relevance without becoming a popularity contest?",
     "Is a problem a stable enough unit to index, or does it fragment into versions and contexts too quickly?",
-    "Who writes and maintains problem records, and what does that work cost?"
+    "Who writes and maintains problem records, and what does that work cost?",
+    "Who reviews a proposed correction to an index, on what evidence, and where is that decision recorded?"
   ],
   "provenance": {
     "author": "Postack Underflow project owner (blackmath88)",
@@ -118,9 +136,9 @@
     "inspiration": "Syntax #1050, paraphrased and attributed; not affiliated."
   },
   "revision": {
-    "version": "0.2.1",
+    "version": "0.3.0",
     "date": "2026-10-28",
-    "changes": "After independent review: removed a palette study from sources, added corpus and research pointers, narrowed E3, annotated H1 with the post-hoc findings."
+    "changes": "Living essay: added the photo-frame encounter, the Disputed Neighbour, the Connection Contract and the Problem Desk as evidence; H2 now rests on connection contracts; added the review question."
   },
   "publication": {
     "status": "not-published",

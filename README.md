@@ -28,7 +28,7 @@ This is **not** a replacement for Stack Overflow, a new centralized social netwo
 **Research prototype.** One small, measured retrieval experiment (Four Words) and a fixture-only community demonstration. No live search service, ATProto adapter or comment federation exists, and nothing is published to ATProto. This public repo starts with questions and testable hypotheses.
 
 ## The site
-A narrative-first essay: one observation → two problems → two rabbit holes → one possible convergence. Routes: `/`, `/indexing/`, `/community/`, `/convergence/`, `/notes/`, `/about/`. Built with TanStack Start, React and TypeScript, prerendered to static HTML for GitHub Pages at `https://blackmath88.github.io/postack-underflow/` (deploys from `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml); see [ADR-0002](docs/adr/0002-editorial-site-direction.md)).
+An interactive essay in six movements: an encounter (a hacked photo frame) → the lost shortcut → two problems → The Impossible Index → The Switchboard → the Problem Desk, ending with an afterword on how the essay was made. Routes: `/`, `/indexing/`, `/community/`, `/convergence/`, `/afterword/`, `/notes/`, `/about/`. Built with TanStack Start, React and TypeScript, prerendered to static HTML for GitHub Pages at `https://blackmath88.github.io/postack-underflow/` (deploys from `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml); see [ADR-0002](docs/adr/0002-editorial-site-direction.md)).
 
 ```bash
 npm ci
@@ -58,7 +58,7 @@ Layout:
 - `results/`: evaluation output.
 - `knowledge/`: this essay as a structured record.
 
-Decisions: [ADR-0002](docs/adr/0002-editorial-site-direction.md) (framework) and [ADR-0003](docs/adr/0003-native-experiments-and-offline-index.md) (experiments, index artifact, fixtures). Community research: [docs/research/ATPROTO-COMMUNITY.md](docs/research/ATPROTO-COMMUNITY.md). Verification evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
+Decisions: [ADR-0002](docs/adr/0002-editorial-site-direction.md) (framework), [ADR-0003](docs/adr/0003-native-experiments-and-offline-index.md) (experiments, index artifact, fixtures) and [ADR-0004](docs/adr/0004-living-essay-and-claim-accountability.md) (movements, claim accountability, frozen core). What building it changed: [docs/REFLECTION.md](docs/REFLECTION.md). Community research: [docs/research/ATPROTO-COMMUNITY.md](docs/research/ATPROTO-COMMUNITY.md). Verification evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
 
 ## Principles
 Index first, search second · Sources over synthesis · Community without platform captivity · Identity is not correctness · AI proposes, humans adjudicate · Own the content, not the audience · Small reproducible experiments.

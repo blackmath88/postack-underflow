@@ -2,7 +2,8 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
 import { SOURCES } from '../src/content/sources.ts'
-import { CONTRIBUTIONS, RELATIONS } from '../src/data/community-fixtures.ts'
+import { CONTRIBUTIONS } from '../src/data/community-fixtures.ts'
+import { CONTRACTS, status } from '../src/data/connection-contracts.ts'
 
 const record = JSON.parse(readFileSync(new URL('../knowledge/we-already-solved-this.json', import.meta.url), 'utf8'))
 const repo = (path: string) => new URL(`../${path}`, import.meta.url)
@@ -33,8 +34,28 @@ test('community fixtures are visibly fictional and internally consistent', () =>
     if (c.nsidStatus === 'hypothetical') assert.match(c.nsid, /^example\.postack\./, `${c.id}: placeholder NSID`)
     if (c.availability !== 'available') assert.equal(c.text, '', `${c.id}: unavailable records show no text`)
   }
-  for (const r of RELATIONS) {
-    assert.ok(ids.has(r.from) && ids.has(r.to), `${r.id}: endpoints exist`)
-    assert.ok(r.reason.length > 10, `${r.id}: has a reason`)
+  for (const k of CONTRACTS) {
+    assert.ok(ids.has(k.from) && ids.has(k.to) && k.from !== k.to, `${k.id}: endpoints exist and differ`)
+    assert.ok(k.reason.length > 10 && k.evidence.length > 0, `${k.id}: has a reason and evidence`)
+    assert.ok(k.history.length > 0, `${k.id}: has a history`)
+  }
+})
+
+test('no connection masquerades as an author statement', () => {
+  const byId = new Map(CONTRIBUTIONS.map((c) => [c.id, c]))
+  for (const k of CONTRACTS) {
+    const from = byId.get(k.from)!
+    if (k.proposer === 'author') {
+      assert.equal(k.proposedBy, from.author.handle, `${k.id}: only the source's author can declare it`)
+      // An author-declared connection must be backed by a reference in the record, unless the record is gone.
+      const to = byId.get(k.to)!
+      if (from.availability === 'available') {
+        assert.ok(from.refs.some((r) => r.uri === to.uri), `${k.id}: declared but not referenced in the record`)
+      }
+    } else {
+      assert.notEqual(k.proposedBy, from.author.handle, `${k.id}: a reading attributed to the author`)
+      assert.ok(k.history.every((h) => !h.by.endsWith('.example') || h.by !== from.author.handle), `${k.id}`)
+    }
+    if (k.proposer === 'model') assert.notEqual(status(k), 'accepted', `${k.id}: model proposals are never shown as accepted`)
   }
 })

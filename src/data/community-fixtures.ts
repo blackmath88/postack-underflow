@@ -4,11 +4,9 @@
 // Lexicon exists (see docs/research/ATPROTO-COMMUNITY.md); hypothetical types
 // use the placeholder namespace `example.postack.*`.
 //
-// Two layers are kept apart on purpose:
-//   contributions — what each author published, in their own repository
-//   relations     — connections an interface draws between contributions
-// Only relations whose origin is 'author-declared' come from the records
-// themselves; the others belong to the view and can be removed.
+// These are the contributions only: what each author published, in their own
+// repository. Connections between them are relationship claims, kept apart
+// in connection-contracts.ts.
 
 export const ARTICLE_URI = 'at://did:example:postack/site.standard.document/we-already-solved-this'
 
@@ -33,17 +31,6 @@ export interface Contribution {
   text: string
   /** References written inside the record by its author (strongRef-style). */
   refs: Array<{ uri: string; cid: string; role: 'parent' | 'subject' }>
-}
-
-export type RelationOrigin = 'author-declared' | 'view-curated' | 'model-proposed'
-
-export interface Relation {
-  id: string
-  from: string
-  to: string
-  kind: 'replies-to' | 'endorses' | 'corrects' | 'disputes' | 'cites' | 'same-question'
-  origin: RelationOrigin
-  reason: string
 }
 
 const did = (name: string) => `did:example:${name}`
@@ -168,16 +155,4 @@ export const CONTRIBUTIONS: Contribution[] = [
     text: '',
     refs: [],
   },
-]
-
-export const RELATIONS: Relation[] = [
-  { id: 'r1', from: 'c2', to: 'c1', kind: 'replies-to', origin: 'author-declared', reason: 'The post’s reply.parent references the article.' },
-  { id: 'r2', from: 'c3', to: 'c1', kind: 'cites', origin: 'author-declared', reason: 'The document references the article as its subject.' },
-  { id: 'r3', from: 'c4', to: 'c1', kind: 'corrects', origin: 'author-declared', reason: 'The correction’s subject is the article, hypothesis H4.' },
-  { id: 'r4', from: 'c5', to: 'c1', kind: 'disputes', origin: 'author-declared', reason: 'The dispute’s subject is the article, hypothesis H2.' },
-  { id: 'r5', from: 'c6', to: 'c4', kind: 'endorses', origin: 'author-declared', reason: 'The endorsement’s subject is Mara’s correction.' },
-  { id: 'r6', from: 'c7', to: 'c1', kind: 'replies-to', origin: 'author-declared', reason: 'Known from an index’s earlier copy of the reference; the source is offline now.' },
-  { id: 'r9', from: 'c8', to: 'c1', kind: 'replies-to', origin: 'author-declared', reason: 'An index still remembers this reference, but the author deleted the record; ATProto leaves no tombstone, so no content is shown.' },
-  { id: 'r7', from: 'c3', to: 'c2', kind: 'same-question', origin: 'view-curated', reason: 'This view’s editor grouped them: both are about whether the H1 evaluation can be trusted.' },
-  { id: 'r8', from: 'c5', to: 'c4', kind: 'same-question', origin: 'model-proposed', reason: 'A language model suggested both concern “trust in the record”. Nobody has reviewed this.' },
 ]

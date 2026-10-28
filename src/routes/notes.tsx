@@ -33,6 +33,21 @@ const EXPERIMENTS = [
     text: 'Partly: fixture contributions and relations, two views (assembled discussion, source ledger), availability and deletion cases. No real ATProto reads; publishing only with explicit review.',
   },
   {
+    name: 'The Disputed Neighbour',
+    status: 'demonstrated' as const,
+    text: 'Two frozen v1 records filed under one term; source evidence that their causes differ; a local verdict and a URL check. Uses real sources; the shared heading is hypothetical.',
+  },
+  {
+    name: 'The Connection Contract and the Operator Leaves',
+    status: 'demonstrated' as const,
+    text: 'Nine relationship claims over eight fixture contributions, each with proposer, reason, evidence and status history. Model and reader proposals can never become author statements.',
+  },
+  {
+    name: 'The Problem Desk',
+    status: 'demonstrated' as const,
+    text: 'One invented correction previewed against the frozen index: rank 7 → 2, and a guessed correction helps as much as a sourced one.',
+  },
+  {
     name: 'P3 · Community signals',
     status: 'not-built' as const,
     text: 'Test whether endorsements and corrections improve retrieval, including manipulation and cold-start cases. A null result counts.',
@@ -50,6 +65,8 @@ const DOCS = [
   ['Corpus: sources, queries, records', 'corpus/'],
   ['Evaluation results', 'results/four-words-v1.json'],
   ['The essay as a structured record', 'knowledge/we-already-solved-this.json'],
+  ['The photo-frame case study', 'docs/research/CASE-PHOTO-FRAME.md'],
+  ['What building it changed', 'docs/REFLECTION.md'],
   ['Verification evidence', 'docs/VERIFICATION.md'],
   ['Architecture decisions', 'docs/adr/'],
 ] as const

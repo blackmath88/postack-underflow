@@ -1,28 +1,7 @@
 import { useId, useMemo, useState, type FormEvent } from 'react'
-import { search, type Hit, type Index, type SearchResult } from '../lib/retrieval'
+import { search, type Hit, type SearchResult } from '../lib/retrieval'
 import type { ProblemRecord } from '../lib/records'
-import indexData from '../data/four-words-index.json'
-
-export interface CorpusSource {
-  id: string
-  kind: string
-  repo: string
-  title: string
-  url: string
-  license: string
-  revision: string
-}
-
-interface Artifact {
-  corpus: { sources: number; records: number }
-  sources: CorpusSource[]
-  records: ProblemRecord[]
-  indexes: { baseline: Index; structured: Index }
-}
-
-const artifact = indexData as unknown as Artifact
-const recordBySource = new Map(artifact.records.map((r) => [r.sourceId, r]))
-const sourceById = new Map(artifact.sources.map((s) => [s.id, s]))
+import { artifact, recordBySource, sourceById, type CorpusSource } from '../lib/four-words-data'
 
 /** Examples for trying the interface; deliberately not the evaluation queries. */
 const EXAMPLES = ['images missing subfolder', 'router links wrong prefix', 'workflow cannot publish']

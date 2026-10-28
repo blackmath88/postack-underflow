@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { DisputedNeighbour } from '../components/DisputedNeighbour'
 import { FourWords } from '../components/FourWords'
 import { PageIntro } from '../components/PageIntro'
 import { Src } from '../components/Src'
@@ -52,10 +53,10 @@ function Indexing() {
 
   return (
     <>
-      <PageIntro index="01" kicker="Rabbit hole" title="Indexing">
+      <PageIntro index="A" kicker="Rabbit hole · indexing" title="The Impossible Index">
         <p>
-          The answer is probably already out there. The hard part is that it was filed under the
-          wrong thing.
+          The answer exists. Why can’t we find it? Usually because it was described in words other than
+          the ones you are searching with, and somebody else decided which words those would be.
         </p>
       </PageIntro>
 
@@ -93,6 +94,22 @@ function Indexing() {
         people report, the constraints under which a fix holds, the fix itself, the evidence for it,
         its known limits, and related or competing approaches. At query time nothing clever happens:
         a transparent ranking over those fields, in your browser, with every match explained.
+      </p>
+
+      <h2>What an index adds</h2>
+      <p>
+        An index never just stores its sources. It adds things: a plain statement of the problem, the
+        other ways people phrase it, the symptoms they report, the headings it is filed under. Those
+        additions are what make a four-word query land. They are also interpretations, written by
+        somebody, that the source never said.
+      </p>
+      <p>
+        This is not a new idea. Information retrieval has long expanded documents with the vocabulary
+        people are likely to search for; one well-known version, <Src id="doc2query">doc2query</Src>,
+        predicts queries for each document and indexes them alongside it. Four Words does the same thing
+        by hand, or rather by an AI agent writing records. Each result below explains which of those
+        added fields a match came from, and links the source it was written from. Further down, the
+        Disputed Neighbour puts a source and its additions side by side.
       </p>
 
       <FourWords />
@@ -209,6 +226,28 @@ function Indexing() {
         write-up in <a href={repoFile('docs/research/FOUR-WORDS.md')}>FOUR-WORDS.md</a>.
       </p>
 
+      <h2>Classification is a claim</h2>
+      <p>
+        The library card catalogue made this visible. Somebody had already decided where each book
+        belonged, which headings led to it, and which neighbouring headings to point to. That labour
+        happened before your question, and it shaped which books you could find. The research
+        collected for this project describes catalogues distinguishing provisional placements from
+        accepted ones, and headings that were contested for years.
+      </p>
+      <p className="aside">
+        Those historical details come from research compiled for this project and are reported, not
+        independently verified here (<Src id="pr5">PR #5</Src>). The behaviour worth keeping does not
+        depend on them: classification is prior work, it creates neighbourhoods, and it can be wrong.
+      </p>
+      <p>
+        Four Words’ v1 audit found the digital version of a contested heading. Part of the index’s
+        advantage came from vocabulary its writer supplied, and some of that vocabulary has no basis in
+        the source. A description can be very findable and slightly false. The experiment below takes one
+        such neighbourhood apart.
+      </p>
+
+      <DisputedNeighbour />
+
       <h2>What this does not show</h2>
       <p>
         Thirty documents on one narrow topic, and {results.queries} queries written by the same
@@ -221,10 +260,10 @@ function Indexing() {
       <nav className="next" aria-label="Continue reading">
         <p className="kicker">Next</p>
         <p>
-          <Link to="/community/">Community: who decides an answer is good?</Link>
+          <Link to="/community/">The Switchboard: who keeps it alive?</Link>
         </p>
         <p>
-          Or skip to <Link to="/convergence/">the convergence</Link>.
+          Or skip to <Link to="/convergence/">the Problem Desk</Link>, where a correction meets this index.
         </p>
       </nav>
     </>

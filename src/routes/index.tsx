@@ -5,11 +5,14 @@ import { ShortcutDiagram, type ShortcutStep } from '../components/ShortcutDiagra
 import { Src } from '../components/Src'
 import { Status } from '../components/Status'
 import { pageTitle } from '../content/site'
+import { PHOTO_FRAME } from '../data/photo-frame'
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [{ title: pageTitle() }] }),
   component: Home,
 })
+
+const c = PHOTO_FRAME.counts
 
 const SHORTCUT_STEPS = [
   <>
@@ -17,48 +20,48 @@ const SHORTCUT_STEPS = [
     <p>
       Say a site deployed to GitHub Pages loads without its stylesheet. For a long stretch of
       software history the next move was to type a few words, something like{' '}
-      <code>github pages css 404</code>, and land on a public question someone had asked years
-      earlier. Under it sat an accepted answer, a competing one, and a comment noting that the fix
-      changed in a later version. Somebody spent an afternoon so that you could spend five
-      minutes.
+      <code>github pages css 404</code>. A search engine found a page; the page was a question
+      someone had asked years earlier, organised by a Q&amp;A site into an accepted answer, a
+      competing one, and a comment noting that the fix changed in a later version. Somebody spent
+      an afternoon so that you could spend five minutes.
     </p>
   </>,
   <>
     <h3>An agent reconstructs the answer</h3>
     <p>
-      Today you might ask an agent instead. It reads your build configuration, opens the
-      framework’s documentation, compares the generated asset paths with the URL the site is
-      served from, and proposes a base-path setting. That is good engineering. It works from
-      primary sources rather than from a stale answer, and it adapts the fix to your project.
+      Today you might ask an agent instead. It reads your build configuration, opens the framework’s
+      documentation and an issue or two, compares the generated asset paths with the URL the site is
+      served from, and proposes a base-path setting. That is good engineering. It works from primary
+      sources rather than a stale answer, and it fits the fix to your project.
     </p>
   </>,
   <>
     <h3>And then again</h3>
     <p>
-      The next person with the same problem gets the same careful exploration, from the
-      beginning. Their agent cannot see what yours found. While this site was being built, a
-      sibling project’s GitHub Pages deployment was reported by the project owner to come up largely
-      unstyled despite a green workflow, and this site’s first deployment never happened because
-      its <a href="https://github.com/blackmath88/postack-underflow/pull/3">pull requests were
-      stacked</a> and none reached <code>main</code>. Both are small, well-documented kinds of
-      problem. Both were worked out again.
+      The next person with the same problem gets the same careful exploration, from the beginning.
+      Their agent cannot see what yours found. While this site was being built, a sibling project’s
+      GitHub Pages deployment was reported by the project owner to come up largely unstyled despite
+      a green workflow, and this site’s first deployment never happened because its{' '}
+      <a href="https://github.com/blackmath88/postack-underflow/pull/3">pull requests were stacked</a>{' '}
+      and none reached <code>main</code>. Small, well-documented kinds of problem, worked out again.
     </p>
   </>,
   <>
-    <h3>Nothing returns</h3>
+    <h3>Little returns</h3>
     <p>
-      Most of those explorations end in a working diff and a private transcript. Some do leave
-      something public, an issue or a pull request, but rarely a question someone else could find
-      by its symptom, an answer others could vote on, or a correction for the next version. The
+      Most of those explorations end in a working diff and a private transcript. Some leave
+      something public, an issue or a pull request, but rarely a question someone else could find by
+      its symptom, an answer others could vote on, or a correction for the next version. The
       knowledge was produced; most of it did not go anywhere shared.
     </p>
   </>,
 ]
 
 const PROBLEMS: Array<[string, string, string]> = [
-  ['What is missing', 'A way to find solutions that already exist', 'A place where judgement about solutions accumulates'],
-  ['The symptom', 'Rediscovering a known fix from scratch', 'Fixes that nobody else can see, check or correct'],
-  ['A typical unit today', 'Repository, file, commit', 'Private chat, agent session, one platform’s thread'],
+  ['The question', 'The answer exists. Why can’t we find it?', 'The knowledge exists. Who keeps it alive?'],
+  ['What is missing', 'A route from a symptom to a solution someone already wrote down', 'A place where checking, correcting and disagreeing accumulate'],
+  ['The symptom', 'Rediscovering a known fix from scratch', 'Fixes nobody else can see, check or improve'],
+  ['A typical unit today', 'Project, page, thread', 'Private chat, agent session, one platform’s thread'],
 ]
 
 function Home() {
@@ -70,132 +73,208 @@ function Home() {
         <p className="question">So why are we solving it again?</p>
       </div>
 
-      <hr />
+      <section className="movement" aria-labelledby="m1">
+        <p className="movement__number" aria-hidden="true">
+          I
+        </p>
+        <h2 id="m1">The encounter</h2>
+        <p className="lede-inline">
+          It starts with a cheap photo frame and somebody who wanted it to do something else.
+        </p>
+        <p>
+          Android photo frames are small locked-down computers: a screen, a board, a vendor app that
+          shows your pictures and phones home. In <Src id="syntax1050">Syntax episode #1050</Src>, Wes
+          Bos describes getting into his. Earlier AI models, he says, kept refusing to help; progress came
+          when he suggested connecting over Android’s debug bridge or trying button combinations. The
+          hosts spend a good part of the episode on the same pleasure applied to televisions: debug
+          access, uninstalling bundled apps, replacing the launcher.
+        </p>
+        <p>
+          What Wes learned did not stay in his session. His public repository,{' '}
+          <Src id="photoFrame">photo-frame-dashboard</Src>, is a set of notes and scripts for taking over
+          these frames: how to identify the board, get debug access, back up the firmware, root it,
+          replace the vendor app and run your own dashboard full screen. Its first instruction is
+          addressed to readers who will hand it to an agent. A section headed “For agents: start here”
+          lists rules learned the hard way: ask before every write, take a verified backup first, stop
+          at the first mismatch, keep observations separate from guesses.
+        </p>
 
-      <h2>The observation</h2>
-      <p>
-        <Status kind="paraphrase" />
-        In <Src id="syntax1050">Syntax episode #1050</Src>, CJ worries about what happens to
-        shared problem-solving knowledge now that developers increasingly ask agents rather than
-        each other. An agent can read the code, reason about it and reach a working fix. Then the
-        next person’s agent does the same work again, privately, and the solution never lands
-        anywhere others can find it. CJ suggests the main party learning from the repetition is
-        whoever trains the models, and asks whether there is a better way to share.
-      </p>
-      <p>
-        The hosts do not simply agree. Scott points to projects where reusable building blocks are
-        shared in a community space so they need not be reinvented. Wes notes that sharing is
-        already happening in places: Stack Overflow has built agents of its own, though he doubts
-        they are catching on, and other people’s agents have opened a couple of hundred issues and
-        pull requests on one of his public repositories. He floats agents publishing write-ups of
-        what they fixed. When a listener objects that the solutions are on GitHub anyway, CJ answers
-        that many developers work on closed-source code.
-      </p>
-      <p className="aside">
-        Our paraphrase of a spoken conversation, not a quotation; the discussion starts roughly 55
-        minutes in. Read <Src id="syntax1050">the transcript</Src> for the exact wording.
-        Postack Underflow is not affiliated with or endorsed by the show.
-      </p>
+        <figure className="specimen specimen--source wide" aria-labelledby="pf-caption">
+          <div className="specimen__tag">
+            <span>Source</span>
+            <span>
+              {PHOTO_FRAME.repo} · commit {PHOTO_FRAME.pinnedCommit.slice(0, 7)} · {PHOTO_FRAME.license}
+            </span>
+          </div>
+          <dl className="tally">
+            <div>
+              <dt>Pull requests</dt>
+              <dd>{c.pullRequests}</dd>
+              <p>
+                {c.merged} merged · {c.open} open · {c.closedUnmerged} closed unmerged
+              </p>
+            </div>
+            <div>
+              <dt>Issues</dt>
+              <dd>{c.issues}</dd>
+              <p>{c.issuesClosed} closed</p>
+            </div>
+            <div>
+              <dt>Recent PRs naming an AI tool</dt>
+              <dd>
+                {PHOTO_FRAME.agentMentionSample.mentioning}
+                <small>/{PHOTO_FRAME.agentMentionSample.of}</small>
+              </dd>
+              <p>keyword scan of descriptions; a crude signal</p>
+            </div>
+          </dl>
+          <figcaption id="pf-caption">
+            Counted on GitHub, {PHOTO_FRAME.observedAt.replace('T', ' ')} UTC. Repository created{' '}
+            {PHOTO_FRAME.created}. In the episode (around {PHOTO_FRAME.episode.agentContributionsAt}) Wes
+            says his photo-frame repository has over 200 pull requests or issues from other people’s
+            agents. The episode does not name the repository; identifying it as this one is our
+            inference from its owner, subject, date and numbers.
+          </figcaption>
+        </figure>
 
-      <h2>The lost shortcut</h2>
-      <Scrolly
-        label="The lost shortcut, in four steps"
-        steps={SHORTCUT_STEPS}
-        figure={(step) => <ShortcutDiagram step={step as ShortcutStep} />}
-      />
+        <p>
+          The repository asks for something back. Before you start, check the open issues and pull
+          requests, because someone may already have your board. When you learn something, a new
+          firmware string, a cable that does not work, a failed attempt, open a pull request with it,
+          strip your private data first, and show the frame’s owner the diff, since it goes out under
+          their name. People did. The repository fills with device notes from strangers and their
+          agents, and a maintainer merges most of them.
+        </p>
+        <p>
+          This is what a commons looks like when it works: a problem, an exploration, an explanation,
+          something reusable, and a route back. It is also not quite the story we expected to tell. Here
+          agents are not reconstructing in private. They are contributing, because one person built a
+          place that asked them to and told them how.
+        </p>
+      </section>
 
-      <h2>Retrieving is not the same as reconstructing</h2>
-      <p>
-        An agent that reconstructs a solution and a reader who retrieves one may end up with the
-        same code. They do not end up with the same knowledge. A retrieved answer arrives with
-        context: who wrote it, under which versions, who disagreed, what was corrected later. A
-        reconstructed answer may cite the documentation it read, but it arrives without that
-        history of other people checking it.
-      </p>
-      <p className="pull">
-        Reconstruction is paid for on every attempt. Retrieval shares a cost someone already paid,
-        though keeping what is retrieved accurate is a cost of its own.
-      </p>
-      <p>
-        This is not an argument against agents, nor nostalgia for an old Q&amp;A site. Public
-        answers went stale, duplicates were closed with a curt link, and the questions people were
-        afraid to ask never got asked. Reconstruction is often the right call: when the context is
-        private, when the old answer is wrong, or when nothing has been written down. The question
-        is narrower. Once a solution exists, where does it go, and can anyone, human or agent, find
-        it again without doing the work twice?
-      </p>
+      <section className="movement" aria-labelledby="m2">
+        <p className="movement__number" aria-hidden="true">
+          II
+        </p>
+        <h2 id="m2">The lost shortcut</h2>
+        <p>
+          <Status kind="paraphrase" />
+          The same episode contains the worry this essay set out from. Near the end, CJ asks what
+          happens to shared problem-solving knowledge now that developers increasingly ask agents rather
+          than each other. An agent can read the code, reason about it and reach a working fix; then the
+          next person’s agent does the same work again, and the solution never lands anywhere others can
+          find it. He suggests the main party learning from the repetition is whoever trains the models.
+        </p>
+        <p>
+          The hosts push back. Scott points to projects where reusable building blocks are shared in a
+          community space. Wes notes that Stack Overflow has built agents of its own, though he doubts
+          they are catching on, and points to his repository full of agents’ pull requests. When a
+          listener says the solutions are on GitHub anyway, CJ answers that many developers work on
+          closed-source code.
+        </p>
+        <p className="aside">
+          Our paraphrase of a spoken conversation, not a quotation; CJ’s point starts roughly 55 minutes
+          in. Read <Src id="syntax1050">the transcript</Src> for the exact wording. Not affiliated with or
+          endorsed by the show.
+        </p>
+        <p>
+          The shortcut CJ misses was never one product. A search engine found pages, by relevance and by
+          how the web linked to them. A Q&amp;A site organised what was on those pages: one question per
+          problem, answers ranked by people who had tried them, corrections attached to the thing they
+          corrected. Together they made other people’s afternoons reusable.
+        </p>
 
-      <h2>Two problems, not one</h2>
-      <p>
-        Pull on that question and it comes apart into two problems that are easy to blur together.
-      </p>
-      <div className="table-wrap wide">
-        <table className="compare">
-          <caption className="kicker table-caption">Indexing and community, side by side</caption>
-          <thead>
-            <tr>
-              <th scope="col">
-                <span className="visually-hidden">Aspect</span>
-              </th>
-              <th scope="col" className="compare__index">
-                01 · Indexing
-              </th>
-              <th scope="col" className="compare__community">
-                02 · Community
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {PROBLEMS.map(([aspect, index, community]) => (
-              <tr key={aspect}>
-                <th scope="row">{aspect}</th>
-                <td>{index}</td>
-                <td>{community}</td>
+        <Scrolly
+          label="The lost shortcut, in four steps"
+          steps={SHORTCUT_STEPS}
+          figure={(step) => <ShortcutDiagram step={step as ShortcutStep} />}
+        />
+
+        <p>
+          An agent that reconstructs a solution and a reader who retrieves one may end up with the same
+          code. They do not end up with the same knowledge. A retrieved answer arrives with a history of
+          other people checking it: who wrote it, under which versions, who disagreed, what was
+          corrected. A reconstructed answer may cite the documentation it read, but nobody else has
+          looked at it yet.
+        </p>
+        <p>
+          This is not nostalgia. Public answers went stale, duplicates were closed with a curt link, and
+          some questions were never asked for fear of how they would be received. Reconstruction is
+          often the right call: when the context is private, when the old answer is wrong, when nothing
+          was ever written down. The photo-frame repository even shows agents leaving better notes than
+          many of us did. The question is narrower: when a useful investigation ends, where does it go?
+        </p>
+      </section>
+
+      <section className="movement" aria-labelledby="m3">
+        <p className="movement__number" aria-hidden="true">
+          III
+        </p>
+        <h2 id="m3">Two problems, at least</h2>
+        <p>
+          Look closely at what made either the old shortcut or the photo-frame repository work, and two
+          different things come apart.
+        </p>
+        <div className="table-wrap wide">
+          <table className="compare">
+            <caption className="kicker table-caption">Two problems that are easy to blur together</caption>
+            <thead>
+              <tr>
+                <th scope="col">
+                  <span className="visually-hidden">Aspect</span>
+                </th>
+                <th scope="col" className="compare__index">
+                  01 · Indexing
+                </th>
+                <th scope="col" className="compare__community">
+                  02 · Community
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p>
-        <strong>Indexing</strong> is about discovery. Public repositories, documentation and issues
-        hold a great many solved problems, but they are organised by project, page and thread, not
-        by problem solved. To
-        find a fix you often need to know where it lives before you know it exists.
-      </p>
-      <p>
-        <strong>Community</strong> is about judgement. Votes, accepted answers, corrections and
-        moderation made strangers’ answers usable, and they belonged to a community that lived on
-        one platform. Problem solving is moving into places where none of those signals can form.
-      </p>
-      <p>
-        <Status kind="hypothesis" />
-        Each problem is easier to see through the other. A fast index of unreviewed answers
-        spreads mistakes efficiently; a thoughtful community nobody can find gets rediscovered
-        from scratch. That coupling is what this project is trying to test.
-      </p>
+            </thead>
+            <tbody>
+              {PROBLEMS.map(([aspect, index, community]) => (
+                <tr key={aspect}>
+                  <th scope="row">{aspect}</th>
+                  <td>{index}</td>
+                  <td>{community}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Finding.</strong> The photo-frame notes are organised by device and by phase: identify,
+          get access, back up, root. That suits someone who already knows which board they have. Someone
+          who only knows that their frame shows a blank screen after an update has to find their own way
+          in. Whether they can depends on descriptions somebody wrote in advance.
+        </p>
+        <p>
+          <strong>Keeping.</strong> Those notes stay alive because people keep checking them against their
+          own units and correcting them, and because one person keeps reading and merging what arrives.
+          That work is not an index. It is a community, and it has a cost.
+        </p>
+        <p>
+          <Status kind="hypothesis" />
+          Each problem is easier to see through the other. A fast index of unreviewed answers spreads
+          mistakes efficiently; a thoughtful community nobody can find gets rediscovered from scratch.
+        </p>
+        <p>
+          They are not the only problems. Whether a fix <em>applies</em> to your version, whether anyone
+          has <em>verified</em> it, whether it was <em>documented</em> at all, what <em>incentive</em> anyone
+          had to write it down, and who <em>maintains</em> it when the platform changes: each can lose an
+          answer on its own. This essay follows two of them because they can be made into experiments you
+          can try.
+        </p>
 
-      <h2>Choose a rabbit hole</h2>
-      <p>
-        Each one has something you can try. The Indexing page runs a small, measured retrieval
-        experiment; the Community page assembles a conversation from records nobody on this site
-        owns. Neither involves an agent yet. Four Words tests short human queries over
-        documentation, the shortcut the opening describes. Whether an agent would check such an
-        index before exploring, and whether agents could write records back, are open questions
-        (H5 in the record).
-      </p>
-      <RabbitHoles />
-
-      <h2>Where they meet</h2>
-      <p>
-        At the bottom of both holes is the same idea: a <em>portable problem commons</em>. This
-        essay is written down as its first record, a structured object with its own problem,
-        sources, evidence and open questions, which a discussion could attach to without living
-        on this site.
-      </p>
-      <p>
-        <Link to="/convergence/">Read the convergence</Link>, or check{' '}
-        <Link to="/notes/">the notes</Link> for what is built and what is still a hypothesis.
-      </p>
+        <h3>Choose a rabbit hole</h3>
+        <p>Both have something to try, and both lead to the same desk at the end.</p>
+        <RabbitHoles />
+        <p>
+          Or go straight to <Link to="/convergence/">the Problem Desk</Link>, where they meet, and the{' '}
+          <Link to="/afterword/">afterword</Link>, where this essay looks at how it was made.
+        </p>
+      </section>
     </>
   )
 }
