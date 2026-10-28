@@ -20,7 +20,7 @@ const SHORTCUT_STEPS = [
     <p>
       Say a site deployed to GitHub Pages loads without its stylesheet. For a long stretch of
       software history the next move was to type a few words, something like{' '}
-      <code>github pages css 404</code>. A search engine found a page; the page was a question
+      <code>css missing after deploy</code>. A search engine found a page; the page was a question
       someone had asked years earlier, organised by a Q&amp;A site into an accepted answer, a
       competing one, and a comment noting that the fix changed in a later version. Somebody spent
       an afternoon so that you could spend five minutes.
@@ -41,7 +41,8 @@ const SHORTCUT_STEPS = [
       The next person with the same problem gets the same careful exploration, from the beginning.
       Their agent cannot see what yours found. While this site was being built, a sibling project’s
       GitHub Pages deployment was reported by the project owner to come up largely unstyled despite
-      a green workflow, and this site’s first deployment never happened because its{' '}
+      a green workflow (its <a href="https://github.com/blackmath88/lumpesammlig/commit/a146191a2396ca728e2eca189472c3f9bb0ceacf">repair
+      commit</a>), and this site’s first deployment never happened because its{' '}
       <a href="https://github.com/blackmath88/postack-underflow/pull/3">pull requests were stacked</a>{' '}
       and none reached <code>main</code>. Small, well-documented kinds of problem, worked out again.
     </p>
@@ -61,7 +62,6 @@ const PROBLEMS: Array<[string, string, string]> = [
   ['The question', 'The answer exists. Why can’t we find it?', 'The knowledge exists. Who keeps it alive?'],
   ['What is missing', 'A route from a symptom to a solution someone already wrote down', 'A place where checking, correcting and disagreeing accumulate'],
   ['The symptom', 'Rediscovering a known fix from scratch', 'Fixes nobody else can see, check or improve'],
-  ['A typical unit today', 'Project, page, thread', 'Private chat, agent session, one platform’s thread'],
 ]
 
 function Home() {
@@ -83,9 +83,10 @@ function Home() {
         </p>
         <p>
           Android photo frames are small locked-down computers: a screen, a board, a vendor app that
-          shows your pictures and phones home. In <Src id="syntax1050">Syntax episode #1050</Src>, Wes
-          Bos describes getting into his. Earlier AI models, he says, kept refusing to help; progress came
-          when he suggested connecting over Android’s debug bridge or trying button combinations. The
+          shows your pictures and, on some models, talks to the vendor’s servers. In{' '}
+          <Src id="syntax1050">Syntax episode #1050</Src>, Wes Bos describes getting into his. For months,
+          he says, AI models told him it could not be done; progress came when he suggested connecting
+          to it as an Android device or trying button combinations. The
           hosts spend a good part of the episode on the same pleasure applied to televisions: debug
           access, uninstalling bundled apps, replacing the launcher.
         </p>
@@ -93,9 +94,8 @@ function Home() {
           What Wes learned did not stay in his session. His public repository,{' '}
           <Src id="photoFrame">photo-frame-dashboard</Src>, is a set of notes and scripts for taking over
           these frames: how to identify the board, get debug access, back up the firmware, root it,
-          replace the vendor app and run your own dashboard full screen. Its first instruction is
-          addressed to readers who will hand it to an agent. A section headed “For agents: start here”
-          lists rules learned the hard way: ask before every write, take a verified backup first, stop
+          replace the vendor app and run your own dashboard full screen. Its opening summary tells
+          readers to point an agent at it, and a later section headed “For agents: start here” lists rules learned the hard way: ask before every write, take a verified backup first, stop
           at the first mismatch, keep observations separate from guesses.
         </p>
 
@@ -110,14 +110,14 @@ function Home() {
             <div>
               <dt>Pull requests</dt>
               <dd>{c.pullRequests}</dd>
-              <p>
+              <dd className="tally__sub">
                 {c.merged} merged · {c.open} open · {c.closedUnmerged} closed unmerged
-              </p>
+              </dd>
             </div>
             <div>
               <dt>Issues</dt>
               <dd>{c.issues}</dd>
-              <p>{c.issuesClosed} closed</p>
+              <dd className="tally__sub">{c.issuesClosed} closed</dd>
             </div>
             <div>
               <dt>Recent PRs naming an AI tool</dt>
@@ -125,15 +125,17 @@ function Home() {
                 {PHOTO_FRAME.agentMentionSample.mentioning}
                 <small>/{PHOTO_FRAME.agentMentionSample.of}</small>
               </dd>
-              <p>keyword scan of descriptions; a crude signal</p>
+              <dd className="tally__sub">keyword scan of descriptions; a crude signal</dd>
             </div>
           </dl>
           <figcaption id="pf-caption">
-            Counted on GitHub, {PHOTO_FRAME.observedAt.replace('T', ' ')} UTC. Repository created{' '}
-            {PHOTO_FRAME.created}. In the episode (around {PHOTO_FRAME.episode.agentContributionsAt}) Wes
-            says his photo-frame repository has over 200 pull requests or issues from other people’s
-            agents. The episode does not name the repository; identifying it as this one is our
-            inference from its owner, subject, date and numbers.
+            Counted on GitHub, {PHOTO_FRAME.observedAt.replace('T', ' ').replace('Z', '')} UTC. Repository
+            created {PHOTO_FRAME.created}; {PHOTO_FRAME.beforeEpisode.pullRequests} pull requests and{' '}
+            {PHOTO_FRAME.beforeEpisode.issues} issues were opened before the episode aired. In the episode
+            (around {PHOTO_FRAME.episode.agentContributionsAt}) Wes says his photo-frame repository has over
+            200 pull requests or issues from other people’s agents. The episode does not name the
+            repository; identifying it as this one is our inference from its owner, subject, date and
+            numbers.
           </figcaption>
         </figure>
 
@@ -245,9 +247,9 @@ function Home() {
         </div>
         <p>
           <strong>Finding.</strong> The photo-frame notes are organised by device and by phase: identify,
-          get access, back up, root. That suits someone who already knows which board they have. Someone
-          who only knows that their frame shows a blank screen after an update has to find their own way
-          in. Whether they can depends on descriptions somebody wrote in advance.
+          get access, back up, root. That suits someone who already knows which board they have. Imagine
+          instead someone who only knows that their frame went blank after an update (our example, not a
+          case from the repository): they have to find their own way in. Whether they can depends on descriptions somebody wrote in advance.
         </p>
         <p>
           <strong>Keeping.</strong> Those notes stay alive because people keep checking them against their

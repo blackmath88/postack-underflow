@@ -20,7 +20,7 @@ const EXPERIMENTS = [
   {
     name: 'P0 · Editorial showcase',
     status: 'implemented' as const,
-    text: 'This site: the narrative, the source trail, two working experiments and the essay as a structured record. Visual design is preliminary.',
+    text: 'This site: the narrative, the source trail, four working experiments and the essay as a structured record. Visual design is preliminary.',
   },
   {
     name: 'P1 · Four Words',
@@ -30,7 +30,7 @@ const EXPERIMENTS = [
   {
     name: 'P2 · Portable discussion',
     status: 'demonstrated' as const,
-    text: 'Partly: fixture contributions and relations, two views (assembled discussion, source ledger), availability and deletion cases. No real ATProto reads; publishing only with explicit review.',
+    text: 'Partly, through the Connection Contract: fixture contributions, relationship claims with histories, offline and deleted records. No real ATProto reads; publishing only with explicit review.',
   },
   {
     name: 'The Disputed Neighbour',
@@ -45,7 +45,7 @@ const EXPERIMENTS = [
   {
     name: 'The Problem Desk',
     status: 'demonstrated' as const,
-    text: 'One invented correction previewed against the frozen index: rank 7 → 2, and a guessed correction helps as much as a sourced one.',
+    text: 'One invented correction previewed against the frozen index (rank 7 → 2). Illustrates, by construction, that a better number is not evidence a change is supported.',
   },
   {
     name: 'P3 · Community signals',
@@ -108,8 +108,9 @@ function Notes() {
       </ul>
       <p>
         The only measured result on this site is the Four Words evaluation, and it is reported
-        with its weaknesses. No user activity or community participation is reported anywhere:
-        every community contribution shown is an invented fixture under a reserved name.
+        with its weaknesses. No user activity or community participation in this project is reported:
+        every community contribution in the experiments is an invented fixture under a reserved name.
+        The photo-frame figures on the home page describe a real, separate repository.
       </p>
 
       <h2>Sources and provenance</h2>

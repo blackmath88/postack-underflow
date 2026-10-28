@@ -33,8 +33,10 @@ export interface Neighbour {
   cause: string
   fix: string
   fixEvidence: string
-  /** Writer-added vocabulary not found in the source text (checked by hand against the snapshot). */
-  unsupported: Array<{ field: 'aliases' | 'symptoms'; text: string; note: string }>
+  /** Writer-added vocabulary not found in the source text (checked against the snapshot). */
+  unsupported: Array<{ field: 'aliases' | 'symptoms' | 'terms'; text: string; note: string }>
+  /** Query-relevant words the index associates with this record that never occur in its source. */
+  absentWords: string[]
 }
 
 export interface Evidence {
@@ -63,16 +65,17 @@ export const NEIGHBOURS: [Neighbour, Neighbour] = [
     fixEvidence: 'The reporter confirms that /solardeploy/ fixed it after /solardeploy did not.',
     unsupported: [
       {
-        field: 'symptoms',
-        text: 'Works fine locally',
-        note: 'Not in the issue text. The record writer inferred it.',
+        field: 'terms',
+        text: 'asset-404',
+        note: 'The issue never says 404. It reports a module blocked as text/html; a 404 is a reasonable reading, but it is the index’s.',
       },
       {
         field: 'aliases',
         text: 'Vite blank page on GitHub Pages works locally',
-        note: 'Neither “blank” nor “locally” appears in the issue.',
+        note: '“Works … on local” is in the issue; “blank page” is not.',
       },
     ],
+    absentWords: ['404', 'blank'],
   },
   {
     sourceId: 'vite-issue-9119-underscore-chunk',
@@ -92,8 +95,9 @@ export const NEIGHBOURS: [Neighbour, Neighbour] = [
       'The paths are right; GitHub Pages’ Jekyll processing drops files whose names start with an underscore.',
     fix: 'Add a .nojekyll file at the site root, or change how chunk files are named so none starts with an underscore.',
     fixEvidence:
-      'The reporter says renaming via Rollup’s sanitizeFileName solved it; .nojekyll also works but they call it a workaround.',
+      'Paraphrase: the reporter says overriding Rollup’s sanitizeFileName solved it; .nojekyll also works, but in their words it is “not a good solution”.',
     unsupported: [],
+    absentWords: [],
   },
 ]
 
@@ -103,13 +107,13 @@ export const CLAIM = {
   status: 'proposed' as ClaimStatus,
   proposedBy: 'This essay’s editor, as a deliberately plausible example (hypothetical)',
   basis:
-    'Both v1 records carry the controlled term asset-404, both describe a JavaScript file returning 404 only on GitHub Pages, and both rank near each other for short queries.',
+    'Both v1 records carry the controlled term asset-404, both describe a JavaScript file that fails to load only on GitHub Pages, and both rank near each other for short queries.',
 }
 
 export const EVIDENCE: Evidence[] = [
   {
     stance: 'supports',
-    text: 'Both reports are a Vite build whose JavaScript file 404s on GitHub Pages.',
+    text: 'Both reports are a Vite build whose JavaScript fails to load only on GitHub Pages.',
     sourceId: 'vite-issue-8073-base-mime',
     line: 1,
   },
@@ -120,7 +124,7 @@ export const EVIDENCE: Evidence[] = [
   },
   {
     stance: 'challenges',
-    text: 'In the base-path case the failing URL lacks the repository name; in the underscore case it includes it.',
+    text: 'In the base-path case the failing URL lacks the repository name. In the underscore case the site sits under its repository name and the file is named with a leading _ (the full request path is reconstructed; the issue shows it in a screenshot).',
     sourceId: 'vite-issue-9119-underscore-chunk',
     line: 11,
   },
@@ -131,7 +135,7 @@ export const EVIDENCE: Evidence[] = [
   },
   {
     stance: 'challenges',
-    text: 'Part of the resemblance was written in: the “works locally” symptom in the base-path record is not in its source.',
+    text: 'Part of the resemblance was written in: the base-path issue never says 404. The shared term asset-404, and an alias about a “blank page”, are the index’s additions.',
     sourceId: 'vite-issue-8073-base-mime',
   },
 ]
@@ -146,4 +150,4 @@ export const CORRECTION = {
 }
 
 /** Probe queries, shown against the frozen v1 index. Not evaluation queries. */
-export const PROBES = ['vite js file 404 github pages', 'vite works locally not on pages']
+export const PROBES = ['vite js file 404 github pages', 'vite blank page github pages']

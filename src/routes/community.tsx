@@ -57,6 +57,22 @@ function Community() {
         </p>
       </PageIntro>
 
+      <h2>Who keeps it alive</h2>
+      <p>
+        Go back to the photo-frame repository from the opening. On the day we counted, strangers and their
+        agents had opened 201 pull requests: 150 merged, 21 waiting, 30 closed without merging. Each merge
+        is somebody reading a stranger’s notes about a board they may not own, deciding whether to trust
+        them, and taking responsibility for publishing them. The repository’s instructions ask
+        contributors to check what is already open before adding more, to keep observations apart from
+        guesses, and to strip private data first. That is a community’s rulebook, and one person enforces
+        it.
+      </p>
+      <p>
+        It works, and it depends on that person. If they stop, the notes stay readable but nobody checks
+        the next pull request. The same was true, at much larger scale, of the site that taught a
+        generation of developers to search for their error messages.
+      </p>
+
       <h2>It was never just answers</h2>
       <p>
         It is tempting to remember Stack Overflow as a database of answers. It worked more like a

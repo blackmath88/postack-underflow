@@ -235,9 +235,10 @@ function Indexing() {
         accepted ones, and headings that were contested for years.
       </p>
       <p className="aside">
-        Those historical details come from research compiled for this project and are reported, not
-        independently verified here (<Src id="pr5">PR #5</Src>). The behaviour worth keeping does not
-        depend on them: classification is prior work, it creates neighbourhoods, and it can be wrong.
+        Historical details here and on the Switchboard page come from research compiled for this project
+        and are reported, not independently verified (<Src id="pr5">PR #5</Src>). The behaviour worth
+        keeping does not depend on them: classification is prior work, it creates neighbourhoods, and it
+        can be wrong.
       </p>
       <p>
         Four Words’ v1 audit found the digital version of a contested heading. Part of the index’s
@@ -254,7 +255,7 @@ function Indexing() {
         project, cannot show that problem-oriented indexing works in general. Extracting problems is
         itself interpretation, and an index can be confidently wrong at scale. A record says nothing
         about whether its fix still works, because no one has confirmed or corrected it. That last
-        gap is where this rabbit hole joins <Link to="/community/">the other one</Link>.
+        gap is where this rabbit hole joins <Link to="/community/">the Switchboard</Link>.
       </p>
 
       <nav className="next" aria-label="Continue reading">
@@ -283,9 +284,10 @@ function ResultsReading() {
         {s.baseline.mrrAt10.toFixed(2)}. Why it did better matters more than the margin.
       </p>
       <p>
-        <strong>Much of the gain is vocabulary the record writer added.</strong> In {INJECTED.length} of
-        the {results.paired.structuredBetter} queries where the structured index won, its first relevant
-        record matched on at least one query word that never appears in that source’s text:{' '}
+        <strong>Much of the gain is vocabulary the record writer added.</strong> In{' '}
+        {INJECTED.length - 1} of the {results.paired.structuredBetter} queries where the structured index won,
+        plus one tokenizer artefact, its first relevant record matched on at least one query word that never
+        appears in that source’s text:{' '}
         {INJECTED.map((x, i) => (
           <span key={x.query}>
             {i > 0 && ', '}

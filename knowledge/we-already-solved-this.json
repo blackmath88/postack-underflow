@@ -107,13 +107,13 @@
     {
       "id": "E4",
       "kind": "fixture-demonstration",
-      "summary": "The Problem Desk previews an invented correction against the frozen v1 index: the first relevant source for 'css missing after deploy' moves from rank 7 to rank 2, and a guessed correction improves the ranking exactly as much as a sourced one.",
+      "summary": "The Problem Desk previews an invented correction against the frozen v1 index: the first relevant source for 'css missing after deploy' moves from rank 7 to rank 2 (plain keyword search already had it at rank 1). A guessed correction moves the ranking as much as a better-supported one, which is true by construction; the desk illustrates that a better number is not evidence a change is right.",
       "artifact": "src/data/problem-desk.ts"
     },
     {
       "id": "E5",
       "kind": "classification-audit",
-      "summary": "The Disputed Neighbour shows two frozen v1 records filed together under a shared term, with source evidence that their causes and fixes differ, and writer-added symptoms absent from one source.",
+      "summary": "The Disputed Neighbour shows two frozen v1 records filed together under a shared term, with source evidence that their causes and fixes differ; the shared term asset-404 and a 'blank page' alias are absent from one source.",
       "artifact": "src/data/disputed-neighbour.ts"
     }
   ],
@@ -138,7 +138,7 @@
   "revision": {
     "version": "0.3.0",
     "date": "2026-10-28",
-    "changes": "Living essay: added the photo-frame encounter, the Disputed Neighbour, the Connection Contract and the Problem Desk as evidence; H2 now rests on connection contracts; added the review question."
+    "changes": "Living essay: added the photo-frame encounter, the Disputed Neighbour, the Connection Contract and the Problem Desk as evidence; H2 now rests on connection contracts; added the review question. Corrected after review: a symptom wrongly flagged as unsupported, and the desk result reframed as true by construction."
   },
   "publication": {
     "status": "not-published",

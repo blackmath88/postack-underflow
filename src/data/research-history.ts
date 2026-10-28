@@ -69,7 +69,7 @@ export const HISTORY: HistoryEntry[] = [
     kind: 'correction',
     title: 'The review that changed the reading',
     what: 'An independent reviewer found that our first explanation of the results was wrong.',
-    changed: 'Most wins came from vocabulary the record writer supplied, some of it unsupported; the one loss was partly a labelling error. The numbers stayed; the interpretation changed.',
+    changed: 'Much of the gain came from vocabulary the record writer supplied, some of it unsupported; the one loss was partly a labelling error. The numbers stayed; the interpretation changed.',
     link: { label: 'FOUR-WORDS.md', url: `${REPO}/blob/main/docs/research/FOUR-WORDS.md` },
   },
   {
@@ -91,16 +91,16 @@ export const HISTORY: HistoryEntry[] = [
   {
     date: '28 Oct',
     kind: 'encounter',
-    title: 'The photo frame, verified',
-    what: 'The unverified lead in PR #6 was traced to Wes Bos’s photo-frame repository, with its agent instructions and over 200 pull requests.',
+    title: 'The photo frame, identified',
+    what: 'The unverified lead in PR #6 was traced, by inference, to Wes Bos’s photo-frame repository, with its agent instructions and over 200 pull requests. The episode does not name it.',
     changed: 'The opening became a counterexample: agents contributing back, because someone asked them to.',
     link: { label: 'Case note', url: `${REPO}/blob/main/docs/research/CASE-PHOTO-FRAME.md` },
   },
   {
     date: '28 Oct',
     kind: 'experiment',
-    title: 'The Problem Desk surprise',
-    what: 'Previewing a correction showed that a guessed change improves retrieval exactly as much as a sourced one.',
-    changed: 'The weight of the idea moved from indexing to review.',
+    title: 'The Problem Desk, and a self-correction',
+    what: 'Previewing a correction showed a guessed change improving retrieval as much as a sourced one. A reviewer pointed out this is true by construction, and that our first draft also mislabelled a supported symptom as unsupported.',
+    changed: 'The weight of the idea moved from indexing to review, and the essay caught itself making the error it describes.',
   },
 ]

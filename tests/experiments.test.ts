@@ -4,9 +4,10 @@ import { readFileSync } from 'node:fs'
 import { CLAIM, EVIDENCE, NEIGHBOURS, CORRECTION } from '../src/data/disputed-neighbour.ts'
 import { PARTS, CORRECTION_RECORD, DESK_QUERY_ID } from '../src/data/problem-desk.ts'
 import { HISTORY } from '../src/data/research-history.ts'
+import { tokenize } from '../src/lib/retrieval.ts'
 
 const read = (p: string) => JSON.parse(readFileSync(new URL(p, import.meta.url), 'utf8'))
-const records: Array<{ sourceId: string; aliases: string[]; symptoms: string[] }> = read('../corpus/records.json')
+const records: Array<{ sourceId: string; aliases: string[]; symptoms: string[]; terms: string[] }> = read('../corpus/records.json')
 const sources: Array<{ id: string }> = read('../corpus/sources.json')
 const queries: Array<{ id: string }> = read('../corpus/queries.json').queries
 const ids = new Set(sources.map((s) => s.id))
@@ -32,7 +33,7 @@ test('Problem Desk uses a frozen query and labels its grounding honestly', () =>
   assert.match(CORRECTION_RECORD.nsid, /^example\.postack\./)
   for (const p of PARTS) {
     assert.ok(ids.has(p.target), p.target)
-    if (p.grounding === 'source') assert.ok(p.quote && words(p.quote.text) < 15, 'grounded parts quote their source briefly')
+    if (p.grounding === 'mechanism') assert.ok(p.quote && words(p.quote.text) < 15, 'grounded parts quote their source briefly')
     else assert.equal(p.quote, undefined, 'inferred parts must not pretend to quote a source')
   }
 })
@@ -59,4 +60,9 @@ test('quotations appear on the cited snapshot lines (when snapshots are present)
   for (const p of PARTS) if (p.quote) checks.push([p.target, p.quote.line, p.quote.text])
   if (line(checks[0]![0], 1) === null) return t.skip('snapshots not fetched (npm run corpus:fetch)')
   for (const [id, n, text] of checks) assert.ok(line(id, n)!.includes(text), `${id}:${n} does not contain “${text}”`)
+  // Words claimed absent from a source must really be absent from its tokens.
+  for (const n of NEIGHBOURS) {
+    const tokens = new Set(tokenize(readFileSync(new URL(`${n.sourceId}.txt`, cache), 'utf8')))
+    for (const w of n.absentWords) assert.ok(!tokens.has(w), `${n.sourceId}: “${w}” does occur in the source`)
+  }
 })

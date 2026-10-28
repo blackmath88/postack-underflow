@@ -1,13 +1,13 @@
 # Case study: the photo-frame repository
 
-**Status:** verified identification with one stated gap, 2026-10-28. This resolves the "unverified lead 001" recorded in PR #6 (`docs/research/CASE-STUDY-LEADS.md` on `docs/exploratory-story-and-shared-knowledge` @ `92fc25a`).
+**Status:** identified by inference, 2026-10-28; the episode does not name the repository. This resolves the "unverified lead 001" recorded in PR #6 (`docs/research/CASE-STUDY-LEADS.md` on `docs/exploratory-story-and-shared-knowledge` @ `92fc25a`).
 
 ## What the episode says
 [Syntax #1050](https://syntax.fm/show/1050/everyone-is-hacking-their-tv/transcript), "Everyone Is Hacking Their TV" (2026-10-26). These are our paraphrases of an AI-assisted reading of the transcript; check the timestamps there before quoting.
 
 - **The topic.** The episode is about hacking smart TVs and photo frames over ADB. Wes says the TV hacks are essentially the same work as the photo-frame hacks (about 21:21).
-- **Wes's own frame (about 31:03).** Earlier AI models kept refusing to help him with his photo frame. Progress came when he suggested connecting over Android or trying button combinations.
-- **The repository (about 59:30).** Wes says his photo-frame project's GitHub repository has over 200 pull requests or issues from other people's agents.
+- **Wes's own frame (about 31:03).** He says that for months AI models told him it couldn't be done. Progress came when he suggested connecting to it as an Android device or trying button combinations.
+- **The repository (in the segment starting about 58:29).** Wes says his photo-frame project's GitHub repository has over 200 pull requests or issues from other people's agents.
 - **Other frame owners.** CJ bought a round frame at a thrift store to hack. Scott mentions a different community repository, "reframe", by name only.
 
 ## Identification
@@ -15,7 +15,7 @@
 - it is on Wes Bos's GitHub account;
 - its subject matches: "Getting ADB, root, backups and custom apps onto locked-down Android photo frames";
 - it was created on 2026-10-08, before the episode;
-- on 2026-10-28 it had 201 pull requests and 56 issues, consistent with "over 200".
+- on 2026-10-28 it had 201 pull requests and 56 issues, consistent with "over 200". 196 PRs and 56 issues had been opened before the episode aired on 2026-10-26.
 
 This is an inference, not a quotation of the episode. The site says so.
 

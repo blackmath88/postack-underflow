@@ -20,7 +20,8 @@ export interface CorrectionPart {
   target: string
   field: 'symptoms'
   add: string
-  grounding: 'source' | 'inference'
+  /** 'mechanism': the source describes the mechanism, not the symptom; 'inference': the source says nothing about it. */
+  grounding: 'mechanism' | 'inference'
   evidence: string
   /** Short quotation from the target's own source, when grounded. */
   quote?: { text: string; line: number }
@@ -32,8 +33,8 @@ export const PARTS: CorrectionPart[] = [
     target: 'vite-build-base',
     field: 'symptoms',
     add: 'Page loads without its CSS after deploying to a subpath',
-    grounding: 'source',
-    evidence: 'Vite’s build guide says base rewrites asset references, including CSS.',
+    grounding: 'mechanism',
+    evidence: 'Closer to the source, not in it: Vite’s build guide describes the mechanism (base rewrites asset references, including CSS) but never the symptom.',
     quote: { text: 'CSS `url()` references, and asset references in your `.html` files', line: 37 },
   },
   {

@@ -13,16 +13,17 @@ We expected an example of a commons being bypassed by private agent sessions. Wh
 
 ## 2. A findable description can mislead, and the data already showed it
 The Disputed Neighbour was planned as an illustration. Building it from frozen v1 records turned up a concrete case:
-- **A symptom the source never states.** The vite#8073 record carries the symptom "Works fine locally"; the issue never says it.
-- **A query that rewards it.** The probe `vite works locally not on pages` ranks that record first, through the unsupported vocabulary.
+- **A term the source never states.** The vite#8073 issue never says "404"; it reports a JavaScript module blocked as `text/html`. The shared controlled term `asset-404`, and an alias about a "blank page", are the index's additions.
+- **A query that rewards them.** The probe `vite blank page github pages` ranks that record first through "blank". The probe `vite js file 404 github pages` places it second, matching "404".
+- **A false flag of our own.** Our first draft also flagged the record's "Works fine locally" symptom as unsupported. An independent review found "works just fine on local" in the issue; the tokenizer had kept *local* and *locally* apart, and so had our check. The essay made the error it describes, and only rereading the source caught it.
 - **Two different problems filed together.** The two records share the controlled term `asset-404` and rank 1 and 2 for a short query. Their causes and fixes differ, and the difference is visible in a single fact: whether the failing URL contains the repository name.
 
 **What changed:** the right move was not a better ranking. It was a question asked before offering a fix, which we built as the URL check. Classification needed an applicability test, not more vocabulary.
 
 ## 3. The Problem Desk moved the convergence from indexing to review
-We expected the desk to show a correction improving retrieval. It did: rank 7 → 2 for `css missing after deploy`. But the preview also showed that the *inferred* half of the correction, which has no support in its source, produces exactly the same improvement as the grounded half. The dotfiles record stays first in both cases, because generic words still dominate.
+The desk shows a correction improving retrieval: rank 7 → 2 for `css missing after deploy`. The inferred half of the correction moves the ranking exactly as much as the half closer to its source. A reviewer rightly pointed out that this is true by construction: the same words go into two similar records, and a ranking cannot see provenance. The added symptom also nearly restates the query. Plain keyword search already had this query at rank 1. The dotfiles record stays first in every case, because generic words still dominate.
 
-**What changed:** a retrieval number cannot distinguish a sourced correction from a plausible guess. The value of a community layer, if it has one, is in the review: who accepted a change, on what evidence, recorded where. This is consistent with the v1 audit finding that writer-supplied vocabulary drove most gains. It is not yet tested anywhere beyond one fixture.
+**What changed:** not a discovery, but a consequence made hard to ignore. A retrieval number cannot distinguish a supported correction from a plausible guess. The value of a community layer, if it has one, is in the review: who accepted a change, on what evidence, recorded where. This is consistent with the v1 audit finding that writer-supplied vocabulary drove most gains. It is not yet tested anywhere beyond one fixture.
 
 ## 4. Connections needed lifecycles, and the switchboard metaphor needed a boundary
 The earlier assembler had three on/off layers. Writing contracts with histories forced distinctions the toggles had hidden:

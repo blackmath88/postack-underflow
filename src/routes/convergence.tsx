@@ -22,7 +22,7 @@ const LEDGER: Array<{ item: string; status: StatusKind; note: string }> = [
 function Convergence() {
   return (
     <>
-      <PageIntro index="C" kicker="Convergence" title="The Problem Desk">
+      <PageIntro index="C" kicker="Convergence" title="Where the two problems meet">
         <p>
           The two rabbit holes meet at one small desk: a problem found through an index, challenged by
           somebody else, and corrected in a preview, while every source stays as it was.
@@ -36,17 +36,25 @@ function Convergence() {
         smallest version of the loop this essay is about: someone finds a record, someone else challenges
         how it was described, and the next search is better for it.
       </p>
-      <p>The desk uses the case Four Words got most wrong, the query this essay opened with.</p>
+      <p>
+        The desk uses the case Four Words got most wrong: <code>css missing after deploy</code>, the example
+        the essay opened with.
+      </p>
 
       <ProblemDesk />
 
-      <h2>What the desk taught us</h2>
+      <h2>What the desk illustrates</h2>
       <p>
-        We expected the interesting part to be the improvement. It is not. The surprise is that a guessed
-        correction improves the ranking exactly as much as a sourced one. A retrieval number cannot tell
-        them apart; only the evidence attached to the contribution can. That moves the weight of the whole
-        idea from the index to the review: who accepts a change, on what evidence, and where that decision
-        is recorded.
+        Not a discovery: it is true by construction that a guessed correction moves the ranking as much as a
+        supported one, because the ranking cannot see where a word came from. But building the desk made the
+        consequence hard to ignore. A better retrieval number is not evidence that a change is right, so the
+        weight of the whole idea moves from the index to the review: who accepts a change, on what evidence,
+        and where that decision is recorded.
+      </p>
+      <p>
+        The essay supplies its own example. An early draft of the Disputed Neighbour flagged a symptom as
+        missing from its source; an independent review found it there, worded differently. The flag looked
+        authoritative and was wrong, and only checking the source caught it.
       </p>
       <p>
         <Status kind="hypothesis" />

@@ -59,13 +59,14 @@ function IndexLayer({ n }: { n: Neighbour }) {
       <p className="layer__field">Symptoms</p>
       <ul>{record.symptoms.map(item)}</ul>
       <p className="layer__field">Controlled terms</p>
-      <p>
+      <ul className="terms">
         {record.terms.map((t) => (
-          <code key={t} className="term">
-            {t}
-          </code>
+          <li key={t} className={flagged.has(t) ? 'is-unsupported' : undefined}>
+            <code className="term">{t}</code>
+            {flagged.has(t) && <span className="unsupported-flag">not in source · {flagged.get(t)}</span>}
+          </li>
         ))}
-      </p>
+      </ul>
     </div>
   )
 }
@@ -109,12 +110,26 @@ function Probe() {
       <ol className="probe__results" aria-live="polite">
         {hits.map((h) => {
           const mine = ids.indexOf(h.id)
+          const absent = new Set(mine > -1 ? NEIGHBOURS[mine]!.absentWords : [])
           return (
             <li key={h.id} className={mine > -1 ? 'is-neighbour' : undefined}>
               <span className="probe__mark">{mine > -1 ? (mine === 0 ? 'A' : 'B') : '·'}</span>
               <span>{recordBySource.get(h.id)?.problem}</span>
               <span className="probe__why">
-                matched {h.matches.map((m) => m.term).join(', ')}
+                matched{' '}
+                {h.matches.map((m, i) => (
+                  <span key={m.term}>
+                    {i > 0 && ', '}
+                    {absent.has(m.term) ? (
+                      <mark className="probe__absent">
+                        {m.term} <span className="visually-hidden">(not in this record’s source)</span>
+                      </mark>
+                    ) : (
+                      m.term
+                    )}
+                  </span>
+                ))}
+                {absent.size > 0 && h.matches.some((m) => absent.has(m.term)) && ' · marked words never occur in its source'}
               </span>
             </li>
           )
@@ -163,6 +178,10 @@ function UrlCheck() {
       </div>
       <p className="urlcheck__result" role="status" aria-live="polite">
         {verdict ?? 'Enter both to see which neighbour applies. Nothing is sent anywhere.'}
+      </p>
+      <p className="layer__ref">
+        A two-case heuristic, not a diagnostic. It assumes a project site under /repository-name/; for a
+        user or organisation site, or a custom domain, it will wrongly answer A.
       </p>
     </form>
   )

@@ -16,7 +16,7 @@ const HYPOTHESIS_STATUS: Record<string, StatusKind> = {
   tested: 'tested',
   'demonstrated-on-fixtures': 'demonstrated',
   'partially-demonstrated': 'demonstrated',
-  untested: 'not-built',
+  untested: 'hypothesis',
 }
 
 const KIND_LABEL = {
@@ -47,6 +47,7 @@ function Afterword() {
         progress. Two of its most useful entries are corrections.
       </p>
 
+      <h2>History</h2>
       <ol className="history wide">
         {HISTORY.map((h) => (
           <li key={h.title} className={`history__entry history__entry--${h.kind}`}>
@@ -156,8 +157,8 @@ function Afterword() {
         </li>
         <li>
           <strong>The convergence moved.</strong> We expected the bridge between the two problems to be a better
-          index. The Problem Desk suggests it is review: a ranking cannot tell a sourced correction from a
-          guess.
+          index. Building the Problem Desk made plain what was true by construction: a ranking cannot tell a
+          supported correction from a guess. The bridge is review.
         </li>
         <li>
           <strong>The metaphors needed boundaries.</strong> A switchboard never stored a conversation; a card

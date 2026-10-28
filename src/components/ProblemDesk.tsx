@@ -81,8 +81,11 @@ export function ProblemDesk() {
             <span className="desk__step">1</span> Find
           </h3>
           <p>
-            Someone searches <code>{query.query}</code>, the query this essay opened with. In v1 the first
-            source labelled relevant arrived at rank {before}.
+            Someone searches <code>{query.query}</code>, the example the essay opened with. In v1 the
+            structured index put the first source labelled relevant at rank {before}. Plain keyword search
+            had it at rank 1.</p>
+          <p className="layer__ref">
+            The ranking below is the frozen v1 structured index.
           </p>
           <Ranking ranked={frozen} />
         </li>
@@ -103,7 +106,7 @@ export function ProblemDesk() {
           <p>It proposes two changes to the index’s description. Not to any source.</p>
           <ul className="desk__parts">
             {PARTS.map((p) => (
-              <li key={p.id} className={`desk__part desk__part--${p.grounding}`}>
+              <li key={p.id} className={`desk__part desk__part--${p.grounding === 'mechanism' ? 'source' : 'inference'}`}>
                 <label>
                   <input
                     type="checkbox"
@@ -111,7 +114,7 @@ export function ProblemDesk() {
                     onChange={(e) => setAccepted((a) => ({ ...a, [p.id]: e.target.checked }))}
                   />
                   <span>
-                    <span className="desk__grounding">{p.grounding === 'source' ? 'grounded in the source' : 'inference only'}</span>
+                    <span className="desk__grounding">{p.grounding === 'mechanism' ? 'mechanism in the source' : 'inference only'}</span>
                     Add the symptom “{p.add}” to the record for <code>{p.target}</code>.
                   </span>
                 </label>
@@ -143,13 +146,15 @@ export function ProblemDesk() {
               <Ranking ranked={preview} compare={frozen} />
               <p>
                 {accepted.inferred && !accepted.grounded
-                  ? 'The guessed part, on its own, helps exactly as much as the sourced one would have. '
+                  ? 'The guessed part, on its own, helps exactly as much as the other would have. '
                   : accepted.grounded && !accepted.inferred
                     ? 'Now try the inferred part on its own: it helps exactly as much. '
                     : 'Either part alone would have produced the same improvement. '}
-                The ranking cannot tell a description grounded in its source from a plausible guess. Only the
-                contribution’s evidence can, which is why the desk records which is which, and why accepting a
-                change should need more than a better number.
+                That is guaranteed, not discovered: the same words go into two similar records, and a ranking
+                function cannot see where a field came from. It is also close to circular, because the added
+                symptom nearly restates the query. What the preview illustrates is that a better number says
+                nothing about whether a change is supported. Only the contribution’s evidence can, which is why
+                accepting a change should need more than a better number.
               </p>
               <p>
                 And the top result is still the dotfiles issue, matched only on <em>missing</em>, <em>after</em>{' '}

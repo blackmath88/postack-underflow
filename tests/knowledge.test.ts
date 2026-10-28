@@ -57,5 +57,7 @@ test('no connection masquerades as an author statement', () => {
       assert.ok(k.history.every((h) => !h.by.endsWith('.example') || h.by !== from.author.handle), `${k.id}`)
     }
     if (k.proposer === 'model') assert.notEqual(status(k), 'accepted', `${k.id}: model proposals are never shown as accepted`)
+    if (k.proposer !== 'author') assert.ok(k.history.every((h) => h.status !== 'declared'), `${k.id}: only authors declare`)
+    if (k.proposer === 'author') assert.equal(k.history[0]!.status, 'declared', `${k.id}: author connections start as declared`)
   }
 })

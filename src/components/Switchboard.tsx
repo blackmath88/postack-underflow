@@ -169,7 +169,8 @@ export function Switchboard() {
       ),
     )
 
-  const declaredRefs = CONTRIBUTIONS.reduce((n, c) => n + c.refs.length, 0)
+  // Only references in records that can still be read.
+  const declaredRefs = CONTRIBUTIONS.filter((c) => c.availability === 'available').reduce((n, c) => n + c.refs.length, 0)
 
   return (
     <section className="experiment wide" aria-labelledby="sb-title" data-experiment="switchboard" data-operator={present ? 'present' : 'gone'}>
@@ -179,7 +180,8 @@ export function Switchboard() {
         <p>
           Eight invented contributions sit in their authors’ own repositories. Every line between them is
           a claim with a contract: who proposed it, why, on what evidence, and where it stands. Select a
-          line to read its contract, or propose one of your own.
+          line to read its contract, or propose one of your own. (H1, H2 and H4 are hypotheses in this
+          essay’s own record; see the afterword.)
         </p>
       </header>
 

@@ -7,7 +7,9 @@
 // reading by someone else: this view's editor, a language model, or you.
 // All people, DIDs and records are invented (`.example`, `did:example`).
 
-export type ContractStatus = 'proposed' | 'accepted' | 'disputed' | 'withdrawn'
+// 'declared' belongs to authors: it records that the author wrote the
+// reference, not that anyone judged the contribution correct.
+export type ContractStatus = 'declared' | 'proposed' | 'accepted' | 'disputed' | 'withdrawn'
 export type Proposer = 'author' | 'editor' | 'model' | 'reader'
 export type RelationType = 'replies-to' | 'corrects' | 'endorses' | 'disputes' | 'cites' | 'same-question'
 
@@ -48,7 +50,7 @@ export const CONTRACTS: Contract[] = [
     proposedBy: 'ines.example',
     reason: 'Ines wrote this reply to the essay.',
     evidence: ['The post’s reply.parent strongRef names the article’s URI and CID.'],
-    history: [{ status: 'accepted', by: 'ines.example', note: 'Declared in the record when it was published.' }],
+    history: [{ status: 'declared', by: 'ines.example', note: 'Declared in the record when it was published.' }],
   },
   {
     id: 'k2',
@@ -59,7 +61,7 @@ export const CONTRACTS: Contract[] = [
     proposedBy: 'mara.example',
     reason: 'Mara corrects how the essay describes pinning (hypothesis H4).',
     evidence: ['The correction record’s subject is the article, at the version it read.'],
-    history: [{ status: 'accepted', by: 'mara.example', note: 'Declared in the record.' }],
+    history: [{ status: 'declared', by: 'mara.example', note: 'Declared in the record.' }],
   },
   {
     id: 'k3',
@@ -70,7 +72,7 @@ export const CONTRACTS: Contract[] = [
     proposedBy: 'ines.example',
     reason: 'Ines endorses Mara’s correction.',
     evidence: ['The endorsement record’s subject is Mara’s correction, by URI and CID.'],
-    history: [{ status: 'accepted', by: 'ines.example', note: 'Declared in the record.' }],
+    history: [{ status: 'declared', by: 'ines.example', note: 'Declared in the record.' }],
   },
   {
     id: 'k4',
@@ -81,7 +83,7 @@ export const CONTRACTS: Contract[] = [
     proposedBy: 'jun.example',
     reason: 'Jun disputes the essay’s portability argument (hypothesis H2).',
     evidence: ['The dispute record’s subject is the article.'],
-    history: [{ status: 'accepted', by: 'jun.example', note: 'Declared in the record.' }],
+    history: [{ status: 'declared', by: 'jun.example', note: 'Declared in the record.' }],
   },
   {
     id: 'k5',
@@ -92,7 +94,7 @@ export const CONTRACTS: Contract[] = [
     proposedBy: 'ola.example',
     reason: 'Ola replied to the essay.',
     evidence: ['Known only from an index’s earlier copy of the reference; Ola’s server is offline now.'],
-    history: [{ status: 'accepted', by: 'ola.example', note: 'Declared in the record; source currently unreachable.' }],
+    history: [{ status: 'declared', by: 'ola.example', note: 'Declared in the record; source currently unreachable.' }],
   },
   {
     id: 'k6',
@@ -150,7 +152,7 @@ export const CONTRACTS: Contract[] = [
     reason: 'Rui replied to the essay, then deleted the reply.',
     evidence: ['An index still remembers the reference. ATProto keeps no tombstone, so the record itself is gone.'],
     history: [
-      { status: 'accepted', by: 'rui.example', note: 'Declared in the record.' },
+      { status: 'declared', by: 'rui.example', note: 'Declared in the record.' },
       { status: 'withdrawn', by: 'rui.example', note: 'The author deleted the record. Only the author can withdraw this kind of connection.' },
     ],
   },
