@@ -16,7 +16,7 @@ A public, coherent interactive essay: lost shortcut → two problems → Index r
 1. **Foundation:** verify TanStack Start static export/prerender + GitHub Pages subpath compatibility against current docs; record ADR-0002 with evidence and alternatives (Astro/static fallback if incompatible). Set up CI checks before deployment.
 2. **Editorial shell:** responsive typography, navigation, credits, provenance, sources, accessible scrollytelling. Apply proposed palette, record contrast checks and screenshot review.
 3. **Index artifact:** deterministic 20–50-document corpus and query fixtures, explicit rank explanations; separate staged demo from measured evaluation. No live agent browsing at query time.
-4. **Community artifact:** create a bounded interaction sketch of Switchboard vs Frequency Receiver vs Overlays. Select on reader comprehension and ability to preserve attribution; only then implement fixture-backed three views.
+4. **Community artifact:** create a focused Switchboard interaction specimen; test reader comprehension and ability to preserve attribution before implementing fixture-backed blog, channel and graph views. Frequency Receiver and Overlays remain documented alternatives.
 5. **Convergence:** embed br-ai-nstorm-derived problem map or source-linked projection; show this article's own structured index record. No private data import.
 6. **Publish gate:** browser verification at mobile/tablet/desktop, keyboard, reduced motion, route refresh, source links, build and GitHub Actions output. Explicit approval before public deployment or ATProto posting.
 
@@ -30,7 +30,7 @@ A public, coherent interactive essay: lost shortcut → two problems → Index r
 - Static site, no auth/database/server until requirements justify them.
 
 ## Decisions still open
-- Community artifact selection.
+- Switchboard interaction mechanics and usability validation (artifact selected).
 - TanStack Start static compatibility and fallback.
 - Exact editorial copy, visual sign-off and publication timing.
 - ATProto Lexicon interoperability and whether/when to add real write actions.
