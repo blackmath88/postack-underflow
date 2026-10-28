@@ -1,0 +1,1594 @@
+[
+  {
+    "id": "rec-vite-static-deploy",
+    "sourceId": "vite-static-deploy",
+    "problem": "A Vite app deployed to a GitHub Pages project site at username.github.io/repo/ needs the right base setting and a build-and-deploy workflow to work.",
+    "aliases": [
+      "how to deploy a Vite app to GitHub Pages",
+      "Vite site on github.io/repo-name shows a blank page",
+      "what should base be in vite.config.js for GitHub Pages",
+      "Vite GitHub Pages project site vs user site base path",
+      "deploy Vite dist folder with GitHub Actions to Pages"
+    ],
+    "symptoms": [
+      "Built app works locally but not when served from the repository subpath",
+      "Asset URLs point at the domain root instead of /<REPO>/"
+    ],
+    "context": [
+      "Vite with default dist output",
+      "GitHub Pages project site at https://<USERNAME>.github.io/<REPO>/",
+      "User site or custom domain uses base '/' (the default)",
+      "Pages source set to GitHub Actions"
+    ],
+    "solution": "Set base in vite.config.js to '/<REPO>/' for a project site, or leave it at '/' for a user site or custom domain. In Settings > Pages choose GitHub Actions as the source and add a workflow that installs, builds and deploys the site on push.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Vite's static deploy guide, GitHub Pages section, gives the base values per site type and the Actions source setting."
+      }
+    ],
+    "limitations": [
+      "The sample workflow itself is included from a separate file and is not reproduced in this page.",
+      "Does not cover client-side routing fallbacks for deep links."
+    ],
+    "related": [
+      {
+        "sourceId": "vite-config-base",
+        "relation": "complements",
+        "note": "The config reference lists which value forms base accepts."
+      },
+      {
+        "sourceId": "vite-build-base",
+        "relation": "complements",
+        "note": "The build guide explains how base rewrites asset URLs and how to use import.meta.env.BASE_URL for dynamic URLs."
+      },
+      {
+        "sourceId": "ghdocs-custom-workflows",
+        "relation": "complements",
+        "note": "GitHub's docs describe the configure/upload/deploy Pages actions such a workflow uses."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "actions-deploy"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-vite-build-base",
+    "sourceId": "vite-build-base",
+    "problem": "When a Vite app is served under a nested public path, asset URLs must be prefixed with that path, including URLs the app builds at runtime.",
+    "aliases": [
+      "Vite assets 404 when app is hosted in a subdirectory",
+      "how to prefix dynamic image URLs with the Vite base path",
+      "import.meta.env.BASE_URL usage",
+      "Vite relative base when deploy path is unknown",
+      "vite build --base flag"
+    ],
+    "symptoms": [
+      "Hand-concatenated asset URLs ignore the configured base",
+      "import.meta.env['BASE_URL'] does not get replaced"
+    ],
+    "context": [
+      "Vite production build (vite build)",
+      "App deployed under a nested public path such as /my/public/path/",
+      "Relative base ('./' or '') requires import.meta support"
+    ],
+    "solution": "Set the base option (or pass --base on the command line) so Vite rewrites JS-imported assets, CSS url() references and HTML asset references at build time. For URLs assembled at runtime, prefix them with import.meta.env.BASE_URL written exactly in that form; if the path is not known in advance, use a relative base of './' or ''.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Vite's Building for Production guide, Public Base Path and Relative base sections."
+      }
+    ],
+    "limitations": [
+      "import.meta.env.BASE_URL is statically replaced, so bracket access does not work.",
+      "Relative base needs import.meta support; older browsers need the legacy plugin.",
+      "Advanced per-asset-type base control via experimental.renderBuiltUrl is experimental."
+    ],
+    "related": [
+      {
+        "sourceId": "vite-config-base",
+        "relation": "complements",
+        "note": "The config reference documents the base option's default and accepted forms."
+      },
+      {
+        "sourceId": "vite-static-deploy",
+        "relation": "complements",
+        "note": "The deploy guide states which base value to use for a GitHub Pages project site."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "asset-404",
+      "relative-urls"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-vite-config-base",
+    "sourceId": "vite-config-base",
+    "problem": "A developer needs to know what values Vite's base option accepts to serve the app from a path other than the root.",
+    "aliases": [
+      "Vite base option format",
+      "should Vite base have a leading and trailing slash",
+      "Vite base full URL vs pathname",
+      "Vite base empty string for embedded deployment",
+      "default value of base in vite.config"
+    ],
+    "symptoms": [
+      "App assumes it is served from / because base defaults to '/'"
+    ],
+    "context": [
+      "Vite config, applies to both dev server and production build",
+      "Absolute pathname, full URL, or empty/'./' for embedded deployment"
+    ],
+    "solution": "Set base to an absolute pathname such as '/foo/', a full URL such as 'https://bar.com/foo/', or '' / './' for embedded deployments. With a full URL the origin is ignored during development.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Vite Shared Options reference, base entry: type string, default '/', and the three valid forms."
+      }
+    ],
+    "limitations": [
+      "Reference entry only; details on how base affects build output live in the Public Base Path guide."
+    ],
+    "related": [
+      {
+        "sourceId": "vite-build-base",
+        "relation": "complements",
+        "note": "The build guide explains what base rewrites and how BASE_URL is exposed."
+      },
+      {
+        "sourceId": "vite-issue-8073-base-mime",
+        "relation": "explains",
+        "note": "The reporter in that issue was unsure how to format base; this reference shows the '/foo/' form."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "relative-urls"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-ghdocs-pages-jekyll",
+    "sourceId": "ghdocs-pages-jekyll",
+    "problem": "Files and folders whose names start with an underscore, dot or hash are missing from a Jekyll-built GitHub Pages site.",
+    "aliases": [
+      "files that start with an underscore are missing on GitHub Pages",
+      "GitHub Pages ignores _folder",
+      "dotfiles not published by Jekyll on Pages",
+      "how to make Jekyll include underscore files",
+      "node_modules or vendor folder not built on GitHub Pages"
+    ],
+    "symptoms": [
+      "Paths beginning with _, . or # are absent from the built site",
+      "Files ending in ~ or under /node_modules or /vendor are not built"
+    ],
+    "context": [
+      "GitHub Pages site built with Jekyll",
+      "Configured through _config.yml"
+    ],
+    "solution": "Jekyll skips these paths by default; list the ones you need under the include setting in _config.yml so Jekyll processes them.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "GitHub Docs 'About GitHub Pages and Jekyll' lists the default exclusions and the include setting; it also redirects from the old 'files that start with an underscore are missing' article."
+      }
+    ],
+    "limitations": [
+      "Only relevant when Jekyll builds the site; some Jekyll settings cannot be changed on Pages.",
+      "Unsupported plugins cannot be used; such sites must be built elsewhere and pushed as static files."
+    ],
+    "related": [
+      {
+        "sourceId": "jekyll-structure",
+        "relation": "complements",
+        "note": "Jekyll's own docs state the same exclusion rule and show an include example."
+      },
+      {
+        "sourceId": "ghdocs-create-site-nojekyll",
+        "relation": "alternative",
+        "note": "Instead of include, Jekyll can be turned off with .nojekyll or replaced by an Actions workflow."
+      }
+    ],
+    "terms": [
+      "jekyll",
+      "underscore-paths"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-ghdocs-create-site-nojekyll",
+    "sourceId": "ghdocs-create-site-nojekyll",
+    "problem": "A site built with a non-Jekyll generator and published from a branch gets processed by Jekyll on GitHub Pages.",
+    "aliases": [
+      "how to disable Jekyll on GitHub Pages",
+      "what is the .nojekyll file",
+      "publish prebuilt static files from gh-pages without Jekyll",
+      "use a different static site generator with GitHub Pages",
+      "GitHub Pages entry file index.html location"
+    ],
+    "symptoms": [
+      "Branch-published site output is altered by the default Jekyll build",
+      "Site does not load because the entry file is not at the top of the publishing source"
+    ],
+    "context": [
+      "Publishing from a source branch and folder (Jekyll runs by default)",
+      "Or publishing via a GitHub Actions workflow artifact",
+      "Static files only; no server-side languages"
+    ],
+    "solution": "Either write a GitHub Actions workflow to build and publish the site, which GitHub recommends for non-Jekyll generators, or add an empty .nojekyll file at the root of the publishing source and push locally built files. Make sure index.html, index.md or README.md sits at the top level of the source folder or artifact.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "GitHub Docs 'Creating a GitHub Pages site', Static site generators section, describes .nojekyll and the Actions alternative."
+      }
+    ],
+    "limitations": [
+      "The .nojekyll file applies to branch publishing; Actions publishing is the recommended route.",
+      "Custom MIME types cannot be set per file or per repository."
+    ],
+    "related": [
+      {
+        "sourceId": "ghdocs-custom-workflows",
+        "relation": "alternative",
+        "note": "Publishing with a custom Actions workflow avoids the branch Jekyll build."
+      },
+      {
+        "sourceId": "upload-pages-artifact-issue-129-hidden-files",
+        "relation": "complements",
+        "note": "Commenters there conclude .nojekyll is only needed for branch-based publishing, not artifact deploys."
+      }
+    ],
+    "terms": [
+      "jekyll",
+      "actions-deploy",
+      "underscore-paths"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-ghdocs-custom-404",
+    "sourceId": "ghdocs-custom-404",
+    "problem": "A GitHub Pages site shows the default not-found page and the owner wants a custom 404 page instead.",
+    "aliases": [
+      "custom 404 page on GitHub Pages",
+      "add 404.html to GitHub Pages",
+      "404.md permalink front matter",
+      "replace GitHub's default page not found"
+    ],
+    "symptoms": [
+      "Visitors to nonexistent pages see GitHub's generic 404"
+    ],
+    "context": [
+      "File placed in the site's publishing source",
+      "404.md needs front matter (Jekyll processing)"
+    ],
+    "solution": "Add a 404.html or 404.md file to the publishing source; if it is Markdown, give it front matter with permalink: /404.html, then add the content to show.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "GitHub Docs 'Creating a custom 404 page for your GitHub Pages site' gives the file names and the permalink front matter."
+      }
+    ],
+    "limitations": [
+      "Covers a static not-found page only; it says nothing about using 404.html as an SPA fallback."
+    ],
+    "related": [
+      {
+        "sourceId": "spa-github-pages-readme",
+        "relation": "complements",
+        "note": "The spa-github-pages workaround relies on Pages serving a custom 404.html for unknown paths."
+      }
+    ],
+    "terms": [
+      "custom-404"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-ghdocs-custom-workflows",
+    "sourceId": "ghdocs-custom-workflows",
+    "problem": "A developer wants to build and deploy a GitHub Pages site from a custom GitHub Actions workflow instead of branch publishing.",
+    "aliases": [
+      "GitHub Actions workflow for GitHub Pages",
+      "configure-pages upload-pages-artifact deploy-pages example",
+      "deploy-pages keeps waiting for an artifact",
+      "required permissions pages write id-token write",
+      "separate build and deploy jobs for Pages"
+    ],
+    "symptoms": [
+      "Deploy job without needs runs independently and keeps searching for an artifact that does not exist yet",
+      "Deployment fails without pages: write and id-token: write permissions"
+    ],
+    "context": [
+      "Pages source set to GitHub Actions (custom workflows enabled)",
+      "Artifact is a gzip archive with one tar file under 10GB, no symlinks or hard links",
+      "GHES uses older action versions (upload v2, deploy v3)"
+    ],
+    "solution": "Use actions/configure-pages, upload the built site with actions/upload-pages-artifact, and deploy it with actions/deploy-pages in a job that has pages: write and id-token: write, a needs reference to the build job, and the github-pages environment. Build and deploy can be separate jobs in one file or a single job when no build is needed.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "GitHub Docs 'Using custom workflows with GitHub Pages' lists the deploy requirements and example jobs."
+      }
+    ],
+    "limitations": [
+      "Custom workflows must first be enabled as the publishing source."
+    ],
+    "related": [
+      {
+        "sourceId": "deploy-pages-readme",
+        "relation": "complements",
+        "note": "The deploy-pages README details inputs, outputs and why both permissions are needed."
+      },
+      {
+        "sourceId": "upload-pages-artifact-readme",
+        "relation": "complements",
+        "note": "The upload action README details the artifact format and the include-hidden-files input."
+      },
+      {
+        "sourceId": "ghdocs-create-site-nojekyll",
+        "relation": "alternative",
+        "note": "Branch publishing with .nojekyll is the non-Actions route."
+      }
+    ],
+    "terms": [
+      "actions-deploy",
+      "pages-artifact"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-ghdocs-troubleshoot-404",
+    "sourceId": "ghdocs-troubleshoot-404",
+    "problem": "A GitHub Pages site returns 404 because of a missing or misplaced entry file, repository settings, or a custom domain change.",
+    "aliases": [
+      "GitHub Pages site shows 404 after publishing",
+      "index.html not found on GitHub Pages",
+      "Index.html capitalised causes 404",
+      "broken links after adding or removing a custom domain",
+      "Pages 404 after changing repository visibility"
+    ],
+    "symptoms": [
+      "404 error on the site's root",
+      "Landing page loads but links throughout the site are broken",
+      "Broken links after switching repository between public and private"
+    ],
+    "context": [
+      "Branch-and-folder publishing: entry file at top of source folder",
+      "Actions publishing: entry file at top level of the artifact",
+      "Custom domain: CNAME points to <USER>.github.io without the repository name"
+    ],
+    "solution": "Make sure an index.html named exactly in lowercase sits at the top level of the publishing source or artifact, check that the custom domain and DNS are set correctly, and trigger a rebuild after adding or removing a custom domain or changing visibility. Also confirm the publishing branch and an admin-pushed commit, and check the status page and private-site browser cache.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "GitHub Docs 'Troubleshooting 404 errors for GitHub Pages sites' lists each cause and check."
+      }
+    ],
+    "limitations": [
+      "Does not address 404s from client-side routes or from Jekyll-excluded files.",
+      "Custom domain and DNS checks apply only to github.com and GHEC."
+    ],
+    "related": [
+      {
+        "sourceId": "ghdocs-create-site-nojekyll",
+        "relation": "complements",
+        "note": "The site creation page gives the same entry-file placement rules."
+      }
+    ],
+    "terms": [
+      "custom-domain",
+      "asset-404"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-deploy-pages-readme",
+    "sourceId": "deploy-pages-readme",
+    "problem": "A workflow must deploy an uploaded Pages artifact with actions/deploy-pages, which needs specific token permissions and an environment.",
+    "aliases": [
+      "deploy-pages action permissions",
+      "why id-token write is needed for GitHub Pages deploy",
+      "actions/deploy-pages github-pages environment",
+      "get the deployed page_url output",
+      "deploy-pages not compatible with GHES"
+    ],
+    "symptoms": [
+      "Deployment is rejected without pages: write and id-token: write",
+      "No artifact to deploy because it was not uploaded in an earlier step"
+    ],
+    "context": [
+      "GitHub Actions deployment to GitHub Pages",
+      "Artifact uploaded first, e.g. with actions/upload-pages-artifact",
+      "Target the github-pages environment",
+      "v4 is not compatible with GHES"
+    ],
+    "solution": "Run deploy-pages in a dedicated job that needs the build job, grant GITHUB_TOKEN pages: write and id-token: write (the latter for the OIDC token), and target the github-pages environment, using the page_url output as the environment URL.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "deploy-pages README Usage, Security Considerations and OIDC sections."
+      }
+    ],
+    "limitations": [
+      "With a source-branch Pages site, deployments must come from that branch unless environment protection rules apply.",
+      "The preview input is alpha and not public."
+    ],
+    "related": [
+      {
+        "sourceId": "upload-pages-artifact-readme",
+        "relation": "complements",
+        "note": "That action produces the artifact this one deploys."
+      },
+      {
+        "sourceId": "ghdocs-custom-workflows",
+        "relation": "complements",
+        "note": "GitHub Docs show deploy-pages in full build/deploy workflows."
+      }
+    ],
+    "terms": [
+      "actions-deploy",
+      "pages-artifact"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-upload-pages-artifact-readme",
+    "sourceId": "upload-pages-artifact-readme",
+    "problem": "A site's build output has to be packaged as a valid Pages artifact, including dot-prefixed files when they are needed.",
+    "aliases": [
+      "upload-pages-artifact path input",
+      "dotfiles missing from GitHub Pages artifact",
+      "include-hidden-files for .well-known",
+      "Pages artifact size limit",
+      "artifact contains symlinks and fails to deploy"
+    ],
+    "symptoms": [
+      "Hidden files and directories are left out of the artifact by default",
+      "Large artifacts may fail to deploy within the 10-minute timeout"
+    ],
+    "context": [
+      "GitHub Actions build job feeding actions/deploy-pages",
+      "Artifact named github-pages, a gzip with a single tar",
+      "Tar under 10GB (1GB officially supported), only files and directories, no symbolic or hard links"
+    ],
+    "solution": "Point the path input at the build output directory and set include-hidden-files: true if dot-prefixed files must be published (.git and .github are still excluded). If you build the artifact yourself, meet the naming, archive and size rules.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "upload-pages-artifact README Inputs table and Artifact validation section."
+      }
+    ],
+    "limitations": [
+      "include-hidden-files never includes .git or .github.",
+      "Deployments over 1GB are not guaranteed; over 10GB are not attempted."
+    ],
+    "related": [
+      {
+        "sourceId": "upload-pages-artifact-issue-129-hidden-files",
+        "relation": "explains",
+        "note": "The issue records why hidden files were dropped in v4 and the request that led to an opt-in."
+      },
+      {
+        "sourceId": "deploy-pages-readme",
+        "relation": "complements",
+        "note": "deploy-pages consumes the artifact this action uploads."
+      }
+    ],
+    "terms": [
+      "pages-artifact",
+      "actions-deploy"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-spa-github-pages-readme",
+    "sourceId": "spa-github-pages-readme",
+    "problem": "A single-page app using browser-history routing returns 404 on GitHub Pages when a frontend route is loaded directly or refreshed.",
+    "aliases": [
+      "React Router BrowserRouter 404 on refresh on GitHub Pages",
+      "deep link to SPA route gives 404 on github.io",
+      "GitHub Pages does not support single page apps",
+      "404.html redirect trick for SPA",
+      "pathSegmentsToKeep for project pages"
+    ],
+    "symptoms": [
+      "Fresh load of example.tld/foo returns 404 because the server knows nothing of /foo",
+      "Navigation inside the loaded app works but reloading a route fails"
+    ],
+    "context": [
+      "Any SPA with history routing hosted on GitHub Pages",
+      "Project site without custom domain: set pathSegmentsToKeep to 1 and router basename to /repo-name",
+      "Redirect script must come before the app script in index.html"
+    ],
+    "solution": "Add the provided 404.html, which converts the requested path into a query string and redirects, and add the companion script to index.html, which restores the real URL with history.replaceState before the app boots. For a project site keep the repo segment with pathSegmentsToKeep = 1 and set the router basename to the repository name.",
+    "evidence": [
+      {
+        "kind": "community-report",
+        "note": "Third-party README with a demo app; explains the 404.html redirect and index.html restore mechanism."
+      }
+    ],
+    "limitations": [
+      "Google no longer follows the 404.html redirect, so pages need a sitemap of redirect links and inbound links do not help ranking.",
+      "Redirect only happens on fresh page loads."
+    ],
+    "related": [
+      {
+        "sourceId": "cra-deployment",
+        "relation": "complements",
+        "note": "CRA's docs point to this technique as a fix for pushState routing on GitHub Pages."
+      },
+      {
+        "sourceId": "tanstack-router-deploy",
+        "relation": "alternative",
+        "note": "TanStack's guide instead copies index.html to 404.html so the app itself handles unknown paths."
+      },
+      {
+        "sourceId": "vue-router-history-mode",
+        "relation": "alternative",
+        "note": "Hash history avoids the server request for the route altogether."
+      }
+    ],
+    "terms": [
+      "spa-fallback",
+      "client-routing",
+      "custom-404",
+      "router-basename"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-tanstack-router-deploy",
+    "sourceId": "tanstack-router-deploy",
+    "problem": "A TanStack Router SPA on GitHub Pages 404s on refresh and fails to load assets from the repository subpath.",
+    "aliases": [
+      "TanStack Router GitHub Pages refresh 404",
+      "copy index.html to 404.html for GitHub Pages",
+      "TanStack Router app works locally but breaks when deployed",
+      "CSS and JS 404 after deploying TanStack Router",
+      "Vite base for TanStack Router on github.io"
+    ],
+    "symptoms": [
+      "Routes work when navigating in the app but refreshing shows 404",
+      "App loads but styling is broken or JavaScript fails to load"
+    ],
+    "context": [
+      "TanStack Router SPA built with Vite",
+      "GitHub Pages project site; workflow pushes dist with peaceiris/actions-gh-pages"
+    ],
+    "solution": "After building, copy dist/index.html to dist/404.html so GitHub Pages serves the app for unknown paths, and set base in vite.config.js to '/your-repo-name/'. The guide automates both in an Actions workflow that publishes the dist folder.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "TanStack Router 'How to Deploy to Production', GitHub Pages and Common Problems sections."
+      }
+    ],
+    "limitations": [
+      "The GitHub Pages section does not mention setting the router basepath.",
+      "Unknown paths are served with a 404 status even though the app renders."
+    ],
+    "related": [
+      {
+        "sourceId": "tanstack-router-options",
+        "relation": "complements",
+        "note": "The basepath router option mounts the router under the repository subpath."
+      },
+      {
+        "sourceId": "spa-github-pages-readme",
+        "relation": "alternative",
+        "note": "The spa-github-pages redirect script is another way to handle deep links on Pages."
+      },
+      {
+        "sourceId": "vite-static-deploy",
+        "relation": "complements",
+        "note": "Vite's guide gives the same base rule and an official Pages Actions setup."
+      }
+    ],
+    "terms": [
+      "spa-fallback",
+      "custom-404",
+      "base-path",
+      "client-routing"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-tanstack-router-options",
+    "sourceId": "tanstack-router-options",
+    "problem": "A TanStack Router instance must be mounted at a subpath so its routes match URLs under that prefix.",
+    "aliases": [
+      "TanStack Router basepath option",
+      "mount TanStack Router at a subpath",
+      "TanStack Router routes not matching under /repo/",
+      "basepath combined with URL rewrite"
+    ],
+    "symptoms": [
+      "Router expects routes at / when the app is served from a subpath"
+    ],
+    "context": [
+      "TanStack Router RouterOptions",
+      "basepath defaults to '/'",
+      "Composes with the rewrite option"
+    ],
+    "solution": "Pass basepath set to the subpath when creating the router. If a rewrite is also configured, the basepath is stripped first on input and added back last on output.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "TanStack Router RouterOptions reference, basepath and rewrite properties."
+      }
+    ],
+    "limitations": [
+      "Reference entry only; does not cover hosting fallbacks or asset base paths."
+    ],
+    "related": [
+      {
+        "sourceId": "tanstack-router-deploy",
+        "relation": "complements",
+        "note": "The deploy guide covers the 404.html fallback and Vite base for GitHub Pages."
+      },
+      {
+        "sourceId": "react-router-create-browser-router",
+        "relation": "alternative",
+        "note": "React Router's equivalent setting is basename."
+      }
+    ],
+    "terms": [
+      "router-basename",
+      "client-routing"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-react-router-create-browser-router",
+    "sourceId": "react-router-create-browser-router",
+    "problem": "A React Router data router needs a base path so its routes resolve when the app is served under a prefix.",
+    "aliases": [
+      "createBrowserRouter basename",
+      "React Router app under a subpath",
+      "React Router routes do not match on github.io/repo",
+      "set base path for React Router data router"
+    ],
+    "symptoms": [
+      "Routes do not match because the URL includes a prefix the router does not know"
+    ],
+    "context": [
+      "React Router data mode with createBrowserRouter",
+      "History managed via pushState/replaceState"
+    ],
+    "solution": "Pass basename in the options object to createBrowserRouter so the application's routes are resolved under that path.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "createBrowserRouter API reference lists opts.basename as the application's basename path."
+      }
+    ],
+    "limitations": [
+      "The document gives only a one-line description of basename and nothing about static-host fallbacks."
+    ],
+    "related": [
+      {
+        "sourceId": "spa-github-pages-readme",
+        "relation": "complements",
+        "note": "That README pairs a basename with a 404.html redirect for project Pages sites."
+      },
+      {
+        "sourceId": "tanstack-router-options",
+        "relation": "alternative",
+        "note": "TanStack Router's equivalent setting is basepath."
+      }
+    ],
+    "terms": [
+      "router-basename",
+      "client-routing"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-astro-deploy-github",
+    "sourceId": "astro-deploy-github",
+    "problem": "An Astro site deployed to a GitHub Pages project site needs site and base configured and a workflow to publish it.",
+    "aliases": [
+      "deploy Astro to GitHub Pages",
+      "Astro base for github.io repo name",
+      "Astro internal links broken under /my-repo",
+      "withastro/action workflow",
+      "Astro GitHub Pages custom domain remove base"
+    ],
+    "symptoms": [
+      "Astro treats / as the site root while Pages serves it from /my-repo",
+      "Internal links without the base prefix break"
+    ],
+    "context": [
+      "Static, prerendered Astro site",
+      "Project site at https://<username>.github.io/<my-repo>/; not needed for <username>.github.io repos",
+      "Pages source set to GitHub Actions",
+      "Custom domain via public/CNAME, with base removed"
+    ],
+    "solution": "Add the workflow using withastro/action and actions/deploy-pages, set site to the github.io URL and base to '/my-repo', prefix internal links with the base, and choose GitHub Actions as the Pages source. For a custom domain add public/CNAME, set site to the domain and remove base and the link prefixes.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Astro docs 'Deploy your Astro Site to GitHub Pages', steps and custom domain section."
+      }
+    ],
+    "limitations": [
+      "The Astro action detects the package manager from a committed lockfile.",
+      "Internal links must be prefixed by hand when base is set."
+    ],
+    "related": [
+      {
+        "sourceId": "deploy-pages-readme",
+        "relation": "complements",
+        "note": "The workflow's deploy step uses actions/deploy-pages."
+      },
+      {
+        "sourceId": "jekyll-github-pages",
+        "relation": "alternative",
+        "note": "Jekyll handles the same subpath problem with the relative_url filter."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "actions-deploy",
+      "custom-domain"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-next-basepath",
+    "sourceId": "next-basepath",
+    "problem": "A Next.js app served under a sub-path of a domain needs its links and image paths prefixed with that path.",
+    "aliases": [
+      "Next.js basePath for subdirectory deployment",
+      "next/image src missing base path",
+      "Next.js links under /docs prefix",
+      "change basePath without rebuilding"
+    ],
+    "symptoms": [
+      "next/image sources without the prefix do not load under the sub-path"
+    ],
+    "context": [
+      "next.config.js basePath (default empty string)",
+      "App Router and Pages Router",
+      "Value set at build time and inlined into client bundles"
+    ],
+    "solution": "Set basePath in next.config.js; next/link and next/router apply it automatically, but next/image src values must include the prefix manually.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Next.js basePath config reference, Links and Images sections."
+      }
+    ],
+    "limitations": [
+      "Changing basePath requires a rebuild.",
+      "Image src paths are not prefixed automatically."
+    ],
+    "related": [
+      {
+        "sourceId": "next-static-exports",
+        "relation": "complements",
+        "note": "A static export is needed to host Next.js on GitHub Pages."
+      },
+      {
+        "sourceId": "next-issue-15588-nojekyll",
+        "relation": "complements",
+        "note": "In that issue the prefix was set but assets still 404ed until Jekyll was disabled."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "asset-404"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-next-static-exports",
+    "sourceId": "next-static-exports",
+    "problem": "A Next.js app must be exported as plain static files so it can be hosted on a static host such as GitHub Pages.",
+    "aliases": [
+      "Next.js output export for static hosting",
+      "next export removed use output export",
+      "Next.js /about returns 404 on static host trailingSlash",
+      "features not supported in Next.js static export",
+      "deploy Next.js to GitHub Pages"
+    ],
+    "symptoms": [
+      "Host does not serve /me.html for a request to /me",
+      "Server features like rewrites, redirects, headers or default image optimization error in static export"
+    ],
+    "context": [
+      "Next.js with output: 'export' (next export removed in v14)",
+      "Output in the out folder",
+      "Static host with no Node.js server"
+    ],
+    "solution": "Set output: 'export' in next.config.js and build to get an out folder with an HTML file per route; enable trailingSlash: true to emit /path/index.html when the host does not resolve extensionless paths. Use a custom image loader instead of default optimization, and use Next's GitHub Pages template as a reference.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Next.js static exports guide: Configuration, Unsupported Features and Deploying sections."
+      }
+    ],
+    "limitations": [
+      "Features needing a server (cookies, rewrites, redirects, headers, ISR, server actions, dynamic routes without generateStaticParams) are unsupported.",
+      "The GitHub Pages specifics live in an external template, not in this page."
+    ],
+    "related": [
+      {
+        "sourceId": "next-basepath",
+        "relation": "complements",
+        "note": "basePath is needed when the export is served from a repository subpath."
+      },
+      {
+        "sourceId": "next-issue-15588-nojekyll",
+        "relation": "complements",
+        "note": "Branch-published exports need .nojekyll so the _next folder is served."
+      }
+    ],
+    "terms": [
+      "static-export",
+      "trailing-slash",
+      "prerender"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-sveltekit-adapter-static",
+    "sourceId": "sveltekit-adapter-static",
+    "problem": "A SvelteKit site built with adapter-static for a GitHub Pages project site needs paths.base set and a 404.html fallback.",
+    "aliases": [
+      "SvelteKit GitHub Pages paths.base",
+      "deploy SvelteKit adapter-static to GitHub Pages",
+      "SvelteKit 404.html fallback on GitHub Pages",
+      "SvelteKit trailingSlash always for static host",
+      "SvelteKit .well-known missing from Pages artifact"
+    ],
+    "symptoms": [
+      "Site served from /your-repo-name instead of the root",
+      "Request for /a not rendered because host does not serve /a.html",
+      "Prerendered pages are empty shells when ssr is false"
+    ],
+    "context": [
+      "SvelteKit with @sveltejs/adapter-static",
+      "Repo name not equal to your-username.github.io",
+      "Actions workflow using configure-pages base_path output; .nojekyll in static/ if not using Actions"
+    ],
+    "solution": "Set paths.base from BASE_PATH (fed by configure-pages' base_path output) and set the adapter's fallback to '404.html', then build and deploy with upload-pages-artifact (include-hidden-files: true to keep dotfiles) and deploy-pages. If pushing the built site without Actions, add an empty .nojekyll to static/.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "SvelteKit 'Static site generation' docs, GitHub Pages section with config and workflow."
+      }
+    ],
+    "limitations": [
+      "SPA fallback has large negative performance and SEO impacts.",
+      "trailingSlash and ssr options must suit the host or output is wrong."
+    ],
+    "related": [
+      {
+        "sourceId": "upload-pages-artifact-readme",
+        "relation": "complements",
+        "note": "Explains the include-hidden-files input used in the workflow."
+      },
+      {
+        "sourceId": "ghdocs-create-site-nojekyll",
+        "relation": "complements",
+        "note": "GitHub's docs explain the .nojekyll file recommended for non-Actions deploys."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "spa-fallback",
+      "prerender",
+      "trailing-slash"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-cra-deployment",
+    "sourceId": "cra-deployment",
+    "problem": "A Create React App build deployed to GitHub Pages needs the homepage field set and breaks on direct loads of pushState routes.",
+    "aliases": [
+      "Create React App GitHub Pages homepage package.json",
+      "CRA app blank on github.io/my-app",
+      "gh-pages npm run deploy",
+      "React Router browserHistory 404 on GitHub Pages",
+      "homepage '.' for relative asset paths"
+    ],
+    "symptoms": [
+      "App does not deploy correctly if homepage is skipped",
+      "Fresh load of a frontend route like /todos/42 returns 404"
+    ],
+    "context": [
+      "Create React App (react-scripts)",
+      "Project page on gh-pages branch via the gh-pages package; user page pushes to main",
+      "Custom domain via public/CNAME"
+    ],
+    "solution": "Add homepage (for example https://myusername.github.io/my-app) to package.json, install gh-pages, add predeploy/deploy scripts and set Pages to the gh-pages branch. For client routing on Pages, switch to hash history or use the 404.html redirect technique.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "CRA Deployment docs, GitHub Pages steps and 'Notes on client-side routing'."
+      }
+    ],
+    "limitations": [
+      "homepage '.' only works when not using pushState routing.",
+      "Hash routing makes URLs longer."
+    ],
+    "related": [
+      {
+        "sourceId": "spa-github-pages-readme",
+        "relation": "complements",
+        "note": "The redirect technique CRA links to for pushState routing."
+      },
+      {
+        "sourceId": "react-router-create-browser-router",
+        "relation": "complements",
+        "note": "Router basename keeps links rooted under the subpath."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "client-routing",
+      "hash-routing",
+      "relative-urls"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-vue-router-history-mode",
+    "sourceId": "vue-router-history-mode",
+    "problem": "A Vue Router app in HTML5 history mode gives 404 when a route URL is opened directly without a server fallback.",
+    "aliases": [
+      "Vue Router createWebHistory 404 on direct visit",
+      "Vue router hash mode vs history mode",
+      "catch-all fallback to index.html for Vue SPA",
+      "Vue Router base for subfolder deployment",
+      "Vue SPA refresh gives 404"
+    ],
+    "symptoms": [
+      "Visiting https://example.com/user/id directly gives 404",
+      "With a catch-all fallback, the server no longer reports real 404s"
+    ],
+    "context": [
+      "Vue Router createWebHistory or createWebHashHistory",
+      "Server you can configure (Apache, nginx, Node, IIS, Caddy, Firebase, Netlify, Vercel, Azure)",
+      "Subfolder deploys need the router base and adjusted rewrite rules"
+    ],
+    "solution": "Configure the server to serve index.html for any URL that does not match a static asset, and add a catch-all route in the app for a not-found page; alternatively use hash history, which needs no server support but is worse for SEO.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Vue Router 'Different History modes' guide with example server configs and caveat section."
+      }
+    ],
+    "limitations": [
+      "Server examples assume serving from the root.",
+      "No GitHub Pages-specific configuration is given.",
+      "Hash mode hurts SEO."
+    ],
+    "related": [
+      {
+        "sourceId": "spa-github-pages-readme",
+        "relation": "alternative",
+        "note": "On GitHub Pages, where rewrites are not configurable, a 404.html redirect stands in for the fallback."
+      },
+      {
+        "sourceId": "angular-deployment",
+        "relation": "complements",
+        "note": "Angular's docs describe the same deep-link fallback requirement."
+      }
+    ],
+    "terms": [
+      "spa-fallback",
+      "client-routing",
+      "hash-routing"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-angular-deployment",
+    "sourceId": "angular-deployment",
+    "problem": "Deep links into a routed Angular app return 404 from a static server that does not fall back to index.html.",
+    "aliases": [
+      "Angular deep link 404 on refresh",
+      "Angular router fallback to index.html",
+      "deploy Angular to GitHub Pages angular-cli-ghpages",
+      "Angular --deploy-url vs base href",
+      "which Angular dist folder to deploy"
+    ],
+    "symptoms": [
+      "Refreshing or entering /users/42 returns 404 - Not Found",
+      "In-app navigation works because it is client-side"
+    ],
+    "context": [
+      "Angular CLI with the Angular router",
+      "Static hosting: deploy dist/my-app/browser/",
+      "GitHub Pages via ng add angular-cli-ghpages"
+    ],
+    "solution": "Configure the server's fallback route or 404 page to return index.html so the Angular router can handle deep links. For GitHub Pages, ng add angular-cli-ghpages provides an ng deploy builder; prefer base href over the build-time --deploy-url.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Angular Deployment guide, 'Routed apps must fall back to index.html' and --deploy-url sections."
+      }
+    ],
+    "limitations": [
+      "Does not explain how to set the fallback on GitHub Pages specifically.",
+      "--deploy-url is hard-coded at build time."
+    ],
+    "related": [
+      {
+        "sourceId": "angular-router-reference",
+        "relation": "complements",
+        "note": "Explains the base href that resolves relative asset URLs for pushState routing."
+      },
+      {
+        "sourceId": "spa-github-pages-readme",
+        "relation": "complements",
+        "note": "A 404.html-based fallback technique for GitHub Pages."
+      }
+    ],
+    "terms": [
+      "spa-fallback",
+      "client-routing",
+      "custom-404"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-angular-router-reference",
+    "sourceId": "angular-router-reference",
+    "problem": "An Angular app using pushState routing cannot load its CSS, scripts and images on deep links without a correct base href.",
+    "aliases": [
+      "Angular base href required",
+      "APP_BASE_HREF when index.html cannot be edited",
+      "Angular resources fail to load on deep link",
+      "Angular HashLocationStrategy useHash",
+      "base href must end with slash"
+    ],
+    "symptoms": [
+      "Browser cannot load images, CSS or scripts when deep linking"
+    ],
+    "context": [
+      "Angular router with default HTML5 (pushState) location strategy",
+      "<base href> placed just after <head> in index.html"
+    ],
+    "solution": "Add a <base href> element right after <head> in index.html; the path should end with '/'. If you cannot edit index.html, provide APP_BASE_HREF and use root URLs for resources, or switch to HashLocationStrategy with withHashLocation() or useHash: true.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Angular Router reference, '<base href>' and HashLocationStrategy sections."
+      }
+    ],
+    "limitations": [
+      "Example uses href='/' and does not show a GitHub Pages subpath value.",
+      "A base href query is only used with HashLocationStrategy; fragments are never kept."
+    ],
+    "related": [
+      {
+        "sourceId": "mdn-base-element",
+        "relation": "explains",
+        "note": "MDN describes how the base element resolves relative URLs."
+      },
+      {
+        "sourceId": "angular-deployment",
+        "relation": "complements",
+        "note": "Deployment guide covers the server fallback and --deploy-url."
+      }
+    ],
+    "terms": [
+      "relative-urls",
+      "client-routing",
+      "hash-routing",
+      "base-path"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-jekyll-github-pages",
+    "sourceId": "jekyll-github-pages",
+    "problem": "Links and stylesheet URLs in a Jekyll project page break because the site is served from a repository subpath.",
+    "aliases": [
+      "Jekyll project page CSS not loading on github.io/project",
+      "Jekyll relative_url filter",
+      "Jekyll baseurl for GitHub Pages",
+      "preview Jekyll locally with empty baseurl",
+      "absolute links broken on Jekyll project site"
+    ],
+    "symptoms": [
+      "URLs that work locally from the site root do not resolve under username.github.io/project"
+    ],
+    "context": [
+      "Jekyll site built by GitHub Pages",
+      "Project Pages from gh-pages branch or docs folder",
+      "Source files must be in the root directory"
+    ],
+    "solution": "Generate asset and page URLs with the relative_url Liquid filter so they resolve both locally and under the project subpath, and run jekyll serve with --baseurl=\"\" for local testing.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Jekyll docs 'GitHub Pages', Project Page URL Structure and Running and Testing Locally sections."
+      }
+    ],
+    "limitations": [
+      "Only for Jekyll sites; the doc refers to the master branch naming."
+    ],
+    "related": [
+      {
+        "sourceId": "ghdocs-pages-jekyll",
+        "relation": "complements",
+        "note": "GitHub's Jekyll page covers build settings and default exclusions."
+      },
+      {
+        "sourceId": "astro-deploy-github",
+        "relation": "alternative",
+        "note": "Non-Jekyll generators solve the same subpath problem with a base setting."
+      }
+    ],
+    "terms": [
+      "jekyll",
+      "base-path",
+      "relative-urls"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-jekyll-structure",
+    "sourceId": "jekyll-structure",
+    "problem": "Jekyll leaves files and folders starting with a dot, underscore, hash or tilde out of the generated site.",
+    "aliases": [
+      "Jekyll does not copy .htaccess",
+      "Jekyll _pages folder missing from _site",
+      "Jekyll include directive for dotfiles",
+      "underscore folder not in Jekyll output"
+    ],
+    "symptoms": [
+      "Paths beginning with ., _, # or ~ are absent from the destination folder"
+    ],
+    "context": [
+      "Any Jekyll build, including GitHub Pages",
+      "Configured in _config.yml"
+    ],
+    "solution": "List the needed paths explicitly under include in the config file so Jekyll copies them to the output.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Jekyll 'Directory Structure' docs state the rule and give an include example with _pages and .htaccess."
+      }
+    ],
+    "limitations": [
+      "Applies only when Jekyll builds the site."
+    ],
+    "related": [
+      {
+        "sourceId": "ghdocs-pages-jekyll",
+        "relation": "complements",
+        "note": "GitHub's docs give the same rule for Pages."
+      },
+      {
+        "sourceId": "vite-issue-9119-underscore-chunk",
+        "relation": "explains",
+        "note": "This rule is why an underscore-prefixed Vite chunk 404ed on Pages."
+      }
+    ],
+    "terms": [
+      "jekyll",
+      "underscore-paths"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-gatsby-path-prefix",
+    "sourceId": "gatsby-path-prefix",
+    "problem": "A Gatsby site hosted under a subpath such as example.github.io/my-gatsby-site/ needs every page link and asset URL prefixed.",
+    "aliases": [
+      "Gatsby pathPrefix GitHub Pages",
+      "gatsby build --prefix-paths",
+      "Gatsby ignores pathPrefix",
+      "Gatsby withPrefix for manual paths",
+      "PREFIX_PATHS environment variable"
+    ],
+    "symptoms": [
+      "Site builds as if hosted at the domain root",
+      "Links and JS/CSS/images miss the subpath"
+    ],
+    "context": [
+      "Gatsby with pathPrefix in gatsby-config",
+      "Build and serve must use --prefix-paths or PREFIX_PATHS"
+    ],
+    "solution": "Add pathPrefix to gatsby-config and build with --prefix-paths (or PREFIX_PATHS=true); Gatsby's Link and navigate then prefix paths automatically, and withPrefix handles manually built paths.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "Gatsby 'Adding a Path Prefix' how-to."
+      }
+    ],
+    "limitations": [
+      "Without the flag, pathPrefix is ignored.",
+      "With assetPrefix set, the prefix becomes <assetPrefix>/<pathPrefix>."
+    ],
+    "related": [
+      {
+        "sourceId": "next-basepath",
+        "relation": "alternative",
+        "note": "Next.js's equivalent setting is basePath."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "asset-404"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-mdn-base-element",
+    "sourceId": "mdn-base-element",
+    "problem": "A developer needs all relative URLs in a document to resolve against a chosen base URL rather than the page's own location.",
+    "aliases": [
+      "HTML base href element",
+      "base tag must come before link elements",
+      "in-page anchor links go to base URL",
+      "multiple base elements ignored",
+      "relative URLs resolve against wrong path"
+    ],
+    "symptoms": [
+      "Fragment links like #anchor navigate to the base URL",
+      "Base set after URL-bearing elements does not apply to them"
+    ],
+    "context": [
+      "HTML documents; one <base> in <head>",
+      "Must precede elements with URL attributes"
+    ],
+    "solution": "Put a single <base href> in the head before any element with URL attributes; all relative URLs then resolve against it, while Open Graph tags still need absolute URLs.",
+    "evidence": [
+      {
+        "kind": "official-docs",
+        "note": "MDN <base> element reference, attributes and usage notes."
+      }
+    ],
+    "limitations": [
+      "Only the first href and target are used.",
+      "Open Graph tags ignore <base>.",
+      "Not GitHub Pages-specific."
+    ],
+    "related": [
+      {
+        "sourceId": "angular-router-reference",
+        "relation": "complements",
+        "note": "Angular requires base href for pushState routing and asset resolution."
+      }
+    ],
+    "terms": [
+      "relative-urls",
+      "base-path"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-vite-issue-8073-base-mime",
+    "sourceId": "vite-issue-8073-base-mime",
+    "problem": "A Vite build on a GitHub Pages project site requests its JS bundle from the domain root, so the module is blocked as text/html.",
+    "aliases": [
+      "Vite GitHub Pages disallowed MIME type text/html",
+      "Loading module was blocked because of a disallowed MIME type",
+      "Vite assets requested from github.io/assets instead of repo path",
+      "Vite blank page on GitHub Pages works locally",
+      "base without trailing slash still broken"
+    ],
+    "symptoms": [
+      "Loading module ... was blocked because of a disallowed MIME type (\"text/html\")",
+      "Bundle URL is https://user.github.io/assets/... without the repo name",
+      "Works fine locally"
+    ],
+    "context": [
+      "Vite 2.9 project deployed to a GitHub Pages project site",
+      "base set in vite.config.js"
+    ],
+    "solution": "Set base in vite.config.js to the repository name with both a leading and trailing slash ('/solardeploy/' in this case), as the Vite GitHub Pages guide describes, and rebuild.",
+    "evidence": [
+      {
+        "kind": "reporter-confirmed",
+        "note": "A responder linked the GitHub Pages guide and said to set base to '/solardeploy/'; the reporter's '/solardeploy' attempt still failed, and they later confirmed '/solardeploy/' fixed it."
+      }
+    ],
+    "limitations": [
+      "Commenter roles are not shown in the snapshot, so it is unclear whether the responder was a maintainer."
+    ],
+    "related": [
+      {
+        "sourceId": "vite-static-deploy",
+        "relation": "explains",
+        "note": "The guide gives the base '/<REPO>/' rule that resolved the issue."
+      },
+      {
+        "sourceId": "vite-config-base",
+        "relation": "complements",
+        "note": "The reference shows the expected '/foo/' format the reporter found unclear."
+      }
+    ],
+    "terms": [
+      "base-path",
+      "asset-404"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-vite-issue-9119-underscore-chunk",
+    "sourceId": "vite-issue-9119-underscore-chunk",
+    "problem": "A Vite/Vue build emits a chunk named _plugin-vue_export-helper that returns 404 on GitHub Pages because Jekyll drops underscore-prefixed files.",
+    "aliases": [
+      "_plugin-vue_export-helper 404 GitHub Pages",
+      "Vite chunk starting with underscore not found",
+      "GitHub Pages blocks files beginning with underscore",
+      "rollup sanitizeFileName underscore prefix",
+      "Vite build JS file 404 only on GitHub Pages"
+    ],
+    "symptoms": [
+      "_plugin-vue_export-helper js file 404 on GitHub Pages",
+      "Error disappears after adding .nojekyll"
+    ],
+    "context": [
+      "@vitejs/plugin-vue 3.0 with Vite, branch-published GitHub Pages site processed by Jekyll",
+      "Helper extracted as a shared chunk; Rollup sanitizeFileName replaces \\0 with _"
+    ],
+    "solution": "Either add a .nojekyll file at the site root so Jekyll does not drop underscore files, or override Rollup's output.sanitizeFileName so generated chunk names do not start with an underscore.",
+    "evidence": [
+      {
+        "kind": "reporter-confirmed",
+        "note": "A commenter traced the underscore to Rollup's sanitizeFileName and suggested output.sanitizeFileName; the reporter said rewriting it solved the problem."
+      },
+      {
+        "kind": "community-report",
+        "note": "The reporter notes .nojekyll also resolves the 404 but considers it a workaround."
+      }
+    ],
+    "limitations": [
+      "Commenter roles are not shown in the snapshot.",
+      "A change to Vite's default sanitizeFileName or docs was only proposed in the thread."
+    ],
+    "related": [
+      {
+        "sourceId": "jekyll-structure",
+        "relation": "explains",
+        "note": "Jekyll excludes paths starting with an underscore from output."
+      },
+      {
+        "sourceId": "ghdocs-create-site-nojekyll",
+        "relation": "alternative",
+        "note": "GitHub's docs describe .nojekyll or an Actions workflow to avoid Jekyll."
+      }
+    ],
+    "terms": [
+      "underscore-paths",
+      "jekyll",
+      "asset-404"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-next-issue-15588-nojekyll",
+    "sourceId": "next-issue-15588-nojekyll",
+    "problem": "A Next.js static export pushed to the gh-pages branch loads its HTML but the assets 404, which turns out to be caused by GitHub Pages' default Jekyll processing.",
+    "aliases": [
+      "Next.js GitHub Pages assets 404",
+      "Next.js static export JavaScript not working on github.io",
+      "assetPrefix set but assets still not found",
+      "add .nojekyll to gh-pages branch"
+    ],
+    "symptoms": [
+      "Network tab shows 404 for assets whose paths match the domain",
+      "JavaScript interactions do not work after deploy"
+    ],
+    "context": [
+      "Next.js 9.3.5 static HTML export with assetPrefix '/comets-playground/'",
+      "Published from a gh-pages branch (Jekyll processing)"
+    ],
+    "solution": "Add an empty .nojekyll file to the gh-pages branch so GitHub Pages skips Jekyll processing; in the thread this made the assets load.",
+    "evidence": [
+      {
+        "kind": "reporter-confirmed",
+        "note": "A commenter suggested adding .nojekyll under gh-pages; the reporter replied that it fixed the problem."
+      }
+    ],
+    "limitations": [
+      "Applies to branch-published sites; the thread is from the Next.js 9 era (exportPathMap, assetPrefix).",
+      "The thread does not say which files Jekyll dropped; the underscore-prefixed output folder is the likely reason but is not stated."
+    ],
+    "related": [
+      {
+        "sourceId": "ghdocs-create-site-nojekyll",
+        "relation": "explains",
+        "note": "GitHub's docs explain that branch-published sites run Jekyll unless .nojekyll exists."
+      },
+      {
+        "sourceId": "next-static-exports",
+        "relation": "complements",
+        "note": "Current Next.js uses output: 'export' for static exports."
+      }
+    ],
+    "terms": [
+      "jekyll",
+      "underscore-paths",
+      "asset-404",
+      "static-export"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  },
+  {
+    "id": "rec-upload-pages-artifact-issue-129-hidden-files",
+    "sourceId": "upload-pages-artifact-issue-129-hidden-files",
+    "problem": "After upgrading to upload-pages-artifact v4, dot-prefixed files such as .well-known are silently missing from the published site.",
+    "aliases": [
+      ".well-known directory missing after upload-pages-artifact v4",
+      "hidden files excluded from GitHub Pages artifact",
+      "is .nojekyll needed with actions deploy",
+      "upload-pages-artifact include hidden files",
+      "dotfiles dropped from Pages deployment"
+    ],
+    "symptoms": [
+      "Site lost its .well-known dir after moving to v4.0.0",
+      "No warning when hidden files are omitted"
+    ],
+    "context": [
+      "GitHub Actions publishing with actions/upload-pages-artifact v4",
+      "Not relevant to branch-based publishing"
+    ],
+    "solution": "Commenters say the request was addressed by PR #137, which gives an opt-in for hidden files (the README documents include-hidden-files). Commenters also conclude .nojekyll is unnecessary for artifact-based deploys, since Jekyll only runs for branch publishing.",
+    "evidence": [
+      {
+        "kind": "merged-fix",
+        "note": "Closing comments state the issue was addressed with PR #137; the PR contents are not in the snapshot."
+      },
+      {
+        "kind": "community-report",
+        "note": "Commenters tested and agreed .nojekyll is not needed when publishing with this action."
+      }
+    ],
+    "limitations": [
+      "The thread does not show PR #137's exact option; this relies on the action README.",
+      "The .nojekyll conclusion is from user testing, not documentation."
+    ],
+    "related": [
+      {
+        "sourceId": "upload-pages-artifact-readme",
+        "relation": "complements",
+        "note": "The README at its pinned revision documents include-hidden-files, the current way to publish dotfiles."
+      },
+      {
+        "sourceId": "ghdocs-create-site-nojekyll",
+        "relation": "complements",
+        "note": "GitHub's docs tie Jekyll processing and .nojekyll to branch publishing."
+      }
+    ],
+    "terms": [
+      "pages-artifact",
+      "actions-deploy",
+      "jekyll"
+    ],
+    "extraction": {
+      "by": "AI agent (Claude), without access to the evaluation queries",
+      "at": "2026-10-28",
+      "method": "Read the pinned snapshot in full; fields paraphrased from the source; not yet reviewed by a human."
+    }
+  }
+]
