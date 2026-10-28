@@ -1,3 +1,9 @@
+#!/usr/bin/env node
+// Counts the visible prose on each route of the built site, at 1440 px, so an
+// editorial pass can be compared with the version before it. Prose means
+// paragraphs, list items, headings and captions outside tables, experiments
+// and figures; closed margin notes are hidden and so are not counted.
+// Usage: node scripts/measure-surface.mjs [screenshot dir or ''] <route> ...
 import { chromium } from 'playwright-core'
 import { startPagesServer } from './serve-pages.mjs'
 const out = process.argv[2]; const routes = process.argv.slice(3)
