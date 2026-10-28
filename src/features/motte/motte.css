@@ -1,0 +1,14 @@
+.motte{position:fixed;bottom:12px;right:12px;z-index:30;max-width:min(320px,calc(100vw - 24px));font-family:system-ui,sans-serif;color:#252a30;isolation:isolate}
+.motte__sprite{height:48px;pointer-events:none;display:flex;justify-content:flex-start;transition:transform 2.2s steps(9,end)}
+.motte__controls{display:flex;gap:4px;justify-content:flex-end;background:#f5f3ec;border:1px solid #4a6288;padding:4px}
+.motte button{font:inherit;font-size:12px;line-height:1.2;border:1px solid #4a6288;background:#f5f3ec;color:#252a30;padding:7px 9px;cursor:pointer}
+.motte button:focus-visible,.motte a:focus-visible{outline:3px solid #a36bff;outline-offset:2px}
+.motte__note{margin-top:6px;background:#f5f3ec;border:2px solid #252a30;padding:14px;max-height:min(45vh,340px);overflow:auto;box-shadow:4px 4px 0 #4a6288}
+.motte__eyebrow{font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.06em;color:#4a6288}
+.motte__note h3{font-size:18px;line-height:1.2;margin:8px 0}
+.motte__note p{font-size:13px;line-height:1.5;margin:8px 0}
+.motte__note a{font-size:12px;color:#252a30;text-decoration:underline}
+.motte__counterpoint{border-left:3px solid #ee4f7e;padding-left:8px}
+.motte--stationary .motte__sprite{justify-content:flex-end;transition:none}
+@media(max-width:700px){.motte{bottom:8px;right:8px}.motte__sprite{height:36px}.motte__sprite svg{width:36px;height:36px}}
+@media(prefers-reduced-motion:reduce){.motte__sprite{transition:none!important}}
