@@ -1,6 +1,6 @@
 # Editorial site V1 — implementation plan
 
-**Status:** proposed, no build/deploy authorized by this document. Intended stack: TanStack Start + TypeScript, static/prerendered GitHub Pages artifact via GitHub Actions, subject to current framework compatibility verification.
+**Status:** proposed, no build/deploy authorized by this document. *Update 2026-10-28:* slice 1 (foundation) and the editorial shell of slice 2 are implemented as a draft PR; the framework was verified as recorded in ADR-0002. Slices 3–5 wait for the Lumpesammlig studies (see `docs/ARTIFACT-INTEGRATION.md`); slice 6's public deployment still needs explicit approval. Intended stack: TanStack Start + TypeScript, static/prerendered GitHub Pages artifact via GitHub Actions, subject to current framework compatibility verification.
 
 ## Goal
 A public, coherent interactive essay: lost shortcut → two problems → Index rabbit hole → Community rabbit hole → convergence. It demonstrates the indexing/community thesis without claiming real federation or verified search.
