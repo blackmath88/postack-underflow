@@ -22,3 +22,13 @@ export const LUMPESAMMLIG = `https://github.com/blackmath88/lumpesammlig/tree/${
 export const LUMPESAMMLIG_CONCEPT = `https://github.com/blackmath88/lumpesammlig/blob/${LUMPESAMMLIG_REV}/docs/CONCEPT.md`
 export const IMPOSSIBLE_INDEX_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/012-impossible-index`
 export const SWITCHBOARD_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/013-switchboard`
+
+// Lab 06, Collective Memory & Futures (memory).
+export const SITE_CONVERGENCE = 'https://blackmath88.github.io/postack-underflow/convergence/'
+export const PROBLEM_DESK_FILE = repoFile('src/data/problem-desk.ts')
+export const HISTORY_FILE = repoFile('src/data/research-history.ts')
+export const QUERIES_FILE = repoFile('corpus/queries.json')
+export const MEMORY_FIXTURES_FILE = repoFile('src/lab/data/memory-fixtures.ts')
+export const LAB_CATALOGUE_DIR = repoFile('src/lab/catalogue/')
+export const PHOTO_FRAME_README =
+  'https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/README.md'
