@@ -1,0 +1,330 @@
+{
+ "$schema": "postack.commons.atproto/1",
+ "fetchedAt": "2026-10-29T16:51:31.934Z",
+ "method": "Unauthenticated, read-only HTTP. No account was used and nothing was written.",
+ "services": {
+  "backlinks": "https://constellation.microcosm.blue (links/all and links, per thread URL with and without a trailing slash)",
+  "search": "https://api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=photo-frame-dashboard",
+  "records": "each author's PDS via com.atproto.repo.getRecord, PDS found through plc.directory"
+ },
+ "coverage": {
+  "targetsQueried": 532,
+  "backlinks": 9,
+  "searchHits": 97,
+  "searchHitsLinkingRepo": 4,
+  "publicSearchRefused": 403,
+  "recordsRead": 17,
+  "recordsKept": 11,
+  "repliesByOthersNotKept": 6,
+  "unavailable": 0,
+  "limits": [
+   "Constellation indexes what it has seen on the firehose; records outside its window or collections it does not track are not counted.",
+   "Search finds text, so posts that link only through a shortened URL or an image are missed.",
+   "Likes, reposts and follows are not read."
+  ]
+ },
+ "backlinks": [
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard",
+   "collection": "app.bsky.feed.post",
+   "path": ".embed.external.uri",
+   "uri": "at://did:plc:dvzscwk5ja7w73gskwye6u7w/app.bsky.feed.post/3mxygdkjov22y"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard",
+   "collection": "app.bsky.feed.post",
+   "path": ".facets[].features[app.bsky.richtext.facet#link].uri",
+   "uri": "at://did:plc:dvzscwk5ja7w73gskwye6u7w/app.bsky.feed.post/3mxygdkjov22y"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard",
+   "collection": "app.bsky.feed.post",
+   "path": ".facets[].features[app.bsky.richtext.facet#link].uri",
+   "uri": "at://did:plc:etdjdgnly5tz5l5xdd4jq76d/app.bsky.feed.post/3mxmboubp2c2t"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard/issues/229",
+   "collection": "app.bsky.feed.post",
+   "path": ".embed.external.uri",
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3myfhdcpzz22k"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard/issues/229",
+   "collection": "app.bsky.feed.post",
+   "path": ".facets[].features[app.bsky.richtext.facet#link].uri",
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3myfhdcpzz22k"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard/pull/3",
+   "collection": "app.bsky.feed.post",
+   "path": ".facets[].features[app.bsky.richtext.facet#link].uri",
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard/pull/3",
+   "collection": "app.bsky.feed.post",
+   "path": ".embed.media.external.uri",
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard/pull/4/",
+   "collection": "app.bsky.feed.post",
+   "path": ".embed.external.uri",
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxlivudgcc2t"
+  },
+  {
+   "target": "https://github.com/wesbos/photo-frame-dashboard/pull/4/",
+   "collection": "app.bsky.feed.post",
+   "path": ".facets[].features[app.bsky.richtext.facet#link].uri",
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxlivudgcc2t"
+  }
+ ],
+ "identities": {
+  "did:plc:7vckjdgokbtlyd4mh7tgn426": {
+   "handle": "shindakun.net",
+   "pds": "https://inkcap.us-east.host.bsky.network"
+  },
+  "did:plc:dvzscwk5ja7w73gskwye6u7w": {
+   "handle": "xiangul.bsky.social",
+   "pds": "https://oyster.us-east.host.bsky.network"
+  },
+  "did:plc:etdjdgnly5tz5l5xdd4jq76d": {
+   "handle": "wesbos.com",
+   "pds": "https://enoki.us-east.host.bsky.network"
+  }
+ },
+ "records": [
+  {
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t",
+   "cid": "bafyreica6ur3dri22qaaozmauegqxxpvvodwxix66n332v7spieoayr24e",
+   "did": "did:plc:7vckjdgokbtlyd4mh7tgn426",
+   "handle": "shindakun.net",
+   "pds": "https://inkcap.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-11T06:26:15.986Z",
+   "excerpt": "Didn't get the same frame as @wesbos.com, received the PF1007L. No USB `adb` sadly but over wifi worked. The launcher …",
+   "textSha256": "466a2a250ae156af0b26f114bff206d20701522b6121d0677a9e97309f8a0267",
+   "links": [
+    "https://github.com/wesbos/photo-frame-dashboard/pull/3"
+   ],
+   "mentions": [
+    "did:plc:etdjdgnly5tz5l5xdd4jq76d"
+   ],
+   "reply": null,
+   "github": [
+    "https://github.com/wesbos/photo-frame-dashboard/pull/3"
+   ]
+  },
+  {
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxlidhjumc2t",
+   "cid": "bafyreib7mgemyctaki5vagjd5ddncho6plzyrp22vih2pvapa4y76p4ply",
+   "did": "did:plc:7vckjdgokbtlyd4mh7tgn426",
+   "handle": "shindakun.net",
+   "pds": "https://inkcap.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-11T07:31:45.725Z",
+   "excerpt": "@wesbos.com this is only the security focused PR, I need double check the notes on the actual sdcard boot and …",
+   "textSha256": "2f5ff8f61226b30be0cde052d9f39d1a8fd5fcf246737778c6f81f44d6e04290",
+   "links": [],
+   "mentions": [
+    "did:plc:etdjdgnly5tz5l5xdd4jq76d"
+   ],
+   "reply": {
+    "parent": "at://did:plc:etdjdgnly5tz5l5xdd4jq76d/app.bsky.feed.post/3mxlgwtfaos2t",
+    "root": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t"
+   },
+   "github": []
+  },
+  {
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxlivudgcc2t",
+   "cid": "bafyreih36i45asw5v5tonne2a3jc6tjam5dbadkhmpfvyiqzd3zp3bdsz4",
+   "did": "did:plc:7vckjdgokbtlyd4mh7tgn426",
+   "handle": "shindakun.net",
+   "pds": "https://inkcap.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-11T07:42:03.126Z",
+   "excerpt": "Looks like @peter.coffee got USB adb to work on that model, github.com/wesbos/photo.... I'll document the sdcard patch method just for …",
+   "textSha256": "e4b6dc29c6c1e29d50aeeeb3401ed30a1c6cffccab3044f92b6d5229c3e62728",
+   "links": [
+    "https://github.com/wesbos/photo-frame-dashboard/pull/4/"
+   ],
+   "mentions": [
+    "did:plc:4wmy4snd34qarsfd2gukr4a4"
+   ],
+   "reply": {
+    "parent": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxlidhjumc2t",
+    "root": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t"
+   },
+   "github": [
+    "https://github.com/wesbos/photo-frame-dashboard/pull/4"
+   ]
+  },
+  {
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxmvij7wts2t",
+   "cid": "bafyreieszlzsfqsb5sli3qwp33prqwsj4vv7b4bsxgtpcz7nzjj5ssf22i",
+   "did": "did:plc:7vckjdgokbtlyd4mh7tgn426",
+   "handle": "shindakun.net",
+   "pds": "https://inkcap.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-11T20:59:53.646Z",
+   "excerpt": null,
+   "textSha256": "52dd83da46c1eb135d46102d2a29400c54deb9e95fcd888a671fbe4a92f38f1e",
+   "links": [
+    "https://go2rtc.org/internal/wyze/"
+   ],
+   "mentions": [],
+   "reply": {
+    "parent": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t",
+    "root": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t"
+   },
+   "github": [],
+   "textKept": false
+  },
+  {
+   "uri": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3myfhdcpzz22k",
+   "cid": "bafyreigwslmrrrgicykpu6efwgn5afoxwumb3uyg7s27ley3cjv5czzsfa",
+   "did": "did:plc:7vckjdgokbtlyd4mh7tgn426",
+   "handle": "shindakun.net",
+   "pds": "https://inkcap.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-21T15:23:00.141Z",
+   "excerpt": "Just in case anyone updated the certs on an android frame project ala @wesbos.com and didn't see the news about …",
+   "textSha256": "c2b068accdbb02775b067b6a5e6826eb0c87cc21c8a2945102503ddc4d3d0235",
+   "links": [
+    "https://github.com/wesbos/photo-frame-dashboard/issues/229"
+   ],
+   "mentions": [
+    "did:plc:etdjdgnly5tz5l5xdd4jq76d"
+   ],
+   "reply": null,
+   "github": [
+    "https://github.com/wesbos/photo-frame-dashboard/issues/229"
+   ]
+  },
+  {
+   "uri": "at://did:plc:dvzscwk5ja7w73gskwye6u7w/app.bsky.feed.post/3mxyfxabm222y",
+   "cid": "bafyreiftcxotgdr3nwu6cd3oduekwgkwdjs7m3xytpwqsfqu6dwhnmgcsm",
+   "did": "did:plc:dvzscwk5ja7w73gskwye6u7w",
+   "handle": "xiangul.bsky.social",
+   "pds": "https://oyster.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-16T10:53:44.577Z",
+   "excerpt": "Ist das aus der Anleitung mit dem Amazon Bilderrahmen?",
+   "textSha256": "b35c0f4fefcb78f6b81397c452155728200eb4035837c3bf7e5cd29673137a15",
+   "links": [],
+   "mentions": [],
+   "reply": {
+    "parent": "at://did:plc:5xcddjeg6asdjzwz6t3jqnos/app.bsky.feed.post/3mxyf33oacs2t",
+    "root": "at://did:plc:5xcddjeg6asdjzwz6t3jqnos/app.bsky.feed.post/3mxyf33oacs2t"
+   },
+   "github": []
+  },
+  {
+   "uri": "at://did:plc:dvzscwk5ja7w73gskwye6u7w/app.bsky.feed.post/3mxygc3wnyk2y",
+   "cid": "bafyreieilwckpexbjuce5ofcfxblngzw6mveeanm63wdjtced2ekylfcja",
+   "did": "did:plc:dvzscwk5ja7w73gskwye6u7w",
+   "handle": "xiangul.bsky.social",
+   "pds": "https://oyster.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-16T10:59:49.122Z",
+   "excerpt": "Ja den Screenshot aus dem GitHub Repo hatte ich gesehen irgendwo.",
+   "textSha256": "941d8622a529e3e44089dca0d39d3d8eb6e605c2ca45e642abaf587ffa7e5f98",
+   "links": [],
+   "mentions": [],
+   "reply": {
+    "parent": "at://did:plc:5xcddjeg6asdjzwz6t3jqnos/app.bsky.feed.post/3mxyg554vrs2f",
+    "root": "at://did:plc:5xcddjeg6asdjzwz6t3jqnos/app.bsky.feed.post/3mxyf33oacs2t"
+   },
+   "github": []
+  },
+  {
+   "uri": "at://did:plc:dvzscwk5ja7w73gskwye6u7w/app.bsky.feed.post/3mxygdkjov22y",
+   "cid": "bafyreibobb7aajdoy23bm4dayknhndgpc5bc6qjn7haotra3eyv25yxmc4",
+   "did": "did:plc:dvzscwk5ja7w73gskwye6u7w",
+   "handle": "xiangul.bsky.social",
+   "pds": "https://oyster.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-16T11:00:37.980Z",
+   "excerpt": "github.com/wesbos/photo...",
+   "textSha256": "18b8c84e8a36800123bde427737cf35f78db2a151b14d1655c589093644c6147",
+   "links": [
+    "https://github.com/wesbos/photo-frame-dashboard"
+   ],
+   "mentions": [],
+   "reply": {
+    "parent": "at://did:plc:dvzscwk5ja7w73gskwye6u7w/app.bsky.feed.post/3mxygc3wnyk2y",
+    "root": "at://did:plc:5xcddjeg6asdjzwz6t3jqnos/app.bsky.feed.post/3mxyf33oacs2t"
+   },
+   "github": [
+    "https://github.com/wesbos/photo-frame-dashboard"
+   ]
+  },
+  {
+   "uri": "at://did:plc:etdjdgnly5tz5l5xdd4jq76d/app.bsky.feed.post/3mxlgwtfaos2t",
+   "cid": "bafyreih4cbtkfg7hwewjdxcykloxqnxunaud2vq53uwr4hcbbgtvc5766u",
+   "did": "did:plc:etdjdgnly5tz5l5xdd4jq76d",
+   "handle": "wesbos.com",
+   "pds": "https://enoki.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-11T07:06:48.207Z",
+   "excerpt": "Thank you! A bunch of people had this issue",
+   "textSha256": "09b4f5b232d8cf18edb9930842eb733aa37321d44caee5b423dc239d0ae7226f",
+   "links": [],
+   "mentions": [],
+   "reply": {
+    "parent": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t",
+    "root": "at://did:plc:7vckjdgokbtlyd4mh7tgn426/app.bsky.feed.post/3mxleodtquk2t"
+   },
+   "github": []
+  },
+  {
+   "uri": "at://did:plc:etdjdgnly5tz5l5xdd4jq76d/app.bsky.feed.post/3mxmboubp2c2t",
+   "cid": "bafyreifyhog333t3qp5mkpel6f6iyib6ctyugh7cz24kq5nxeajtntgaxq",
+   "did": "did:plc:etdjdgnly5tz5l5xdd4jq76d",
+   "handle": "wesbos.com",
+   "pds": "https://enoki.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-11T15:05:31.732Z",
+   "excerpt": "If your photo frame showed up in a box like this, the internal board may be slightly different than mine …",
+   "textSha256": "42a40a14ec8d7e2664a75a14e5bb7da36f71d8d7a3798b5ce89170af9c7a2a6a",
+   "links": [
+    "https://github.com/wesbos/photo-frame-dashboard"
+   ],
+   "mentions": [],
+   "reply": null,
+   "github": [
+    "https://github.com/wesbos/photo-frame-dashboard"
+   ]
+  },
+  {
+   "uri": "at://did:plc:etdjdgnly5tz5l5xdd4jq76d/app.bsky.feed.post/3mxmhukb2r22t",
+   "cid": "bafyreiev6c4j5kvxsy2kjvnyx7c4gchygnlpbkwetw3xnng4uip2tzgd44",
+   "did": "did:plc:etdjdgnly5tz5l5xdd4jq76d",
+   "handle": "wesbos.com",
+   "pds": "https://enoki.us-east.host.bsky.network",
+   "collection": "app.bsky.feed.post",
+   "available": true,
+   "createdAt": "2026-10-11T16:56:05.005Z",
+   "excerpt": null,
+   "textSha256": "46423c45788db8f42d4bcf92fdf98ea0d4084522d4a2a29c36d578be69eb9029",
+   "links": [],
+   "mentions": [],
+   "reply": {
+    "parent": "at://did:plc:wjrpkham2fhwlxkthcch2sc2/app.bsky.feed.post/3mxmcalnpac2t",
+    "root": "at://did:plc:etdjdgnly5tz5l5xdd4jq76d/app.bsky.feed.post/3mxmboubp2c2t"
+   },
+   "github": [],
+   "textKept": false
+  }
+ ]
+}

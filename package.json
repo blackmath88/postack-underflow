@@ -26,7 +26,8 @@
     "commons:index": "node scripts/commons/build-index.mjs",
     "commons:index:check": "node scripts/commons/build-index.mjs --check",
     "commons:brainstorm": "node scripts/commons/brainstorm.mjs",
-    "commons:brainstorm:check": "node scripts/commons/brainstorm.mjs --check"
+    "commons:brainstorm:check": "node scripts/commons/brainstorm.mjs --check",
+    "commons:atproto": "node scripts/commons/atproto-snapshot.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "1.170.46",
