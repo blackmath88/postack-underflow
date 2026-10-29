@@ -17,7 +17,8 @@
     "corpus:fetch": "node scripts/corpus-fetch.mjs",
     "index": "node scripts/build-index.mjs",
     "evaluate": "node scripts/evaluate.mjs",
-    "browser": "node scripts/browser-check.mjs",
+    "browser": "node scripts/browser-check.mjs && node scripts/lab-check.mjs",
+    "browser:lab": "node scripts/lab-check.mjs",
     "index:check": "node scripts/check-index.mjs"
   },
   "dependencies": {

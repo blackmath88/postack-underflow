@@ -1,0 +1,147 @@
+/* Lab family: discovery. Scope every rule under the experiment's root class (.xNN). */
+
+/* ---------- 03 The Lost Synonym: typographic, two descriptions meeting ---------- */
+
+.x03 {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.x03__controls {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 44rem;
+}
+
+.x03__controls label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x03 select,
+.x03 input {
+  font: inherit;
+  font-size: 1.05rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  width: 100%;
+  min-width: 0;
+}
+
+.x03 input {
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.x03__src {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.x03__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: baseline;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.x03__presets > span {
+  width: 100%;
+  color: var(--muted);
+}
+
+.x03__words {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.x03__w {
+  display: grid;
+  grid-template-columns: minmax(6rem, 14rem) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: baseline;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--space-1);
+}
+
+.x03__term {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.x03__how {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.x03__w--index .x03__term {
+  text-decoration: underline 4px var(--rose);
+  text-underline-offset: 0.12em;
+}
+
+.x03__w--index .x03__how {
+  color: var(--accent-signal);
+}
+
+.x03__w--nobody .x03__term {
+  color: var(--muted);
+  text-decoration: line-through 3px;
+}
+
+.x03__empty {
+  color: var(--muted);
+}
+
+.x03__verdict {
+  max-width: 44rem;
+  min-height: 3em;
+  margin: 0;
+}
+
+.x03__tally {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 44rem;
+  font-size: 0.95rem;
+}
+
+.x03__bar {
+  display: flex;
+  height: 1.1rem;
+  margin: var(--space-2) 0;
+  border: 1px solid var(--rule-strong);
+}
+
+.x03__bar--source {
+  background: var(--fg);
+}
+
+.x03__bar--index {
+  background: var(--rose);
+}
+
+.x03__bar--nobody {
+  background: repeating-linear-gradient(135deg, transparent 0 4px, var(--muted) 4px 5px);
+}
+
+@media (max-width: 40rem) {
+  .x03__w {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}

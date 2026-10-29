@@ -1,0 +1,238 @@
+/* Lab family: community. Scope every rule under the experiment's root class (.xNN). */
+
+/* ---------- 25 One Conversation, Three Interfaces ---------- */
+
+.x25__tabs {
+  display: flex;
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.x25__tabs [role='tab'] {
+  font: inherit;
+  font-weight: 650;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  background: none;
+  color: var(--fg);
+  cursor: pointer;
+  margin-bottom: -2px;
+}
+
+.x25__tabs [role='tab'][aria-selected='true'] {
+  border-color: var(--rule-strong);
+  border-bottom: 2px solid var(--bg);
+  background: var(--bg);
+}
+
+.x25__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-top: var(--space-3);
+}
+
+@media (max-width: 56rem) {
+  .x25__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x25__who {
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--accent-community);
+  cursor: pointer;
+}
+
+.is-focus > .x25__who,
+.x25__stream .is-focus .x25__who {
+  text-decoration: underline 2px;
+}
+
+/* Thread: indentation and a spine. */
+.x25__post {
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--rule);
+}
+
+.x25__post p {
+  margin: 0.2rem 0 0;
+  font-size: 0.95rem;
+}
+
+.x25__post.is-focus {
+  border-left-color: var(--violet);
+  background: var(--surface);
+}
+
+.x25__post--root {
+  border-left-color: var(--rule-strong);
+}
+
+.x25__replies {
+  list-style: none;
+  margin: 0 0 0 var(--space-4);
+  padding: 0;
+}
+
+.x25__gone {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.x25__outside {
+  font-size: 0.85rem;
+  color: var(--accent-signal);
+  margin-top: var(--space-3);
+}
+
+/* Channel: a monospaced chat log, no hierarchy. */
+.x25__stream {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.x25__stream li {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.x25__stream li.is-focus {
+  background: var(--surface);
+}
+
+.x25__stream .x25__who {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  margin-right: 0.5rem;
+}
+
+.x25__kind {
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  border: 1px solid currentColor;
+  padding: 0 0.25rem;
+  margin-right: 0.5rem;
+  color: var(--muted);
+}
+
+/* Graph */
+.x25__graph {
+  width: 100%;
+  height: auto;
+  max-height: 26rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.x25__edge line {
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.x25__edge text {
+  fill: var(--muted);
+  text-anchor: middle;
+  font-size: 9px;
+}
+
+.x25__edge--editor line {
+  stroke: var(--blue);
+  stroke-dasharray: 6 3;
+}
+
+.x25__edge--model line {
+  stroke: var(--rose);
+  stroke-dasharray: 2 3;
+}
+
+.x25__node {
+  cursor: pointer;
+}
+
+.x25__node circle {
+  fill: var(--bg);
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.x25__node.is-focus circle {
+  fill: var(--violet);
+}
+
+.x25__node.is-gone circle {
+  stroke-dasharray: 3 3;
+}
+
+.x25__node text {
+  fill: var(--fg);
+  text-anchor: middle;
+}
+
+/* Seams ledger */
+.x25__seams {
+  border-left: 2px solid var(--rule-strong);
+  padding-left: var(--space-3);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 56rem) {
+  .x25__seams {
+    border-left: 0;
+    border-top: 2px solid var(--rule-strong);
+    padding: var(--space-2) 0 0;
+  }
+}
+
+.x25__seams h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.x25__seams ol {
+  padding-left: 1.1rem;
+}
+
+.x25__follow select {
+  font: inherit;
+  padding: 0.3rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  max-width: 100%;
+}
+
+.x25__where > div {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: 0.2rem 0;
+}
+
+.x25__where dt {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.x25__where dd {
+  margin: 0;
+}
+
+.x25__where .is-current {
+  font-weight: 700;
+}
+
+.x25__same {
+  font-size: 0.82rem;
+  color: var(--muted);
+}

@@ -1,0 +1,180 @@
+/* Lab family: history. Scope every rule under the experiment's root class (.xNN). */
+
+/* ---------- 31 Card Friction: a drawer of cards behind guide tabs ---------- */
+
+.x31 {
+  display: grid;
+  gap: var(--space-4);
+  --card: #fbfaf5;
+  --card-edge: #cfc8b6;
+  --tab: #e6dcc3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x31 {
+    --card: #23272d;
+    --card-edge: #444a53;
+    --tab: #3a3f47;
+  }
+}
+
+.x31__ask {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  margin-bottom: var(--space-2);
+}
+
+.x31__choose {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.x31__friction {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+}
+
+.x31__friction legend {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0;
+  margin-bottom: var(--space-1);
+}
+
+.x31__drawer {
+  position: relative;
+  max-width: 40rem;
+  padding-top: 5.2rem;
+  /* The drawer's front and sides: a wooden box, drawn as two rules. */
+  border-bottom: 10px solid var(--fg);
+  border-left: 2px solid var(--fg);
+  border-right: 2px solid var(--fg);
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+}
+
+.x31__drawer:focus-visible {
+  outline-offset: 6px;
+}
+
+.x31__stack {
+  position: absolute;
+  inset: 0 var(--space-3) auto;
+  height: 5.2rem;
+}
+
+.x31__edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc((7 - var(--d)) * -0.01rem);
+  top: calc(5.2rem - var(--d) * 0.72rem);
+  height: 0.72rem;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-bottom: 0;
+}
+
+.x31__tab {
+  position: absolute;
+  left: 55%;
+  top: -1.15rem;
+  height: 1.15rem;
+  padding: 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.15rem;
+  background: var(--tab);
+  border: 1px solid var(--card-edge);
+  border-bottom: 0;
+  white-space: nowrap;
+}
+
+.x31__card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  padding: var(--space-3);
+  min-height: 13rem;
+  box-shadow: 0 1px 0 var(--card-edge);
+}
+
+/* A ruled index card: one red line near the top, blue lines under it. */
+.x31__card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2.6rem;
+  border-top: 1px solid var(--rose);
+}
+
+.x31__card.is-found {
+  outline: 3px solid var(--blue);
+  outline-offset: -3px;
+}
+
+.x31__guide {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin: 0 0 var(--space-3);
+}
+
+.x31__card h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.x31__terms,
+.x31__srcid {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin: 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.x31__hands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x31__ledger {
+  max-width: 44rem;
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+}
+
+.x31__read {
+  list-style: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  columns: 2 16rem;
+}
+
+.x31__read .is-related {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x31__card {
+    animation: x31-flip 140ms ease-out;
+  }
+  @keyframes x31-flip {
+    from {
+      transform: translateY(-0.6rem);
+    }
+  }
+}

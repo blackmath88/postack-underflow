@@ -20,7 +20,14 @@ if (!existsSync(out)) {
   process.exit(1)
 }
 
-for (const route of [...ROUTES.map((r) => `${r}index.html`), '404.html']) {
+// Every catalogued laboratory experiment needs its own prerendered page. The
+// catalogue is TypeScript, so its experiment numbers are read from source.
+const catDir = new URL('../src/lab/catalogue/', import.meta.url)
+const LAB = readdirSync(catDir)
+  .filter((f) => /^[a-z]+\.ts$/.test(f) && !['index.ts', 'labels.ts', 'shared.ts', 'map.ts'].includes(f))
+  .flatMap((f) => [...readFileSync(new URL(f, catDir), 'utf8').matchAll(/^ {4}n: '(\d\d)',$/gm)].map((m) => `lab/${m[1]}/`))
+
+for (const route of [...ROUTES.map((r) => `${r}index.html`), ...LAB.map((r) => `${r}index.html`), '404.html']) {
   if (!existsSync(join(out, route))) errors.push(`missing page: ${route}`)
 }
 
@@ -79,4 +86,4 @@ if (errors.length) {
   console.error(`Build validation failed (${errors.length}):\n  ${errors.join('\n  ')}`)
   process.exit(1)
 }
-console.log(`Build valid: ${htmlFiles.length} pages, ${checked} internal URLs under ${BASE}`)
+console.log(`Build valid: ${htmlFiles.length} pages (${LAB.length} lab experiments), ${checked} internal URLs under ${BASE}`)

@@ -21,6 +21,8 @@ import { Route as ArchiveIndexRouteImport } from './routes/archive/index'
 import { Route as ArchiveCommunityRouteImport } from './routes/archive/community'
 import { Route as ArchiveFourWordsRouteImport } from './routes/archive/four-words'
 import { Route as ArchiveHistoryRouteImport } from './routes/archive/history'
+import { Route as LabIndexRouteImport } from './routes/lab/index'
+import { Route as LabNIndexRouteImport } from './routes/lab/$n/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +84,16 @@ const ArchiveHistoryRoute = ArchiveHistoryRouteImport.update({
   path: '/archive/history',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LabIndexRoute = LabIndexRouteImport.update({
+  id: '/lab/',
+  path: '/lab/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabNIndexRoute = LabNIndexRouteImport.update({
+  id: '/lab/$n/',
+  path: '/lab/$n/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,6 +108,8 @@ export interface FileRoutesByFullPath {
   '/archive/four-words': typeof ArchiveFourWordsRoute
   '/archive/history': typeof ArchiveHistoryRoute
   '/archive/': typeof ArchiveIndexRoute
+  '/lab/': typeof LabIndexRoute
+  '/lab/$n/': typeof LabNIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -110,6 +124,8 @@ export interface FileRoutesByTo {
   '/archive/four-words': typeof ArchiveFourWordsRoute
   '/archive/history': typeof ArchiveHistoryRoute
   '/archive': typeof ArchiveIndexRoute
+  '/lab': typeof LabIndexRoute
+  '/lab/$n': typeof LabNIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,6 +141,8 @@ export interface FileRoutesById {
   '/archive/four-words': typeof ArchiveFourWordsRoute
   '/archive/history': typeof ArchiveHistoryRoute
   '/archive/': typeof ArchiveIndexRoute
+  '/lab/': typeof LabIndexRoute
+  '/lab/$n/': typeof LabNIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,6 +159,8 @@ export interface FileRouteTypes {
     | '/archive/four-words'
     | '/archive/history'
     | '/archive/'
+    | '/lab/'
+    | '/lab/$n/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -155,6 +175,8 @@ export interface FileRouteTypes {
     | '/archive/four-words'
     | '/archive/history'
     | '/archive'
+    | '/lab'
+    | '/lab/$n'
   id:
     | '__root__'
     | '/'
@@ -169,6 +191,8 @@ export interface FileRouteTypes {
     | '/archive/four-words'
     | '/archive/history'
     | '/archive/'
+    | '/lab/'
+    | '/lab/$n/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -184,6 +208,8 @@ export interface RootRouteChildren {
   ArchiveFourWordsRoute: typeof ArchiveFourWordsRoute
   ArchiveHistoryRoute: typeof ArchiveHistoryRoute
   ArchiveIndexRoute: typeof ArchiveIndexRoute
+  LabIndexRoute: typeof LabIndexRoute
+  LabNIndexRoute: typeof LabNIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -272,6 +298,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArchiveHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lab/': {
+      id: '/lab/'
+      path: '/lab'
+      fullPath: '/lab/'
+      preLoaderRoute: typeof LabIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab/$n/': {
+      id: '/lab/$n/'
+      path: '/lab/$n'
+      fullPath: '/lab/$n/'
+      preLoaderRoute: typeof LabNIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -288,6 +328,8 @@ const rootRouteChildren: RootRouteChildren = {
   ArchiveFourWordsRoute: ArchiveFourWordsRoute,
   ArchiveHistoryRoute: ArchiveHistoryRoute,
   ArchiveIndexRoute: ArchiveIndexRoute,
+  LabIndexRoute: LabIndexRoute,
+  LabNIndexRoute: LabNIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
