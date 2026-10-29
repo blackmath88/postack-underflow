@@ -5,3 +5,4 @@ dist/
 .vinxi/
 *.log
 corpus/.cache/
+corpus/commons/.cache/

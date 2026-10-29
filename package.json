@@ -19,7 +19,9 @@
     "evaluate": "node scripts/evaluate.mjs",
     "browser": "node scripts/browser-check.mjs && node scripts/lab-check.mjs && node scripts/lab-specimens.mjs",
     "browser:lab": "node scripts/lab-check.mjs",
-    "index:check": "node scripts/check-index.mjs"
+    "index:check": "node scripts/check-index.mjs",
+    "commons:snapshot": "node scripts/commons/snapshot.mjs",
+    "commons:check": "node scripts/commons/check-corpus.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "1.170.46",
