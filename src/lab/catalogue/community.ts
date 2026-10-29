@@ -521,7 +521,7 @@ export const COMMUNITY: LabEntry[] = [
     proposition:
       'Honouring a few labels changes not just how much of a conversation is shown but what the view can truthfully say happened in it.',
     manipulate:
-      'Slide a lens through five visibility policies, from showing everything to honouring two invented labelers’ labels as hiding.',
+      'Turn a lens ring through five visibility policies, from showing everything to honouring two invented labelers’ labels as hiding.',
     changes: 'Which records are shown, collapsed or hidden, and the one-paragraph account the view writes from what it shows.',
     unchanged: 'The eight records and the four invented labels. A label never edits a record.',
     provenance: {
@@ -552,7 +552,7 @@ export const COMMUNITY: LabEntry[] = [
       priorArt: ['Bluesky’s stackable moderation services', 'Slashdot’s threshold slider', 'Content-warning collapses on Mastodon'],
     },
     built:
-      'A five-stop range control, a grid of the eight records, and an account generated from whatever the current policy leaves visible.',
+      'A viewfinder holding the account the view writes from whatever the current policy leaves visible, set clause by clause against the account through clear glass: what the lens removes is struck through, what it writes instead is underlined. Below it, a five-stop lens ring (a native radio group) and a strip of the eight records.',
     happened:
       'At the strictest stop the view states that “nobody disagreed with it”, from three hidden records out of eight, and says Ines endorsed “something this view does not show”. Only the first stop mentions the two replies that cannot be read. The warning stop changes nothing in the account except one sentence: the hidden dispute is still counted.',
     uncertain:
@@ -563,5 +563,7 @@ export const COMMUNITY: LabEntry[] = [
     finding:
       'Hide three of eight records by label and the view can say “nobody disagreed with it”. Moderation edits the account, not just the list.',
     related: ['23', '24', '25', '27'],
+    reflection:
+      'Setting the account against itself made the result plain: at the strictest stop the lens changes all five clauses, and one of the sentences it writes in is “Nobody disagreed with it.” Development also showed a quieter stop one turn earlier, where only the dispute is hidden and “mara corrected H4.” still reads as a whole sentence, with nothing on it to say anything is missing. A count of hidden records, the plainer control, would show that three records are gone; it would not show that the view goes on to say something false.',
   },
 ]

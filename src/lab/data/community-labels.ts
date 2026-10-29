@@ -9,7 +9,7 @@
 // accounts of the same records. It may not be used to claim how any real
 // labeler, application or community moderates.
 
-import { CONTRIBUTIONS } from '../../data/community-fixtures'
+import { CONTRIBUTIONS } from '../../data/community-fixtures.ts'
 
 export interface FixtureLabel {
   src: string
