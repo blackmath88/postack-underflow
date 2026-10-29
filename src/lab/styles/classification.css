@@ -1,1 +1,1432 @@
 /* Lab family: classification. Scope every rule under the experiment's root class (.xNN). */
+
+/* ---------- 11 Above the Rod: a drawer with a rod through the cards ---------- */
+
+.x11 {
+  display: grid;
+  gap: var(--space-4);
+  --card: #fbfaf5;
+  --card-edge: #cfc8b6;
+  --brass: #9a7b3c;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x11 {
+    --card: #23272d;
+    --card-edge: #444a53;
+    --brass: #c9a45e;
+  }
+}
+
+.x11__desk {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-3);
+}
+
+.x11__label,
+.x11__rule legend,
+.x11__zone,
+.x11__tab {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x11__desk select {
+  display: block;
+  font: inherit;
+  margin-top: var(--space-1);
+  max-width: 100%;
+}
+
+.x11__rule {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.x11__drawer {
+  position: relative;
+  border: 2px solid var(--fg);
+  border-bottom-width: 10px;
+  padding: var(--space-4) var(--space-3) var(--space-3);
+}
+
+.x11__tab {
+  position: absolute;
+  top: -0.9rem;
+  left: var(--space-3);
+  margin: 0;
+  padding: 0.1rem 0.6rem;
+  background: var(--bg);
+  border: 2px solid var(--fg);
+}
+
+.x11__zone {
+  margin: 0 0 var(--space-2);
+  color: var(--muted);
+}
+
+.x11__cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-2);
+}
+
+.x11__card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  padding: var(--space-2) var(--space-2) 1.6rem;
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+}
+
+/* The punched hole every catalogue card has near its foot. */
+.x11__card::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.4rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-left: -0.35rem;
+  border-radius: 50%;
+  border: 1px solid var(--card-edge);
+  background: var(--bg);
+}
+
+.x11__cards--above .x11__card {
+  transform: translateY(-0.2rem) rotate(-0.6deg);
+}
+
+.x11__cards--above .x11__card:nth-child(2n) {
+  transform: translateY(0.1rem) rotate(0.5deg);
+}
+
+/* Below the rod: the brass rod runs through every hole. */
+.x11__cards--below {
+  background: linear-gradient(var(--brass), var(--brass)) 0 calc(100% - 0.75rem) / 100% 3px no-repeat;
+}
+
+.x11__card.is-rodded::after {
+  background: var(--brass);
+  border-color: var(--brass);
+}
+
+.x11__rod {
+  height: 6px;
+  margin: var(--space-3) calc(-1 * var(--space-3));
+  background: var(--brass);
+  border-radius: 3px;
+}
+
+.x11__name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.x11__check {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.x11__check .is-unsaid {
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x11__act {
+  justify-self: start;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.x11__none {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.x11__note {
+  margin: 0;
+  max-width: 44rem;
+}
+
+.x11__patron {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 48rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x11__card {
+    transition: transform 160ms ease-out;
+  }
+}
+
+/* ---------- 12 The Sorting Key: a dichotomous key ---------- */
+
+.x12 {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.x12__task {
+  max-width: 44rem;
+  margin: 0 0 var(--space-2);
+}
+
+.x12__questions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x12__questions li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+}
+
+.x12__questions .lab-btn {
+  text-align: left;
+}
+
+.x12__why {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.x12__key {
+  font-family: var(--font-serif, Georgia, 'Times New Roman', serif);
+  border-left: 3px double var(--fg);
+  padding-left: var(--space-3);
+}
+
+.x12__status {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  margin: 0 0 var(--space-3);
+}
+
+.x12__couplet {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--space-3);
+  border-left: 1px dotted var(--rule-strong);
+}
+
+.x12__key > .x12__couplet {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.x12__couplet > li {
+  margin: var(--space-2) 0;
+}
+
+.x12__lead {
+  margin: 0;
+}
+
+.x12__q {
+  font-style: italic;
+}
+
+.x12__a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-style: normal;
+  padding: 0 0.3rem;
+  border: 1px solid var(--rule-strong);
+}
+
+.x12__a--not-stated {
+  border-style: dashed;
+  color: var(--accent-signal);
+}
+
+.x12__leaf {
+  margin: var(--space-1) 0 0 var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--rule);
+}
+
+.x12__leaf.is-mixed {
+  border: 2px dashed var(--accent-signal);
+}
+
+.x12__leaf ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+}
+
+.x12__verdict {
+  margin: 0;
+  font-weight: 700;
+}
+
+.x12__fix {
+  color: var(--muted);
+}
+
+.x12__basis summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.x12__scroll {
+  overflow-x: auto;
+  margin-top: var(--space-2);
+}
+
+.x12__scroll table {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  min-width: 46rem;
+}
+
+.x12__scroll th,
+.x12__scroll td {
+  border-bottom: 1px solid var(--rule);
+  padding: var(--space-1) var(--space-2);
+  text-align: left;
+  vertical-align: top;
+}
+
+.x12__cite {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+/* ---------- 13 Who Put This Here?: a forensic ledger ---------- */
+
+.x13 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x13__picks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-3);
+}
+
+.x13__pick label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x13__pick select {
+  font: inherit;
+  font-size: 0.85rem;
+  max-width: min(100%, 24rem);
+}
+
+.x13__pick {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.x13__scroll {
+  overflow-x: auto;
+}
+
+.x13__ledger {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 40rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  border-top: 3px solid var(--fg);
+  border-bottom: 3px solid var(--fg);
+}
+
+.x13__ledger caption {
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding-bottom: var(--space-2);
+}
+
+.x13__ledger th,
+.x13__ledger td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.35rem var(--space-2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.x13__ledger thead th {
+  border-bottom: 1px solid var(--fg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x13__ledger tbody th {
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.x13__ledger tr:nth-child(odd) td,
+.x13__ledger tr:nth-child(odd) th {
+  background: var(--surface);
+}
+
+.x13__ledger .is-diff th,
+.x13__ledger .is-diff td {
+  font-weight: 700;
+}
+
+.x13__ledger .is-diff .x13__mark {
+  color: var(--accent-signal);
+}
+
+.x13__ledger .is-silent td {
+  color: var(--accent-signal);
+  font-style: italic;
+}
+
+.x13__ditto {
+  color: var(--muted);
+}
+
+.x13__summary {
+  max-width: 44rem;
+  margin: 0;
+}
+
+/* ---------- 14 The False Alias: a dictionary entry ---------- */
+
+.x14 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x14__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.x14__controls label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x14__controls select {
+  font: inherit;
+  max-width: 100%;
+}
+
+.x14__entry {
+  max-width: 40rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  column-rule: 1px solid var(--rule);
+  border-top: 1px solid var(--fg);
+  border-bottom: 1px solid var(--fg);
+  padding: var(--space-3) 0;
+}
+
+.x14__head {
+  display: inline;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0.4rem 0 0;
+}
+
+.x14__pos {
+  font-style: italic;
+}
+
+.x14__senses {
+  margin: var(--space-2) 0 0;
+  padding-left: 1.6rem;
+}
+
+.x14__senses li {
+  margin-bottom: 0.2rem;
+}
+
+.x14__field {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.x14__star {
+  color: var(--accent-signal);
+  font-weight: 700;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+}
+
+.x14__foot {
+  margin-top: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+
+.x14__key {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 44rem;
+}
+
+/* ---------- 15 The Expired Answer: a compatibility matrix ---------- */
+
+.x15 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x15__dials {
+  border: 2px solid var(--fg);
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.x15__dials legend {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0.3rem;
+}
+
+.x15__dial label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.x15__dial select {
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.x15__scroll {
+  overflow-x: auto;
+}
+
+.x15__matrix {
+  border-collapse: collapse;
+  min-width: 56rem;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+.x15__matrix th,
+.x15__matrix td {
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.45rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+.x15__matrix thead th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--surface);
+}
+
+.x15__matrix tbody th {
+  width: 15rem;
+  font-weight: 400;
+}
+
+.x15__ans {
+  display: block;
+  font-weight: 600;
+}
+
+.x15__src,
+.x15__says {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.x15__v {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.x15__cell.is-silent {
+  color: var(--muted);
+  text-align: center;
+}
+
+.x15__cell.is-does-not-apply .x15__v,
+tr.is-does-not-apply .x15__for {
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+tr.is-does-not-apply .x15__ans {
+  text-decoration: line-through;
+  text-decoration-color: var(--accent-signal);
+}
+
+.x15__cell.is-unknown {
+  background: repeating-linear-gradient(135deg, transparent 0 6px, var(--surface) 6px 12px);
+}
+
+.x15__for {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.x15__sum {
+  margin: 0;
+  max-width: 48rem;
+  font-weight: 600;
+}
+
+/* ---------- 16 The Confidence Costume: a wardrobe ---------- */
+
+.x16 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 48rem) {
+  .x16 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x16__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 var(--space-2);
+  border-bottom: 4px solid var(--fg);
+  padding-bottom: var(--space-1);
+}
+
+.x16__hanger {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+}
+
+.x16__gname {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.x16__vouch {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.x16__btns,
+.x16__swap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.x16__figure {
+  margin: 0;
+}
+
+.x16__claim {
+  border: 1px solid var(--rule-strong);
+  padding: var(--space-4) var(--space-3);
+  min-height: 16rem;
+  display: grid;
+  align-content: center;
+  gap: var(--space-2);
+}
+
+.x16__figure.is-bare .x16__claim {
+  border-style: dashed;
+  border-color: var(--rule);
+}
+
+.x16__text {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.x16__text.is-display {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.x16__badge {
+  justify-self: start;
+  margin: 0;
+  padding: 0.15rem 0.6rem;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.x16__terms {
+  margin: 0;
+  display: flex;
+  gap: var(--space-1);
+}
+
+.x16__terms span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0.1rem 0.4rem;
+}
+
+.x16__sup {
+  font-size: 0.6em;
+  color: var(--accent);
+}
+
+.x16__rank {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.x16__chart {
+  width: 100%;
+  max-width: 16rem;
+  height: auto;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--fg);
+}
+
+.x16__bar1 {
+  fill: var(--accent);
+}
+
+.x16__bar2 {
+  fill: var(--rule-strong);
+}
+
+.x16__foot,
+.x16__pin {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.x16__under {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 2px solid var(--rule-strong);
+}
+
+.x16__corpus {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+/* ---------- 17 Three Kinds of Proof: a balance ---------- */
+
+.x17 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x17__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x17__claim {
+  margin: 0;
+  font-size: 1.15rem;
+  max-width: 44rem;
+}
+
+.x17__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+}
+
+.x17__controls select {
+  font: inherit;
+  max-width: 100%;
+}
+
+.x17__admit {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.x17__balance {
+  max-width: 30rem;
+}
+
+.x17__svg {
+  width: 100%;
+  height: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--fg);
+}
+
+.x17__svg line {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.x17__beam {
+  transform-box: view-box;
+  transform-origin: 160px 30px;
+}
+
+.x17__pan {
+  transform-box: view-box;
+}
+
+.x17__pivot {
+  fill: var(--fg);
+}
+
+.x17__weight--for {
+  fill: var(--accent);
+}
+
+.x17__weight--against {
+  fill: var(--accent-signal);
+}
+
+.x17__verdict {
+  margin: 0;
+  font-weight: 700;
+}
+
+.x17__exhibits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-3);
+}
+
+.x17__exhibits li {
+  border-top: 3px solid var(--fg);
+  padding-top: var(--space-2);
+  font-size: 0.88rem;
+}
+
+.x17__exhibits li.is-off {
+  border-top-style: dotted;
+  color: var(--muted);
+}
+
+.x17__exhibits p {
+  margin: 0 0 var(--space-1);
+}
+
+.x17__ex-head {
+  font-weight: 600;
+}
+
+.x17__side {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.x17__side--against {
+  color: var(--accent-signal);
+}
+
+.x17__kind {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  border: 1px solid var(--rule-strong);
+  padding: 0 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.x17__reading {
+  font-style: italic;
+}
+
+.x17__reclass select {
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x17__beam {
+    transition: transform 300ms ease-out;
+  }
+}
+
+/* ---------- 18 The Missing Context: a card with peelable strips ---------- */
+
+.x18 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+  --tape: #efe6c8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x18 {
+    --tape: #3b3626;
+  }
+}
+
+@media (max-width: 48rem) {
+  .x18 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x18__card {
+  border: 1px solid var(--rule-strong);
+  padding: var(--space-3);
+  background: var(--surface);
+}
+
+.x18__from,
+.x18__field {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x18__from {
+  margin: 0 0 var(--space-2);
+}
+
+.x18__strips {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-2);
+  display: grid;
+  gap: 3px;
+}
+
+.x18__strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0 var(--space-2);
+  background: var(--tape);
+  padding: var(--space-1) var(--space-2);
+  font-size: 0.88rem;
+  border-left: 4px solid var(--rule-strong);
+}
+
+.x18__strip .x18__field {
+  grid-column: 1;
+  color: var(--muted);
+}
+
+.x18__strip .x18__text {
+  grid-column: 1;
+}
+
+.x18__peel {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background: none;
+  border: 1px dashed var(--fg);
+  color: var(--fg);
+  padding: 0.2rem 0.4rem;
+  cursor: pointer;
+}
+
+.x18__stub {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  border-top: 1px dashed var(--rule-strong);
+  padding: 0.1rem 0 0 var(--space-2);
+}
+
+.x18__solution {
+  margin: 0 0 var(--space-3);
+  font-weight: 600;
+  border-top: 2px solid var(--fg);
+  padding-top: var(--space-2);
+}
+
+.x18__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x18__sum {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+}
+
+.x18__situations {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.x18__situations li {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0 var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.88rem;
+}
+
+.x18__state {
+  grid-row: 1 / span 2;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.x18__why {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.x18__situations .is-misapplied .x18__state,
+.x18__situations .is-silent .x18__state {
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x18__situations .is-misapplied .x18__where {
+  font-weight: 700;
+}
+
+.x18 > .lab-out {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+/* ---------- 19 The Classification Trial: a hearing transcript ---------- */
+
+.x19 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x19__case {
+  border-top: 4px double var(--fg);
+  border-bottom: 1px solid var(--fg);
+  padding: var(--space-2) 0;
+}
+
+.x19__docket {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--space-2);
+}
+
+.x19__parties {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.x19__parties p {
+  margin: 0;
+}
+
+.x19__parties p + p {
+  border-left: 1px solid var(--rule-strong);
+  padding-left: var(--space-3);
+}
+
+@media (max-width: 40rem) {
+  .x19__parties {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .x19__parties p + p {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+
+.x19__floor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 48rem) {
+  .x19__floor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x19__questions {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x19__questions .lab-btn {
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.x19__transcript {
+  font-family: Georgia, 'Times New Roman', serif;
+  border-left: 1px solid var(--rule-strong);
+  padding-left: var(--space-3);
+  min-height: 10rem;
+}
+
+.x19__transcript dl {
+  margin: 0;
+}
+
+.x19__line {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 30rem) {
+  .x19__line {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+.x19__line dt {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 0.2rem;
+}
+
+.x19__line dd {
+  margin: 0;
+}
+
+.x19__line--court dd {
+  font-style: italic;
+}
+
+.x19__line--audit dt {
+  color: var(--accent-signal);
+}
+
+.x19__line--labels dt {
+  color: var(--accent);
+}
+
+.x19__empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.x19__bench {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-3);
+}
+
+.x19__minute {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  max-width: 48rem;
+}
+
+/* ---------- 20 The Unverified Stamp: a stamp desk ---------- */
+
+.x20 {
+  display: grid;
+  gap: var(--space-4);
+  --stamp-ink: var(--rose);
+  --card: #fbfaf5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x20 {
+    --card: #23272d;
+  }
+}
+
+.x20__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  align-items: start;
+}
+
+.x20__field {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.x20__field > label:first-child,
+.x20__field legend {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0;
+}
+
+.x20__field select {
+  font: inherit;
+  max-width: 100%;
+}
+
+.x20__desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 48rem) {
+  .x20__desk {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x20__card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--rule-strong);
+  padding: var(--space-3);
+  min-height: 15rem;
+  overflow: hidden;
+}
+
+.x20__src {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin: 0 0 var(--space-2);
+}
+
+.x20__problem {
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+}
+
+.x20__by {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.x20__stamp {
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+  color: var(--stamp-ink);
+  border: 3px solid var(--stamp-ink);
+  padding: 0.4rem 0.8rem;
+  transform: rotate(-9deg);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  opacity: 0.88;
+  pointer-events: none;
+}
+
+.x20__stamp--seal {
+  border-radius: 50%;
+  border-style: double;
+  border-width: 5px;
+  aspect-ratio: 1;
+  align-content: center;
+  padding: 0.6rem;
+  min-width: 7.5rem;
+}
+
+.x20__stamp--box {
+  outline: 1px solid var(--stamp-ink);
+  outline-offset: 2px;
+}
+
+.x20__word {
+  font-size: 1rem;
+}
+
+.x20__small {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.x20__slip {
+  border-top: 3px solid var(--fg);
+  padding-top: var(--space-2);
+}
+
+.x20__tally {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+}
+
+.x20__slip ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.x20__slip li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0 var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.88rem;
+}
+
+.x20__status {
+  grid-row: 1 / span 2;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.x20__slip .is-not-backed .x20__status {
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x20__why {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x20__stamp {
+    animation: x20-press 180ms ease-out;
+  }
+  @keyframes x20-press {
+    from {
+      transform: rotate(-9deg) scale(1.25);
+      opacity: 0;
+    }
+  }
+}
+
+/* ---------- Narrow screens: long option labels must not widen the page ---------- */
+
+.x13__pick,
+.x20__field,
+.x11__desk > div,
+.x14__controls {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.x13__pick select,
+.x14__controls select,
+.x20__field select,
+.x11__desk select {
+  width: 100%;
+  max-width: min(100%, 26rem);
+}
+
+.x14__entry,
+.x16__claim,
+.x18__card,
+.x20__card {
+  overflow-wrap: anywhere;
+}
+
+.x20__card {
+  padding-bottom: 8.5rem;
+}
+
+.x15__matrix tbody th,
+.x13__ledger tbody th,
+.x12__scroll tbody th {
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.x13__ledger tbody th {
+  font-family: var(--font-mono);
+}

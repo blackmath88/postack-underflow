@@ -29,3 +29,8 @@ export const ESSAY_SITE = 'https://blackmath88.github.io/postack-underflow/'
 export const ESSAY_INDEXING = `${ESSAY_SITE}indexing/`
 export const CORPUS_MANIFEST = repoFile('corpus/sources.json')
 export const RETRIEVAL_FILE = repoFile('src/lib/retrieval.ts')
+
+// Classification family (Lab 02).
+export const DISPUTED_NEIGHBOUR_DATA = repoFile('src/data/disputed-neighbour.ts')
+export const RECORDS_SCHEMA = repoFile('src/lib/records.ts')
+export const QUERIES_FILE = repoFile('corpus/queries.json')
