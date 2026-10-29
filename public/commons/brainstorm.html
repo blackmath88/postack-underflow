@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo Frame Commons — br-ai-nstorm Level-1 view (commons-v1)</title>
+<style>
+:root{--bg:#f4f1ea;--paper:#fbfaf6;--ink:#233137;--muted:#6b777c;--line:#e2ddd2;--accent:#647b78;--chip:#dcefeb}
+@media (prefers-color-scheme:dark){:root{--bg:#161c1f;--paper:#1e262a;--ink:#e7ecec;--muted:#9aa7ab;--line:#2f3a3f;--accent:#9cc3bd;--chip:#24403c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:26px;letter-spacing:-.03em;margin:0}h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin:4px 0 18px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}nav a{border:1px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
+.banner{border-left:4px solid var(--accent);background:var(--paper);padding:10px 12px;border-radius:0 10px 10px 0;font-size:13px;color:var(--muted);margin-bottom:26px}
+article{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:22px}
+.kicker{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+h2{margin:4px 0 6px;font-size:22px;letter-spacing:-.02em}.lede{margin:0 0 14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+h3{font-size:13px;margin:6px 0 8px}.count{font-weight:600;color:var(--muted)}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.card{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--bg)}
+.card p{margin:0;font-size:13.5px}.meta{margin-top:6px;font-size:11px;color:var(--muted);overflow-wrap:anywhere}.meta a{color:var(--accent)}
+.note{font-size:12px;color:var(--muted);background:var(--chip);border-radius:10px;padding:8px 10px}
+footer{font-size:11px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>br-<span>ai</span>-nstorm · Photo Frame Commons — br-ai-nstorm Level-1 view (commons-v1)</h1>
+  <p class="sub">Read-only problem-space view of wesbos/photo-frame-dashboard @ 0bff55ef3fb2, generated 2026-10-29T16:19:22.411Z.</p>
+  <nav><a href="#emmc-not-exposed">The eMMC never appears in…</a><a href="#ums-drops-during-backup">The backup disk appears, then…</a><a href="#reset-after-uboot">The disk vanishes about 45…</a><a href="#gadget-error-71">U-Boot&#39;s USB gadget never…</a><a href="#boot-hash-mismatch">The compatibility check stops:…</a><a href="#usb-c-no-data">The frame shows no USB data, or…</a><a href="#stock-root-adb">Some frames already ship with…</a><a href="#aimor-temporary-adb">Root ADB without writing…</a><a href="#test-app-adb">Switching ADB on from a hidden…</a><a href="#windows-crlf-scripts">On Windows, the boot-fix…</a><a href="#wsl-usbipd-ums">On Windows with WSL, the backup…</a><a href="#frameo-adb-unauthorized">A Frameo frame lists ADB as…</a><a href="#frameo-159k-no-adb">A Frameo 159K (Rockchip RK3326)…</a><a href="#launcher-lockout">After choosing a new Home app,…</a><a href="#animation-cpu">One animated icon keeps the…</a><a href="#compromised-ca-roots">The frames still trust…</a><a href="#erased-emmc">An owner erased the whole eMMC…</a><a href="#today-view-fifth-person">The dashboard draws a fifth…</a></nav>
+  <p class="banner">Every item below is quoted from a repository document and linked to its lines. Inclusion means “the document says so”, not “the group agrees”. Kinds follow the document’s own section headings. To discuss, relate or dispute these items, open the problem space in a shared room.</p>
+  <article id="emmc-not-exposed">
+  <header>
+    <div class="kicker">Problem space · emmc-not-exposed</div>
+    <h2>The eMMC never appears in U-Boot, so there is nothing to back up</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">8</span></h3><ul><li class="card">
+  <p>U-Boot never initialises the eMMC</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L386" rel="noopener">docs/pf1007l-start-here.md#L386</a></div>
+</li>
+<li class="card">
+  <p>Here it never initialises, so there is nothing to read.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/99" rel="noopener">issues/99#L0</a> · issue #99 · PF1007L report: eMMC never initialises in U-Boot (mmc dev 1 fails) on BOTH Route U and Route S builds, tested firmware 20260113</div>
+</li>
+<li class="card">
+  <p>fixed by `docs/patches/pf1007l-v2025.10-no-mmc-hs.patch` (4-bit, 26 MHz, no HS) plus the START STOP correction.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/pull/113" rel="noopener">pull/113#L0</a> · pull #113 · docs: PF1007L January 20260113 macOS (Intel) report: warm-up SPL and no-HS fixed Route U on the larger eMMC</div>
+</li>
+<li class="card">
+  <p>The no-HS patch, as you suggested, fixed it here.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/99#issuecomment-6175633958" rel="noopener">issues/99#issuecomment-6175633958#L0</a> · issue #99 · PF1007L report: eMMC never initialises in U-Boot (mmc dev 1 fails) on BOTH Route U and Route S builds, tested firmware 20260113</div>
+</li>
+<li class="card">
+  <p>it rules high-speed timing out on your unit, which narrows it down.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/98#issuecomment-6182698073" rel="noopener">issues/98#issuecomment-6182698073#L0</a> · issue #98 · PF1007L, firmware FL-AIMOR-OS.0.20260519: Route U stops at section 4, eMMC never appears as a UMS disk</div>
+</li>
+<li class="card">
+  <p>Rebuilt with start-stop + linux-12mhz patches (4-bit, 12 MHz, NO_PMIC, 408 MHz): UMS appeared read-only.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/189" rel="noopener">issues/189#L0</a> · issue #189 · PF1007L 20260519 (larger eMMC) on macOS: Route U root with 12 MHz build</div>
+</li>
+<li class="card">
+  <p>Still unsolved, so leaving this open.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/99#issuecomment-6270081219" rel="noopener">issues/99#issuecomment-6270081219#L0</a> · issue #99 · PF1007L report: eMMC never initialises in U-Boot (mmc dev 1 fails) on BOTH Route U and Route S builds, tested firmware 20260113</div>
+</li>
+<li class="card">
+  <p>Result: rooted on PF1007L 20260519 (larger eMMC).</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/98#issuecomment-6276236728" rel="noopener">issues/98#issuecomment-6276236728#L0</a> · issue #98 · PF1007L, firmware FL-AIMOR-OS.0.20260519: Route U stops at section 4, eMMC never appears as a UMS disk</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="ums-drops-during-backup">
+  <header>
+    <div class="kicker">Problem space · ums-drops-during-backup</div>
+    <h2>The backup disk appears, then drops or errors partway through reading</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">5</span></h3><ul><li class="card">
+  <p>Read errors, `ums` drops, slow or failing backup</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L375" rel="noopener">docs/pf1007l-start-here.md#L375</a></div>
+</li>
+<li class="card">
+  <p>Drops through a bus-powered hub</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L377" rel="noopener">docs/pf1007l-start-here.md#L377</a></div>
+</li>
+<li class="card">
+  <p>Bulk eMMC reads fail even at 4-bit 26 MHz</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L382" rel="noopener">docs/pf1007l-start-here.md#L382</a></div>
+</li>
+<li class="card">
+  <p>the drops traced to an eMMC read error inside U-Boot, with no USB traffic involved.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/18" rel="noopener">issues/18#L0</a> · issue #18 · PF1007L report: firmware 20260113 on a 30,777,344-sector eMMC. U-Boot eMMC reads failed at 52 MHz, clean at 25 MHz</div>
+</li>
+<li class="card">
+  <p>reads succeeded in **all** speed modes: legacy, HS, and HS52 capped at 12 MHz.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/110" rel="noopener">issues/110#L0</a> · issue #110 · PF1007L January 20260113 (larger eMMC): Route U works only with eMMC at 12 MHz; macOS</div>
+</li></ul></section>
+<section><h3>Approaches <span class="count">2</span></h3><ul><li class="card">
+  <p>Route U worked on macOS after two changes to the U-Boot build and moving the frame off a bus-powered hub.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/16" rel="noopener">issues/16#L0</a> · issue #16 · Report for Model PF1007</div>
+</li>
+<li class="card">
+  <p>because the default build cannot read this eMMC.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/116" rel="noopener">issues/116#L0</a> · issue #116 · PF1007L report: firmware 20260529, larger eMMC, Route U on Linux needed low-power 12 MHz U-Boot</div>
+</li></ul></section>
+
+
+
+</div>
+</article>
+<article id="reset-after-uboot">
+  <header>
+    <div class="kicker">Problem space · reset-after-uboot</div>
+    <h2>The disk vanishes about 45 seconds after U-Boot starts, or when the computer ejects it</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">4</span></h3><ul><li class="card">
+  <p>The disk disappears when the computer sends &quot;eject&quot; or &quot;stop&quot;</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L376" rel="noopener">docs/pf1007l-start-here.md#L376</a></div>
+</li>
+<li class="card">
+  <p>the frame resets</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/19" rel="noopener">issues/19#L0</a> · issue #19 · PF1007L: frame resets to FEL ~45 s after U-Boot starts, before eMMC backup can run (Route U, macOS)</div>
+</li>
+<li class="card">
+  <p>Confirmed fix: the START STOP patch from #28 solved the 45–50 s reset on my unit.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/19#issuecomment-6136932225" rel="noopener">issues/19#issuecomment-6136932225#L0</a> · issue #19 · PF1007L: frame resets to FEL ~45 s after U-Boot starts, before eMMC backup can run (Route U, macOS)</div>
+</li>
+<li class="card">
+  <p>look like a different problem and are listed separately there.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/19#issuecomment-6147856500" rel="noopener">issues/19#issuecomment-6147856500#L0</a> · issue #19 · PF1007L: frame resets to FEL ~45 s after U-Boot starts, before eMMC backup can run (Route U, macOS)</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="gadget-error-71">
+  <header>
+    <div class="kicker">Problem space · gadget-error-71</div>
+    <h2>U-Boot&#39;s USB gadget never enumerates: the host logs error -71</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">4</span></h3><ul><li class="card">
+  <p>fail with error `-71`, while FEL and Android ADB work</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L390" rel="noopener">docs/pf1007l-start-here.md#L390</a></div>
+</li>
+<li class="card">
+  <p>I can&#39;t say whether it is a power issue or a patch issue.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/12#issuecomment-6117554951" rel="noopener">issues/12#issuecomment-6117554951#L0</a> · issue #12 · PF1007 &quot;Portrait&quot; (EFERCRO PF1007L_MB_V1.0) report: no USB data seen, likely C-to-C cable</div>
+</li>
+<li class="card">
+  <p>Route U U-Boot starts but ums never enumerates</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/36" rel="noopener">issues/36#L0</a> · issue #36 · PF1007L (fw 20260519): Route U U-Boot starts but ums never enumerates on macOS</div>
+</li>
+<li class="card">
+  <p>**Route U didn&#39;t work on this January (`20260113`, boot `d71c313d`) unit.**</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/12#issuecomment-6137133782" rel="noopener">issues/12#issuecomment-6137133782#L0</a> · issue #12 · PF1007 &quot;Portrait&quot; (EFERCRO PF1007L_MB_V1.0) report: no USB data seen, likely C-to-C cable</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="boot-hash-mismatch">
+  <header>
+    <div class="kicker">Problem space · boot-hash-mismatch</div>
+    <h2>The compatibility check stops: the boot image hash is not the tested one</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">5</span></h3><ul><li class="card">
+  <p>checks the boot image&#39;s structure, not a fixed hash</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L79" rel="noopener">docs/pf1007l-start-here.md#L79</a></div>
+</li>
+<li class="card">
+  <p>rooted successfully with the SD-only flow from #14, which already targets this exact boot hash</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/17#issuecomment-6116631973" rel="noopener">issues/17#issuecomment-6116631973#L0</a> · issue #17 · PF1007L with newer firmware 20260410: boot hash differs, Route U ums drops after ~41 s, Route S dump OK</div>
+</li>
+<li class="card">
+  <p>T6, hash bef19d67… instead of d71c313d…</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/208" rel="noopener">issues/208#L0</a> · issue #208 · PF1007L with newer firmware (20260416) – boot image hash mismatch at T6</div>
+</li>
+<li class="card">
+  <p>Route S refuses it by design.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/208#issuecomment-6371663159" rel="noopener">issues/208#issuecomment-6371663159#L0</a> · issue #208 · PF1007L with newer firmware (20260416) – boot image hash mismatch at T6</div>
+</li>
+<li class="card">
+  <p>I finally succeeded by creating a USB drive and booting my PC via Linux to set up a Wi-Fi hotspot, etc.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/208#issuecomment-6371724333" rel="noopener">issues/208#issuecomment-6371724333#L0</a> · issue #208 · PF1007L with newer firmware (20260416) – boot image hash mismatch at T6</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="usb-c-no-data">
+  <header>
+    <div class="kicker">Problem space · usb-c-no-data</div>
+    <h2>The frame shows no USB data, or no power, on the computer</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">3</span></h3><ul><li class="card">
+  <p>records intermittent C-to-C enumeration through a hub</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L115-L117" rel="noopener">docs/pf1007l-start-here.md#L115-L117</a></div>
+</li>
+<li class="card">
+  <p>Treat the cable recommendation as a reliable starting point, rather than proof</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L116-L117" rel="noopener">docs/pf1007l-start-here.md#L116-L117</a></div>
+</li>
+<li class="card">
+  <p>Update: it was the cable.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/12#issuecomment-6113789229" rel="noopener">issues/12#issuecomment-6113789229#L0</a> · issue #12 · PF1007 &quot;Portrait&quot; (EFERCRO PF1007L_MB_V1.0) report: no USB data seen, likely C-to-C cable</div>
+</li></ul></section>
+
+<section><h3>Evidence <span class="count">3</span></h3><ul><li class="card">
+  <p>A USB-C to USB-C cable gave unit C **no power and no data**.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L108" rel="noopener">docs/pf1007l-start-here.md#L108</a></div>
+</li>
+<li class="card">
+  <p>a USB-C to USB-C cable direct to the Mac gave **no power and no USB data at all**</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/38" rel="noopener">issues/38#L0</a> · issue #38 · New device: DPF ZC002 (Frameo v1.29.14) — no SystemUI, ADB stays unauthorized, official ADB toggle doesn&#39;t help</div>
+</li>
+<li class="card">
+  <p>The cable bundled with the frame carried no data</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/148" rel="noopener">issues/148#L0</a> · issue #148 · PF1007L report: firmware 20260519 (YHK.F...) ships with persistent root ADB over USB (1f3a:1002), no boot patch needed</div>
+</li></ul></section>
+
+
+</div>
+</article>
+<article id="stock-root-adb">
+  <header>
+    <div class="kicker">Problem space · stock-root-adb</div>
+    <h2>Some frames already ship with root ADB switched on</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">3</span></h3><ul><li class="card">
+  <p>Some units ship with root ADB on</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L74-L75" rel="noopener">docs/pf1007l-start-here.md#L74-L75</a></div>
+</li>
+<li class="card">
+  <p>1f3a:1002, listed as `device` (root ADB, no key and no prompt).</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/148" rel="noopener">issues/148#L0</a> · issue #148 · PF1007L report: firmware 20260519 (YHK.F...) ships with persistent root ADB over USB (1f3a:1002), no boot patch needed</div>
+</li>
+<li class="card">
+  <p>Note the product ID differs from the `1f3a:1002` in #148.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/240" rel="noopener">issues/240#L0</a> · issue #240 · PF1007L report: firmware 20260519, root USB ADB on out of the box (second unit after #148); full setup and boot fixes over USB on macOS</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="aimor-temporary-adb">
+  <header>
+    <div class="kicker">Problem space · aimor-temporary-adb</div>
+    <h2>Root ADB without writing anything, through the vendor app&#39;s own connection</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">4</span></h3><ul><li class="card">
+  <p>Thus, the vendor server can run any command as root on the frame.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/aimor-remote-root-shell.md#L14" rel="noopener">docs/aimor-remote-root-shell.md#L14</a></div>
+</li>
+<li class="card">
+  <p>This is an alternative before a boot patch on that</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L229-L236" rel="noopener">docs/pf1007l-start-here.md#L229-L236</a></div>
+</li>
+<li class="card">
+  <p>one persisted property made root ADB over USB survive reboots, with no boot partition write</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/163" rel="noopener">issues/163#L0</a> · issue #163 · PF1007L report: fw 20260529, stock ADB off; AiMOR network route from a Windows host, then `persist.sys.usb.config=mass_storage,adb` gives permanent root USB ADB (no boot write)</div>
+</li>
+<li class="card">
+  <p>**Temporary Wi-Fi ADB dropped about a minute after T3c**, twice: the frame left the network.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/187" rel="noopener">issues/187#L0</a> · issue #187 · PF1007L report: fw 20260410, AiMOR route then `persist.sys.usb.config=mass_storage,adb` gives permanent root USB ADB; full kiosk setup completed with AiMOR disabled</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="test-app-adb">
+  <header>
+    <div class="kicker">Problem space · test-app-adb</div>
+    <h2>Switching ADB on from a hidden test app on the About screen</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">4</span></h3><ul><li class="card">
+  <p>tapping Model Number several times until the modal appears</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/135#issuecomment-6201780962" rel="noopener">issues/135#issuecomment-6201780962#L0</a> · issue #135 · [PF1007L] ADB - Test App Password</div>
+</li>
+<li class="card">
+  <p>Confirmed, this works for both PF1007 and PF1506</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/135#issuecomment-6201996652" rel="noopener">issues/135#issuecomment-6201996652#L0</a> · issue #135 · [PF1007L] ADB - Test App Password</div>
+</li>
+<li class="card">
+  <p>docs: Document ADB with no additional tools required</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/pull/200" rel="noopener">pull/200#L0</a> · pull #200 · docs: Document ADB with no additional tools required</div>
+</li>
+<li class="card">
+  <p>The test-app route is in review in #200.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/135#issuecomment-6371664976" rel="noopener">issues/135#issuecomment-6371664976#L0</a> · issue #135 · [PF1007L] ADB - Test App Password</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="windows-crlf-scripts">
+  <header>
+    <div class="kicker">Problem space · windows-crlf-scripts</div>
+    <h2>On Windows, the boot-fix scripts pass every check and still break Wi-Fi</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">2</span></h3><ul><li class="card">
+  <p>the first one breaks Wi-Fi with every check passing.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/185" rel="noopener">issues/185#L0</a> · issue #185 · `pf1007l-boot/install.sh` from Git Bash on Windows: CRLF scripts pass the SHA-256 checks and break Wi-Fi; frame paths get rewritten</div>
+</li>
+<li class="card">
+  <p>`install.sh apply` refuses CRLF files before any backup or push.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/185#issuecomment-6270078935" rel="noopener">issues/185#issuecomment-6270078935#L0</a> · issue #185 · `pf1007l-boot/install.sh` from Git Bash on Windows: CRLF scripts pass the SHA-256 checks and break Wi-Fi; frame paths get rewritten</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="wsl-usbipd-ums">
+  <header>
+    <div class="kicker">Problem space · wsl-usbipd-ums</div>
+    <h2>On Windows with WSL, the backup disk vanishes once it is attached to WSL</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">2</span></h3><ul><li class="card">
+  <p>Never attach `1010` to WSL</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L383" rel="noopener">docs/pf1007l-start-here.md#L383</a></div>
+</li>
+<li class="card">
+  <p>Windows shows MediaLoaded=False</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/208#issuecomment-6278428787" rel="noopener">issues/208#issuecomment-6278428787#L0</a> · issue #208 · PF1007L with newer firmware (20260416) – boot image hash mismatch at T6</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="frameo-adb-unauthorized">
+  <header>
+    <div class="kicker">Problem space · frameo-adb-unauthorized</div>
+    <h2>A Frameo frame lists ADB as unauthorized and never shows the prompt</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">1</span></h3><ul><li class="card">
+  <p>**no &quot;Allow USB debugging&quot; prompt ever appears on screen**.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/38" rel="noopener">issues/38#L0</a> · issue #38 · New device: DPF ZC002 (Frameo v1.29.14) — no SystemUI, ADB stays unauthorized, official ADB toggle doesn&#39;t help</div>
+</li></ul></section>
+<section><h3>Approaches <span class="count">1</span></h3><ul><li class="card">
+  <p>using the conservative userdata-only approach</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/38#issuecomment-6146460117" rel="noopener">issues/38#issuecomment-6146460117#L0</a> · issue #38 · New device: DPF ZC002 (Frameo v1.29.14) — no SystemUI, ADB stays unauthorized, official ADB toggle doesn&#39;t help</div>
+</li></ul></section>
+<section><h3>Evidence <span class="count">2</span></h3><ul><li class="card">
+  <p>docs: SOMY ZC002 (Frameo, Allwinner A33) userdata-key root report</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/pull/73" rel="noopener">pull/73#L0</a> · pull #73 · docs: SOMY ZC002 (Frameo, Allwinner A33) userdata-key root report</div>
+</li>
+<li class="card">
+  <p>Pastigio ZC002 (ZC002_20260313): stock-su route works end to end with data-patch-prepare.py, plus two small gaps</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/231" rel="noopener">issues/231#L0</a> · issue #231 · Pastigio ZC002 (ZC002_20260313): stock-su route works end to end with data-patch-prepare.py, plus two small gaps</div>
+</li></ul></section>
+
+
+</div>
+</article>
+<article id="frameo-159k-no-adb">
+  <header>
+    <div class="kicker">Problem space · frameo-159k-no-adb</div>
+    <h2>A Frameo 159K (Rockchip RK3326) never appears in adb at all</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">5</span></h3><ul><li class="card">
+  <p>The device will not show when doing `adb devices`</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/126" rel="noopener">issues/126#L0</a> · issue #126 · Frameo 15.1 no ADB access</div>
+</li>
+<li class="card">
+  <p>please don&#39;t run boot writes copied from this thread.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/126#issuecomment-6270079755" rel="noopener">issues/126#issuecomment-6270079755#L0</a> · issue #126 · Frameo 15.1 no ADB access</div>
+</li>
+<li class="card">
+  <p>A builder is under review in #213</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/126#issuecomment-6371672225" rel="noopener">issues/126#issuecomment-6371672225#L0</a> · issue #126 · Frameo 15.1 no ADB access</div>
+</li>
+<li class="card">
+  <p>with no boot or loader writes</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/126#issuecomment-6446743407" rel="noopener">issues/126#issuecomment-6446743407#L0</a> · issue #126 · Frameo 15.1 no ADB access</div>
+</li>
+<li class="card">
+  <p>I&#39;ve made public my repo</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/126#issuecomment-6460047808" rel="noopener">issues/126#issuecomment-6460047808#L0</a> · issue #126 · Frameo 15.1 no ADB access</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="launcher-lockout">
+  <header>
+    <div class="kicker">Problem space · launcher-lockout</div>
+    <h2>After choosing a new Home app, a PF1506 stays on its boot animation</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">4</span></h3><ul><li class="card">
+  <p>allowed that animation to finish.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/104" rel="noopener">issues/104#L0</a> · issue #104 · PF1506 / AiMOR 6.0.70 / Allwinner A133: verified USB ADB, persistent Wi-Fi ADB, Firefox startup</div>
+</li>
+<li class="card">
+  <p>remains on its final screen after selecting a locally built Home HQ APK as the default Home app and restarting.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/118" rel="noopener">issues/118#L0</a> · issue #118 · PF1506 / A133: stuck at LOVE IS SHARING after changing Home launcher; no USB access</div>
+</li>
+<li class="card">
+  <p>there is no published way back for a PF1506 with no USB and no vendor channel.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/118#issuecomment-6182699072" rel="noopener">issues/118#issuecomment-6182699072#L0</a> · issue #118 · PF1506 / A133: stuck at LOVE IS SHARING after changing Home launcher; no USB access</div>
+</li>
+<li class="card">
+  <p>so #118 can&#39;t happen.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/pull/263" rel="noopener">pull/263#L0</a> · pull #263 · PF1506: kiosk at boot without replacing Home, Firefox web app, Power off</div>
+</li></ul></section>
+
+
+<section><h3>Assumptions &amp; risks <span class="count">1</span></h3><ul><li class="card">
+  <p>So the frame is probably fully booted, with Home HQ running underneath.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/118#issuecomment-6270080512" rel="noopener">issues/118#issuecomment-6270080512#L0</a> · issue #118 · PF1506 / A133: stuck at LOVE IS SHARING after changing Home launcher; no USB access</div>
+</li></ul></section>
+
+</div>
+</article>
+<article id="animation-cpu">
+  <header>
+    <div class="kicker">Problem space · animation-cpu</div>
+    <h2>One animated icon keeps the WebView busy on nearly two cores</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">3</span></h3><ul><li class="card">
+  <p>**Heavy content:**</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/building-for-the-frame.md#L113" rel="noopener">docs/building-for-the-frame.md#L113</a></div>
+</li>
+<li class="card">
+  <p>Swapping the weather icons for static copies dropped it to ~0.05 cores.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/143" rel="noopener">issues/143#L0</a> · issue #143 · Animated SVGs keep the WebView redrawing nonstop on A33 / Android 6 (about 1.8 of 4 cores, about 0.05 when static)</div>
+</li>
+<li class="card">
+  <p>One SMIL icon was about 2.1 cores.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/143#issuecomment-6214990682" rel="noopener">issues/143#issuecomment-6214990682#L0</a> · issue #143 · Animated SVGs keep the WebView redrawing nonstop on A33 / Android 6 (about 1.8 of 4 cores, about 0.05 when static)</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="compromised-ca-roots">
+  <header>
+    <div class="kicker">Problem space · compromised-ca-roots</div>
+    <h2>The frames still trust certificate roots whose intermediates were compromised</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">3</span></h3><ul><li class="card">
+  <p>An attacker with one of the keys can impersonate any HTTPS site.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/229" rel="noopener">issues/229#L0</a> · issue #229 · Security: frames trust the compromised eMudhra intermediates (stock Android 6 store has AAA Certificate Services)</div>
+</li>
+<li class="card">
+  <p>Fix: disable the root the way Android Settings does.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/229#issuecomment-6319562312" rel="noopener">issues/229#issuecomment-6319562312#L0</a> · issue #229 · Security: frames trust the compromised eMudhra intermediates (stock Android 6 store has AAA Certificate Services)</div>
+</li>
+<li class="card">
+  <p>Thank you, this checks out.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/229#issuecomment-6371670838" rel="noopener">issues/229#issuecomment-6371670838#L0</a> · issue #229 · Security: frames trust the compromised eMudhra intermediates (stock Android 6 store has AAA Certificate Services)</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="erased-emmc">
+  <header>
+    <div class="kicker">Problem space · erased-emmc</div>
+    <h2>An owner erased the whole eMMC and asks for another unit&#39;s dump</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">3</span></h3><ul><li class="card">
+  <p>The whole eMMC (61,063,168 sectors) now reads back as zeros.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/209" rel="noopener">issues/209#L0</a> · issue #209 · FRAME156 owner with a fully erased eMMC: looking for a pre-userdata dump</div>
+</li>
+<li class="card">
+  <p>docs: add a recovery catalog by model and firmware</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/pull/211" rel="noopener">pull/211#L0</a> · pull #211 · docs: add a recovery catalog by model and firmware</div>
+</li>
+<li class="card">
+  <p>We can&#39;t host or broker firmware dumps here</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/209#issuecomment-6371665284" rel="noopener">issues/209#issuecomment-6371665284#L0</a> · issue #209 · FRAME156 owner with a fully erased eMMC: looking for a pre-userdata dump</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+<article id="today-view-fifth-person">
+  <header>
+    <div class="kicker">Problem space · today-view-fifth-person</div>
+    <h2>The dashboard draws a fifth person&#39;s events hours too late</h2>
+    <p class="lede">Imported from wesbos/photo-frame-dashboard. Framing written by agent:claude-opus-5-5 (not reviewed by a person).</p>
+  </header>
+  
+  <div class="grid">
+<section><h3>Framing &amp; claims <span class="count">2</span></h3><ul><li class="card">
+  <p>their events land about 8.5 hours below the time printed on the block.</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/105" rel="noopener">issues/105#L0</a> · issue #105 · Today view draws a 5th person&#39;s events half a day too late</div>
+</li>
+<li class="card">
+  <p>Fixed on main</p>
+  <div class="meta"><a href="https://github.com/wesbos/photo-frame-dashboard/issues/105#issuecomment-6371658518" rel="noopener">issues/105#issuecomment-6371658518#L0</a> · issue #105 · Today view draws a 5th person&#39;s events half a day too late</div>
+</li></ul></section>
+
+
+
+
+</div>
+</article>
+  <footer>Generated by <code>npm run brainstorm -- build</code>. Edit the source documents, not this file.</footer>
+</div>
+</body>
+</html>
