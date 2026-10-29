@@ -8,10 +8,17 @@ import { COMMUNITY } from './community.ts'
 import { HISTORY } from './history.ts'
 import { EDITORIAL } from './editorial.ts'
 import { MEMORY } from './memory.ts'
+import { CRITIQUE } from './critique.ts'
 
-export const CATALOGUE: LabEntry[] = [...DISCOVERY, ...CLASSIFICATION, ...COMMUNITY, ...HISTORY, ...EDITORIAL, ...MEMORY].sort(
-  (a, b) => a.n.localeCompare(b.n),
-)
+// The builders' entries, with the critique's assessment and any status it set.
+export const CATALOGUE: LabEntry[] = [...DISCOVERY, ...CLASSIFICATION, ...COMMUNITY, ...HISTORY, ...EDITORIAL, ...MEMORY]
+  .sort((a, b) => a.n.localeCompare(b.n))
+  .map((e) => {
+    const c = CRITIQUE[e.n]
+    if (!c) return e
+    const { status, ...assessment } = c
+    return { ...e, status: status ?? e.status, assessment }
+  })
 
 const byNumber = new Map(CATALOGUE.map((e) => [e.n, e]))
 export const entryFor = (n: string) => byNumber.get(n)

@@ -120,4 +120,6 @@ export interface LabEntry {
   finding: string
   related: string[]
   assessment?: Assessment
+  /** Specimens only: what developing the pilot further taught us. */
+  reflection?: string
 }

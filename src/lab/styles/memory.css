@@ -1,1 +1,1524 @@
 /* Lab family: memory. Scope every rule under the experiment's root class (.xNN). */
+
+/* ---------- 51 A Correction Travels: a hub and its routes ---------- */
+
+.x51 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x51__pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x51__map {
+  display: grid;
+  grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  gap: 0 var(--space-4);
+  align-items: start;
+}
+
+.x51__origin {
+  border: 2px solid var(--rule-strong);
+  padding: var(--space-3);
+  background: var(--bg);
+}
+
+.x51__origin.is-applied {
+  border-color: var(--accent);
+  box-shadow: 6px 6px 0 var(--accent);
+}
+
+.x51__by,
+.x51__target {
+  font-size: 0.85rem;
+  margin: 0 0 var(--space-2);
+}
+
+.x51__target {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.x51__says {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin: 0 0 var(--space-2);
+}
+
+.x51__routes {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--space-4);
+  border-left: 2px solid var(--rule-strong);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x51__routes > li {
+  position: relative;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--rule);
+}
+
+.x51__routes > li::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-4) - 2px);
+  top: 1.2rem;
+  width: var(--space-4);
+  border-top: 2px dashed var(--rule-strong);
+}
+
+.x51__routes > li[data-state='reached'] {
+  border: 2px solid var(--accent);
+}
+
+.x51__routes > li[data-state='reached']::before {
+  border-top-style: solid;
+  border-top-color: var(--accent);
+}
+
+.x51__routes h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.x51__stamp {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--space-1);
+  color: var(--muted);
+}
+
+[data-state='reached'] > .x51__stamp {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.x51__routes .lab-out {
+  margin: var(--space-1) 0 0;
+  overflow-wrap: anywhere;
+}
+
+.x51__tiles {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-1) 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(2.1rem, 1fr));
+  gap: 3px;
+}
+
+.x51__tiles li {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 0.2rem 0;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+}
+
+.x51__tiles li.is-moved {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  font-weight: 700;
+}
+
+@media (max-width: 44rem) {
+  .x51__map {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+  .x51__origin {
+    position: static;
+  }
+}
+
+/* ---------- 52 The Problem Desk, Reassembled: rail switches ---------- */
+
+.x52 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x52__lede {
+  margin: 0;
+  max-width: 44rem;
+}
+
+.x52__levers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x52__lever {
+  font: inherit;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem 0.45rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.x52__handle {
+  width: 0.35rem;
+  height: 1.2rem;
+  background: var(--muted);
+  transform: rotate(-30deg);
+  transform-origin: bottom center;
+}
+
+.x52__lever[aria-checked='true'] {
+  border-width: 2px;
+  font-weight: 700;
+}
+
+.x52__lever[aria-checked='true'] .x52__handle {
+  background: var(--accent-signal);
+  transform: rotate(30deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x52__handle {
+    transition: transform 180ms ease-out;
+  }
+}
+
+.x52__yard {
+  display: grid;
+  gap: var(--space-3);
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-3);
+}
+
+.x52__track {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: center;
+  border-bottom: 4px double var(--rule-strong);
+  padding-bottom: var(--space-2);
+}
+
+.x52__track p {
+  margin: 0;
+}
+
+.x52__car code {
+  overflow-wrap: anywhere;
+}
+
+.x52__kind {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.x52__switch {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.is-through .x52__switch {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.is-held .x52__dest {
+  color: var(--muted);
+}
+
+.is-held .x52__dest strong {
+  color: var(--fg);
+}
+
+.x52__result {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.x52__cost {
+  margin: 0;
+  max-width: 44rem;
+  font-style: italic;
+}
+
+.x52__table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  max-width: 30rem;
+}
+
+.x52__table caption {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-bottom: var(--space-1);
+}
+
+.x52__table th,
+.x52__table td {
+  text-align: left;
+  padding: 0.25rem 0.75rem 0.25rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.x52__table tr[aria-current] th::before {
+  content: '▸ ';
+}
+
+@media (max-width: 40rem) {
+  .x52__track {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1);
+  }
+}
+
+/* ---------- 53 The Answer With a Past: strata and a scrubber ---------- */
+
+.x53 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x53__scrub {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 44rem;
+}
+
+.x53__scrub label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.x53__scrub input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.x53__dig {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.x53__strata {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 4px solid var(--fg);
+}
+
+.x53__stratum {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  gap: 0 var(--space-2);
+  padding: 0.3rem 0.5rem;
+  min-height: 2.2rem;
+  border-top: 1px solid var(--rule-strong);
+  font-size: 0.85rem;
+  background: var(--surface);
+}
+
+.x53__stratum:nth-child(odd) {
+  background: repeating-linear-gradient(0deg, transparent 0 5px, var(--rule) 5px 6px), var(--surface);
+}
+
+.x53__stratum.is-future {
+  background: none;
+  border-top: 1px dashed var(--rule);
+  min-height: 1rem;
+}
+
+.x53__stratum.is-touch .x53__title {
+  font-weight: 700;
+}
+
+.x53__stratum.is-touch {
+  border-left: 5px solid var(--accent-signal);
+}
+
+.x53__stratum.is-top {
+  outline: 2px solid var(--fg);
+  outline-offset: -2px;
+}
+
+.x53__date,
+.x53__kind {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.x53__kind {
+  grid-column: 1;
+}
+
+.x53__title {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.x53__answer {
+  border-left: 2px solid var(--rule-strong);
+  padding-left: var(--space-3);
+}
+
+.x53__answer h3 {
+  font-size: 1rem;
+  margin: var(--space-3) 0 var(--space-2);
+}
+
+.x53__at {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.x53__what {
+  margin: var(--space-1) 0 0;
+  color: var(--muted);
+}
+
+.x53__statements {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x53__s {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.x53__state {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x53__s--added .x53__state {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.x53__s--revised .x53__state {
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x53__old {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  color: var(--muted);
+}
+
+.x53__note {
+  font-weight: 600;
+}
+
+.x53__record {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 44rem;
+}
+
+.x53__record h3 {
+  font-size: 1rem;
+  margin: 0 0 var(--space-1);
+}
+
+.x53__record p {
+  margin: 0;
+}
+
+@media (max-width: 44rem) {
+  .x53__dig {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .x53__answer {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+
+/* ---------- 54 The Duplicate Investigation: two notebooks aligned ---------- */
+
+.x54 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x54__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+}
+
+.x54__how {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.x54__books {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.x54__book {
+  background: var(--surface);
+  padding: var(--space-3);
+  border-top: 6px solid var(--fg);
+  background-image: repeating-linear-gradient(180deg, transparent 0 1.55rem, var(--rule) 1.55rem calc(1.55rem + 1px));
+}
+
+.x54__book h3 {
+  font-size: 1rem;
+  margin: 0 0 var(--space-2);
+}
+
+.x54__book ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.x54__line {
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid transparent;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.x54__line:disabled {
+  cursor: default;
+}
+
+.x54__line:not(:disabled):hover {
+  border-color: var(--rule-strong);
+}
+
+.x54__line.is-picked {
+  border: 2px solid var(--accent-signal);
+}
+
+.x54__line.is-linked {
+  border-left: 5px solid var(--accent);
+}
+
+.x54__field {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.x54__no {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.x54__ledger {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 48rem;
+}
+
+.x54__ledger p {
+  margin: 0 0 var(--space-2);
+}
+
+.x54__pairs {
+  margin: 0 0 var(--space-2);
+  padding-left: 1.4rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 40rem) {
+  .x54__books {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- 55 The Knowledge Fossil: an excavation ---------- */
+
+.x55 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x55__site {
+  grid-template-columns: minmax(0, 1fr);
+  display: grid;
+  gap: var(--space-2);
+  max-width: 40rem;
+}
+
+.x55__site label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.x55__site select {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  max-width: 100%;
+}
+
+.x55__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x55__pit {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 48rem;
+  border-left: 3px solid var(--fg);
+  border-right: 3px solid var(--fg);
+}
+
+.x55__layer {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--rule-strong);
+  margin-inline: calc(var(--i, 0) * 0.35rem);
+  background: color-mix(in srgb, var(--surface) calc(30% + var(--i, 0) * 10%), var(--bg));
+}
+
+.x55__layer ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+}
+
+.x55__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--space-1);
+}
+
+.x55__find {
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x55__layer mark {
+  background: none;
+  color: inherit;
+  font-weight: 700;
+  outline: 2px solid var(--accent-signal);
+  outline-offset: 1px;
+}
+
+.x55__empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+.x55__undug {
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: repeating-linear-gradient(45deg, transparent 0 6px, var(--rule) 6px 7px);
+}
+
+.x55__log {
+  max-width: 48rem;
+  font-size: 1.05rem;
+}
+
+.x55__log p {
+  margin: 0 0 var(--space-2);
+}
+
+.x55__else {
+  font-size: 0.95rem;
+  border-left: 3px solid var(--accent-signal);
+  padding-left: var(--space-2);
+}
+
+.x55__survey {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 30rem;
+  font-size: 0.9rem;
+}
+
+.x55__survey p {
+  margin: 0 0 var(--space-1);
+}
+
+.x55__survey ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.x55__bar {
+  display: block;
+  height: 0.6rem;
+  max-width: 100%;
+  background: var(--fg);
+  margin-top: 0.3rem;
+}
+
+.x55__bar--none {
+  background: repeating-linear-gradient(135deg, transparent 0 3px, var(--muted) 3px 4px);
+}
+
+/* ---------- 56 The Forked Interpretation: a road that parts at one label ---------- */
+
+.x56 {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.x56__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.x56__trunk {
+  justify-self: center;
+  width: min(100%, 36rem);
+  text-align: center;
+  border: 2px solid var(--rule-strong);
+  padding: var(--space-2) var(--space-3);
+}
+
+.x56__trunk p {
+  margin: 0;
+}
+
+/* The points: where the one choice is made. */
+.x56__points {
+  position: relative;
+  margin: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--rule-strong);
+  border-top-width: 6px;
+  background: var(--surface);
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* The trunk's road runs down into the points. */
+.x56__points::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--space-4) - 6px);
+  left: 50%;
+  height: var(--space-4);
+  border-left: 4px solid var(--rule-strong);
+  margin-left: -2px;
+}
+
+.x56__points legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.x56__disputed {
+  clear: both;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.x56__disputed li {
+  border-left: 5px solid var(--violet);
+  padding-left: var(--space-2);
+  font-size: 0.92rem;
+}
+
+.x56__problem {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: var(--space-1);
+}
+
+.x56__lever {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.x56__throw {
+  display: flex;
+  gap: var(--space-2);
+  align-items: start;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--rule);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.x56__throw.is-on {
+  border-color: var(--rule-strong);
+  box-shadow: inset 0 -5px 0 var(--rule-strong);
+}
+
+.x56__throw input {
+  accent-color: var(--fg);
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0.2rem 0 0;
+  flex: none;
+}
+
+.x56__throw > span {
+  display: grid;
+}
+
+.x56__who {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.x56__result {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x56__branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.x56__branch {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  padding-left: var(--space-3);
+  border-left: 4px dashed var(--rule);
+  color: var(--muted);
+}
+
+/* The road you took is drawn as a solid double track. */
+.x56__branch.is-taken {
+  border-left: 8px double var(--rule-strong);
+  color: var(--fg);
+}
+
+.x56__branch .x56__label {
+  margin: 0;
+}
+
+.x56__here {
+  color: var(--fg);
+  font-weight: 800;
+}
+
+.x56__path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  font-size: 0.88rem;
+}
+
+.x56__path li {
+  display: grid;
+  grid-template-columns: 1.2rem 2rem minmax(0, 1fr);
+  gap: 0 var(--space-1);
+  align-items: baseline;
+  padding: 0.15rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.x56__path li.is-split {
+  background: var(--surface);
+  box-shadow: inset 3px 0 0 var(--violet);
+}
+
+.x56__dot {
+  font-size: 0.9rem;
+}
+
+.x56__path li.is-answer .x56__name {
+  font-weight: 700;
+}
+
+.x56__rank {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.x56__first {
+  grid-column: 3;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-signal);
+  font-weight: 800;
+}
+
+/* The milestone at the end of each branch: the number it would publish. */
+.x56__plate {
+  margin: var(--space-2) 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid currentColor;
+}
+
+.x56__plate div {
+  min-width: 0;
+}
+
+.x56__plate dt {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x56__plate dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.x56__plate .x56__big {
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.x56__stamp {
+  margin: 0;
+  justify-self: start;
+  padding: 0 0.4rem;
+  border: 2px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+}
+
+.x56__branch--labeller .x56__stamp {
+  color: var(--accent-signal);
+  transform: rotate(-3deg);
+}
+
+.x56__status {
+  margin: 0;
+  font-weight: 650;
+  max-width: 48rem;
+}
+
+.x56__foot {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 48rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x56__branch {
+    transition: color 200ms ease-out;
+  }
+}
+
+@media (max-width: 40rem) {
+  .x56__disputed,
+  .x56__lever {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .x56__branches {
+    gap: var(--space-2);
+  }
+  .x56__branch {
+    padding-left: var(--space-2);
+  }
+  .x56__path {
+    font-size: 0.75rem;
+  }
+  .x56__path li {
+    grid-template-columns: 0.8rem 1.5rem minmax(0, 1fr);
+    gap: 0 2px;
+  }
+  .x56__name {
+    overflow-wrap: anywhere;
+  }
+  .x56__plate {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-2);
+  }
+}
+
+/* ---------- 57 The Agent Leaves a Note: a redaction desk ---------- */
+
+.x57 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x57__desk {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.x57__draft {
+  background: var(--paper);
+  color: var(--ink);
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border: 1px solid var(--rule-strong);
+}
+
+.x57__draft h3,
+.x57__out h3 {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  margin: 0 0 var(--space-1);
+}
+
+.x57__hint {
+  margin: 0 0 var(--space-2);
+  opacity: 0.75;
+}
+
+.x57__line {
+  margin: 0 0 var(--space-2);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.x57__line--guessed {
+  font-style: italic;
+}
+
+.x57__span {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid var(--rose);
+  padding: 0 0.1rem;
+  cursor: pointer;
+}
+
+.x57__span.is-struck {
+  background: var(--ink);
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.x57__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.x57__rules {
+  margin-top: var(--space-2);
+}
+
+.x57__rules ul {
+  padding-left: 1.1rem;
+}
+
+.x57__rules code {
+  overflow-wrap: anywhere;
+}
+
+.x57__out {
+  border-top: 6px solid var(--fg);
+  padding-top: var(--space-2);
+}
+
+.x57__sec h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: var(--space-2) 0 0.2rem;
+  color: var(--muted);
+}
+
+.x57__sec p {
+  margin: 0 0 0.2rem;
+  overflow-wrap: anywhere;
+}
+
+.x57__guess {
+  font-style: italic;
+}
+
+.x57__bar {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0 0.25rem;
+}
+
+.x57__ledger {
+  margin-top: var(--space-3);
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-2);
+}
+
+.x57__ledger p {
+  margin: 0 0 var(--space-1);
+}
+
+.x57__real {
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 44rem;
+  margin: 0;
+}
+
+@media (max-width: 48rem) {
+  .x57__desk {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- 58 The Public Memory Loop: a field of cells ---------- */
+
+.x58 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x58__loop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.x58__loop span::after {
+  content: ' →';
+  color: var(--muted);
+}
+
+.x58__loop span:last-child::after {
+  content: ' ↺';
+}
+
+.x58__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.x58__knobs {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x58__knobs label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.x58__knobs input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.x58__run {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x58__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 3px;
+  max-width: 22rem;
+}
+
+.x58__c {
+  display: inline-grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-width: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border: 1px solid var(--rule);
+}
+
+.x58__c--new {
+  border-color: var(--rule-strong);
+  border-style: dashed;
+}
+
+.x58__c--live {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.x58__c--challenged {
+  border: 2px solid var(--accent-signal);
+  font-weight: 700;
+}
+
+.x58__c--stale {
+  background: var(--accent-signal);
+  color: var(--bg);
+  border-color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x58__key {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  font-size: 0.8rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.x58__key .x58__c {
+  min-width: 1.1rem;
+  font-size: 0.7rem;
+}
+
+.x58__ledger {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 48rem;
+}
+
+.x58__ledger p {
+  margin: 0 0 var(--space-1);
+}
+
+.x58__rules ol {
+  padding-left: 1.4rem;
+  font-size: 0.9rem;
+  max-width: 48rem;
+}
+
+@media (max-width: 44rem) {
+  .x58__panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- 59 The Portable Problem: a suitcase on a route ---------- */
+
+.x59 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x59__pack {
+  grid-template-columns: minmax(0, 1fr);
+  display: grid;
+  gap: var(--space-1);
+  max-width: 34rem;
+}
+
+.x59__pack label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.x59__pack select {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  max-width: 100%;
+}
+
+.x59__hosts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.x59__route {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.x59__route span {
+  border: 1px solid var(--rule-strong);
+  padding: 0.1rem 0.4rem;
+}
+
+.x59__model {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.x59__case {
+  display: grid;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.x59__items {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  border: 3px solid var(--fg);
+  border-top-width: 12px;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.x59__item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.92rem;
+}
+
+.x59__tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 5.6rem;
+  padding: 0.05rem 0.3rem;
+  border: 1px solid var(--rule-strong);
+  text-align: center;
+}
+
+.x59__item--field .x59__tag {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.x59__item--text {
+  font-style: italic;
+}
+
+.x59__item--lost {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.x59__item--lost .x59__tag {
+  border-style: dashed;
+}
+
+.x59__arrival p {
+  margin: 0 0 var(--space-2);
+  font-size: 1.05rem;
+}
+
+.x59__arrival ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+@media (max-width: 44rem) {
+  .x59__case {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- 60 Postack Indexes Itself: a terminal ---------- */
+
+.x60 {
+  --x60-bg: var(--ink);
+  --x60-fg: var(--paper);
+  background: var(--x60-bg);
+  color: var(--x60-fg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: var(--space-3);
+  display: grid;
+  gap: var(--space-2);
+  border: 1px solid var(--rule-strong);
+}
+
+.x60 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--violet);
+  text-decoration-thickness: 2px;
+}
+
+.x60 :focus-visible {
+  outline-color: var(--x60-fg);
+}
+
+.x60__banner {
+  margin: 0;
+  opacity: 0.75;
+  border-bottom: 1px dashed currentColor;
+  padding-bottom: var(--space-1);
+}
+
+.x60__screen {
+  display: grid;
+  gap: var(--space-2);
+  min-height: 12rem;
+  overflow-wrap: anywhere;
+}
+
+.x60__screen p {
+  margin: 0;
+}
+
+.x60__screen ul,
+.x60__screen ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.x60__past {
+  opacity: 0.7;
+  border-bottom: 1px dashed currentColor;
+  padding-bottom: var(--space-2);
+}
+
+.x60__echo {
+  font-weight: 700;
+}
+
+.x60__hit {
+  display: grid;
+}
+
+.x60__hit > a {
+  font-weight: 700;
+}
+
+.x60__fam,
+.x60__src,
+.x60__terms {
+  opacity: 0.75;
+  font-size: 0.78rem;
+}
+
+.x60__finding {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+
+.x60__prompt {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  border-top: 1px solid currentColor;
+  padding-top: var(--space-2);
+}
+
+.x60__prompt label {
+  font-weight: 700;
+}
+
+.x60__prompt input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1rem;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  padding: 0.25rem 0;
+}
+
+.x60__prompt input::placeholder {
+  color: inherit;
+  opacity: 0.4;
+}

@@ -12,7 +12,7 @@ import {
   STATUS_LABEL,
   TRANSFORMATION_LABEL,
 } from '../../lab/catalogue'
-import { CONSTELLATIONS } from '../../lab/catalogue/map'
+import { CONSTELLATIONS, RECURRING, type Constellation } from '../../lab/catalogue/map'
 import type { Encounter, LabEntry, Status, Transformation } from '../../lab/types'
 import labStylesUrl from '../../lab/styles/lab.css?url'
 
@@ -75,7 +75,42 @@ function LabIndex() {
           <a href={repoFile('docs/lab/EVALUATION.md')}>the critique</a> ·{' '}
           <Link to="/">back to the essay</Link>
         </p>
+        <nav className="lab-index__jump" aria-label="On this page">
+          <a href="#lab-start">Start with eight specimens</a>
+          <a href="#lab-recurring">What kept coming back</a>
+          <a href="#lab-all">All {CATALOGUE.length}</a>
+          <a href="#lab-map">The map</a>
+        </nav>
       </header>
+
+      <section className="lab-start" aria-labelledby="lab-start">
+        <h2 id="lab-start">Start here</h2>
+        <p className="lab-family__q">
+          Eight pilots developed further after the critique, one or more from each family. Each sentence is what it found.
+        </p>
+        <ol className="lab-start__list">
+          {SPECIMENS.map((e) => (
+            <li key={e.n}>
+              <Link to="/lab/$n/" params={{ n: e.n }} className="lab-start__link">
+                <span className="lab-register__n">{e.n}</span> {e.title}
+              </Link>
+              <span className="lab-start__finding">{e.finding}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="lab-recurring" aria-labelledby="lab-recurring">
+        <h2 id="lab-recurring">What kept coming back</h2>
+        <p className="lab-family__q">
+          Six families were built independently, and the frozen corpus kept giving the same four answers.
+        </p>
+        <Groups groups={RECURRING} />
+      </section>
+
+      <h2 id="lab-all" className="lab-index__all">
+        All {CATALOGUE.length} experiments
+      </h2>
 
       <form className="lab-filters" aria-label="Filter the experiments" onSubmit={(e) => e.preventDefault()}>
         <FacetSelect
@@ -152,31 +187,39 @@ function LabIndex() {
         <section className="lab-map" aria-labelledby="lab-map">
           <h2 id="lab-map">A map of related experiments</h2>
           <p>Groups that ask the same question from different sides. The families are themes; these are arguments.</p>
-          <dl className="lab-map__list">
-            {CONSTELLATIONS.map((c) => (
-              <div key={c.title}>
-                <dt>{c.title}</dt>
-                <dd>
-                  <p>{c.note}</p>
-                  <ul>
-                    {c.members.map((n) => {
-                      const e = CATALOGUE.find((x) => x.n === n)
-                      return e ? (
-                        <li key={n}>
-                          <Link to="/lab/$n/" params={{ n }}>
-                            {n} {e.title}
-                          </Link>
-                        </li>
-                      ) : null
-                    })}
-                  </ul>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <Groups groups={CONSTELLATIONS} />
         </section>
       )}
     </div>
+  )
+}
+
+const SPECIMENS = CATALOGUE.filter((e) => e.status === 'specimen' || e.assessment?.verdict === 'develop')
+
+function Groups({ groups }: { groups: Constellation[] }) {
+  return (
+    <dl className="lab-map__list">
+      {groups.map((c) => (
+        <div key={c.title}>
+          <dt>{c.title}</dt>
+          <dd>
+            <p>{c.note}</p>
+            <ul>
+              {c.members.map((n) => {
+                const e = CATALOGUE.find((x) => x.n === n)
+                return e ? (
+                  <li key={n}>
+                    <Link to="/lab/$n/" params={{ n }}>
+                      {n} {e.title}
+                    </Link>
+                  </li>
+                ) : null
+              })}
+            </ul>
+          </dd>
+        </div>
+      ))}
+    </dl>
   )
 }
 

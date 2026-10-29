@@ -178,3 +178,1706 @@
     }
   }
 }
+
+/* ---------- 32 The Librarian's Hand: one card, five inks, a rack of thirty ---------- */
+
+.x32 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  --card: #fbfaf5;
+  --card-edge: #cfc8b6;
+  --ink-writer: var(--accent-community);
+}
+
+@media (prefers-color-scheme: dark) {
+  .x32 {
+    --card: #23272d;
+    --card-edge: #444a53;
+  }
+}
+
+@media (min-width: 64rem) {
+  .x32 {
+    grid-template-columns: minmax(0, 46rem) minmax(0, 1fr);
+    align-items: start;
+  }
+  .x32__act {
+    grid-column: 1 / -1;
+  }
+}
+
+.x32__side {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+/* The first act: one large control in the agent's ink. */
+.x32__act {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.x32__lift {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  text-align: left;
+  font: inherit;
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-3);
+  border: 2px solid var(--ink-writer);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  max-width: 30rem;
+}
+
+.x32__lift strong {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--ink-writer);
+}
+
+.x32__lift small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-top: 0.15rem;
+}
+
+.x32__lift[aria-pressed='true'] {
+  border-style: dashed;
+  background: var(--surface);
+}
+
+.x32__status {
+  margin: 0;
+  flex: 1 1 18rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  max-width: 34rem;
+}
+
+.x32__mark {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-style: normal;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  flex: none;
+}
+
+.x32__mark--big {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.1rem;
+  border-width: 2px;
+  color: var(--ink-writer);
+}
+
+/* The card. */
+.x32__card {
+  position: relative;
+  min-width: 0;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  padding: var(--space-3) var(--space-3) var(--space-4) var(--space-4);
+  box-shadow: 0 1px 0 var(--card-edge);
+}
+
+@media (max-width: 40rem) {
+  .x32__card {
+    padding: var(--space-3) var(--space-3) var(--space-4);
+  }
+}
+
+/* The punched hole at the foot of a catalogue card. */
+.x32__card::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-left: -0.35rem;
+  border-radius: 50%;
+  border: 1px solid var(--card-edge);
+  background: var(--bg);
+}
+
+.x32__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--rose);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.x32__id {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.x32__lines {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.x32__line {
+  display: grid;
+  grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr);
+  gap: var(--space-2);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 40rem) {
+  .x32__line {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+.x32__line dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex;
+  gap: 0.35rem;
+  align-items: baseline;
+}
+
+.x32__line dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* A lifted line keeps its slot: the ruled line stays, the ink is gone. */
+.x32__line.is-lifted dd {
+  min-height: 1.1rem;
+  border-bottom: 1px dotted var(--card-edge);
+}
+
+.x32__line.is-lifted dt {
+  opacity: 0.45;
+}
+
+.x32__ink--source dd {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.x32__ink--selector dd {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.x32__ink--writer dd,
+.x32__loose,
+strong.x32__ink--writer {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  color: var(--ink-writer);
+}
+
+.x32__ink--selector .x32__mark,
+.x32__hand--selector .x32__mark {
+  color: var(--accent);
+}
+
+.x32__ink--writer .x32__mark,
+.x32__loose .x32__mark {
+  color: var(--ink-writer);
+}
+
+.x32__hand--reviewer .x32__mark,
+.x32__review .x32__mark {
+  color: var(--accent-signal);
+}
+
+.x32__form {
+  margin: var(--space-3) 0 0;
+  padding: var(--space-2) 0 0;
+  border: 0;
+  border-top: 1px dashed var(--card-edge);
+}
+
+.x32__form legend {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0;
+}
+
+.x32__form ul {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-1) 0 0;
+  columns: 4 8.5rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.x32__form li.is-ticked {
+  color: var(--ink-writer);
+  font-weight: 700;
+}
+
+/* The reviewer's line: the one place on the card a person would sign. */
+.x32__review {
+  margin: var(--space-4) 0 var(--space-3);
+  padding: var(--space-3) 0 0;
+  border-top: 1px solid var(--card-edge);
+}
+
+.x32__sign {
+  margin: 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.x32__sign .x32__mark {
+  align-self: center;
+}
+
+.x32__rule {
+  flex: 1 1 auto;
+  min-width: 6rem;
+  height: 1.6rem;
+  border-bottom: 3px solid var(--rose);
+}
+
+.x32__review-note {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-signal);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.x32__tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  border-top: 1px solid var(--card-edge);
+  padding: var(--space-2) 0 var(--space-3);
+}
+
+.x32__tally .is-off {
+  text-decoration: line-through;
+}
+
+/* The other hands: small, secondary. */
+.x32__others,
+.x32__rack {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.x32__others {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x32__others legend,
+.x32__rack legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x32__hand {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  text-align: left;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: var(--space-2);
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.x32__hand small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  margin-top: 0.15rem;
+}
+
+.x32__hand[aria-pressed='true'] {
+  background: var(--surface);
+  border-style: dashed;
+}
+
+.x32__hand[aria-pressed='true'] strong {
+  text-decoration: underline;
+}
+
+/* The rack: thirty cards, each a bar of the agent's ink over an empty reviewer's box. */
+.x32__rack-sum {
+  margin: 0 0 var(--space-2);
+  font-size: 0.9rem;
+}
+
+.x32__bars {
+  display: grid;
+  grid-template-columns: repeat(30, minmax(0, 1fr));
+  gap: 2px;
+  max-width: 28rem;
+}
+
+.x32__bar {
+  position: relative;
+  display: grid;
+  grid-template-rows: 4.5rem 0.7rem;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.x32__bar input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.x32__bar::before {
+  content: '';
+  grid-row: 1;
+  grid-column: 1;
+  border: 1px solid var(--card-edge);
+}
+
+.x32__bar-ink {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: end;
+  background: var(--violet);
+}
+
+.x32__bar-review {
+  grid-row: 2;
+  border: 1px solid var(--rose);
+}
+
+.x32__bar.is-on::before {
+  border: 2px solid var(--fg);
+}
+
+.x32__bar:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.x32__rack-key {
+  margin: var(--space-2) 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.x32__key-ink,
+.x32__key-review {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--violet);
+}
+
+.x32__key-review {
+  background: transparent;
+  border: 1px solid var(--rose);
+  margin-left: 0.6rem;
+}
+
+.x32__rack-now {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 33 The Filing Rod: a drawer seen from the side ---------- */
+
+.x33 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  --card: #fbfaf5;
+  --card-edge: #8f876f;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x33 {
+    --card: #2a2f36;
+    --card-edge: #8a919b;
+  }
+}
+
+.x33__scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.x33__svg {
+  display: block;
+  width: 100%;
+  min-width: 36rem;
+  height: auto;
+}
+
+.x33__front {
+  fill: var(--fg);
+}
+
+.x33__knob {
+  stroke: var(--fg);
+  stroke-width: 5;
+}
+
+.x33__floor {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.x33__c rect {
+  fill: var(--card);
+  stroke: var(--card-edge);
+  stroke-width: 1;
+}
+
+.x33__c--loose rect {
+  stroke-dasharray: 3 2;
+}
+
+.x33__c--tentative rect {
+  stroke: var(--rose);
+  stroke-width: 2;
+}
+
+.x33__hole {
+  fill: var(--bg);
+  stroke: var(--card-edge);
+}
+
+.x33__rod {
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.x33__levers [role='group'],
+.x33__acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x33__status {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin: 0;
+  max-width: 46rem;
+}
+
+.x33__tentative {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 2px solid var(--rose);
+}
+
+.x33__tentative li {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) auto;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (max-width: 48rem) {
+  .x33__tentative li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x33__id {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+
+.x33__where {
+  font-size: 0.88rem;
+}
+
+.x33__ledger {
+  max-width: 46rem;
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  font-size: 0.92rem;
+}
+
+.x33__compare {
+  color: var(--muted);
+}
+
+/* ---------- 34 Occupied Circuits: a cord shelf and what it holds ---------- */
+
+.x34 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.x34__cap {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+}
+
+.x34__cap legend {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0;
+  margin-bottom: var(--space-1);
+}
+
+.x34__panel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-3);
+  background: var(--fg);
+  color: var(--bg);
+}
+
+@media (max-width: 40rem) {
+  .x34__panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x34__panel code {
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+.x34__panel .lab-btn {
+  border-color: var(--bg);
+}
+
+.x34__pegs {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* A cord resting in its shelf is a filled peg; a cord in use leaves an empty, dashed hole. */
+.x34__peg {
+  width: 1.4rem;
+  height: 2.6rem;
+  border: 2px solid var(--bg);
+  border-radius: 0.7rem 0.7rem 0 0;
+  background: var(--rose);
+}
+
+.x34__peg.is-up {
+  background: transparent;
+  border-style: dashed;
+}
+
+.x34__inf {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.x34__incoming p {
+  margin: 0 0 var(--space-2);
+  font-size: 0.92rem;
+}
+
+.x34__lamp {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--rose);
+  margin-right: 0.3rem;
+}
+
+.x34__status {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.x34__board {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x34__board li {
+  border: 1px solid var(--rule-strong);
+  border-left: 6px solid var(--rose);
+  padding: var(--space-2) var(--space-3);
+}
+
+.x34__board li.is-heard {
+  border-left-color: var(--blue);
+}
+
+.x34__pair {
+  margin: 0 0 var(--space-1);
+  font-size: 0.88rem;
+}
+
+.x34__pair code {
+  overflow-wrap: anywhere;
+}
+
+.x34__no {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.x34__age {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.x34__heard p {
+  margin: 0 0 var(--space-1);
+  font-size: 0.88rem;
+}
+
+.x34__heard .x34__ends {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.x34__acts {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.x34__ledger {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  margin: 0;
+}
+
+/* ---------- 35 The Switchboard Operator: lamps, keys and a log ---------- */
+
+.x35 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  --panel: #2b2420;
+  --panel-fg: #f1e9dc;
+}
+
+.x35__clock {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.x35__lines {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+  gap: 2px;
+  background: var(--panel);
+  padding: 2px;
+}
+
+.x35__line {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2rem 0.5rem;
+  align-items: center;
+  text-align: left;
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.55rem;
+  background: var(--panel);
+  color: var(--panel-fg);
+  border: 2px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.x35__line[aria-pressed='true'] {
+  background: var(--panel);
+  color: var(--panel-fg);
+  border-color: var(--panel-fg);
+}
+
+.x35__lamp {
+  grid-row: span 2;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 1px solid var(--panel-fg);
+}
+
+.x35__line--ringing .x35__lamp,
+.x35__line--answered .x35__lamp {
+  background: var(--rose);
+}
+
+.x35__line--plugged .x35__lamp,
+.x35__line--signalling .x35__lamp,
+.x35__line--talking .x35__lamp {
+  background: var(--panel-fg);
+}
+
+.x35__line--finished .x35__lamp {
+  background: #f2c14e;
+}
+
+.x35__line--released .x35__lamp,
+.x35__line--cut-off .x35__lamp,
+.x35__line--abandoned .x35__lamp {
+  border-style: dotted;
+}
+
+.x35__who {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.x35__phase {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.x35__line--cut-off .x35__phase,
+.x35__line--abandoned .x35__phase {
+  text-decoration: line-through;
+}
+
+.x35__acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x35__log {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 48rem;
+}
+
+.x35__sum {
+  font-weight: 600;
+}
+
+.x35__log ol {
+  margin: 0;
+  padding-left: 2.2rem;
+  font-size: 0.85rem;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+
+.x35__log li {
+  padding: 0.15rem 0;
+}
+
+.x35__t {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.x35__rec {
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+}
+
+.x35__rec.is-none {
+  color: var(--accent-signal);
+}
+
+.x35__empty {
+  color: var(--muted);
+}
+
+.x35__acts .lab-btn[aria-disabled='true'] {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.x35__refusal {
+  color: var(--accent-signal);
+  font-weight: 600;
+}
+
+/* ---------- 36 The Index Drawer That Lies: a cabinet front ---------- */
+
+.x36 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  --wood: #6b4f36;
+  --wood-dark: #523b28;
+  --brass: #c8b27a;
+  --holder: #f3ecd9;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x36 {
+    --wood: #4a3a2b;
+    --wood-dark: #382b1f;
+    --brass: #a48f5d;
+  }
+}
+
+.x36__arrive {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.x36__arrive p {
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+.x36__arrive code {
+  overflow-wrap: anywhere;
+}
+
+.x36__cabinet {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+  background: var(--wood);
+  max-width: 44rem;
+}
+
+@media (max-width: 30rem) {
+  .x36__cabinet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.x36__front {
+  background: var(--wood-dark);
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.4rem;
+  justify-items: center;
+  min-width: 0;
+}
+
+.x36__front.is-open {
+  outline: 3px solid var(--rose);
+  outline-offset: -3px;
+}
+
+.x36__holder {
+  margin: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.35rem;
+  align-items: center;
+  border: 3px solid var(--brass);
+  background: var(--holder);
+  color: #252a30;
+  padding: 0.25rem 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  line-height: 1.3;
+}
+
+.x36__dno {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.x36__label {
+  overflow-wrap: anywhere;
+}
+
+.x36__pull,
+.x36__reletter {
+  font: inherit;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--brass);
+  color: #252a30;
+  border: 1px solid #252a30;
+  border-radius: 0;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.x36__reletter {
+  background: transparent;
+  color: var(--holder);
+  border-color: var(--holder);
+  font-size: 0.7rem;
+}
+
+.x36__stamp {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #252a30;
+  background: var(--rose);
+  padding: 0.05rem 0.3rem;
+  text-align: center;
+}
+
+.x36__inside {
+  max-width: 44rem;
+  border: 1px solid var(--rule-strong);
+  border-top: 4px solid var(--rose);
+  padding: var(--space-2) var(--space-3);
+}
+
+.x36__inside p {
+  margin: 0 0 var(--space-1);
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.x36__inside ol {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.x36__inside .is-astray {
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x36__lookup {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 44rem;
+}
+
+.x36__lookup label {
+  font-size: 0.9rem;
+}
+
+.x36__lookup select {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.25rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  max-width: 100%;
+}
+
+.x36__lookup p {
+  margin: 0;
+}
+
+.x36__audit {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  margin: 0;
+  max-width: 44rem;
+}
+
+/* ---------- 37 Desktop Pets Return: a margin with a resident ---------- */
+
+.x37 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.x37__cues {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.92rem;
+}
+
+.x37__cues legend {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0;
+  margin-bottom: var(--space-1);
+}
+
+.x37__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x37__page {
+  max-width: 46rem;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.x37__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.x37__row:last-child {
+  border-bottom: 0;
+}
+
+.x37__para {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  background: var(--bg);
+}
+
+.x37__para.is-focus {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.x37__margin {
+  display: grid;
+  place-items: center;
+  min-height: 3rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x37__pet {
+    display: block;
+    animation: x37-hop 260ms steps(3, end) 1;
+  }
+  @keyframes x37-hop {
+    from {
+      transform: translateY(-0.5rem);
+    }
+  }
+}
+
+.x37__log {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  max-width: 46rem;
+}
+
+.x37__tally {
+  font-weight: 600;
+}
+
+.x37__log ol {
+  margin: 0;
+  padding-left: 2rem;
+  font-size: 0.86rem;
+}
+
+.x37__m {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.x37__e--own em {
+  color: var(--accent-signal);
+}
+
+.x37__e--reacting em {
+  color: var(--accent-community);
+}
+
+.x37__e--asked em {
+  color: var(--accent);
+}
+
+/* ---------- 38 Motte's Historical Flags: a sieve ---------- */
+
+.x38 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.x38__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: center;
+  font-size: 0.92rem;
+}
+
+.x38__controls select {
+  font: inherit;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  max-width: 100%;
+}
+
+.x38__sieve {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 44rem;
+}
+
+.x38__stages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+/* Each stage is a bar as wide as its count: the sieve narrows downward. */
+.x38__stages li {
+  position: relative;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.88rem;
+  border-left: 4px solid var(--fg);
+  isolation: isolate;
+}
+
+.x38__stages li::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(100%, calc(var(--w) * 6%));
+  background: var(--surface);
+  z-index: -1;
+}
+
+.x38__stages li.is-skipped {
+  color: var(--muted);
+  border-left-style: dotted;
+}
+
+.x38__n {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  display: inline-block;
+  min-width: 1.6rem;
+}
+
+.x38__motte {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: end;
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: var(--space-2);
+}
+
+.x38__flag p {
+  margin: 0;
+  border: 2px solid var(--rose);
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.92rem;
+}
+
+.x38__leak {
+  border-left: 4px solid var(--accent-signal);
+  padding-left: var(--space-3);
+  font-size: 0.9rem;
+}
+
+.x38__withheld {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.x38__leak p,
+.x38__withheld p {
+  margin: 0 0 var(--space-1);
+}
+
+.x38__leak ul,
+.x38__withheld ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.x38__k {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* ---------- 39 The Marginal Printer: one revision printed on two sheets ---------- */
+
+.x39 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  --sheet: #fbfaf5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x39 {
+    --sheet: #23272d;
+  }
+}
+
+.x39__press {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+}
+
+.x39__print {
+  font-weight: 700;
+  border-width: 2px;
+}
+
+.x39__rev {
+  margin: 0;
+  flex: 1 1 16rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.x39__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 52rem) {
+  .x39__pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x39__col {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.x39__title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.x39__how {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.x39__sheet {
+  position: relative;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 10rem);
+  gap: var(--space-2) var(--space-3);
+}
+
+@media (max-width: 30rem), (min-width: 52rem) and (max-width: 72rem) {
+  .x39__sheet {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-5) var(--space-3) var(--space-3);
+  }
+}
+
+/* Registration marks: the ink plate's at two corners; the rose plate's own mark moves when it is out. */
+.x39__reg {
+  position: absolute;
+  top: 0.6rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  color: var(--fg);
+}
+
+.x39__reg::before,
+.x39__reg::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+.x39__reg::before {
+  left: -0.25rem;
+  right: -0.25rem;
+  top: 50%;
+  height: 1px;
+}
+
+.x39__reg::after {
+  top: -0.25rem;
+  bottom: -0.25rem;
+  left: 50%;
+  width: 1px;
+}
+
+.x39__reg--tl {
+  left: 0.8rem;
+}
+
+.x39__reg--tr,
+.x39__reg--rose {
+  right: 0.8rem;
+}
+
+.x39__reg--rose {
+  color: var(--rose);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x39__reg--rose {
+    transition: transform 240ms ease-out;
+  }
+}
+
+.x39__text {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/* Every printed annotation looks the same, right or wrong: that is the point. */
+.x39__hit {
+  background: color-mix(in srgb, var(--rose) 16%, transparent);
+  color: inherit;
+  text-decoration: underline 2px var(--rose);
+  text-underline-offset: 0.2em;
+}
+
+.x39 sup {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-style: normal;
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x39__margin {
+  list-style: none;
+  padding: 0 0 0 var(--space-2);
+  margin: 0;
+  border-left: 1px solid var(--rose);
+  font-size: 0.8rem;
+  color: var(--accent-signal);
+  font-style: italic;
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.x39__margin .is-lost {
+  font-style: normal;
+  border: 1px dashed var(--accent-signal);
+  padding: 0.2rem 0.35rem;
+}
+
+.x39__lost {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.x39__margin s {
+  color: var(--muted);
+}
+
+/* The proof-reader's check, kept off the sheet: what the sheet itself cannot say. */
+.x39__check {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  font-size: 0.85rem;
+}
+
+.x39__check-head {
+  margin: 0 0 var(--space-1);
+  font-weight: 700;
+}
+
+.x39__check.is-wrong .x39__check-head {
+  color: var(--accent-signal);
+}
+
+.x39__check.is-wrong .x39__check-head::before {
+  content: '✕ ';
+}
+
+.x39__check ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+.x39__stamp {
+  justify-self: start;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 0.25rem 0.5rem;
+  transform: rotate(-1deg);
+  max-width: 100%;
+}
+
+.x39__stamp.is-stale {
+  border-style: dashed;
+}
+
+.x39__status {
+  margin: 0;
+  max-width: 52rem;
+  font-size: 0.95rem;
+}
+
+/* ---------- 40 The Museum That Rearranges Itself: rooms on a plan ---------- */
+
+.x40 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.x40__desk {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x40__ask {
+  display: grid;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  max-width: 32rem;
+}
+
+.x40__ask input {
+  font: inherit;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.05rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.x40__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x40__mode {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+}
+
+.x40__mode legend {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0;
+  margin-bottom: var(--space-1);
+}
+
+.x40__summary {
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+}
+
+/* A floor plan: rooms share walls; the store is the last room. */
+.x40__rooms {
+  display: grid;
+  border: 3px solid var(--fg);
+}
+
+.x40__rooms--3 {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.8fr);
+}
+
+.x40__rooms--2 {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+}
+
+.x40__room {
+  padding: var(--space-3);
+  border-right: 3px solid var(--fg);
+  min-width: 0;
+}
+
+.x40__room:last-child {
+  border-right: 0;
+  background: var(--surface);
+}
+
+@media (max-width: 52rem) {
+  .x40__rooms--3,
+  .x40__rooms--2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .x40__room {
+    border-right: 0;
+    border-bottom: 3px solid var(--fg);
+  }
+  .x40__room:last-child {
+    border-bottom: 0;
+  }
+}
+
+.x40__room h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.x40__count {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.x40__wall {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.2rem 0 var(--space-2);
+}
+
+.x40__room ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x40__object {
+  border: 1px solid var(--rule-strong);
+  background: var(--bg);
+  padding: var(--space-2);
+}
+
+.x40__object p {
+  margin: 0;
+}
+
+.x40__meta {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.x40__title {
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+.x40__object .x40__what,
+.x40__object .x40__changed {
+  font-size: 0.82rem;
+  margin-top: 0.2rem;
+}
+
+.x40__object .x40__changed {
+  color: var(--muted);
+}
+
+.x40__object mark {
+  background: transparent;
+  color: inherit;
+  border-bottom: 3px solid var(--violet);
+}

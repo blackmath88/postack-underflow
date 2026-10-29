@@ -22,3 +22,39 @@ export const LUMPESAMMLIG = `https://github.com/blackmath88/lumpesammlig/tree/${
 export const LUMPESAMMLIG_CONCEPT = `https://github.com/blackmath88/lumpesammlig/blob/${LUMPESAMMLIG_REV}/docs/CONCEPT.md`
 export const IMPOSSIBLE_INDEX_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/012-impossible-index`
 export const SWITCHBOARD_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/013-switchboard`
+
+// Discovery family (01–10).
+export const ESSAY_SITE = 'https://blackmath88.github.io/postack-underflow/'
+/** The essay page that holds The Disputed Neighbour and the Four Words search. */
+export const ESSAY_INDEXING = `${ESSAY_SITE}indexing/`
+export const CORPUS_MANIFEST = repoFile('corpus/sources.json')
+export const RETRIEVAL_FILE = repoFile('src/lib/retrieval.ts')
+
+// Classification family (Lab 02).
+export const DISPUTED_NEIGHBOUR_DATA = repoFile('src/data/disputed-neighbour.ts')
+export const RECORDS_SCHEMA = repoFile('src/lib/records.ts')
+export const QUERIES_FILE = repoFile('corpus/queries.json')
+
+// Community family (Lab 03).
+export const COMMUNITY_PAGE = 'https://blackmath88.github.io/postack-underflow/community/'
+export const SWITCHBOARD_FILE = repoFile('src/components/Switchboard.tsx')
+
+// Lab 06, Collective Memory & Futures (memory).
+export const SITE_CONVERGENCE = 'https://blackmath88.github.io/postack-underflow/convergence/'
+export const PROBLEM_DESK_FILE = repoFile('src/data/problem-desk.ts')
+export const HISTORY_FILE = repoFile('src/data/research-history.ts')
+export const MEMORY_FIXTURES_FILE = repoFile('src/lab/data/memory-fixtures.ts')
+export const LAB_CATALOGUE_DIR = repoFile('src/lab/catalogue/')
+export const PHOTO_FRAME_README =
+  'https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/README.md'
+
+// ---------- Editorial family (41–50) ----------
+export const LIVE_SITE = 'https://blackmath88.github.io/postack-underflow/'
+export const ADR_0005 = repoFile('docs/adr/0005-three-levels-and-margin-notes.md')
+export const CONTENT_INVENTORY = repoFile('docs/editorial/CONTENT-INVENTORY.md')
+export const RESEARCH_HISTORY_FILE = repoFile('src/data/research-history.ts')
+
+// History family (31–40).
+/** PR #5's structured research synthesis, pinned to the PR's head commit. */
+export const PR5_RESEARCH = `${REPO_URL}/blob/66287f0b0f1054c9ea5b88914a1ff13bb576ce77/docs/research/PHYSICAL-INFORMATION-SYSTEMS.json`
+export const MOTTE_FLAGS_FILE = repoFile('src/features/motte/history.ts')

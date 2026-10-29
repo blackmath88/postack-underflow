@@ -1,8 +1,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { CATALOGUE } from '../src/lab/catalogue/index.ts'
-import { CONSTELLATIONS } from '../src/lab/catalogue/map.ts'
+import { CONSTELLATIONS, RECURRING } from '../src/lab/catalogue/map.ts'
 
 const FAMILY_RANGE: Record<string, [number, number]> = {
   discovery: [1, 10],
@@ -34,7 +34,11 @@ test('every entry answers the method’s questions', () => {
     for (const s of e.provenance.sources) if (s.url) assert.match(s.url, /^https:\/\//, `${e.n}: ${s.label}`)
     assert.ok(e.finding.length <= 220, `${e.n}: the finding should be short enough to browse`)
     for (const r of e.related) assert.ok(/^\d\d$/.test(r) && r !== e.n && Number(r) <= 60, `${e.n}: related ${r}`)
-    if (e.status === 'specimen') assert.ok(e.assessment, `${e.n}: a specimen needs an assessment`)
+    if (e.status === 'specimen') {
+      assert.ok(e.assessment, `${e.n}: a specimen needs an assessment`)
+      assert.ok(e.reflection && e.reflection.length > 40, `${e.n}: a specimen needs a reflection`)
+      assert.ok(existsSync(new URL(`../scripts/specimens/${e.n}.mjs`, import.meta.url)), `${e.n}: a specimen needs a behaviour check`)
+    }
   }
 })
 
@@ -55,5 +59,20 @@ test('every catalogued experiment has a registered component', () => {
 
 test('constellations only name catalogued experiments', () => {
   const ns = new Set(CATALOGUE.map((e) => e.n))
-  for (const c of CONSTELLATIONS) for (const m of c.members) assert.ok(ns.has(m), `${c.title}: ${m}`)
+  for (const c of [...CONSTELLATIONS, ...RECURRING]) for (const m of c.members) assert.ok(ns.has(m), `${c.title}: ${m}`)
+})
+
+test('route heads match the catalogue', async () => {
+  const { HEADS } = await import('../src/lab/catalogue/heads.ts')
+  assert.deepEqual(Object.keys(HEADS).sort(), CATALOGUE.map((e) => e.n))
+  for (const e of CATALOGUE) {
+    assert.equal(HEADS[e.n]!.title, e.title, `${e.n} title`)
+    assert.equal(HEADS[e.n]!.question, e.question, `${e.n} question`)
+  }
+})
+
+test('the critique assesses every pilot and only catalogued ones', async () => {
+  const { CRITIQUE } = await import('../src/lab/catalogue/critique.ts')
+  assert.deepEqual(Object.keys(CRITIQUE).sort(), CATALOGUE.map((e) => e.n))
+  for (const e of CATALOGUE) assert.ok(e.assessment, `${e.n} has no assessment`)
 })

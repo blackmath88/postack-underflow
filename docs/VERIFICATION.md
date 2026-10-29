@@ -2,6 +2,64 @@
 
 This file records what was actually checked. It is not a claim that the public site is live.
 
+## The Laboratory — 2026-10-29
+
+Branches `feat/lab-foundations` → `feat/lab-divergence` → `feat/lab-critique` → `feat/lab-specimens` → `feat/lab-integration`, as stacked draft PRs. The final run below was made on `feat/lab-integration`, from a clean `npm ci`.
+
+### Automated checks
+| Command | Result |
+|---|---|
+| `npm ci` | passes |
+| `npm run typecheck` | passes |
+| `npm test` | 63 passed, 0 failed, 1 skipped (the existing snapshot test, which needs `corpus:fetch`) |
+| `npm run build` | passes |
+| `npm run validate` | 73 pages, 60 of them lab experiments; 4,081 internal URLs under `/postack-underflow/` |
+| `npm run index:check` | 30 sources, 30 records; structured index reproduced exactly |
+| `npm run browser`, story checks | 226 passed, 0 failed (unchanged from `main`, plus `/lab/` at three widths) |
+| `npm run browser`, lab checks | 792 passed, 0 failed, 60 experiments |
+| `npm run browser`, specimen checks | 103 passed, 0 failed, 8 specimens, light and dark |
+
+**What the lab checks cover, per pilot:**
+- it is prerendered and returns HTTP 200, with an `h1`;
+- it logs no console or page errors and no failed requests;
+- its declared control is keyboard-reachable, shows a focus outline, and changes its declared output when used;
+- nothing overflows horizontally at 390, 768 or 1440 px;
+- nothing keeps running under reduced motion, before or after acting;
+- without JavaScript, the notebook still renders.
+
+The index check confirms that every pilot is listed, the status filter narrows the list, and the finding view works.
+
+**Frozen data.** `tests/frozen.test.ts` pins the SHA-256 of the six Four Words v1 files, taken on `main` at `6522229`. Outside `src/lab/`, the lab changes only `SiteFooter.tsx` (one link), `vite.config.ts` (chunk names), `package.json` (scripts) and the check scripts.
+
+### Problems the checks caught
+- **An underscore chunk.** The dynamic route first built `assets/_n-….js`, which GitHub Pages' Jekyll step would drop. `validate` caught it; chunk names are now made Pages-safe.
+- **The whole lab on every page.** The route's loader referenced the pilot map, which put every pilot and the frozen index in the entry chunk: 1.35 MB on every story page. The entry chunk is now 362 KB, against 352 KB on `main`.
+- **Builder-level fixes**, found by lab-check and screenshots: overflow at 390 px from long `<select>` options, disabled probes losing focus, and a Motte import that pulled in a tiny CSS chunk that `validate` rejects.
+
+### Sizes
+| Asset | Size | Where it loads |
+|---|---|---|
+| Entry chunk | 362 KB (118 KB gzipped) | every page |
+| Pilot chunk | 307 KB (91 KB gzipped) | lab pages only |
+| Lab CSS | 135 KB (24 KB gzipped) | lab pages only |
+
+### Manual review
+- **In the browser pane:** pilots 03, 25 and 31, the lab index, and specimens 32 and 39, in the dark scheme.
+- **Contact sheets** of all 60 specimen regions at 1280 px, light.
+- **Screenshots of the final state**, in `docs/screenshots/`:
+  - `lab-index-1440-light.jpg` and `lab-index-390-light.jpg`
+  - `lab-04-1440-light.jpg`, after "All equal"
+  - `lab-17-1440-light.jpg`
+  - `lab-32-1440-dark.jpg`, with the agent's hand lifted
+  - `lab-03-390-light.jpg`
+
+### Not verified
+- **No reader testing of any kind.** Every "happened" and "finding" comes from building and using the pilots ourselves.
+- **No screen-reader testing** (NVDA, VoiceOver), and no cross-browser or real-device testing beyond Chromium.
+- **The dark scheme** is checked automatically only for the eight specimens, and only that text and ground differ. The other 52 pilots use the site tokens but were not screenshotted dark.
+- **CI and deployment.** CI on the stacked PRs uses the runner's Chrome; nothing has been deployed.
+- **The lab's own numbers** are computed from frozen data in the browser or in Node. They are demonstrations, not evaluation runs, and none has been reproduced by anyone else.
+
 ## Editorial pass: three levels and margin notes — 2026-10-28
 
 **Branch:** `feat/irresistible-story`. **Environment:** Linux, Node 26.8.1, Chromium (system), playwright-core 1.64.1. Nothing was merged or deployed.

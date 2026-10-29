@@ -1,1 +1,1300 @@
 /* Lab family: editorial. Scope every rule under the experiment's root class (.xNN). */
+
+/* ---------- 41 The Essay With Two Voices: two columns that share a row by word count ---------- */
+
+.x41 {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.x41__desk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  align-items: end;
+}
+
+.x41__voice {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.x41__voice legend,
+.x41__who,
+.x41__dial span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x41__voice legend {
+  padding: 0;
+  margin-bottom: var(--space-1);
+}
+
+.x41__count {
+  color: var(--muted);
+}
+
+.x41__dial {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 14rem;
+}
+
+.x41__dial span strong {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+
+.x41__balance {
+  margin: 0;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
+}
+
+.x41__pairs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.x41__pair {
+  display: grid;
+  grid-template-columns: var(--cols, 1fr 1fr);
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.x41__who {
+  display: block;
+  color: var(--muted);
+  margin-bottom: var(--space-1);
+}
+
+.x41__essay,
+.x41__reply {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.x41__essay mark {
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.x41__reply {
+  border-left: 3px solid var(--violet);
+  padding-left: var(--space-2);
+  font-size: 0.95rem;
+}
+
+.x41__reply.is-silent .x41__who {
+  writing-mode: vertical-rl;
+  margin: 0;
+}
+
+.x41__hush {
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x41__pair {
+    transition: grid-template-columns 200ms ease-out;
+  }
+}
+
+@media (max-width: 40rem) {
+  .x41__pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .x41__reply {
+    margin-left: var(--space-3);
+  }
+  .x41__reply.is-silent .x41__who {
+    writing-mode: horizontal-tb;
+  }
+}
+
+/* ---------- 42 The Footnote Rabbit Hole: a pinned line over a stack ---------- */
+
+.x42 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x42__starts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x42__line {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--bg);
+  border: 1px solid var(--rule-strong);
+  border-left-width: 6px;
+  font-size: 1.1rem;
+}
+
+.x42__line p {
+  margin: 0;
+}
+
+.x42__pin,
+.x42__meta,
+.x42__on {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.x42__line .x42__pin {
+  margin-bottom: var(--space-1);
+}
+
+.x42__phrase {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.x42__depth p {
+  margin: 0 0 var(--space-2);
+}
+
+.x42__crumbs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.x42__crumbs li {
+  /* Each step is indented one more level: depth made spatial. */
+  padding-left: calc(var(--step, 0) * 0.9rem);
+}
+
+.x42__crumbs li:nth-child(1) { --step: 0; }
+.x42__crumbs li:nth-child(2) { --step: 1; }
+.x42__crumbs li:nth-child(3) { --step: 2; }
+.x42__crumbs li:nth-child(4) { --step: 3; }
+.x42__crumbs li:nth-child(5) { --step: 4; }
+.x42__crumbs li:nth-child(n + 6) { --step: 5; }
+
+.x42__crumbs button {
+  font: inherit;
+  font-size: 0.9rem;
+  background: none;
+  border: 0;
+  border-left: 2px solid var(--rule);
+  padding: 0.1rem 0 0.1rem var(--space-2);
+  color: var(--fg);
+  cursor: pointer;
+  text-align: left;
+}
+
+.x42__crumbs button[aria-current] {
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.x42__card {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-3);
+}
+
+.x42__card--source {
+  border-top-style: dashed;
+}
+
+.x42__card h3 {
+  margin: var(--space-1) 0 var(--space-2);
+  font-size: 1.15rem;
+}
+
+.x42__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x42__links .lab-btn {
+  text-align: left;
+}
+
+.x42__end,
+.x42__loop {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.x42__loop {
+  color: var(--accent-signal);
+}
+
+/* ---------- 43 The Page That Disagrees: claims with slips pinned over them ---------- */
+
+.x43 {
+  display: grid;
+  gap: var(--space-4);
+  --slip: #fffdf5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x43 {
+    --slip: #262a30;
+  }
+}
+
+.x43__page {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.x43__claim {
+  position: relative;
+  max-width: 40rem;
+}
+
+.x43__text {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  line-height: 1.35;
+  margin: 0 0 var(--space-1);
+}
+
+.x43__claim.is-contradicted .x43__text {
+  text-decoration: line-through;
+  text-decoration-color: var(--rose);
+  text-decoration-thickness: 2px;
+}
+
+.x43__from {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0 0 var(--space-2);
+}
+
+.x43__scope {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-2);
+}
+
+.x43__scope select {
+  font: inherit;
+  max-width: 100%;
+}
+
+/* The slip overlaps the claim it answers, like a correction pasted in. */
+.x43__slip {
+  position: relative;
+  margin: calc(-1 * var(--space-2)) 0 0 clamp(0.5rem, 6vw, 4rem);
+  padding: var(--space-2) var(--space-3);
+  background: var(--slip);
+  border: 1px solid var(--rule-strong);
+  box-shadow: 3px 3px 0 var(--rule);
+  font-size: 0.92rem;
+}
+
+.x43__slip p {
+  margin: 0 0 var(--space-1);
+}
+
+.x43__slip--contradicted {
+  border-left: 6px solid var(--rose);
+  transform: rotate(-0.6deg);
+}
+
+.x43__slip--holds {
+  border-left: 6px solid var(--blue);
+}
+
+.x43__slip--untestable {
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.x43__stamp {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.x43__example {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.x43__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+}
+
+.x43__tally {
+  margin: 0;
+  flex: 1 1 18rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x43__slip {
+    animation: x43-paste 220ms ease-out 1;
+  }
+  @keyframes x43-paste {
+    from {
+      opacity: 0;
+      translate: 0 -6px;
+    }
+  }
+}
+
+/* ---------- 44 The One-Sentence Experiment: a sentence whose words are switches ---------- */
+
+.x44 {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.x44__sentence {
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 44rem;
+}
+
+.x44__ctl {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-bottom: 2px dotted var(--accent);
+  padding: 0 0.1em;
+  cursor: pointer;
+}
+
+.x44__ctl--index {
+  border-bottom-style: solid;
+}
+
+.x44 .x44__word[aria-pressed='false'] {
+  background: none;
+  color: var(--muted);
+  text-decoration: line-through;
+  border-bottom-color: var(--rule);
+}
+
+.x44 .x44__word[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--fg);
+}
+
+.x44__ending strong {
+  color: var(--accent);
+}
+
+.x44__workings summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.x44__scroll {
+  overflow-x: auto;
+}
+
+.x44__workings table {
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: var(--space-2);
+}
+
+.x44__workings caption {
+  text-align: left;
+  color: var(--muted);
+  padding-bottom: var(--space-1);
+}
+
+.x44__workings th,
+.x44__workings td {
+  text-align: left;
+  padding: 0.2rem 0.8rem 0.2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---------- 45 The Story You Can Interrupt: a linear read with pause points and a final ledger ---------- */
+
+.x45 {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 46rem;
+}
+
+.x45__caveat {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border: 1px dashed var(--rule-strong);
+  padding: var(--space-2) var(--space-3);
+}
+
+/* The reading line: the story runs down a single rule, like a guide's script. */
+.x45__story {
+  display: grid;
+  gap: var(--space-3);
+  border-left: 2px solid var(--rule-strong);
+  padding-left: var(--space-3);
+}
+
+.x45__beat p {
+  margin: 0;
+}
+
+.x45__statement {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.x45__beat.is-flagged {
+  margin-left: calc(-1 * var(--space-3) - 2px);
+  padding-left: calc(var(--space-3) - 2px);
+  border-left: 6px solid var(--rose);
+}
+
+.x45__flag {
+  margin-top: var(--space-1) !important;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-signal);
+  font-weight: 700;
+}
+
+.x45__aside {
+  margin: var(--space-2) 0 0 var(--space-3);
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--violet);
+  font-size: 0.92rem;
+}
+
+.x45__aside p {
+  margin-bottom: var(--space-1);
+}
+
+.x45__aside-head {
+  font-weight: 600;
+}
+
+.x45__aside-head span {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.x45__pause {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--space-2) 0;
+}
+
+.x45__pause p {
+  margin: 0;
+  flex: 1 1 18rem;
+}
+
+.x45__mark {
+  font-weight: 700;
+  color: var(--accent-signal);
+}
+
+.x45__hands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x45__go {
+  font-weight: 700;
+  border-width: 2px;
+}
+
+.x45__log {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-2);
+}
+
+.x45__log p {
+  margin: 0;
+}
+
+/* The ledger, printed at the end of the chapter. */
+.x45__ledger {
+  border-top: 3px double var(--rule-strong);
+  padding-top: var(--space-3);
+}
+
+.x45__ledger h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.05rem;
+}
+
+.x45__ledger-sum,
+.x45__ledger-note {
+  margin: 0 0 var(--space-3);
+  font-size: 0.9rem;
+}
+
+.x45__ledger-note {
+  margin: var(--space-3) 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.x45__ledger ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.x45__ledger li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dotted var(--rule);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 30rem) {
+  .x45__ledger li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+.x45__was {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  padding-top: 0.15rem;
+}
+
+.x45__ledger li.is-passed .x45__was {
+  color: var(--muted);
+}
+
+.x45__cost {
+  display: block;
+  color: var(--muted);
+}
+
+.x45__ev {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.x45__ledger li.is-only-here {
+  border: 2px solid var(--rose);
+  padding: var(--space-2);
+  margin: var(--space-1) 0;
+}
+
+.x45__ledger li.is-only-here .x45__cost {
+  color: var(--fg);
+}
+
+.x45__unsafe {
+  font-weight: 700;
+  color: var(--accent-signal);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* ---------- 46 The Broken Analogy: a band between two posts ---------- */
+
+.x46 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x46__choose,
+.x46__hands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x46__rig {
+  margin: 0;
+  max-width: 40rem;
+}
+
+.x46__rig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.x46__post {
+  fill: var(--fg);
+}
+
+.x46__band {
+  stroke: var(--accent);
+  fill: none;
+  stroke-linecap: round;
+}
+
+.x46__label {
+  fill: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.x46__rig figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.x46__status {
+  margin: 0;
+  font-weight: 600;
+}
+
+.x46__points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x46__point {
+  border-left: 4px solid var(--blue);
+  padding-left: var(--space-3);
+}
+
+.x46__point.is-strains {
+  border-left-style: dashed;
+  border-left-color: var(--violet);
+}
+
+.x46__point.is-breaks {
+  border-left-style: double;
+  border-left-width: 6px;
+  border-left-color: var(--rose);
+}
+
+.x46__point.is-past {
+  opacity: 0.7;
+}
+
+.x46__fit {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 var(--space-1);
+}
+
+.x46__sides {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-1) var(--space-4);
+}
+
+.x46__sides p {
+  margin: 0;
+}
+
+.x46__side {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.x46__why {
+  margin: var(--space-1) 0 0;
+  font-size: 0.9rem;
+}
+
+.x46__src {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ---------- 47 The Reader's Hypothesis: a sealed guess on a number line ---------- */
+
+.x47 {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 42rem;
+}
+
+.x47__rounds {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.x47__rounds button {
+  font: inherit;
+  font-family: var(--font-mono);
+  min-width: 2.6rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.x47__rounds button[aria-current] {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.x47__card {
+  display: grid;
+  gap: var(--space-3);
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-3);
+}
+
+.x47__ask {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+}
+
+.x47__scale input {
+  width: 100%;
+}
+
+.x47__line {
+  position: relative;
+  height: 2.2rem;
+  border-bottom: 1px solid var(--rule-strong);
+  margin: 0 0.5rem;
+}
+
+.x47__tick {
+  position: absolute;
+  bottom: 0;
+  translate: -50% 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 3px solid currentColor;
+}
+
+.x47__tick--guess {
+  color: var(--accent);
+}
+
+.x47__tick--answer {
+  color: var(--accent-signal);
+  bottom: auto;
+  top: 0;
+  border-bottom: 0;
+  border-top: 3px solid currentColor;
+  padding: 0.2rem 0 0;
+}
+
+.x47__ends {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: var(--space-1) 0 0;
+}
+
+.x47__envelope {
+  border: 1px solid var(--rule-strong);
+  padding: var(--space-3);
+  min-height: 5rem;
+}
+
+.x47__envelope p {
+  margin: 0 0 var(--space-2);
+}
+
+.x47__closed {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.x47__reveal {
+  font-size: 1.1rem;
+}
+
+.x47__record {
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+}
+
+.x47__record ul {
+  margin: 0;
+  padding-left: var(--space-3);
+}
+
+/* ---------- 48 The Invisible Appendix: a page with a depth dial ---------- */
+
+.x48 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x48__dial {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 20rem;
+}
+
+.x48__dial span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x48__dial strong {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.x48__readout {
+  margin: 0;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
+}
+
+.x48__page {
+  max-width: 40rem;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x48__beat > p {
+  margin: 0;
+}
+
+.x48__statement {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.x48__page mark {
+  background: none;
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--accent-signal);
+  text-underline-offset: 3px;
+}
+
+.x48__under {
+  margin: var(--space-2) 0 0 var(--space-3);
+  font-size: 0.9rem;
+}
+
+.x48__under p {
+  margin: 0 0 var(--space-1);
+}
+
+.x48__sounding {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* The sounding line: its length is the depth of text beneath the phrase. */
+.x48__line {
+  flex: none;
+  display: inline-block;
+  height: 0.5rem;
+  width: calc(var(--len, 0) * 8rem + 0.5rem);
+  background: repeating-linear-gradient(90deg, var(--fg) 0 2px, transparent 2px 6px);
+}
+
+.x48__summary {
+  font-style: italic;
+}
+
+.x48__body {
+  border-left: 2px solid var(--rule-strong);
+  padding-left: var(--space-2);
+}
+
+/* ---------- 49 The Historical Intruder: a reading column and a margin Motte may not leave ---------- */
+
+.x49 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.x49__rule {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.x49__rule legend {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0;
+  margin-bottom: var(--space-1);
+}
+
+.x49__n {
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+
+.x49__spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 15rem;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.x49__column {
+  border-right: 1px solid var(--rule);
+  padding-right: var(--space-4);
+  min-height: 14rem;
+}
+
+.x49__where {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--space-2);
+}
+
+.x49__before {
+  color: var(--muted);
+}
+
+.x49__now {
+  font-size: 1.1rem;
+}
+
+.x49__hands,
+.x49__flag-hands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x49__margin {
+  font-size: 0.9rem;
+}
+
+.x49__flag {
+  border-top: 3px solid var(--violet);
+  padding-top: var(--space-2);
+}
+
+.x49__flag p {
+  margin: 0 0 var(--space-1);
+}
+
+.x49__kind {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.x49__title {
+  font-weight: 600;
+}
+
+.x49__ev {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.x49__rest {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  color: var(--muted);
+}
+
+.x49__rest p {
+  margin: 0;
+}
+
+.x49__motte {
+  display: block;
+}
+
+.x49__log {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x49__flag {
+    animation: x49-land 260ms ease-out 1;
+  }
+  @keyframes x49-land {
+    from {
+      opacity: 0;
+      translate: 1rem 0;
+    }
+  }
+}
+
+@media (max-width: 44rem) {
+  .x49__spread {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .x49__column {
+    border-right: 0;
+    padding-right: 0;
+    min-height: 0;
+  }
+  .x49__margin {
+    border-left: 3px solid var(--rule);
+    padding-left: var(--space-3);
+  }
+}
+
+/* ---------- 50 The Twenty-Second Explanation: a clock, a paragraph and a diagram ---------- */
+
+.x50 {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 44rem;
+}
+
+.x50__start {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x50__clock {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-1) var(--space-2);
+  align-items: center;
+  font-family: var(--font-mono);
+}
+
+.x50__clock p {
+  margin: 0;
+}
+
+.x50__clock > p:first-child {
+  grid-column: 1 / -1;
+}
+
+.x50__bar {
+  height: 0.6rem;
+  border: 1px solid var(--rule-strong);
+}
+
+.x50__bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.x50__bar span.is-over {
+  background: repeating-linear-gradient(45deg, var(--accent-signal) 0 4px, transparent 4px 8px);
+}
+
+.x50__limit {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.x50__stage {
+  border: 1px solid var(--rule-strong);
+  padding: var(--space-3);
+  min-height: 10rem;
+}
+
+.x50__cover {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.x50__paragraph p {
+  margin: 0 0 var(--space-2);
+}
+
+.x50__credit {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.x50__diagram {
+  margin: 0;
+}
+
+.x50__diagram figcaption {
+  font-size: 0.9rem;
+  margin-bottom: var(--space-2);
+}
+
+.x50__key,
+.x50__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.x50__key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: 0.8rem;
+  margin-bottom: var(--space-2);
+}
+
+.x50__rows {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.x50__rows li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.x50__flag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  width: 6.5rem;
+  color: var(--accent-signal);
+}
+
+.x50__w {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--rule-strong);
+}
+
+.x50__w.is-supplied {
+  border: 2px dashed var(--rose);
+  font-weight: 700;
+}
+
+.x50__w.is-neither {
+  border-style: dotted;
+  border-color: var(--rule);
+  color: var(--muted);
+}
+
+.x50__q {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.x50__q legend {
+  margin-bottom: var(--space-2);
+  padding: 0;
+}
+
+.x50__log {
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.x50__log caption {
+  text-align: left;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding-bottom: var(--space-1);
+}
+
+.x50__log th,
+.x50__log td {
+  text-align: left;
+  padding: 0.2rem 0.6rem 0.2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Probes stay focusable when inactive, so they use aria-disabled. */
+.x47 .lab-btn[aria-disabled='true'],
+.x50 .lab-btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
