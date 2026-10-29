@@ -363,7 +363,7 @@ export const HISTORY: LabEntry[] = [
     question: 'When the text under an annotation changes, should the annotation keep its place or its words?',
     proposition:
       'Print registration translates into annotation anchoring: a plate registered by position misprints silently when the text moves, a plate registered by quotation fails visibly, and an archival stamp cannot move at all.',
-    manipulate: 'Print the next revision of one passage, and register the annotation plate by position or by quotation.',
+    manipulate: 'Print the next revision of one passage; it prints on two sheets at once, one with the annotation plate registered by position, one by quotation.',
     changes: 'Where each annotation prints, how far its plate is out, which annotations lose their words, and whether the stamp still describes the text.',
     unchanged: 'The three annotations and the stamp. Revision 0 is a frozen record’s solution field, verbatim.',
     provenance: {
@@ -381,9 +381,9 @@ export const HISTORY: LabEntry[] = [
       priorArt: ['W3C Web Annotation selectors', 'Hypothesis’s fuzzy anchoring', 'Comments in collaborative editors', 'Colour separation and registration marks in print'],
     },
     built:
-      'A sheet with an ink plate, a rose plate of three annotations in the margin, and a blue extraction stamp. Revisions 1 to 3 are edits we invented to move the text. The rose registration mark shifts as far as the worst annotation is out.',
+      'Two sheets side by side, each with an ink plate and a rose plate of three annotations in the margin, one registered by position and one by quotation, over a shared blue extraction stamp. Every printed annotation looks the same, right or wrong; only the rose registration mark shifts when the plate is out. A proof under each sheet, kept off it, checks each annotation against its words. Revisions 1 to 3 are edits we invented to move the text.',
     happened:
-      'By position, one inserted clause puts all three annotations out by 49 characters, each printing confidently over the wrong words. By quotation, they stay on their words through two revisions and the third loses one annotation, which drops off the sheet instead of misprinting. The stamp is wrong from revision 1 on, and neither rule can help it.',
+      'By position, one inserted clause puts all three annotations out by 49 characters, each printing confidently over the wrong words. By quotation, they stay on their words through two revisions and the third loses one annotation, which leaves the text and is marked lost in the margin instead of misprinting. The stamp is wrong from revision 1 on, and neither rule can help it.',
     uncertain:
       'Real anchoring combines both rules with context and fuzzy matching; ours is the bare contrast. Whether a lost annotation should be shown orphaned or hidden is open.',
     falsifier: 'If position anchoring survived ordinary edits, or quotation anchoring misprinted silently. Neither happened with these edits.',
@@ -392,6 +392,8 @@ export const HISTORY: LabEntry[] = [
     finding:
       'Registered by position, one inserted clause misprints all three annotations without a warning; by quotation, they hold until their words go, then fail visibly.',
     related: ['32', '52', '03'],
+    reflection:
+      'Putting the two rules side by side, instead of behind a switch, made the contrast the first thing seen: one press, and the same three notes sit on the right words on one sheet and the wrong words on the other. Keeping the misprints styled exactly like correct prints was the important decision; the kernel had marked them wavy, which quietly contradicted “silent”. The proof has to sit off the sheet, because the sheet cannot know. A plainer control, a table of offsets per revision, would show the 49-character drift but not how believable a misprinted note looks in place.',
   },
   {
     n: '40',

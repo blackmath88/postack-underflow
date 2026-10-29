@@ -1476,12 +1476,12 @@ strong.x32__ink--writer {
   color: var(--muted);
 }
 
-/* ---------- 39 The Marginal Printer: three plates on one sheet ---------- */
+/* ---------- 39 The Marginal Printer: one revision printed on two sheets ---------- */
 
 .x39 {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-3);
+  gap: var(--space-4);
   --sheet: #fbfaf5;
 }
 
@@ -1491,49 +1491,69 @@ strong.x32__ink--writer {
   }
 }
 
-.x39__controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-5);
-  align-items: end;
-}
-
-.x39__controls fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.2rem;
-  font-size: 0.92rem;
-}
-
-.x39__controls legend {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0;
-  margin-bottom: var(--space-1);
-}
-
 .x39__press {
   display: flex;
   flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+}
+
+.x39__print {
+  font-weight: 700;
+  border-width: 2px;
+}
+
+.x39__rev {
+  margin: 0;
+  flex: 1 1 16rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.x39__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 52rem) {
+  .x39__pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x39__col {
+  min-width: 0;
+  display: grid;
   gap: var(--space-2);
+  align-content: start;
+}
+
+.x39__title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.x39__how {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 .x39__sheet {
   position: relative;
-  max-width: 46rem;
   background: var(--sheet);
   border: 1px solid var(--rule);
   padding: var(--space-5) var(--space-4) var(--space-4);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 13rem);
-  gap: var(--space-2) var(--space-4);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 10rem);
+  gap: var(--space-2) var(--space-3);
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 30rem), (min-width: 52rem) and (max-width: 72rem) {
   .x39__sheet {
     grid-template-columns: minmax(0, 1fr);
     padding: var(--space-5) var(--space-3) var(--space-3);
@@ -1587,41 +1607,27 @@ strong.x32__ink--writer {
 
 @media (prefers-reduced-motion: no-preference) {
   .x39__reg--rose {
-    transition: transform 200ms ease-out;
+    transition: transform 240ms ease-out;
   }
-}
-
-.x39__rev {
-  grid-column: 1 / -1;
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
 }
 
 .x39__text {
   margin: 0;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
 
+/* Every printed annotation looks the same, right or wrong: that is the point. */
 .x39__hit {
-  background: transparent;
+  background: color-mix(in srgb, var(--rose) 16%, transparent);
   color: inherit;
   text-decoration: underline 2px var(--rose);
   text-underline-offset: 0.2em;
 }
 
-.x39__hit.is-off {
-  text-decoration-style: wavy;
-  background: color-mix(in srgb, var(--rose) 18%, transparent);
-}
-
-.x39__hit sup,
-.x39__margin sup,
-.x39__proof sup {
+.x39 sup {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-style: normal;
@@ -1642,26 +1648,59 @@ strong.x32__ink--writer {
   align-content: start;
 }
 
-.x39__margin .is-off {
-  transform: translateX(0.3rem);
+.x39__margin .is-lost {
+  font-style: normal;
+  border: 1px dashed var(--accent-signal);
+  padding: 0.2rem 0.35rem;
 }
 
-.x39__margin .is-lost {
-  text-decoration: line-through;
+.x39__lost {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.x39__margin s {
+  color: var(--muted);
+}
+
+/* The proof-reader's check, kept off the sheet: what the sheet itself cannot say. */
+.x39__check {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-2);
+  font-size: 0.85rem;
+}
+
+.x39__check-head {
+  margin: 0 0 var(--space-1);
+  font-weight: 700;
+}
+
+.x39__check.is-wrong .x39__check-head {
+  color: var(--accent-signal);
+}
+
+.x39__check.is-wrong .x39__check-head::before {
+  content: '✕ ';
+}
+
+.x39__check ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  overflow-wrap: anywhere;
 }
 
 .x39__stamp {
-  grid-column: 1 / -1;
-  justify-self: end;
-  margin: var(--space-2) 0 0;
+  justify-self: start;
+  margin: 0;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--accent);
   border: 2px solid var(--accent);
-  padding: 0.2rem 0.5rem;
-  transform: rotate(-2deg);
+  padding: 0.25rem 0.5rem;
+  transform: rotate(-1deg);
   max-width: 100%;
 }
 
@@ -1669,25 +1708,10 @@ strong.x32__ink--writer {
   border-style: dashed;
 }
 
-.x39__proof {
-  max-width: 46rem;
-  border-top: 2px solid var(--rule-strong);
-  padding-top: var(--space-2);
-}
-
-.x39__proof p {
-  margin: 0 0 var(--space-1);
-}
-
-.x39__proof ul {
-  margin: 0 0 var(--space-1);
-  padding-left: 1.2rem;
-  font-size: 0.88rem;
-}
-
-.x39__warn {
-  color: var(--accent-signal);
-  font-weight: 600;
+.x39__status {
+  margin: 0;
+  max-width: 52rem;
+  font-size: 0.95rem;
 }
 
 /* ---------- 40 The Museum That Rearranges Itself: rooms on a plan ---------- */
