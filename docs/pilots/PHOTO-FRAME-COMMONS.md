@@ -1,6 +1,6 @@
 # Pilot 001 — Photo Frame Commons
 
-**Status:** approved exploratory direction; implementation not yet started.  
+**Status:** approved exploratory direction; first vertical slice built on 2026-10-29 as draft PRs #19 to #23 (not merged). Findings: [COMMONS-REFLECTION.md](../research/COMMONS-REFLECTION.md).  
 **Source project:** https://github.com/wesbos/photo-frame-dashboard  
 **Source inspiration:** https://syntax.fm/show/1050/everyone-is-hacking-their-tv/transcript  
 **Related work:** https://github.com/blackmath88/br-ai-nstorm · https://github.com/blackmath88/github-atlas · https://github.com/blackmath88/lumpesammlig

@@ -6,7 +6,7 @@
 
 | Layer | File | Written by | Committed? |
 |---|---|---|---|
-| Source text | `corpus/commons/.cache/` | the 222 GitHub authors | No: gitignored |
+| Source text | `corpus/commons/.cache/` | the 221 GitHub accounts | No: gitignored |
 | Provenance | `corpus/commons/manifest.json` | the snapshot script | Yes |
 | Problem records | `corpus/commons/problems.json` | the record writer, an agent | Yes |
 | Corrections | `corpus/commons/corrections.json` | contributors' own statements, located by the record writer | Yes |

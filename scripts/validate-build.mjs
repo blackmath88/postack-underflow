@@ -36,6 +36,7 @@ for (const route of [...ROUTES.map((r) => `${r}index.html`), ...LAB.map((r) => `
 // via Actions without Jekyll and ship .nojekyll, but refuse such paths anyway.
 if (!existsSync(join(out, '.nojekyll'))) errors.push('missing .nojekyll')
 
+const SELF_CONTAINED = ['commons/brainstorm.html']
 const htmlFiles = []
 const walk = (dir) => {
   for (const name of readdirSync(dir)) {
@@ -67,7 +68,11 @@ for (const file of htmlFiles) {
   // Every page must link a non-trivial stylesheet; a green build with an
   // unstyled page is the regression this guards against.
   const css = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => m[1])
-  if (css.length === 0) errors.push(`${name}: no stylesheet linked`)
+  // br-ai-nstorm's Level-1 view is self-contained by design (inline CSS, no
+  // scripts); it must carry its own styles instead.
+  if (SELF_CONTAINED.includes(name)) {
+    if (!/<style>[\s\S]{1000,}<\/style>/.test(html)) errors.push(`${name}: self-contained page has no substantial inline style`)
+  } else if (css.length === 0) errors.push(`${name}: no stylesheet linked`)
   for (const href of css) {
     const file = join(out, href.slice(BASE.length))
     if (href.startsWith(BASE) && existsSync(file) && statSync(file).size < 2000) {

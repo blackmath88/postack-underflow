@@ -5,6 +5,7 @@ const NAV = [
   { to: '/community/', label: 'The Switchboard' },
   { to: '/convergence/', label: 'Problem Desk' },
   { to: '/afterword/', label: 'Afterword' },
+  { to: '/commons/', label: 'Commons' },
   { to: '/archive/', label: 'Archive' },
   { to: '/about/', label: 'About' },
 ] as const

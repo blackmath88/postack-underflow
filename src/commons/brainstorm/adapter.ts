@@ -256,7 +256,7 @@ export const MISMATCHES: Array<{ id: string; contract: string; reality: string; 
   {
     id: 'M2 One author per repository',
     contract: 'Imported units are authoredBy repo:<owner/name>.',
-    reality: '222 people wrote this material; the repository is one of them.',
+    reality: '221 GitHub accounts wrote this material; the repository is one of them.',
     adapter: 'authoredBy is github:<login> for threads and comments, repo:<owner/name> only for documents.',
   },
   {

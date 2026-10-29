@@ -30,7 +30,24 @@ The first article **“We Already Solved This”** describes the problem while i
 This is **not** a replacement for Stack Overflow, a new centralized social network, or a Weavr mission. Weavr may later consume verified knowledge, but execution is not the center. No public publishing, account writes, or harvesting of private agent sessions without explicit authorization. Human authorship, licenses, source provenance, and disagreement remain visible.
 
 ## Status
-**Research prototype.** One small, measured retrieval experiment (Four Words), a fixture-only community demonstration, and a laboratory of sixty executable sketches that are demonstrations, not measurements. No live search service, ATProto adapter or comment federation exists, and nothing is published to ATProto. This public repo starts with questions and testable hypotheses.
+**Research prototype.** One small, measured retrieval experiment (Four Words), a fixture-only community demonstration, a laboratory of sixty executable sketches that are demonstrations, not measurements, and one real-world pilot: the **Photo Frame Commons** (`/commons/`). The Commons is built from a pinned, read-only snapshot of a public repository and a read-only snapshot of public ATProto records. No live search service or comment federation exists, and nothing is published to ATProto. This public repo starts with questions and testable hypotheses.
+
+## Pilot 001: Photo Frame Commons
+A working instrument over the real problem-solving history of [wesbos/photo-frame-dashboard](https://github.com/wesbos/photo-frame-dashboard).
+- **Find** a problem in ordinary words, beside plain search over the raw issue threads.
+- **Inspect** its sources in their authors' own words, linked to GitHub.
+- **Connect** contributions in a map and a thread view, derived with br-ai-nstorm's own code. Each connection says who stands behind it.
+- **Challenge** a record with a real correction, then **preview** what it would change. The sources stay untouched.
+
+Documents:
+- corpus: [docs/research/COMMONS-CORPUS.md](docs/research/COMMONS-CORPUS.md);
+- index: [COMMONS-INDEX.md](docs/research/COMMONS-INDEX.md);
+- br-ai-nstorm: [COMMONS-BRAINSTORM.md](docs/research/COMMONS-BRAINSTORM.md);
+- ATProto: [COMMONS-ATPROTO.md](docs/research/COMMONS-ATPROTO.md);
+- findings: [COMMONS-REFLECTION.md](docs/research/COMMONS-REFLECTION.md);
+- decision: [ADR-0007](docs/adr/0007-photo-frame-commons.md), proposed.
+
+Refresh with `npm run commons:snapshot`, `commons:index`, `commons:brainstorm`, `commons:atproto` and `commons:view`. Check with `commons:check`, `commons:records`, `commons:index:check`, `commons:brainstorm:check` and `commons:browser`.
 
 ## The site
 An interactive essay in six movements: an encounter (a hacked photo frame) → the lost shortcut → two problems → The Impossible Index → The Switchboard → the Problem Desk, ending with an afterword on how the essay was made. It works at three levels of attention:

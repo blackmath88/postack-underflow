@@ -47,3 +47,8 @@ test('what could not be represented is reported, not dropped', () => {
   assert.ok(snap.adapter.unrepresented.every((u: { count: number }) => u.count > 0))
   assert.ok(snap.adapter.mismatches.length >= 7)
 })
+
+test('the interface data is rebuilt exactly from the committed artifacts', async () => {
+  const { execFileSync } = await import('node:child_process')
+  execFileSync('node', ['scripts/commons/build-view.mjs', '--check'], { encoding: 'utf8' })
+})
