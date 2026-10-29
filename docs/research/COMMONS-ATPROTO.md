@@ -59,7 +59,7 @@
 
 **Added:**
 - Authorship that travels. Each record names a DID and a PDS, and its CID pins the exact version.
-- Conversation outside GitHub, in the open. The maintainer's "A bunch of people had this issue" exists only on Bluesky.
+- Conversation outside GitHub, in the open. The maintainer's "A bunch of people had this issue" is on Bluesky and appears nowhere in the GitHub snapshot.
 - Backlinks: the network can be asked "who links #229?", and the question has an answer.
 
 **Did not add:**
