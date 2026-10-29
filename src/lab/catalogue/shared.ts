@@ -22,3 +22,8 @@ export const LUMPESAMMLIG = `https://github.com/blackmath88/lumpesammlig/tree/${
 export const LUMPESAMMLIG_CONCEPT = `https://github.com/blackmath88/lumpesammlig/blob/${LUMPESAMMLIG_REV}/docs/CONCEPT.md`
 export const IMPOSSIBLE_INDEX_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/012-impossible-index`
 export const SWITCHBOARD_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/013-switchboard`
+
+// Classification family (Lab 02).
+export const DISPUTED_NEIGHBOUR_DATA = repoFile('src/data/disputed-neighbour.ts')
+export const RECORDS_SCHEMA = repoFile('src/lib/records.ts')
+export const QUERIES_FILE = repoFile('corpus/queries.json')
