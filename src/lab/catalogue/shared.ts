@@ -53,3 +53,8 @@ export const LIVE_SITE = 'https://blackmath88.github.io/postack-underflow/'
 export const ADR_0005 = repoFile('docs/adr/0005-three-levels-and-margin-notes.md')
 export const CONTENT_INVENTORY = repoFile('docs/editorial/CONTENT-INVENTORY.md')
 export const RESEARCH_HISTORY_FILE = repoFile('src/data/research-history.ts')
+
+// History family (31–40).
+/** PR #5's structured research synthesis, pinned to the PR's head commit. */
+export const PR5_RESEARCH = `${REPO_URL}/blob/66287f0b0f1054c9ea5b88914a1ff13bb576ce77/docs/research/PHYSICAL-INFORMATION-SYSTEMS.json`
+export const MOTTE_FLAGS_FILE = repoFile('src/features/motte/history.ts')
