@@ -110,6 +110,20 @@ All of these are candidates for editorial review, not decisions. None changes a 
 6. **Would people who never saw the corpus** lose more words than 03 found? This needs queries from outside the project, as Four Words v2 proposes.
 7. **Is a strict automatic rule ever safe** for accepting a correction or a classification, or does every rule that is strict enough also block the useful part? (11, 52)
 
+## What developing the specimens changed (slice 4)
+
+Each specimen's full reflection is in its notebook. In short:
+- **04:** putting the count first, as 27 lamps, turns a null result into something you do. The one query that moves is q26, the trailing-slash case, which the v1 audit had already traced to a tokenizer artefact.
+- **11:** showing the whole cabinet makes the cost countable. Two of 16 drawers are left empty, and it is the patron, not the reviser, who pays for a cautious rule.
+- **17:** drawn beside the full scale, the empty one is the same picture. The verdict only has to read the dials.
+- **30:** comparing the account with itself made "Nobody disagreed" unmissable, and exposed a quieter false sentence one stop earlier.
+- **32:** keeping the blank slots did more than any count. The 30 near-identical bars are the result.
+- **39:** styling misprints exactly like correct prints was the decision. A warning style would have contradicted "silent".
+- **45:** naming the three caveats separately finds the one unsafe skip, instead of leaving it to inference. The finding's wording changed, because nothing measured which asides readers pass.
+- **56:** asking the labelling question turns the fork into a decision. Both branches are drawn, so the 0.013 gap and the unchanged winner are visible at once.
+
+Every specimen has a behaviour check that reproduces its finding through the interface (`scripts/specimens/`), and a unit test of the number its notebook quotes.
+
 ## Generated: every pilot's assessment
 
 <!-- The table below is generated from src/lab/catalogue/critique.ts by scripts/lab-evaluation.mjs. Do not edit it by hand. -->

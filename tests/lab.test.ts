@@ -2,7 +2,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
 import { CATALOGUE } from '../src/lab/catalogue/index.ts'
-import { CONSTELLATIONS } from '../src/lab/catalogue/map.ts'
+import { CONSTELLATIONS, RECURRING } from '../src/lab/catalogue/map.ts'
 
 const FAMILY_RANGE: Record<string, [number, number]> = {
   discovery: [1, 10],
@@ -59,7 +59,7 @@ test('every catalogued experiment has a registered component', () => {
 
 test('constellations only name catalogued experiments', () => {
   const ns = new Set(CATALOGUE.map((e) => e.n))
-  for (const c of CONSTELLATIONS) for (const m of c.members) assert.ok(ns.has(m), `${c.title}: ${m}`)
+  for (const c of [...CONSTELLATIONS, ...RECURRING]) for (const m of c.members) assert.ok(ns.has(m), `${c.title}: ${m}`)
 })
 
 test('route heads match the catalogue', async () => {
