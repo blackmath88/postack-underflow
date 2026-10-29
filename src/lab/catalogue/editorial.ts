@@ -184,8 +184,8 @@ export const EDITORIAL: LabEntry[] = [
     question: 'What does a reader give up by not stopping for an optional aside?',
     proposition:
       'A story can offer every aside without forcing any, and still be read safely straight through: skipping loses detail, not anything the surface depends on.',
-    manipulate: 'Read the Switchboard chapter one beat at a time; at each noted phrase, open the aside or carry on without it.',
-    changes: 'Which asides appear in the story, and a log of what was opened and passed, with their evidence status and length.',
+    manipulate: 'Read the Switchboard chapter one beat at a time; at each noted phrase, open the aside or carry on without it, or read straight through, passing every aside.',
+    changes: 'Which asides appear in the story, a running log of what was opened and passed, and at the end a ledger of what each pass cost.',
     unchanged: 'The chapter’s text and order. The pilot cannot tell whether opening asides helps anyone understand; it says so on the page.',
     provenance: {
       idea: 'ADR-0005 promises that a reader never needs the notes to follow the story. This pilot checks what each skip actually costs on one chapter.',
@@ -200,7 +200,7 @@ export const EDITORIAL: LabEntry[] = [
       priorArt: ['Museum audio guides with optional stops', 'Interactive fiction with skippable branches', 'Reading-time estimates on articles'],
     },
     built:
-      'A linear reader of the chapter’s 14 beats with a pause at each of its 11 notes, a running log of opened and passed asides, and a warning when a passed aside concerns invented material.',
+      'A linear reader of the chapter’s 14 beats with a pause at each of its 11 notes, a running log, and a way to read straight through. At the end, a ledger lists every aside, opened or passed, and what passing it cost: detail, a caveat the story also states (quoted from the story), or a caveat stated nowhere else. When that one was passed, the thread it belongs to is flagged in the story.',
     happened:
       'The proposition fails once. Straight through, the chapter is 314 words; its 11 asides hold another 623. The surface itself says the eight contributions are invented, so passing “Are these real people?” costs only detail. The first aside is different: “Is this a real thread?” is the only place the chapter’s text says its four-step thread is an illustration, not a quotation. Skip it and nothing else tells you.',
     uncertain:
@@ -209,8 +209,10 @@ export const EDITORIAL: LabEntry[] = [
     simpler: 'Reading the chapter with every note closed, and listing the notes whose content the surface does not repeat.',
     data: 'The Switchboard chapter’s prose, copied from src/routes/community.tsx, and its eleven NOTES.',
     finding:
-      'Skipping every aside is safe but once: the only statement that the chapter’s four-step thread is an illustration lives in the aside you are most likely to pass.',
+      'Skipping every aside is safe but once: the only statement that the chapter’s four-step thread is an illustration lives in an aside, the chapter’s first.',
     related: ['41', '48', '49', '25'],
+    reflection:
+      'The kernel’s warning lumped the three asides about invented material together, which hid the result: two of them are said again on the surface, and only one is not. The ledger separates them, quoting the story’s own words where it repeats a caveat, so the one unsafe skip is named rather than inferred. Reading straight through takes one press, which helped more than speeding up the beats would have. The earlier finding said this aside is the one “you are most likely to pass”, which nothing here measures; it is only the first. A plainer control, the chapter read with every note closed beside a list of unrepeated notes, would find the same aside, without showing the thread it leaves unexplained.',
   },
   {
     n: '46',
