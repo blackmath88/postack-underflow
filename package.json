@@ -21,7 +21,10 @@
     "browser:lab": "node scripts/lab-check.mjs",
     "index:check": "node scripts/check-index.mjs",
     "commons:snapshot": "node scripts/commons/snapshot.mjs",
-    "commons:check": "node scripts/commons/check-corpus.mjs"
+    "commons:check": "node scripts/commons/check-corpus.mjs",
+    "commons:records": "node scripts/commons/check-records.mjs",
+    "commons:index": "node scripts/commons/build-index.mjs",
+    "commons:index:check": "node scripts/commons/build-index.mjs --check"
   },
   "dependencies": {
     "@tanstack/react-router": "1.170.46",
