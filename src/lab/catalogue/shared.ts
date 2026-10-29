@@ -47,3 +47,9 @@ export const MEMORY_FIXTURES_FILE = repoFile('src/lab/data/memory-fixtures.ts')
 export const LAB_CATALOGUE_DIR = repoFile('src/lab/catalogue/')
 export const PHOTO_FRAME_README =
   'https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/README.md'
+
+// ---------- Editorial family (41–50) ----------
+export const LIVE_SITE = 'https://blackmath88.github.io/postack-underflow/'
+export const ADR_0005 = repoFile('docs/adr/0005-three-levels-and-margin-notes.md')
+export const CONTENT_INVENTORY = repoFile('docs/editorial/CONTENT-INVENTORY.md')
+export const RESEARCH_HISTORY_FILE = repoFile('src/data/research-history.ts')
