@@ -215,6 +215,79 @@ try {
     await context.close()
   }
 
+  // 10a. Margin notes: open in place, one at a time, keyboard and focus, deep links, placement.
+  for (const width of [390, 1440]) {
+    const { context, page, errors } = await newPage({ viewport: { width, height: 900 } })
+    await page.goto(site)
+    await page.waitForSelector('.mn-ref[role="button"]')
+    const ref = page.locator('#ref-googleSo')
+    const note = page.locator('#note-googleSo')
+    await ref.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(800) // let smooth scrolling settle
+    const y0 = await page.evaluate(() => scrollY)
+    await ref.click()
+    check(await note.isVisible(), `${width}px notes: click opens the note`)
+    check((await ref.getAttribute('aria-expanded')) === 'true', `${width}px notes: marker reports expanded`)
+    check(Math.abs((await page.evaluate(() => scrollY)) - y0) < 2, `${width}px notes: opening keeps the reading position`)
+    await page.locator('#ref-sameCode').click()
+    check(!(await note.isVisible()) && (await page.locator('#note-sameCode').isVisible()), `${width}px notes: opening another closes the first`)
+    const placement = await page.evaluate(() => {
+      const n = document.getElementById('note-sameCode').getBoundingClientRect()
+      const p = document.getElementById('ref-sameCode').closest('p').getBoundingClientRect()
+      return { beside: n.left >= p.right, inViewport: n.left >= 0 && n.right <= document.documentElement.clientWidth }
+    })
+    if (width >= 1440) check(placement.beside, '1440px notes: the note sits in the margin beside its paragraph')
+    else check(!placement.beside && placement.inViewport, '390px notes: the note opens inline within the viewport')
+
+    await page.keyboard.press('Escape')
+    check(!(await page.locator('#note-sameCode').isVisible()), `${width}px notes: Escape closes the note`)
+    check((await page.evaluate(() => document.activeElement?.id)) === 'ref-sameCode', `${width}px notes: focus returns to the phrase`)
+    await page.keyboard.press('Enter')
+    check(await page.locator('#note-sameCode').isVisible(), `${width}px notes: Enter opens from the keyboard`)
+    await page.keyboard.press('Space')
+    check(!(await page.locator('#note-sameCode').isVisible()), `${width}px notes: Space toggles it closed`)
+    await page.keyboard.press('Space')
+    await page.locator('#note-sameCode .mnote__close >> text=Close note').click()
+    check((await page.evaluate(() => document.activeElement?.id)) === 'ref-sameCode', `${width}px notes: the close control returns focus`)
+    check(errors.length === 0, `${width}px notes: no errors ${errors.join(' | ')}`)
+    await context.close()
+  }
+  {
+    const { context, page } = await newPage({ viewport: { width: 1440, height: 900 } })
+    await page.goto(`${site}community/#note-switchboardHistory`)
+    await page.waitForSelector('.mn-ref[role="button"]')
+    await page.waitForTimeout(1500) // smooth scrolling to the note
+    check(await page.locator('#note-switchboardHistory').isVisible(), 'notes: a deep link opens its note after hydration')
+    check((await page.locator('#ref-switchboardHistory').getAttribute('aria-expanded')) === 'true', 'notes: a deep-linked note is announced as expanded')
+    const inView = await page.locator('#note-switchboardHistory').evaluate((el) => {
+      const r = el.getBoundingClientRect()
+      return r.top < innerHeight && r.bottom > 0
+    })
+    check(inView, 'notes: a deep-linked note is scrolled into view')
+    await page.mouse.click(5, 5) // move focus away from the note
+    await page.keyboard.press('Escape')
+    check(!(await page.locator('#note-switchboardHistory').isVisible()), 'notes: Escape closes a note when focus is elsewhere')
+    await page.locator('#ref-twoLayers').click()
+    await page.click(`header a[href="${BASE}indexing/"]`)
+    await page.waitForURL(`${site}indexing/`)
+    await page.waitForSelector('#ref-frozenIndex') // the community page has unmounted
+    await page.goBack()
+    await page.waitForSelector('#ref-twoLayers[role="button"]')
+    check(!(await page.locator('#note-twoLayers').isVisible()), 'notes: a note does not reopen after navigating away and back')
+    await page.locator('#ref-twoLayers').click()
+    await page.setViewportSize({ width: 390, height: 900 })
+    await page.waitForTimeout(200)
+    const fits = await page.locator('#note-twoLayers').evaluate((el) => {
+      const r = el.getBoundingClientRect()
+      return r.left >= 0 && r.right <= document.documentElement.clientWidth
+    })
+    check(fits, 'notes: an open note is placed again after a resize')
+    await page.goto(`${site}archive/`)
+    const listed = await page.locator('.note-index li').count()
+    check(listed >= 30, `notes: the archive lists every margin note (${listed})`)
+    await context.close()
+  }
+
   // 10. Without JavaScript the essay and the record catalogue still read.
   {
     const { context, page } = await newPage({ javaScriptEnabled: false })
@@ -223,9 +296,22 @@ try {
     check(records >= 20, `no-JS: record catalogue rendered (${records})`)
     await page.goto(site)
     check((await page.locator('.scrolly__inline-figure figure').count()) === 4, 'no-JS: every scrolly step has its figure')
-    await page.goto(`${site}afterword/`)
-    check((await page.locator('.krecord').count()) === 1, 'no-JS: knowledge record rendered')
-    check((await page.locator('.history__entry').count()) >= 8, 'no-JS: research history rendered')
+    await page.goto(`${site}archive/history/`)
+    check((await page.locator('.krecord').count()) === 1, 'no-JS: knowledge record rendered in the archive')
+    check((await page.locator('.history__entry').count()) >= 8, 'no-JS: research history rendered in the archive')
+    await page.goto(`${site}archive/four-words/`)
+    check((await page.locator('table.metrics').count()) === 2, 'no-JS: Four Words result tables in the archive')
+    await page.goto(`${site}archive/community/`)
+    check((await page.locator('.proto-status').count()) >= 10, 'no-JS: protocol inventory in the archive')
+    // Margin notes without JavaScript: hidden by default, shown through :target, closed by a link.
+    await page.goto(site)
+    check((await page.locator('.mnote:visible').count()) === 0, 'no-JS: margin notes start closed')
+    await page.click('#ref-googleSo')
+    check(await page.locator('#note-googleSo').isVisible(), 'no-JS: a marker link opens its note')
+    await page.click('#note-googleSo .mnote__close >> text=Close note')
+    check(!(await page.locator('#note-googleSo').isVisible()), 'no-JS: the close link hides the note')
+    await page.goto(`${site}indexing/#note-ranking`)
+    check(await page.locator('#note-ranking').isVisible(), 'no-JS: a deep link shows its note')
     await page.goto(`${site}community/`)
     check((await page.locator('.contract-list li').count()) === 7, 'no-JS: connection contracts listed (withdrawn hidden)')
     await page.goto(`${site}convergence/`)

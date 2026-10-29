@@ -196,8 +196,8 @@ export function DisputedNeighbour() {
         <p className="kicker">Experiment · a classification claim</p>
         <h2 id="dn-title">The Disputed Neighbour</h2>
         <p>
-          Two real issues from the Four Words corpus, filed side by side. Inspect what each source says,
-          what the index added, and the claim that they are the same problem. Then decide.
+          Two real bug reports, given the same label. Compare what each says with what the index
+          added, then decide whether they belong under one heading.
         </p>
       </header>
 

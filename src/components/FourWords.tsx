@@ -177,8 +177,8 @@ export function FourWords() {
         <p className="kicker">Experiment · index-first retrieval</p>
         <h2 id="four-words-title">Four Words</h2>
         <p>
-          Describe a GitHub Pages deployment problem in a few words. The ranking runs in your browser
-          over an index built offline. No request leaves this page and no model is involved.
+          Describe a problem with publishing a site on GitHub Pages, in a few words. Nothing leaves this
+          page, and no model is involved.
         </p>
       </header>
 

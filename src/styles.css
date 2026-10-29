@@ -370,6 +370,12 @@ hr {
   margin-bottom: var(--space-5);
 }
 
+.opening__hint {
+  margin-top: var(--space-4);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 .opening .question {
   font-size: clamp(1.35rem, 3vw, 2rem);
   line-height: 1.3;
@@ -2031,4 +2037,443 @@ q {
   color: var(--accent-signal);
   text-decoration: underline wavy var(--rose);
   text-underline-offset: 0.2em;
+}
+
+/* ---------- Margin notes ---------- */
+
+main {
+  counter-reset: mnote;
+}
+
+.mn-ref {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.mn-ref__phrase {
+  text-decoration: underline dotted color-mix(in srgb, var(--accent) 70%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  border-radius: 2px;
+}
+
+.mn-ref:hover .mn-ref__phrase,
+.mn.is-open .mn-ref__phrase,
+.mn-ref:target .mn-ref__phrase {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.mn-ref__mark::before {
+  counter-increment: mnote;
+  content: counter(mnote);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--accent);
+  vertical-align: super;
+  margin-left: 0.15em;
+  padding: 0 0.2em;
+  border: 1px solid currentColor;
+  border-radius: 1em;
+  line-height: 1;
+}
+
+.mn.is-open .mn-ref__mark::before {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+/* Hidden until targeted (no JS) or opened (JS). The enhanced rule wins over
+   :target so that closing a deep-linked note works once hydrated. */
+.mnote {
+  display: none;
+}
+.mnote:target,
+.mnote[data-enhanced].is-open {
+  display: block;
+}
+.mnote[data-enhanced]:not(.is-open) {
+  display: none;
+}
+
+.mnote {
+  text-wrap: wrap;
+  margin: var(--space-3) 0;
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-3);
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--fg);
+  text-align: left;
+  letter-spacing: 0;
+  scroll-margin: var(--space-6);
+}
+.mnote--history {
+  border-left-color: var(--accent-community);
+}
+.mnote--counterpoint {
+  border-left-color: var(--accent-signal);
+}
+
+.mnote__kicker {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.mnote__num::before {
+  content: counter(mnote);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.mnote__title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.3;
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.mnote__p {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.mnote__foot {
+  display: block;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.mnote__foot > span {
+  display: block;
+}
+.mnote__evidence {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-1);
+}
+.mnote__evidence--reported,
+.mnote__evidence--fixture {
+  color: var(--accent-signal);
+}
+.mnote__archive {
+  margin-top: var(--space-1);
+  font-weight: 600;
+}
+
+.mnote__close {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Wide screens: the note sits in the right margin, level with its phrase,
+   for paragraphs in the reading column. Elsewhere it stays inline. */
+@media (min-width: 76rem) {
+  main > p,
+  main > .movement > p {
+    position: relative;
+  }
+  main > p .mnote,
+  main > .movement > p .mnote {
+    position: absolute;
+    left: calc(100% + var(--space-5));
+    width: min(17rem, calc((100vw - var(--measure)) / 2 - var(--space-5) - var(--gutter) - 1rem));
+    margin: -0.4em 0 0;
+    z-index: 2;
+  }
+  /* Keep the hypothetical box inline so the note aligns with the phrase's line. */
+  main > p .mnote:target,
+  main > p .mnote[data-enhanced].is-open,
+  main > .movement > p .mnote:target,
+  main > .movement > p .mnote[data-enhanced].is-open {
+    display: inline;
+  }
+  main > p .mnote[data-enhanced]:not(.is-open),
+  main > .movement > p .mnote[data-enhanced]:not(.is-open) {
+    display: none;
+  }
+  main .mnote.mnote--inline.is-open[data-enhanced] {
+    position: static;
+    display: block;
+    width: auto;
+    margin: var(--space-3) 0;
+  }
+}
+
+/* ---------- Story rhythm ---------- */
+
+.statement {
+  font-size: clamp(1.7rem, 4.2vw, 2.7rem);
+  line-height: 1.12;
+  font-weight: 780;
+  letter-spacing: -0.025em;
+  margin: var(--space-6) 0 var(--space-5);
+  text-wrap: balance;
+}
+.statement--quiet {
+  font-size: clamp(1.45rem, 3.2vw, 2.1rem);
+  font-weight: 500;
+  color: var(--muted);
+}
+.statement em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.beat {
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.breath {
+  height: var(--space-6);
+  border: 0;
+  margin: 0;
+}
+
+main > .movement > .movement__number + h2 {
+  margin-top: 0;
+}
+main > .movement {
+  --movement-gap: var(--space-7);
+}
+main > .movement > .movement__number {
+  margin-top: var(--movement-gap);
+}
+
+/* The photo-frame route: curiosity to a commons, as one line. */
+.route {
+  list-style: none;
+  margin: var(--space-5) 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  counter-reset: route;
+}
+.route li {
+  position: relative;
+  padding: var(--space-3) 0 var(--space-3) var(--space-5);
+  border-left: 2px solid var(--rule-strong);
+  margin-left: 0.5rem;
+}
+.route li::before {
+  counter-increment: route;
+  content: counter(route, decimal-leading-zero);
+  position: absolute;
+  left: -0.85rem;
+  top: var(--space-3);
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  background: var(--bg);
+  border: 2px solid var(--rule-strong);
+  border-radius: 50%;
+}
+.route li:last-child::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+.route__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.route__text {
+  display: block;
+  font-weight: 650;
+  font-size: 1.05rem;
+}
+@media (max-width: 55.99rem) {
+  main > .movement > .route.wide {
+    grid-column: text;
+  }
+}
+@media (min-width: 56rem) {
+  .route {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .route li {
+    border-left: 0;
+    border-top: 2px solid var(--rule-strong);
+    margin: 0;
+    padding: var(--space-5) var(--space-3) 0 0;
+  }
+  .route li::before {
+    left: 0;
+    top: -0.9rem;
+  }
+}
+
+/* Two problems as a pair of questions, not a table. */
+.pair {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-4) 0 var(--space-5);
+}
+@media (min-width: 48rem) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+}
+.pair__item {
+  border-top: 4px solid var(--accent);
+  padding-top: var(--space-3);
+}
+.pair__item--community {
+  border-top-color: var(--accent-community);
+}
+.pair__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 0 0 var(--space-2);
+}
+.pair__item--community .pair__label {
+  color: var(--accent-community);
+}
+.pair__question {
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  line-height: 1.2;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-3);
+}
+.pair__example {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* An answer getting better: four entries, one idea each. */
+.thread {
+  list-style: none;
+  margin: var(--space-5) 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.thread li {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-3);
+  border: 1px solid var(--rule);
+  background: var(--bg);
+}
+.thread li:nth-child(2) {
+  margin-left: var(--space-5);
+}
+.thread li:nth-child(3) {
+  margin-left: var(--space-5);
+  border-color: var(--accent-signal);
+}
+.thread li:nth-child(4) {
+  border: 2px solid var(--accent-community);
+}
+.thread__who {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.thread__what {
+  margin: 0;
+}
+.thread__tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  margin-left: var(--space-2);
+  color: var(--muted);
+}
+@media (max-width: 30rem) {
+  .thread li {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+  .thread li:nth-child(2),
+  .thread li:nth-child(3) {
+    margin-left: var(--space-3);
+  }
+}
+
+/* The archive: an index of every note, grouped by chapter. */
+.note-index {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+}
+.note-index li {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.note-index__meta {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.note-index__summary {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.archive-map {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+@media (min-width: 48rem) {
+  .archive-map {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.archive-map li {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--space-3);
+}
+.archive-map a {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.archive-map p {
+  margin: var(--space-2) 0 0;
+  color: var(--muted);
+}
+.archive-banner {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
 }
