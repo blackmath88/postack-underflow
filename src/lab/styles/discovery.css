@@ -507,17 +507,18 @@
   }
 }
 
-/* ---------- 04 A Search That Explains Itself: a mixing desk ---------- */
+/* ---------- 04 A Search That Explains Itself: a mixing desk with a lamp meter ---------- */
 
 .x04 {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-4);
   --f-problem: var(--fg);
   --f-aliases: var(--blue);
   --f-symptoms: var(--rose);
   --f-terms: var(--violet);
   --f-context: var(--muted);
   --f-solution: var(--rule);
+  --lamp: var(--rose);
 }
 
 .x04__banner {
@@ -529,25 +530,107 @@
   max-width: 48rem;
 }
 
-.x04__query {
+/* The console: meter bridge on top, channel strips below, one ink frame. */
+.x04__console {
+  border: 2px solid var(--rule-strong);
+  background: var(--surface);
+}
+
+.x04__meter {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.x04__dare {
+  margin: 0;
+  max-width: 44rem;
+}
+
+.x04__lamps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(27, minmax(0, 1fr));
+  gap: 3px;
+}
+
+.x04__lamps li {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.x04__lamp {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 1.7rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--rule-strong);
+  background: var(--bg);
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--bg);
+}
+
+.x04__lamps .is-on .x04__lamp {
+  background: var(--lamp);
+  border-color: var(--rule-strong);
+  box-shadow: 0 0 0 2px var(--rule-strong);
+  color: var(--ink);
+}
+
+.x04__qid {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--muted);
+}
+
+.x04__lamps .is-on .x04__qid {
+  color: var(--fg);
+  font-weight: 700;
+}
+
+.x04__reading {
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  align-items: center;
-}
-
-.x04__query label {
-  width: 100%;
-}
-
-.x04__query input {
-  flex: 1 1 16rem;
-  font-size: 1.25rem;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
   font-weight: 650;
 }
 
-.x04__query select {
-  flex: 1 1 14rem;
+.x04__count {
+  font-family: var(--font-mono);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.x04__count span {
+  font-size: 0.45em;
+  color: var(--muted);
+}
+
+.x04__which {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.x04__link {
+  font: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+  text-align: left;
 }
 
 .x04__desk {
@@ -555,9 +638,18 @@
   flex-wrap: wrap;
   gap: var(--space-2);
   padding: var(--space-3);
-  border: 2px solid var(--rule-strong);
-  background: var(--surface);
   align-items: end;
+}
+
+.x04__scale {
+  display: grid;
+  align-content: space-between;
+  height: 8.5rem;
+  margin-bottom: 2.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--muted);
+  text-align: right;
 }
 
 .x04__ch {
@@ -569,6 +661,12 @@
   padding-right: var(--space-2);
 }
 
+.x04__track {
+  position: relative;
+  display: block;
+  height: 8.5rem;
+}
+
 .x04__ch input[type='range'] {
   writing-mode: vertical-lr;
   direction: rtl;
@@ -576,6 +674,16 @@
   width: 1.6rem;
   accent-color: var(--fg);
   margin: 0;
+}
+
+/* A notch beside each track marks where the frozen weight sits. */
+.x04__notch {
+  position: absolute;
+  right: -0.55rem;
+  width: 0.45rem;
+  height: 2px;
+  margin-bottom: -1px;
+  background: var(--rule-strong);
 }
 
 .x04__val {
@@ -594,6 +702,7 @@
 .x04__frozen {
   font-size: 0.68rem;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .x04__ch--problem { --f: var(--f-problem); }
@@ -607,6 +716,72 @@
   display: grid;
   gap: var(--space-2);
   margin-left: auto;
+  align-self: stretch;
+  align-content: end;
+}
+
+.x04__key {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 0.9rem;
+  border: 2px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.x04__key--main {
+  padding: 0.9rem 1.2rem;
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--rule-strong);
+}
+
+.x04__key--main[aria-pressed='true'] {
+  background: var(--fg);
+  color: var(--bg);
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+.x04__key:disabled {
+  color: var(--muted);
+  border-color: var(--rule);
+  cursor: default;
+}
+
+.x04__inspect {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x04__h {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.x04__query {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.x04__query label {
+  width: 100%;
+}
+
+.x04__query input {
+  flex: 1 1 16rem;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.x04__query select {
+  flex: 1 1 14rem;
 }
 
 .x04__ranks {
@@ -675,9 +850,20 @@
   font-size: 0.8rem;
   color: var(--muted);
   margin: 0;
+  max-width: 48rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .x04__lamp {
+    transition: background-color 180ms ease-out;
+  }
 }
 
 @media (max-width: 40rem) {
+  .x04__lamps {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    row-gap: var(--space-1);
+  }
   .x04__hit {
     grid-template-columns: 1.6rem 2.6rem minmax(0, 1fr);
   }
@@ -689,19 +875,28 @@
     gap: 2px;
     padding: var(--space-2);
   }
+  .x04__scale {
+    display: none;
+  }
   .x04__ch {
     width: 2.85rem;
     padding-right: 0;
+  }
+  .x04__notch {
+    right: -0.25rem;
   }
   .x04__name {
     font-size: 0.56rem;
   }
   .x04__frozen {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
   }
   .x04__presets {
     margin-left: 0;
+    width: 100%;
     grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    padding-top: var(--space-2);
   }
 }
 

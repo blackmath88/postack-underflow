@@ -234,8 +234,10 @@ export const MEMORY: LabEntry[] = [
     question: 'When two readings of the same records disagree, which one does the published number take?',
     proposition:
       'Two incompatible readings of the same source records can both be faithful to the text, and a summary metric silently commits to one of them.',
-    manipulate: 'Take the left branch (the v1 labeller’s frozen labels) or the right (the post-hoc review’s reading), walk down the ranking record by record, and cross over at any point.',
-    changes: 'Each record’s verdict on your branch, where the branches disagree, the rank of the first answer, and which summary row you stand on.',
+    manipulate:
+      'Answer one labelling question for the two disputed records at ranks 2 and 4: no, as the v1 labeller read them (left branch), or yes, as the post-hoc review reads them (right branch).',
+    changes:
+      'Which branch is drawn as taken and the status line under it. Both branches always show their records’ verdicts, the first answer, and the number each would publish.',
     unchanged: 'The query, the 30 sources, the records and the frozen structured ranking: the trunk both readings share. The frozen labels are not edited.',
     provenance: {
       idea: 'The Four Words review found that the structured results at ranks 2 and 4 for “css missing after deploy” both describe missing CSS, yet were not labelled relevant.',
@@ -252,7 +254,7 @@ export const MEMORY: LabEntry[] = [
       priorArt: ['Inter-annotator disagreement in relevance judgement (TREC)', 'Software forks', 'Talmudic and legal commentary traditions'],
     },
     built:
-      'A trunk, a fork and a dotted path; each step reveals the next ranked record with this branch’s verdict, marking where the other reads it differently. A small table shows MRR@10 under each reading, computed from the frozen rankings.',
+      'A trunk, a set of points where the one labelling question is answered, and two branches below it. Each lists the same eight ranked records marked by its reading and ends in a plate with the first answer, MRR@10 for both systems and who wins; the v1 branch is stamped as published.',
     happened:
       'The branches part at rank 2 and again at 4. On the left the first answer is at rank 7; on the right, rank 2; plain keyword search has one at rank 1 either way. Across all 27 queries the structured MRR@10 reads 0.950 on the left and 0.963 on the right; keyword search reads 0.742 on both. The published figure took the left branch, and the right branch would not change who won.',
     uncertain:
@@ -261,7 +263,9 @@ export const MEMORY: LabEntry[] = [
     simpler: 'One sentence in the method: “two records arguably relevant were not labelled; with them, rank 7 becomes 2”, which FOUR-WORDS.md already says.',
     data: 'Frozen Four Words v1 query q01, its labels, the frozen rankings and the review’s two additions from FOUR-WORDS.md. Nothing is written back.',
     finding:
-      'Same records, two faithful readings: rank 7 or rank 2. The published number silently took one branch, and taking the other would not change who won.',
+      'One labelling choice, two numbers the project could have published: rank 7 or rank 2, structured MRR@10 0.950 or 0.963, while keyword search stays at 0.742. Either way structured search wins.',
+    reflection:
+      'Walking record by record made the choice feel like navigation; asking the labelling question directly makes it a decision, which is what it was for the project. Drawing both branches at once, each ending in its number, was the stronger change: the gap between 0.950 and 0.963 looks as small as it is, and the winner is visibly the same. The plainer control, one sentence in the method, says this too, but it cannot let you take the other branch and see that nothing upstream of the number moves.',
     related: ['54', '53', '12', '03'],
   },
   {
