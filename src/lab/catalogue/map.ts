@@ -58,3 +58,27 @@ export const CONSTELLATIONS: Constellation[] = [
     members: ['41', '43', '45', '46', '48'],
   },
 ]
+
+/** What the corpus kept saying, across families built independently. */
+export const RECURRING: Constellation[] = [
+  {
+    title: 'Authority is never stored per claim',
+    note: 'Every badge, stamp or rank on a record belongs to the record as a whole. Nothing says which alias or symptom was checked.',
+    members: ['13', '16', '17', '20'],
+  },
+  {
+    title: 'References point one way',
+    note: 'Replies, footnotes and related links are written by one side. Nothing reads them back unless someone runs an index.',
+    members: ['09', '28', '42', '54'],
+  },
+  {
+    title: 'Records do not say when they expire',
+    note: 'Almost no record says which versions or setups it stops applying to, and the few that do hide it below the surface.',
+    members: ['15', '18', '55'],
+  },
+  {
+    title: 'Motte has nothing verified to say',
+    note: 'Under its own contract, the Archive Moth lets through no history note at all.',
+    members: ['38', '49'],
+  },
+]
