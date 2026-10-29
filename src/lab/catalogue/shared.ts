@@ -22,3 +22,9 @@ export const LUMPESAMMLIG = `https://github.com/blackmath88/lumpesammlig/tree/${
 export const LUMPESAMMLIG_CONCEPT = `https://github.com/blackmath88/lumpesammlig/blob/${LUMPESAMMLIG_REV}/docs/CONCEPT.md`
 export const IMPOSSIBLE_INDEX_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/012-impossible-index`
 export const SWITCHBOARD_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/013-switchboard`
+
+// ---------- Editorial family (41–50) ----------
+export const LIVE_SITE = 'https://blackmath88.github.io/postack-underflow/'
+export const ADR_0005 = repoFile('docs/adr/0005-three-levels-and-margin-notes.md')
+export const CONTENT_INVENTORY = repoFile('docs/editorial/CONTENT-INVENTORY.md')
+export const RESEARCH_HISTORY_FILE = repoFile('src/data/research-history.ts')
