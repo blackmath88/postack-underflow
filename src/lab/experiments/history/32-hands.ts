@@ -52,3 +52,18 @@ export function tally(lines: CardLine[], terms: readonly string[], ticked: reado
   for (const l of lines) t[l.hand] += words(l.text)
   return t
 }
+
+/** One card's word count per hand, its total, and the record writer's share (exact, and in whole per cent). */
+export function card(r: ProblemRecord, s: CorpusSource | undefined, terms: readonly string[]) {
+  const counts = tally(cardLines(r, s), terms, r.terms)
+  const total = Object.values(counts).reduce((a, b) => a + b, 0)
+  const exact = (100 * counts.writer) / total
+  return { counts, total, writerExact: exact, writerShare: Math.round(exact), reviewed: counts.reviewer > 0 }
+}
+
+/** Median of a list of numbers; the mean of the middle two for an even count. */
+export function median(xs: readonly number[]) {
+  const s = [...xs].sort((a, b) => a - b)
+  const m = s.length >> 1
+  return s.length % 2 ? s[m]! : (s[m - 1]! + s[m]!) / 2
+}

@@ -1,118 +1,161 @@
-import { useId, useMemo, useState } from 'react'
+import { useId, useMemo, useRef, useState } from 'react'
 import queriesFile from '../../../../corpus/queries.json'
 import { artifact, sourceById } from '../../../lib/four-words-data'
-import { BM25_B, search, type Index } from '../../../lib/retrieval'
+import { search } from '../../../lib/retrieval'
+import { allEqual, byField, changedFirsts, firstResults, withWeights, type Weights } from './04-weights'
 import { shortName } from './logic'
 
 // 04 · A Search That Explains Itself. A mixing desk over the frozen v1
-// problem-oriented index: one fader per record field. Moving a fader changes
-// only the BM25F field weight; the postings, the lengths and the query stay
-// as frozen. Each result's score is split back into the fields it came from.
-// This is a demonstration of the mechanism, not an evaluation: the labelled
-// queries are the test set, so no score against them is ever shown.
+// problem-oriented index: one fader per record field, and above them a meter
+// of 27 lamps, one per frozen query, that lights when that query's first
+// result differs from the frozen weights' first result. Moving a fader
+// changes only the BM25F field weight; the postings, lengths and queries stay
+// as frozen. This is a demonstration of the mechanism, not an evaluation: the
+// labelled queries are the test set, so no score against them is ever shown.
 
 const QUERIES = queriesFile.queries as Array<{ id: string; query: string }>
+const TEXTS = QUERIES.map((q) => q.query)
 const FROZEN = artifact.indexes.structured
-const FIELDS = Object.keys(FROZEN.weights) as Array<keyof typeof FROZEN.weights & string>
-const SHOWN = 8
+const FIELDS = Object.keys(FROZEN.weights)
+const FROZEN_TOPS = firstResults(FROZEN, TEXTS)
+const MAX = 6
+const SHOWN = 6
 
-type Weights = Record<string, number>
-
-/**
- * Split one hit's score into fields. BM25F sums weighted, length-normalised
- * term frequencies before saturating them, so a term's contribution has no
- * exact per-field share; we divide it in proportion to each field's part of
- * the weighted sum. That proportional split is our choice, said so on screen.
- */
-function byField(index: Index, id: string, matches: Array<{ contribution: number; fields: Record<string, number> }>) {
-  const out: Record<string, number> = {}
-  for (const m of matches) {
-    const parts: Record<string, number> = {}
-    let total = 0
-    for (const [f, tf] of Object.entries(m.fields)) {
-      const field = index.fields[f]!
-      const norm = 1 - BM25_B + BM25_B * ((field.lengths[id] ?? 0) / (field.avgLength || 1))
-      const part = ((index.weights[f] ?? 0) * tf) / norm
-      parts[f] = part
-      total += part
-    }
-    for (const [f, p] of Object.entries(parts)) out[f] = (out[f] ?? 0) + (total ? (m.contribution * p) / total : 0)
-  }
-  return out
-}
-
-const withWeights = (w: Weights): Index => ({ ...FROZEN, weights: w })
-const frozenTop = QUERIES.map((q) => search(FROZEN, q.query).hits[0]?.id)
+const same = (a: Weights, b: Weights) => FIELDS.every((f) => a[f] === b[f])
 
 export default function ExplainsItself() {
   const id = useId()
   const [weights, setWeights] = useState<Weights>({ ...FROZEN.weights })
-  const [query, setQuery] = useState('css missing after deploy')
-  const index = useMemo(() => withWeights(weights), [weights])
+  const [query, setQuery] = useState(QUERIES[0]!.query)
+  const inspect = useRef<HTMLHeadingElement>(null)
+
+  const changed = useMemo(() => changedFirsts(FROZEN, weights, TEXTS, FROZEN_TOPS), [weights])
+  const index = useMemo(() => withWeights(FROZEN, weights), [weights])
   const result = useMemo(() => search(index, query), [index, query])
   const frozenRanks = useMemo(() => search(FROZEN, query).hits.map((h) => h.id), [query])
-  const changedTops = useMemo(
-    () => QUERIES.filter((q, i) => search(index, q.query).hits[0]?.id !== frozenTop[i]).length,
-    [index],
-  )
+  const isFrozen = same(weights, FROZEN.weights)
+  const isEqual = same(weights, allEqual(FROZEN))
   const top = result.hits.slice(0, SHOWN)
   const max = Math.max(...top.map((h) => h.score), 0.0001)
-  const isFrozen = FIELDS.every((f) => weights[f] === FROZEN.weights[f])
+
+  const reading = isFrozen
+    ? 'Frozen weights. Every lamp is dark: nothing has moved yet.'
+    : `${isEqual ? 'Every field weighted 1. ' : ''}${changed.length} of 27 first results changed.${
+        changed.length === 0 ? ' The ranking held.' : changed.length === 1 ? ' One lamp out of 27.' : ''
+      }`
+
+  const show = (q: string) => {
+    setQuery(q)
+    inspect.current?.focus()
+  }
 
   return (
     <div className="x04">
       <p className="x04__banner">
-        Demonstration over frozen data, not an evaluation. No fader setting here is a better index; the labelled queries
-        are the test set, so this desk never scores against them.
+        <strong>Demonstration over frozen data, not an evaluation.</strong> No fader setting here is a better index; the
+        labelled queries are the test set, so this desk never scores against them.
       </p>
 
-      <div className="x04__query">
-        <label htmlFor={`${id}-q`}>Query</label>
-        <input id={`${id}-q`} value={query} onChange={(e) => setQuery(e.target.value)} spellCheck={false} />
-        <select aria-label="Pick a frozen query" value="" onChange={(e) => e.target.value && setQuery(e.target.value)}>
-          <option value="">or pick one of the 27 frozen queries…</option>
-          {QUERIES.map((q) => (
-            <option key={q.id} value={q.query}>
-              {q.query}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className="x04__console">
+        <div className="x04__meter" data-observe>
+          <p className="x04__dare">
+            The weights were set by hand before the v1 run. <strong>Pull them anywhere</strong>, or flatten them all, and
+            watch how many of the 27 frozen queries get a different first result.
+          </p>
+          <ol className="x04__lamps" role="img" aria-label={`${changed.length} of 27 lamps lit`}>
+            {QUERIES.map((q, i) => {
+              const on = changed.includes(i)
+              return (
+                <li key={q.id} className={on ? 'is-on' : undefined} title={`${q.id}: ${q.query}${on ? ' (first result changed)' : ''}`}>
+                  <span className="x04__lamp" aria-hidden="true">
+                    {on ? '●' : ''}
+                  </span>
+                  <span className="x04__qid">{q.id.slice(1)}</span>
+                </li>
+              )
+            })}
+          </ol>
+          <p className="x04__reading" role="status">
+            <span className="x04__count" aria-hidden="true">
+              {changed.length}
+              <span>/27</span>
+            </span>
+            <span>{reading}</span>
+          </p>
+          {changed.length > 0 && (
+            <p className="x04__which">
+              Changed:{' '}
+              {changed.map((i, k) => (
+                <span key={QUERIES[i]!.id}>
+                  {k > 0 && ', '}
+                  <button type="button" className="x04__link" onClick={() => show(QUERIES[i]!.query)}>
+                    {QUERIES[i]!.id} “{QUERIES[i]!.query}”
+                  </button>
+                </span>
+              ))}
+            </p>
+          )}
+        </div>
 
-      <div className="x04__desk" role="group" aria-label="Field weights">
-        {FIELDS.map((f, i) => (
-          <div key={f} className={`x04__ch x04__ch--${f}`}>
-            <output className="x04__val" htmlFor={`${id}-${f}`}>
-              {weights[f]}
-            </output>
-            <input
-              id={`${id}-${f}`}
-              type="range"
-              min={0}
-              max={6}
-              step={0.5}
-              value={weights[f]}
-              aria-label={`${f} weight`}
-              onChange={(e) => setWeights({ ...weights, [f]: Number(e.target.value) })}
-              data-probe={i === 0 ? 'key:ArrowUp' : undefined}
-            />
-            <label htmlFor={`${id}-${f}`} className="x04__name">
-              {f}
-            </label>
-            <span className="x04__frozen">frozen {FROZEN.weights[f]}</span>
+        <div className="x04__desk" role="group" aria-label="Field weights">
+          <div className="x04__scale" aria-hidden="true">
+            {[6, 4, 2, 0].map((v) => (
+              <span key={v}>{v}</span>
+            ))}
           </div>
-        ))}
-        <div className="x04__presets">
-          <button type="button" className="lab-btn" disabled={isFrozen} onClick={() => setWeights({ ...FROZEN.weights })}>
-            Frozen weights
-          </button>
-          <button type="button" className="lab-btn" onClick={() => setWeights(Object.fromEntries(FIELDS.map((f) => [f, 1])))}>
-            All equal
-          </button>
+          {FIELDS.map((f, i) => (
+            <div key={f} className={`x04__ch x04__ch--${f}`}>
+              <output className="x04__val" htmlFor={`${id}-${f}`}>
+                {weights[f]}
+              </output>
+              <span className="x04__track">
+                <input
+                  id={`${id}-${f}`}
+                  type="range"
+                  min={0}
+                  max={MAX}
+                  step={0.5}
+                  value={weights[f]}
+                  aria-label={`${f} weight`}
+                  aria-valuetext={`${weights[f]}, frozen ${FROZEN.weights[f]}`}
+                  onChange={(e) => setWeights({ ...weights, [f]: Number(e.target.value) })}
+                  data-probe={i === 0 ? 'key:ArrowUp' : undefined}
+                />
+                <span className="x04__notch" style={{ bottom: `${(100 * FROZEN.weights[f]!) / MAX}%` }} aria-hidden="true" />
+              </span>
+              <label htmlFor={`${id}-${f}`} className="x04__name">
+                {f}
+              </label>
+              <span className="x04__frozen">◂ frozen {FROZEN.weights[f]}</span>
+            </div>
+          ))}
+          <div className="x04__presets">
+            <button type="button" className="x04__key x04__key--main" aria-pressed={isEqual} onClick={() => setWeights(allEqual(FROZEN))}>
+              All equal
+            </button>
+            <button type="button" className="x04__key" disabled={isFrozen} onClick={() => setWeights({ ...FROZEN.weights })}>
+              Back to frozen
+            </button>
+          </div>
         </div>
       </div>
 
-      <div data-observe>
+      <section className="x04__inspect" aria-labelledby={`${id}-inspect`}>
+        <h2 id={`${id}-inspect`} className="x04__h" tabIndex={-1} ref={inspect}>
+          Why it holds: one query, scored by field
+        </h2>
+        <div className="x04__query">
+          <label htmlFor={`${id}-q`}>Query</label>
+          <input id={`${id}-q`} value={query} onChange={(e) => setQuery(e.target.value)} spellCheck={false} />
+          <select aria-label="Pick a frozen query" value="" onChange={(e) => e.target.value && setQuery(e.target.value)}>
+            <option value="">or pick one of the 27 frozen queries…</option>
+            {QUERIES.map((q) => (
+              <option key={q.id} value={q.query}>
+                {q.id} {q.query}
+              </option>
+            ))}
+          </select>
+        </div>
         <ol className="x04__ranks" aria-label="Ranking with these weights">
           {top.length === 0 && <li className="x04__none">No record shares a word with this query.</li>}
           {top.map((h, i) => {
@@ -146,16 +189,12 @@ export default function ExplainsItself() {
         {result.unknownTerms.length > 0 && (
           <p className="x04__unknown">No record contains: {result.unknownTerms.join(', ')}. No weight can change that.</p>
         )}
-        <p className="lab-out">
-          {isFrozen
-            ? 'These are the frozen v1 weights.'
-            : `With these weights, ${changedTops} of the 27 frozen queries get a different first result than with the frozen weights.`}
+        <p className="x04__note">
+          The words a record shares with the query decide whether it is in the list at all; the weights only scale them.
+          Bars split each score by field in proportion to that field’s share of the weighted term frequency, our choice of
+          attribution. Arrows compare with the frozen weights.
         </p>
-      </div>
-      <p className="x04__note">
-        Bars split each score by field in proportion to that field’s share of the weighted term frequency, our choice of
-        attribution. Arrows compare with the frozen weights.
-      </p>
+      </section>
     </div>
   )
 }

@@ -459,26 +459,13 @@
   border-bottom: 1px solid var(--rule);
 }
 
-/* ---------- 45 The Story You Can Interrupt: a linear read with pause points and a log ---------- */
+/* ---------- 45 The Story You Can Interrupt: a linear read with pause points and a final ledger ---------- */
 
 .x45 {
   display: grid;
   gap: var(--space-4);
   grid-template-columns: minmax(0, 1fr);
-}
-
-@media (min-width: 60rem) {
-  .x45 {
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  }
-  .x45__caveat {
-    grid-column: 1 / -1;
-  }
-  .x45__log {
-    grid-column: 2;
-    grid-row: 2 / span 2;
-    align-self: start;
-  }
+  max-width: 46rem;
 }
 
 .x45__caveat {
@@ -489,9 +476,12 @@
   padding: var(--space-2) var(--space-3);
 }
 
+/* The reading line: the story runs down a single rule, like a guide's script. */
 .x45__story {
   display: grid;
   gap: var(--space-3);
+  border-left: 2px solid var(--rule-strong);
+  padding-left: var(--space-3);
 }
 
 .x45__beat p {
@@ -501,6 +491,20 @@
 .x45__statement {
   font-size: 1.3rem;
   font-weight: 600;
+}
+
+.x45__beat.is-flagged {
+  margin-left: calc(-1 * var(--space-3) - 2px);
+  padding-left: calc(var(--space-3) - 2px);
+  border-left: 6px solid var(--rose);
+}
+
+.x45__flag {
+  margin-top: var(--space-1) !important;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-signal);
+  font-weight: 700;
 }
 
 .x45__aside {
@@ -549,43 +553,106 @@
   gap: var(--space-2);
 }
 
+.x45__go {
+  font-weight: 700;
+  border-width: 2px;
+}
+
 .x45__log {
-  background: var(--surface);
-  padding: var(--space-3);
-  font-size: 0.92rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--rule-strong);
+  padding-top: var(--space-2);
 }
 
 .x45__log p {
-  margin: 0 0 var(--space-2);
+  margin: 0;
 }
 
-.x45__warn {
-  border-left: 3px solid var(--rose);
-  padding-left: var(--space-2);
-}
-
+/* The ledger, printed at the end of the chapter. */
 .x45__ledger {
+  border-top: 3px double var(--rule-strong);
+  padding-top: var(--space-3);
+}
+
+.x45__ledger h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.05rem;
+}
+
+.x45__ledger-sum,
+.x45__ledger-note {
+  margin: 0 0 var(--space-3);
+  font-size: 0.9rem;
+}
+
+.x45__ledger-note {
+  margin: var(--space-3) 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.x45__ledger ol {
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 0.85rem;
+  display: grid;
+  gap: 0;
 }
 
-.x45__ledger li > span:first-child {
-  display: inline-block;
-  min-width: 4.2rem;
+.x45__ledger li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dotted var(--rule);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 30rem) {
+  .x45__ledger li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+.x45__was {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
+  padding-top: 0.15rem;
 }
 
-.x45__ledger .is-skipped {
+.x45__ledger li.is-passed .x45__was {
+  color: var(--muted);
+}
+
+.x45__cost {
+  display: block;
   color: var(--muted);
 }
 
 .x45__ev {
   font-family: var(--font-mono);
   font-size: 0.75rem;
+}
+
+.x45__ledger li.is-only-here {
+  border: 2px solid var(--rose);
+  padding: var(--space-2);
+  margin: var(--space-1) 0;
+}
+
+.x45__ledger li.is-only-here .x45__cost {
+  color: var(--fg);
+}
+
+.x45__unsafe {
+  font-weight: 700;
+  color: var(--accent-signal);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
 }
 
 /* ---------- 46 The Broken Analogy: a band between two posts ---------- */

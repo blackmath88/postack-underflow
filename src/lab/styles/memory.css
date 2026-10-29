@@ -717,145 +717,301 @@
   background: repeating-linear-gradient(135deg, transparent 0 3px, var(--muted) 3px 4px);
 }
 
-/* ---------- 56 The Forked Interpretation: two branches ---------- */
+/* ---------- 56 The Forked Interpretation: a road that parts at one label ---------- */
 
 .x56 {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.x56__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.x56__trunk {
+  justify-self: center;
+  width: min(100%, 36rem);
+  text-align: center;
+  border: 2px solid var(--rule-strong);
+  padding: var(--space-2) var(--space-3);
+}
+
+.x56__trunk p {
+  margin: 0;
+}
+
+/* The points: where the one choice is made. */
+.x56__points {
+  position: relative;
+  margin: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--rule-strong);
+  border-top-width: 6px;
+  background: var(--surface);
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* The trunk's road runs down into the points. */
+.x56__points::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--space-4) - 6px);
+  left: 50%;
+  height: var(--space-4);
+  border-left: 4px solid var(--rule-strong);
+  margin-left: -2px;
+}
+
+.x56__points legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.x56__disputed {
+  clear: both;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.x56__disputed li {
+  border-left: 5px solid var(--violet);
+  padding-left: var(--space-2);
+  font-size: 0.92rem;
+}
+
+.x56__problem {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: var(--space-1);
+}
+
+.x56__lever {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.x56__throw {
+  display: flex;
+  gap: var(--space-2);
+  align-items: start;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--rule);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.x56__throw.is-on {
+  border-color: var(--rule-strong);
+  box-shadow: inset 0 -5px 0 var(--rule-strong);
+}
+
+.x56__throw input {
+  accent-color: var(--fg);
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0.2rem 0 0;
+  flex: none;
+}
+
+.x56__throw > span {
+  display: grid;
+}
+
+.x56__who {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.x56__result {
   display: grid;
   gap: var(--space-3);
 }
 
-.x56__trunk {
-  margin: 0 auto;
-  max-width: 34rem;
-  text-align: center;
-  border: 2px solid var(--rule-strong);
-  padding: var(--space-2) var(--space-3);
-  position: relative;
-}
-
-.x56__fork {
+.x56__branches {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
-  position: relative;
-  padding-top: var(--space-4);
-}
-
-.x56__fork::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 25%;
-  right: 25%;
-  height: var(--space-4);
-  border: 2px solid var(--rule-strong);
-  border-bottom: 0;
 }
 
 .x56__branch {
-  font: inherit;
-  padding: var(--space-2);
-  border: 1px solid var(--rule-strong);
-  background: var(--bg);
-  color: var(--fg);
-  cursor: pointer;
-}
-
-.x56__branch[aria-pressed='true'] {
-  background: var(--fg);
-  color: var(--bg);
-  font-weight: 700;
-}
-
-.x56__walk {
   display: grid;
   gap: var(--space-2);
-  max-width: 48rem;
+  align-content: start;
+  padding-left: var(--space-3);
+  border-left: 4px dashed var(--rule);
+  color: var(--muted);
 }
 
-.x56__feet {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+/* The road you took is drawn as a solid double track. */
+.x56__branch.is-taken {
+  border-left: 8px double var(--rule-strong);
+  color: var(--fg);
+}
+
+.x56__branch .x56__label {
+  margin: 0;
+}
+
+.x56__here {
+  color: var(--fg);
+  font-weight: 800;
 }
 
 .x56__path {
   list-style: none;
   margin: 0;
-  padding: 0 0 0 var(--space-3);
-  border-left: 3px dotted var(--rule-strong);
+  padding: 0;
   display: grid;
-  gap: var(--space-2);
+  gap: 2px;
+  font-size: 0.88rem;
 }
 
-.x56__stop {
+.x56__path li {
   display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
-  gap: 0 var(--space-2);
+  grid-template-columns: 1.2rem 2rem minmax(0, 1fr);
+  gap: 0 var(--space-1);
+  align-items: baseline;
+  padding: 0.15rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.x56__path li.is-split {
+  background: var(--surface);
+  box-shadow: inset 3px 0 0 var(--violet);
+}
+
+.x56__dot {
+  font-size: 0.9rem;
+}
+
+.x56__path li.is-answer .x56__name {
+  font-weight: 700;
 }
 
 .x56__rank {
   font-family: var(--font-mono);
   font-weight: 700;
-  grid-row: span 2;
 }
 
-.x56__verdict {
+.x56__first {
+  grid-column: 3;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-signal);
+  font-weight: 800;
+}
+
+/* The milestone at the end of each branch: the number it would publish. */
+.x56__plate {
+  margin: var(--space-2) 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid currentColor;
+}
+
+.x56__plate div {
+  min-width: 0;
+}
+
+.x56__plate dt {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x56__plate dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.x56__plate .x56__big {
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.x56__stamp {
+  margin: 0;
+  justify-self: start;
+  padding: 0 0.4rem;
+  border: 2px solid currentColor;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
 }
 
-.x56__stop.is-answer .x56__verdict {
-  color: var(--accent);
-  font-weight: 700;
+.x56__branch--labeller .x56__stamp {
+  color: var(--accent-signal);
+  transform: rotate(-3deg);
 }
 
-.x56__stop.is-split {
-  border-left: 5px solid var(--accent-signal);
-  margin-left: calc(-1 * var(--space-3) - 4px);
-  padding-left: calc(var(--space-3) - 1px);
+.x56__status {
+  margin: 0;
+  font-weight: 650;
+  max-width: 48rem;
 }
 
-.x56__empty,
-.x56__sum {
-  color: var(--muted);
-}
-
-.x56__sum {
-  color: var(--fg);
-  font-weight: 600;
-  padding-top: var(--space-1);
-  border-top: 1px solid var(--rule);
-}
-
-.x56__map {
-  border-top: 2px solid var(--rule-strong);
-  padding-top: var(--space-2);
-  max-width: 34rem;
-  font-size: 0.92rem;
-}
-
-.x56__map table {
-  border-collapse: collapse;
-  font-family: var(--font-mono);
+.x56__foot {
+  margin: 0;
   font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 48rem;
 }
 
-.x56__map th,
-.x56__map td {
-  padding: 0.2rem 1rem 0.2rem 0;
-  border-bottom: 1px solid var(--rule);
-  text-align: left;
-}
-
-.x56__map tr[aria-current] th::before {
-  content: '▸ ';
+@media (prefers-reduced-motion: no-preference) {
+  .x56__branch {
+    transition: color 200ms ease-out;
+  }
 }
 
 @media (max-width: 40rem) {
-  .x56__fork {
+  .x56__disputed,
+  .x56__lever {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .x56__branches {
     gap: var(--space-2);
+  }
+  .x56__branch {
+    padding-left: var(--space-2);
+  }
+  .x56__path {
+    font-size: 0.75rem;
+  }
+  .x56__path li {
+    grid-template-columns: 0.8rem 1.5rem minmax(0, 1fr);
+    gap: 0 2px;
+  }
+  .x56__name {
+    overflow-wrap: anywhere;
+  }
+  .x56__plate {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-2);
   }
 }
 
