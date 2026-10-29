@@ -66,3 +66,9 @@ test('route heads match the catalogue', async () => {
     assert.equal(HEADS[e.n]!.question, e.question, `${e.n} question`)
   }
 })
+
+test('the critique assesses every pilot and only catalogued ones', async () => {
+  const { CRITIQUE } = await import('../src/lab/catalogue/critique.ts')
+  assert.deepEqual(Object.keys(CRITIQUE).sort(), CATALOGUE.map((e) => e.n))
+  for (const e of CATALOGUE) assert.ok(e.assessment, `${e.n} has no assessment`)
+})
