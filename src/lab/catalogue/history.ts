@@ -69,7 +69,7 @@ export const HISTORY: LabEntry[] = [
     question: 'If every line of a record is inked by the hand that decided it, whose labour is the classification?',
     proposition:
       'Classification is prior labour you can attribute: every line of a frozen record can be traced to one hand, and lifting that hand shows what it contributed.',
-    manipulate: 'Choose one of the 30 frozen records, then lift or return any of five hands: source author, selector, printed form, record writer, reviewer.',
+    manipulate: 'Lift the agent’s hand (the record writer’s) off the card first; then lift or return the other four hands, and choose any of the 30 cards from a rack.',
     changes: 'Which lines stay on the card, whether the card can still be filed under a heading, and the word count left in each hand.',
     unchanged: 'The record itself. The attribution follows what the corpus says about its own making; nothing is re-read from the sources.',
     provenance: {
@@ -88,7 +88,7 @@ export const HISTORY: LabEntry[] = [
       priorArt: ['Library catalogue cards with tracings and cataloguer’s marks', 'Wikipedia’s page history and blame views', 'git blame', 'W3C PROV provenance model'],
     },
     built:
-      'One record as a ruled card, each line marked A to E by its hand and set in that hand’s ink. The printed form lists all 16 controlled terms; the writer’s ticks sit in it. Lifting a hand removes its ink and recounts the words.',
+      'One record as a ruled card, each line marked A to E by its hand and set in that hand’s ink. The printed form lists all 16 controlled terms; the writer’s ticks sit in it. One large control lifts the agent’s hand; a lifted line keeps its ruled slot and loses its ink. The reviewer’s line is a long empty signature rule. A rack of 30 bars, which also picks the card, shows the writer’s share of every card over an empty reviewer’s box.',
     happened:
       'On all 30 cards the record writer, an AI agent, wrote between 81% and 92% of the words (median 89%). The reviewer’s line is blank on every one. Lifting the writer leaves a title, a repository, a licence and an untouched form: the card can no longer be filed, because nothing is ticked. The vocabulary’s author cannot be named from the record at all.',
     uncertain:
@@ -99,6 +99,8 @@ export const HISTORY: LabEntry[] = [
     finding:
       'The prior labour on these cards is not human: an AI agent wrote 81–92% of every card’s words, and the reviewer’s line is blank on all 30.',
     related: ['31', '36', '38', '39'],
+    reflection:
+      'Keeping each lifted line as an empty ruled slot, rather than removing it, did more than any count: the card stays its full length and nearly all of it is blank, with a title, a repository, a licence and a date at the top. The rack was stronger than expected because the thirty bars barely differ; the sameness is the result. The quoted median needed care: across the thirty exact shares it is 88.5%, which rounds to 89%. A plain provenance stamp would say “written by an AI agent, not reviewed” just as truly, but it would not show that the human contribution is a few lines of metadata and an empty box.',
   },
   {
     n: '33',

@@ -179,7 +179,7 @@
   }
 }
 
-/* ---------- 32 The Librarian's Hand: one card, five inks ---------- */
+/* ---------- 32 The Librarian's Hand: one card, five inks, a rack of thirty ---------- */
 
 .x32 {
   display: grid;
@@ -187,6 +187,7 @@
   gap: var(--space-4);
   --card: #fbfaf5;
   --card-edge: #cfc8b6;
+  --ink-writer: var(--accent-community);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -196,69 +197,70 @@
   }
 }
 
-.x32 select {
-  font: inherit;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  padding: 0.3rem 0.4rem;
-  border: 1px solid var(--rule-strong);
-  border-radius: 0;
-  background: var(--bg);
-  color: var(--fg);
-  flex: 1 1 12rem;
-  min-width: 0;
-  max-width: 24rem;
+@media (min-width: 64rem) {
+  .x32 {
+    grid-template-columns: minmax(0, 46rem) minmax(0, 1fr);
+    align-items: start;
+  }
+  .x32__act {
+    grid-column: 1 / -1;
+  }
 }
 
-.x32__pick {
+.x32__side {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+/* The first act: one large control in the agent's ink. */
+.x32__act {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-3);
   align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: var(--space-3);
 }
 
-.x32__hands {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
-  gap: var(--space-2);
-}
-
-.x32__hand {
+.x32__lift {
   display: flex;
-  gap: var(--space-2);
-  align-items: flex-start;
+  gap: var(--space-3);
+  align-items: center;
   text-align: left;
   font: inherit;
-  font-size: 0.85rem;
-  padding: var(--space-2);
-  border: 1px solid var(--rule-strong);
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-3);
+  border: 2px solid var(--ink-writer);
   border-radius: 0;
   background: var(--bg);
   color: var(--fg);
   cursor: pointer;
+  max-width: 30rem;
 }
 
-.x32__hand small {
+.x32__lift strong {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--ink-writer);
+}
+
+.x32__lift small {
   display: block;
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   line-height: 1.35;
   margin-top: 0.15rem;
 }
 
-.x32__hand[aria-pressed='true'] {
-  background: var(--surface);
-  color: var(--fg);
+.x32__lift[aria-pressed='true'] {
   border-style: dashed;
+  background: var(--surface);
 }
 
-.x32__hand[aria-pressed='true'] strong {
-  text-decoration: underline;
+.x32__status {
+  margin: 0;
+  flex: 1 1 18rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  max-width: 34rem;
 }
 
 .x32__mark {
@@ -275,13 +277,28 @@
   flex: none;
 }
 
+.x32__mark--big {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.1rem;
+  border-width: 2px;
+  color: var(--ink-writer);
+}
+
+/* The card. */
 .x32__card {
   position: relative;
-  max-width: 46rem;
+  min-width: 0;
   background: var(--card);
   border: 1px solid var(--card-edge);
-  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  padding: var(--space-3) var(--space-3) var(--space-4) var(--space-4);
   box-shadow: 0 1px 0 var(--card-edge);
+}
+
+@media (max-width: 40rem) {
+  .x32__card {
+    padding: var(--space-3) var(--space-3) var(--space-4);
+  }
 }
 
 /* The punched hole at the foot of a catalogue card. */
@@ -350,6 +367,16 @@
   overflow-wrap: anywhere;
 }
 
+/* A lifted line keeps its slot: the ruled line stays, the ink is gone. */
+.x32__line.is-lifted dd {
+  min-height: 1.1rem;
+  border-bottom: 1px dotted var(--card-edge);
+}
+
+.x32__line.is-lifted dt {
+  opacity: 0.45;
+}
+
 .x32__ink--source dd {
   font-family: var(--font-mono);
   font-size: 0.82rem;
@@ -366,7 +393,7 @@
 strong.x32__ink--writer {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  color: var(--accent-community);
+  color: var(--ink-writer);
 }
 
 .x32__ink--selector .x32__mark,
@@ -375,9 +402,8 @@ strong.x32__ink--writer {
 }
 
 .x32__ink--writer .x32__mark,
-.x32__hand--writer .x32__mark,
 .x32__loose .x32__mark {
-  color: var(--accent-community);
+  color: var(--ink-writer);
 }
 
 .x32__hand--reviewer .x32__mark,
@@ -413,35 +439,204 @@ strong.x32__ink--writer {
 }
 
 .x32__form li.is-ticked {
-  color: var(--accent-community);
+  color: var(--ink-writer);
   font-weight: 700;
 }
 
-.x32__blank {
-  color: var(--muted);
-  font-style: italic;
+/* The reviewer's line: the one place on the card a person would sign. */
+.x32__review {
+  margin: var(--space-4) 0 var(--space-3);
+  padding: var(--space-3) 0 0;
+  border-top: 1px solid var(--card-edge);
 }
 
-.x32__review {
-  margin: var(--space-3) 0 var(--space-4);
-  font-size: 0.85rem;
+.x32__sign {
+  margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.5rem;
   align-items: baseline;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.x32__sign .x32__mark {
+  align-self: center;
 }
 
 .x32__rule {
-  display: inline-block;
-  min-width: min(12rem, 50vw);
-  border-bottom: 1px solid var(--accent-signal);
+  flex: 1 1 auto;
+  min-width: 6rem;
+  height: 1.6rem;
+  border-bottom: 3px solid var(--rose);
+}
+
+.x32__review-note {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-signal);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .x32__tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
+  color: var(--muted);
   border-top: 1px solid var(--card-edge);
   padding: var(--space-2) 0 var(--space-3);
+}
+
+.x32__tally .is-off {
+  text-decoration: line-through;
+}
+
+/* The other hands: small, secondary. */
+.x32__others,
+.x32__rack {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.x32__others {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.x32__others legend,
+.x32__rack legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.x32__hand {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  text-align: left;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: var(--space-2);
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.x32__hand small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  margin-top: 0.15rem;
+}
+
+.x32__hand[aria-pressed='true'] {
+  background: var(--surface);
+  border-style: dashed;
+}
+
+.x32__hand[aria-pressed='true'] strong {
+  text-decoration: underline;
+}
+
+/* The rack: thirty cards, each a bar of the agent's ink over an empty reviewer's box. */
+.x32__rack-sum {
+  margin: 0 0 var(--space-2);
+  font-size: 0.9rem;
+}
+
+.x32__bars {
+  display: grid;
+  grid-template-columns: repeat(30, minmax(0, 1fr));
+  gap: 2px;
+  max-width: 28rem;
+}
+
+.x32__bar {
+  position: relative;
+  display: grid;
+  grid-template-rows: 4.5rem 0.7rem;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.x32__bar input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.x32__bar::before {
+  content: '';
+  grid-row: 1;
+  grid-column: 1;
+  border: 1px solid var(--card-edge);
+}
+
+.x32__bar-ink {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: end;
+  background: var(--violet);
+}
+
+.x32__bar-review {
+  grid-row: 2;
+  border: 1px solid var(--rose);
+}
+
+.x32__bar.is-on::before {
+  border: 2px solid var(--fg);
+}
+
+.x32__bar:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.x32__rack-key {
+  margin: var(--space-2) 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.x32__key-ink,
+.x32__key-review {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--violet);
+}
+
+.x32__key-review {
+  background: transparent;
+  border: 1px solid var(--rose);
+  margin-left: 0.6rem;
+}
+
+.x32__rack-now {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
 }
 
 /* ---------- 33 The Filing Rod: a drawer seen from the side ---------- */
