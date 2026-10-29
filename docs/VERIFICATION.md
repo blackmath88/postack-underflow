@@ -2,6 +2,49 @@
 
 This file records what was actually checked. It is not a claim that the public site is live.
 
+## Photo Frame Commons (Pilot 001) — 2026-10-29
+
+Branches `pilot/commons-a-corpus` → `-b-index` → `-c-sensemaking` → `-d-atproto` → `-e-integrated`, as stacked draft PRs #19 to #23. The final run below was made on `pilot/commons-e-integrated`.
+
+### Automated checks
+| Command | Result |
+|---|---|
+| `npm run typecheck` | passes |
+| `npm test` | 88 passed, 0 failed |
+| `npm run build` and `npm run validate` | 93 pages; 5,634 internal URLs under `/postack-underflow/` |
+| `npm run commons:check` | 265 threads and 126 docs at `0bff55ef3fb2`; 722 cached texts match their hashes |
+| `npm run commons:records` | 18 problems, 73 evidence items, 4 corrections; 77 quotes verified verbatim against the cache |
+| `npm run commons:index:check` | index rebuilt byte for byte |
+| `npm run commons:brainstorm:check` | br-ai-nstorm snapshot rebuilt byte for byte from pinned `a96c2dbb` |
+| `npm run commons:links` | 67 of 67 distinct source URLs resolve (network, 2026-10-29) |
+| `npm run browser`, story checks | 238 passed, 0 failed (now including `/commons/`) |
+| `npm run browser`, lab and specimen checks | 792 and 103 passed, 0 failed |
+| `npm run commons:browser` | 58 passed, 0 failed |
+
+**What the Commons browser checks cover:**
+- six Commons pages at 390, 768 and 1440 px: styled, no horizontal overflow, no console or page errors;
+- Find: an ordinary-language query, why each hit matched, raw-thread hits linking to GitHub, the empty state, and example queries from the keyboard;
+- Inspect: every source linked to GitHub, comments to their anchors, documents to pinned lines, and a failed report shown as failed;
+- Connect:
+  - Enter opens a connection's reason;
+  - an author-declared link names the author it was carried for and cannot be unplugged;
+  - a machine proposal can be unplugged and plugged back in;
+  - each kind of connection can be hidden;
+  - Space switches to the thread view;
+- Challenge and Preview: the real #12 correction, its comment link, the fixture label, `aria-expanded`, changed fields, an honest "does not move", and a note that the sources are unchanged;
+- Elsewhere: the live post linking #229, the graded identity note, and simulated deletion;
+- reduced motion, the base path, JavaScript off (both projections, every quote, all 18 problems browsable, a search note), unknown problems (404) and dark mode.
+
+Screenshots are in `docs/screenshots/commons/`.
+
+### Not verified
+- **No real reader.** No owner, contributor or maintainer has used the interface.
+- **No screen reader.** Only the accessibility tree was checked, through Playwright role queries.
+- **One browser.** Chromium only. Phone widths were emulated, not tested on devices.
+- **No retrieval benchmark** (see COMMONS-INDEX.md).
+- **CI cannot check quotes.** CI has no snapshot cache, so it checks structure and input hashes only.
+- **ATProto is a snapshot.** Records were read once, on 2026-10-29, and nothing was watched for deletion over time.
+
 ## The Laboratory — 2026-10-29
 
 Branches `feat/lab-foundations` → `feat/lab-divergence` → `feat/lab-critique` → `feat/lab-specimens` → `feat/lab-integration`, as stacked draft PRs. The final run below was made on `feat/lab-integration`, from a clean `npm ci`.

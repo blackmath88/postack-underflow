@@ -102,7 +102,7 @@
    "id": "gadget-error-71",
    "title": "U-Boot's USB gadget never enumerates: the host logs error -71",
    "device": ["PF1007L (Allwinner A33)"],
-   "environment": ["Route U", "January 20260113 and May 20260519 firmware"],
+   "environment": ["Route U", "May 20260519 firmware, per the curated table"],
    "symptoms": ["error -71", "ums gadget never enumerates", "FEL and Android ADB still work"],
    "aliases": ["usb device not recognised after uboot", "protocol error", "uboot usb fails"],
    "status": "unsolved",

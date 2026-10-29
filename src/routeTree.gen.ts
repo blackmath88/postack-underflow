@@ -21,7 +21,9 @@ import { Route as ArchiveIndexRouteImport } from './routes/archive/index'
 import { Route as ArchiveCommunityRouteImport } from './routes/archive/community'
 import { Route as ArchiveFourWordsRouteImport } from './routes/archive/four-words'
 import { Route as ArchiveHistoryRouteImport } from './routes/archive/history'
+import { Route as CommonsIndexRouteImport } from './routes/commons/index'
 import { Route as LabIndexRouteImport } from './routes/lab/index'
+import { Route as CommonsProblemIndexRouteImport } from './routes/commons/$problem/index'
 import { Route as LabNIndexRouteImport } from './routes/lab/$n/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -84,9 +86,19 @@ const ArchiveHistoryRoute = ArchiveHistoryRouteImport.update({
   path: '/archive/history',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommonsIndexRoute = CommonsIndexRouteImport.update({
+  id: '/commons/',
+  path: '/commons/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabIndexRoute = LabIndexRouteImport.update({
   id: '/lab/',
   path: '/lab/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommonsProblemIndexRoute = CommonsProblemIndexRouteImport.update({
+  id: '/commons/$problem/',
+  path: '/commons/$problem/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LabNIndexRoute = LabNIndexRouteImport.update({
@@ -108,7 +120,9 @@ export interface FileRoutesByFullPath {
   '/archive/four-words': typeof ArchiveFourWordsRoute
   '/archive/history': typeof ArchiveHistoryRoute
   '/archive/': typeof ArchiveIndexRoute
+  '/commons/': typeof CommonsIndexRoute
   '/lab/': typeof LabIndexRoute
+  '/commons/$problem/': typeof CommonsProblemIndexRoute
   '/lab/$n/': typeof LabNIndexRoute
 }
 export interface FileRoutesByTo {
@@ -124,7 +138,9 @@ export interface FileRoutesByTo {
   '/archive/four-words': typeof ArchiveFourWordsRoute
   '/archive/history': typeof ArchiveHistoryRoute
   '/archive': typeof ArchiveIndexRoute
+  '/commons': typeof CommonsIndexRoute
   '/lab': typeof LabIndexRoute
+  '/commons/$problem': typeof CommonsProblemIndexRoute
   '/lab/$n': typeof LabNIndexRoute
 }
 export interface FileRoutesById {
@@ -141,7 +157,9 @@ export interface FileRoutesById {
   '/archive/four-words': typeof ArchiveFourWordsRoute
   '/archive/history': typeof ArchiveHistoryRoute
   '/archive/': typeof ArchiveIndexRoute
+  '/commons/': typeof CommonsIndexRoute
   '/lab/': typeof LabIndexRoute
+  '/commons/$problem/': typeof CommonsProblemIndexRoute
   '/lab/$n/': typeof LabNIndexRoute
 }
 export interface FileRouteTypes {
@@ -159,7 +177,9 @@ export interface FileRouteTypes {
     | '/archive/four-words'
     | '/archive/history'
     | '/archive/'
+    | '/commons/'
     | '/lab/'
+    | '/commons/$problem/'
     | '/lab/$n/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -175,7 +195,9 @@ export interface FileRouteTypes {
     | '/archive/four-words'
     | '/archive/history'
     | '/archive'
+    | '/commons'
     | '/lab'
+    | '/commons/$problem'
     | '/lab/$n'
   id:
     | '__root__'
@@ -191,7 +213,9 @@ export interface FileRouteTypes {
     | '/archive/four-words'
     | '/archive/history'
     | '/archive/'
+    | '/commons/'
     | '/lab/'
+    | '/commons/$problem/'
     | '/lab/$n/'
   fileRoutesById: FileRoutesById
 }
@@ -208,7 +232,9 @@ export interface RootRouteChildren {
   ArchiveFourWordsRoute: typeof ArchiveFourWordsRoute
   ArchiveHistoryRoute: typeof ArchiveHistoryRoute
   ArchiveIndexRoute: typeof ArchiveIndexRoute
+  CommonsIndexRoute: typeof CommonsIndexRoute
   LabIndexRoute: typeof LabIndexRoute
+  CommonsProblemIndexRoute: typeof CommonsProblemIndexRoute
   LabNIndexRoute: typeof LabNIndexRoute
 }
 
@@ -298,11 +324,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArchiveHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/commons/': {
+      id: '/commons/'
+      path: '/commons'
+      fullPath: '/commons/'
+      preLoaderRoute: typeof CommonsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lab/': {
       id: '/lab/'
       path: '/lab'
       fullPath: '/lab/'
       preLoaderRoute: typeof LabIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commons/$problem/': {
+      id: '/commons/$problem/'
+      path: '/commons/$problem'
+      fullPath: '/commons/$problem/'
+      preLoaderRoute: typeof CommonsProblemIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lab/$n/': {
@@ -328,7 +368,9 @@ const rootRouteChildren: RootRouteChildren = {
   ArchiveFourWordsRoute: ArchiveFourWordsRoute,
   ArchiveHistoryRoute: ArchiveHistoryRoute,
   ArchiveIndexRoute: ArchiveIndexRoute,
+  CommonsIndexRoute: CommonsIndexRoute,
   LabIndexRoute: LabIndexRoute,
+  CommonsProblemIndexRoute: CommonsProblemIndexRoute,
   LabNIndexRoute: LabNIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -51,7 +51,7 @@ Nothing is accepted. In br-ai-nstorm only a person may move a proposal out of `p
 These are stated in code as `MISMATCHES` in the adapter.
 
 1. **Markdown only.** Adoption reads files. The knowledge is in conversations.
-2. **One author per repository.** `repo:<owner/name>` would erase 222 people, so `authoredBy` is `github:<login>`.
+2. **One author per repository.** `repo:<owner/name>` would erase 221 accounts, so `authoredBy` is `github:<login>`.
 3. **Line-anchored references.** A comment has no lines. Its `path` is `issues/<n>#issuecomment-<id>` with lines `0`, so br-ai-nstorm's static view prints `#L0`.
 4. **Excerpts instead of units.** Comment text belongs to its author. Each contribution carries the record's 25-word excerpt, or the thread title.
 5. **No relations declared by the author.** br-ai-nstorm derives nothing relational on import. A GitHub author's own "#113 reports your exact symptom" can only enter as a pending proposal. The importer files it on the author's behalf, and it has no more standing than the record writer's guesses.

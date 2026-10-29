@@ -1,0 +1,74 @@
+{
+ "emmc-not-exposed": {
+  "title": "The eMMC never appears in U-Boot, so there is nothing to back up",
+  "status": "Partly solved"
+ },
+ "ums-drops-during-backup": {
+  "title": "The backup disk appears, then drops or errors partway through reading",
+  "status": "Documented"
+ },
+ "reset-after-uboot": {
+  "title": "The disk vanishes about 45 seconds after U-Boot starts, or when the computer ejects it",
+  "status": "Documented"
+ },
+ "gadget-error-71": {
+  "title": "U-Boot's USB gadget never enumerates: the host logs error -71",
+  "status": "Unsolved"
+ },
+ "boot-hash-mismatch": {
+  "title": "The compatibility check stops: the boot image hash is not the tested one",
+  "status": "Documented"
+ },
+ "usb-c-no-data": {
+  "title": "The frame shows no USB data, or no power, on the computer",
+  "status": "Documented"
+ },
+ "stock-root-adb": {
+  "title": "Some frames already ship with root ADB switched on",
+  "status": "Documented"
+ },
+ "aimor-temporary-adb": {
+  "title": "Root ADB without writing anything, through the vendor app's own connection",
+  "status": "Documented"
+ },
+ "test-app-adb": {
+  "title": "Switching ADB on from a hidden test app on the About screen",
+  "status": "In review"
+ },
+ "windows-crlf-scripts": {
+  "title": "On Windows, the boot-fix scripts pass every check and still break Wi-Fi",
+  "status": "Fixed in code"
+ },
+ "wsl-usbipd-ums": {
+  "title": "On Windows with WSL, the backup disk vanishes once it is attached to WSL",
+  "status": "Documented"
+ },
+ "frameo-adb-unauthorized": {
+  "title": "A Frameo frame lists ADB as unauthorized and never shows the prompt",
+  "status": "Documented"
+ },
+ "frameo-159k-no-adb": {
+  "title": "A Frameo 159K (Rockchip RK3326) never appears in adb at all",
+  "status": "No reviewed route"
+ },
+ "launcher-lockout": {
+  "title": "After choosing a new Home app, a PF1506 stays on its boot animation",
+  "status": "Unsolved"
+ },
+ "animation-cpu": {
+  "title": "One animated icon keeps the WebView busy on nearly two cores",
+  "status": "Documented"
+ },
+ "compromised-ca-roots": {
+  "title": "The frames still trust certificate roots whose intermediates were compromised",
+  "status": "Documented"
+ },
+ "erased-emmc": {
+  "title": "An owner erased the whole eMMC and asks for another unit's dump",
+  "status": "Declined"
+ },
+ "today-view-fifth-person": {
+  "title": "The dashboard draws a fifth person's events hours too late",
+  "status": "Fixed in code"
+ }
+}

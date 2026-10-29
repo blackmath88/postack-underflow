@@ -14,7 +14,7 @@ This is the source material for the Photo Frame Commons: one real public reposit
 | Issue and PR comments | 331 | Two by bots |
 | Review summaries | 0 | No PR in the snapshot has a submitted review |
 | Markdown documents | 126 | Every `.md` at the revision except `.agents/` |
-| Distinct people | 222 | Thread and comment authors |
+| Distinct accounts | 221 | Thread and comment authors, including 2 bots; 2 further items are by deleted accounts |
 
 Threads span 2026-10-10 to 2026-10-29. Method: the authenticated `gh` CLI, read-only. GraphQL was used for threads, timelines, files and commits, and REST for the file tree, document blobs and any comment overflow. The whole read took 15 GraphQL calls.
 
@@ -45,7 +45,7 @@ For pull requests it also holds merge state, merge commit, files and commits. Fo
 **The text itself stays in `corpus/commons/.cache/`, which is gitignored.**
 
 - **Repository files** are MIT-licensed.
-- **Issue and pull request text** belongs to its 222 authors, and the licence file does not cover it. The site quotes only short excerpts, linked to the original.
+- **Issue and pull request text** belongs to its 221 authors, and the licence file does not cover it. The site quotes only short excerpts, linked to the original.
 - **Credentials.** Some threads contain things that should not be republished: a device test-app password, serial numbers the maintainer asked people to remove, and private device credentials. Excerpts avoid them.
 
 Reproduce or refresh:
