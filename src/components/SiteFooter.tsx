@@ -12,7 +12,7 @@ export function SiteFooter() {
         </p>
         <p>
           <a href={REPO_URL}>Source on GitHub</a> · <Link to="/notes/">Sources and provenance</Link>{' '}
-          · <Link to="/about/">About</Link>
+          · <Link to="/about/">About</Link> · <Link to="/lab/">The Laboratory</Link>
         </p>
       </div>
     </footer>
