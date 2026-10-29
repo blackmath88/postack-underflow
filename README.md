@@ -30,7 +30,7 @@ The first article **“We Already Solved This”** describes the problem while i
 This is **not** a replacement for Stack Overflow, a new centralized social network, or a Weavr mission. Weavr may later consume verified knowledge, but execution is not the center. No public publishing, account writes, or harvesting of private agent sessions without explicit authorization. Human authorship, licenses, source provenance, and disagreement remain visible.
 
 ## Status
-**Research prototype.** One small, measured retrieval experiment (Four Words) and a fixture-only community demonstration. No live search service, ATProto adapter or comment federation exists, and nothing is published to ATProto. This public repo starts with questions and testable hypotheses.
+**Research prototype.** One small, measured retrieval experiment (Four Words), a fixture-only community demonstration, and a laboratory of sixty executable sketches that are demonstrations, not measurements. No live search service, ATProto adapter or comment federation exists, and nothing is published to ATProto. This public repo starts with questions and testable hypotheses.
 
 ## The site
 An interactive essay in six movements: an encounter (a hacked photo frame) → the lost shortcut → two problems → The Impossible Index → The Switchboard → the Problem Desk, ending with an afterword on how the essay was made. It works at three levels of attention:
@@ -50,6 +50,14 @@ npm run preview       # serve dist/client like GitHub Pages at http://localhost:
 npm run smoke -- URL  # check what a deployed site actually serves
 ```
 
+**The Laboratory** (`/lab/`): sixty small, executable propositions beside the essay, in six families. Each pilot states a proposition that could be false, what you can change and what it cannot change, and keeps a notebook with its provenance, what happened and what remains uncertain. Method: [docs/lab/METHOD.md](docs/lab/METHOD.md). Critique, map, essay candidates and open questions: [docs/lab/EVALUATION.md](docs/lab/EVALUATION.md). Decision: [ADR-0006](docs/adr/0006-laboratory.md) (proposed). The essay links to it only from the footer.
+
+```bash
+node scripts/lab-check.mjs --only 03,25   # browser contract for some pilots
+node scripts/lab-specimens.mjs            # behaviour checks for the developed specimens
+node scripts/lab-evaluation.mjs           # regenerate the table in EVALUATION.md
+```
+
 **Four Words experiment** (index-first retrieval, see [docs/research/FOUR-WORDS.md](docs/research/FOUR-WORDS.md)):
 
 ```bash
@@ -67,6 +75,7 @@ Layout:
 - `corpus/`: pinned sources, labelled queries and records.
 - `results/`: evaluation output.
 - `knowledge/`: this essay as a structured record.
+- `src/lab/`: the Laboratory: catalogue, shell, pilots by family, styles and lab-only data.
 
 Decisions: [ADR-0002](docs/adr/0002-editorial-site-direction.md) (framework), [ADR-0003](docs/adr/0003-native-experiments-and-offline-index.md) (experiments, index artifact, fixtures), [ADR-0004](docs/adr/0004-living-essay-and-claim-accountability.md) (movements, claim accountability, frozen core) and [ADR-0005](docs/adr/0005-three-levels-and-margin-notes.md) (three levels, margin notes; proposed). What moved where: [docs/editorial/CONTENT-INVENTORY.md](docs/editorial/CONTENT-INVENTORY.md). What building it changed: [docs/REFLECTION.md](docs/REFLECTION.md). Community research: [docs/research/ATPROTO-COMMUNITY.md](docs/research/ATPROTO-COMMUNITY.md). Verification evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
 
