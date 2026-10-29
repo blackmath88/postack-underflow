@@ -34,3 +34,7 @@ export const RETRIEVAL_FILE = repoFile('src/lib/retrieval.ts')
 export const DISPUTED_NEIGHBOUR_DATA = repoFile('src/data/disputed-neighbour.ts')
 export const RECORDS_SCHEMA = repoFile('src/lib/records.ts')
 export const QUERIES_FILE = repoFile('corpus/queries.json')
+
+// Community family (Lab 03).
+export const COMMUNITY_PAGE = 'https://blackmath88.github.io/postack-underflow/community/'
+export const SWITCHBOARD_FILE = repoFile('src/components/Switchboard.tsx')
