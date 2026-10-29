@@ -22,3 +22,10 @@ export const LUMPESAMMLIG = `https://github.com/blackmath88/lumpesammlig/tree/${
 export const LUMPESAMMLIG_CONCEPT = `https://github.com/blackmath88/lumpesammlig/blob/${LUMPESAMMLIG_REV}/docs/CONCEPT.md`
 export const IMPOSSIBLE_INDEX_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/012-impossible-index`
 export const SWITCHBOARD_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/013-switchboard`
+
+// Discovery family (01–10).
+export const ESSAY_SITE = 'https://blackmath88.github.io/postack-underflow/'
+/** The essay page that holds The Disputed Neighbour and the Four Words search. */
+export const ESSAY_INDEXING = `${ESSAY_SITE}indexing/`
+export const CORPUS_MANIFEST = repoFile('corpus/sources.json')
+export const RETRIEVAL_FILE = repoFile('src/lib/retrieval.ts')
