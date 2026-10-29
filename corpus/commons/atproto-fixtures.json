@@ -1,0 +1,23 @@
+{
+ "$schema": "postack.commons.atproto-fixtures/1",
+ "note": "FIXTURES. Written by the Postack record writer to show how a correction could travel as an independently published ATProto record. Nobody posted these. The identities use the reserved did:example method and the .example domain, so they cannot resolve or be mistaken for a real account.",
+ "records": [
+  {
+   "fixture": true,
+   "uri": "at://did:example:frame-owner/app.bsky.feed.post/fixture-71-january",
+   "cid": null,
+   "did": "did:example:frame-owner",
+   "handle": "frame-owner.example",
+   "pds": "https://pds.example",
+   "collection": "app.bsky.feed.post",
+   "createdAt": "2026-10-13T03:10:00.000Z",
+   "text": "Route U failed on my January 20260113 PF1007L too: error -71, gadget never enumerated. The start-here table says one May unit.",
+   "links": [
+    "https://github.com/wesbos/photo-frame-dashboard/issues/12#issuecomment-6137133782",
+    "https://github.com/wesbos/photo-frame-dashboard/blob/0bff55ef3fb2a3bfdab05bc8e3bd0c9d69f63189/docs/pf1007l-start-here.md#L390"
+   ],
+   "correction": "c-71-january",
+   "why": "Mirrors the real comment on #12 (2026-10-13). A real owner could publish this from their own repository; Postack would attach it by its links, not by owning it."
+  }
+ ]
+}
