@@ -1243,48 +1243,209 @@
   color: var(--muted);
 }
 
-/* ---------- 30 The Moderation Lens ---------- */
+/* ---------- 30 The Moderation Lens: a viewfinder over an account, a lens ring of five stops ---------- */
 
-.x30__lens {
-  display: block;
-  padding: var(--space-3) var(--space-4);
-  margin: var(--space-2) 0 var(--space-3);
-  border: 2px solid var(--rule-strong);
-  border-radius: 999px;
-  background: var(--surface);
+.x30 {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.x30 > .lab-fixture {
+  margin: 0;
+}
+
+/* The viewfinder: four crop corners around the view's own account. */
+.x30__finder {
+  position: relative;
+  margin: 0;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  max-width: 52rem;
+  --corner: 1.4rem;
+  background:
+    linear-gradient(var(--fg), var(--fg)) top left / var(--corner) 3px no-repeat,
+    linear-gradient(var(--fg), var(--fg)) top left / 3px var(--corner) no-repeat,
+    linear-gradient(var(--fg), var(--fg)) top right / var(--corner) 3px no-repeat,
+    linear-gradient(var(--fg), var(--fg)) top right / 3px var(--corner) no-repeat,
+    linear-gradient(var(--fg), var(--fg)) bottom left / var(--corner) 3px no-repeat,
+    linear-gradient(var(--fg), var(--fg)) bottom left / 3px var(--corner) no-repeat,
+    linear-gradient(var(--fg), var(--fg)) bottom right / var(--corner) 3px no-repeat,
+    linear-gradient(var(--fg), var(--fg)) bottom right / 3px var(--corner) no-repeat;
 }
 
 @media (max-width: 36rem) {
-  .x30__lens {
-    border-radius: 1.5rem;
-    padding: var(--space-3);
+  .x30__finder {
+    padding: var(--space-3) var(--space-3) var(--space-2);
+    --corner: 1rem;
   }
 }
 
-.x30__lens input {
-  display: block;
-  width: 100%;
-  margin: 0.4rem 0;
-  accent-color: var(--accent-community);
+.x30__kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.x30__said {
+  margin: var(--space-2) 0 var(--space-3);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  line-height: 1.45;
+}
+
+.x30__said del {
+  color: var(--muted);
+  text-decoration: line-through 2px var(--rose);
+  font-size: 0.8em;
+}
+
+.x30__said del + ins {
+  margin-left: 0.35em;
+}
+
+.x30__said ins {
+  text-decoration: underline 3px var(--violet);
+  text-underline-offset: 0.18em;
+  font-weight: 700;
+}
+
+.x30__legend {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+/* The lens ring: five engraved stops on a barrel. */
+.x30__ring {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.x30__ring legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.x30__stops {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 3px solid var(--fg);
+  border-bottom: 1px solid var(--fg);
+  /* Engraved ticks along the barrel. */
+  background: repeating-linear-gradient(90deg, var(--rule-strong) 0 1px, transparent 1px 0.5rem) top / 100% 0.35rem no-repeat;
+  padding-top: 0.35rem;
+}
+
+@media (max-width: 36rem) {
+  .x30__stops {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.x30__stop {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas: 'f name' 'f count';
+  column-gap: var(--space-2);
+  align-items: baseline;
+  padding: var(--space-2);
+  border-left: 1px solid var(--rule);
+  cursor: pointer;
+  position: relative;
+}
+
+.x30__stop:first-child {
+  border-left: 0;
+}
+
+@media (max-width: 36rem) {
+  .x30__stop {
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .x30__stop:first-child {
+    border-top: 0;
+  }
+}
+
+.x30__stop input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.x30__stop:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
+}
+
+.x30__stop.is-on {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.x30__f {
+  grid-area: f;
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.x30__stop.is-on .x30__f::after {
+  content: ' ◉';
+  font-size: 0.7em;
+}
+
+.x30__name {
+  grid-area: name;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.x30__count {
+  grid-area: count;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
 }
 
 .x30__rule {
+  margin: var(--space-2) 0 0;
   font-size: 0.88rem;
 }
 
+/* The records, small, as what the lens is pointed at. */
 .x30__strip {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
   gap: var(--space-2);
+}
+
+@media (max-width: 36rem) {
+  .x30__strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .x30__rec {
   border: 1px solid var(--rule-strong);
   padding: var(--space-2);
-  background: var(--bg);
+  min-width: 0;
 }
 
 .x30__rec.is-warned {
@@ -1306,37 +1467,26 @@
 .x30__who {
   margin: 0;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+}
+
+.x30__rec.is-hidden .x30__who {
+  text-decoration: line-through 1px;
 }
 
 .x30__text {
   margin: 0.25rem 0 0;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .x30__warn,
 .x30__gone {
   margin: 0.25rem 0 0;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
-}
-
-.x30__account {
-  margin-top: var(--space-4);
-  padding: var(--space-3);
-  border-left: 4px solid var(--accent-community);
-  background: var(--surface);
-}
-
-.x30__kicker {
-  margin: 0;
-  font-family: var(--font-mono);
   font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.x30__said {
-  margin: 0.4rem 0 0;
-  font-size: 1.08rem;
+  overflow-wrap: anywhere;
 }

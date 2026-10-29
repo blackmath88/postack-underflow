@@ -43,6 +43,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'Labelled a demonstration over frozen data, and it never scores against the labels.',
     experience: 'The mixing desk makes nothing happening feel like a result.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '05': {
     specificity: 'Depends on the corpus holding look-alike fixes from different frameworks.',
@@ -100,6 +101,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'The rod practice is marked reported, from PR #5.',
     experience: 'The patron’s empty drawer is a memorable consequence.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '12': {
     specificity: 'Extends the essay’s URL question to all seven asset-404 records.',
@@ -149,6 +151,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'The reclassification is ours and labelled.',
     experience: 'Physical and immediate.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '18': {
     specificity: 'One real record, peeled; the six situations come from other records.',
@@ -256,6 +259,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'The labels are invented and say so.',
     experience: 'The generated sentence is the strongest single moment in the family.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '31': {
     specificity: 'A drawer over real records in an order we chose.',
@@ -272,6 +276,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'Each hand’s share is computed per card.',
     experience: 'Ink colours make authorship visible at a glance.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '33': {
     specificity: 'About the rod’s mechanics, not proposals, which keeps it apart from 11.',
@@ -329,6 +334,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'Revisions are invented and say so.',
     experience: 'The print-registration language is distinctive and earned.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '40': {
     specificity: 'Uses the real research history as exhibits.',
@@ -377,6 +383,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'Says it cannot measure comprehension.',
     experience: 'Slow by design.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '46': {
     specificity: 'Uses the metaphors’ documented limits.',
@@ -468,6 +475,7 @@ export const CRITIQUE: Record<string, Critique> = {
     integrity: 'Computed from frozen rankings; never rewrites v1.',
     experience: 'The fork makes a labelling choice tangible.',
     verdict: 'develop',
+    status: 'specimen',
   },
   '57': {
     specificity: 'An invented draft modelled on the real photo-frame practice.',

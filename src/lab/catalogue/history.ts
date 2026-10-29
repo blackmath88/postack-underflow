@@ -69,7 +69,7 @@ export const HISTORY: LabEntry[] = [
     question: 'If every line of a record is inked by the hand that decided it, whose labour is the classification?',
     proposition:
       'Classification is prior labour you can attribute: every line of a frozen record can be traced to one hand, and lifting that hand shows what it contributed.',
-    manipulate: 'Choose one of the 30 frozen records, then lift or return any of five hands: source author, selector, printed form, record writer, reviewer.',
+    manipulate: 'Lift the agent’s hand (the record writer’s) off the card first; then lift or return the other four hands, and choose any of the 30 cards from a rack.',
     changes: 'Which lines stay on the card, whether the card can still be filed under a heading, and the word count left in each hand.',
     unchanged: 'The record itself. The attribution follows what the corpus says about its own making; nothing is re-read from the sources.',
     provenance: {
@@ -88,7 +88,7 @@ export const HISTORY: LabEntry[] = [
       priorArt: ['Library catalogue cards with tracings and cataloguer’s marks', 'Wikipedia’s page history and blame views', 'git blame', 'W3C PROV provenance model'],
     },
     built:
-      'One record as a ruled card, each line marked A to E by its hand and set in that hand’s ink. The printed form lists all 16 controlled terms; the writer’s ticks sit in it. Lifting a hand removes its ink and recounts the words.',
+      'One record as a ruled card, each line marked A to E by its hand and set in that hand’s ink. The printed form lists all 16 controlled terms; the writer’s ticks sit in it. One large control lifts the agent’s hand; a lifted line keeps its ruled slot and loses its ink. The reviewer’s line is a long empty signature rule. A rack of 30 bars, which also picks the card, shows the writer’s share of every card over an empty reviewer’s box.',
     happened:
       'On all 30 cards the record writer, an AI agent, wrote between 81% and 92% of the words (median 89%). The reviewer’s line is blank on every one. Lifting the writer leaves a title, a repository, a licence and an untouched form: the card can no longer be filed, because nothing is ticked. The vocabulary’s author cannot be named from the record at all.',
     uncertain:
@@ -99,6 +99,8 @@ export const HISTORY: LabEntry[] = [
     finding:
       'The prior labour on these cards is not human: an AI agent wrote 81–92% of every card’s words, and the reviewer’s line is blank on all 30.',
     related: ['31', '36', '38', '39'],
+    reflection:
+      'Keeping each lifted line as an empty ruled slot, rather than removing it, did more than any count: the card stays its full length and nearly all of it is blank, with a title, a repository, a licence and a date at the top. The rack was stronger than expected because the thirty bars barely differ; the sameness is the result. The quoted median needed care: across the thirty exact shares it is 88.5%, which rounds to 89%. A plain provenance stamp would say “written by an AI agent, not reviewed” just as truly, but it would not show that the human contribution is a few lines of metadata and an empty box.',
   },
   {
     n: '33',
@@ -361,7 +363,7 @@ export const HISTORY: LabEntry[] = [
     question: 'When the text under an annotation changes, should the annotation keep its place or its words?',
     proposition:
       'Print registration translates into annotation anchoring: a plate registered by position misprints silently when the text moves, a plate registered by quotation fails visibly, and an archival stamp cannot move at all.',
-    manipulate: 'Print the next revision of one passage, and register the annotation plate by position or by quotation.',
+    manipulate: 'Print the next revision of one passage; it prints on two sheets at once, one with the annotation plate registered by position, one by quotation.',
     changes: 'Where each annotation prints, how far its plate is out, which annotations lose their words, and whether the stamp still describes the text.',
     unchanged: 'The three annotations and the stamp. Revision 0 is a frozen record’s solution field, verbatim.',
     provenance: {
@@ -379,9 +381,9 @@ export const HISTORY: LabEntry[] = [
       priorArt: ['W3C Web Annotation selectors', 'Hypothesis’s fuzzy anchoring', 'Comments in collaborative editors', 'Colour separation and registration marks in print'],
     },
     built:
-      'A sheet with an ink plate, a rose plate of three annotations in the margin, and a blue extraction stamp. Revisions 1 to 3 are edits we invented to move the text. The rose registration mark shifts as far as the worst annotation is out.',
+      'Two sheets side by side, each with an ink plate and a rose plate of three annotations in the margin, one registered by position and one by quotation, over a shared blue extraction stamp. Every printed annotation looks the same, right or wrong; only the rose registration mark shifts when the plate is out. A proof under each sheet, kept off it, checks each annotation against its words. Revisions 1 to 3 are edits we invented to move the text.',
     happened:
-      'By position, one inserted clause puts all three annotations out by 49 characters, each printing confidently over the wrong words. By quotation, they stay on their words through two revisions and the third loses one annotation, which drops off the sheet instead of misprinting. The stamp is wrong from revision 1 on, and neither rule can help it.',
+      'By position, one inserted clause puts all three annotations out by 49 characters, each printing confidently over the wrong words. By quotation, they stay on their words through two revisions and the third loses one annotation, which leaves the text and is marked lost in the margin instead of misprinting. The stamp is wrong from revision 1 on, and neither rule can help it.',
     uncertain:
       'Real anchoring combines both rules with context and fuzzy matching; ours is the bare contrast. Whether a lost annotation should be shown orphaned or hidden is open.',
     falsifier: 'If position anchoring survived ordinary edits, or quotation anchoring misprinted silently. Neither happened with these edits.',
@@ -390,6 +392,8 @@ export const HISTORY: LabEntry[] = [
     finding:
       'Registered by position, one inserted clause misprints all three annotations without a warning; by quotation, they hold until their words go, then fail visibly.',
     related: ['32', '52', '03'],
+    reflection:
+      'Putting the two rules side by side, instead of behind a switch, made the contrast the first thing seen: one press, and the same three notes sit on the right words on one sheet and the wrong words on the other. Keeping the misprints styled exactly like correct prints was the important decision; the kernel had marked them wavy, which quietly contradicted “silent”. The proof has to sit off the sheet, because the sheet cannot know. A plainer control, a table of offsets per revision, would show the 49-character drift but not how believable a misprinted note looks in place.',
   },
   {
     n: '40',

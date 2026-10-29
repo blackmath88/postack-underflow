@@ -119,20 +119,20 @@ All of these are candidates for editorial review, not decisions. None changes a 
 | 01 | Four Words, No Words | Kernel | keep | Six groups of records can never be told apart: the vocabulary, not the visitor, is the limit. | Playable and quick; the restriction to symptoms is the moment that teaches. |
 | 02 | The Neighbour You Didn’t Ask For | To combine | combine | The tally (a third of misses sit next door, among many unneeded neighbours) is the finding; the diagram adds little. | Sparse. A visitor would learn more from the tally line inside 09. |
 | 03 | The Lost Synonym | Kernel | keep | It disproved its own proposition and exposed a third bin: words that meet nowhere yet were labelled relevant. | Strong typography; the strike-through words carry the argument. |
-| 04 | A Search That Explains Itself | Kernel | develop | A natural belief, that weighting is where ranking lives, fails visibly: 1 of 27 first results moves. | The mixing desk makes nothing happening feel like a result. |
+| 04 | A Search That Explains Itself | Specimen | develop | A natural belief, that weighting is where ranking lives, fails visibly: 1 of 27 first results moves. | The mixing desk makes nothing happening feel like a result. |
 | 05 | The Wrong Door | Kernel | keep | The better index is no better at keeping you out of the wrong framework. | Immediate; opening a wrong door is the lesson. |
 | 06 | The Unfinished Index | Kernel | transfer | Passing mentions make a tool the corpus never collected look found: absence is disguised as a match. | A plain ledger, which is right for it; a candidate for the essay’s archive. |
 | 07 | The Held Place | To combine | combine | A held place keeps the address, not the neighbourhood, which 08 also shows at larger scale. | The shelf is legible, but the point arrives faster in 08. |
 | 08 | Multiple Catalogues | Kernel | keep | No pair of sources is neighbours in all four: there is no neutral shelf. | The slopegraph is dense at 390 px but rewarding at desktop width. |
 | 09 | Follow the Footnote | Kernel | keep | Citations alone strand four records; reading backwards connects all 30. | The printed-page voice suits it; it should absorb 02’s tally. |
 | 10 | The Four-Word Relay | Kernel | keep | Rescue is common but needs foresight: 1 in 20 swaps works. | A small game; it could be shorter. |
-| 11 | Above the Rod | Kernel | develop | The cautious automatic rule refuses correct placements because sources write “_” and camelCase. | The patron’s empty drawer is a memorable consequence. |
+| 11 | Above the Rod | Specimen | develop | The cautious automatic rule refuses correct placements because sources write “_” and camelCase. | The patron’s empty drawer is a memorable consequence. |
 | 12 | The Sorting Key | Kernel | transfer | The essay’s question fails on missing facts, not wrong ones. | Clear, if dry. A good archive companion to the essay. |
 | 13 | Who Put This Here? | Kernel | keep | Mostly a negative: the record knows who wrote it, never why a term was chosen. | A ledger of “same” is honest but flat. |
 | 14 | The False Alias | Kernel | keep | The checker that clears our false flag still cannot tell a missing word from a false claim. | The dictionary form is apt and readable. |
 | 15 | The Expired Answer | Kernel | keep | Publishing method, not version, decides most expiries; only 7 of 30 records name a version. | Works, but the dials mostly say “unknown”. |
 | 16 | The Confidence Costume | To combine | combine | The corpus tally (59 of 144 aliases unattested, all wearing the same badge) is the real result. | The undressing is fun; the result should lead. |
-| 17 | Three Kinds of Proof | Kernel | develop | An empty scale looks exactly like a balanced one: absence of strong proof reads as a tie. | Physical and immediate. |
+| 17 | Three Kinds of Proof | Specimen | develop | An empty scale looks exactly like a balanced one: absence of strong proof reads as a tie. | Physical and immediate. |
 | 18 | The Missing Context | Kernel | keep | The constraint survives; the cause is what goes missing. | Clear, and short. |
 | 19 | The Classification Trial | Kernel | keep | The disagreement is about timing and knowledge, not content. | The courtroom voice risks pastiche, but adjourning is the right ending. |
 | 20 | The Unverified Stamp | To combine | combine | The only fully backed stamp says PARAPHRASED · NOT REVIEWED. | The stamp is the more memorable half of the 16/20 pair. |
@@ -145,22 +145,22 @@ All of these are candidates for editorial review, not decisions. None changes a 
 | 27 | The Trust Neighbourhood | Retired direction | retire | None beyond the construction; the mechanism is honest, the result is not a finding. | The map is pleasant, which is the risk: it looks like evidence. |
 | 28 | The Unplugged Community | Kernel | keep | Without the backlink index the essay no longer knows who answered it. | Strong and simple. |
 | 29 | The Unfinished Conversation | Kernel | keep | Nothing was closed by being answered; only withdrawals close. | Procedural humour that lands. |
-| 30 | The Moderation Lens | Kernel | develop | Hide three records and the view can say “nobody disagreed”. | The generated sentence is the strongest single moment in the family. |
+| 30 | The Moderation Lens | Specimen | develop | Hide three records and the view can say “nobody disagreed”. | The generated sentence is the strongest single moment in the family. |
 | 31 | Card Friction | Kernel | keep | Friction exposes the filer, not serendipity. | Tactile; the guide tabs could be more visible. |
-| 32 | The Librarian’s Hand | Kernel | develop | The “prior labour” of this index is an agent’s; the reviewer’s line is blank on all 30. | Ink colours make authorship visible at a glance. |
+| 32 | The Librarian’s Hand | Specimen | develop | The “prior labour” of this index is an agent’s; the reviewer’s line is blank on all 30. | Ink colours make authorship visible at a glance. |
 | 33 | The Filing Rod | Kernel | keep | The rod taxes position and rewards batched review. | Satisfying but slow; it needs its batch button. |
 | 34 | Occupied Circuits | Retired direction | retire | Close to obvious: scarcity forces eviction, not attention. | Works, but repeats 35’s board with less to say. |
 | 35 | The Switchboard Operator | Kernel | keep | Three of five operator acts have no word in our contract vocabulary. | Engaging, with a learning curve. |
 | 36 | The Index Drawer That Lies | Kernel | keep | Trusting a stale label misfiles cards that re-lettering cannot fix. | Clear cabinet; the misfile moment is visible. |
 | 37 | Desktop Pets Return | Kernel | keep | Each cue is a countable interruption; idle movement alone acts every time. | Charming, and it stops by itself. |
 | 38 | Motte’s Historical Flags | Kernel | keep | No history note passes, and the filter never checks a note’s kind. | Clear sieve; the empty end is the point. |
-| 39 | The Marginal Printer | Kernel | develop | Position anchoring fails silently; quotation anchoring fails visibly. | The print-registration language is distinctive and earned. |
+| 39 | The Marginal Printer | Specimen | develop | Position anchoring fails silently; quotation anchoring fails visibly. | The print-registration language is distinctive and earned. |
 | 40 | The Museum That Rearranges Itself | Kernel | keep | Without rewriting labels, a museum can only answer in their words. | The floor plan is small; the idea is larger than the specimen. |
 | 41 | The Essay With Two Voices | Kernel | keep | The sceptic says 2.7 times as much as the claims it answers. | Repeats text for beats with two notes. |
 | 42 | The Footnote Rabbit Hole | Kernel | keep | 22 of 38 notes cite no registered source, so the hole is shallow. | The shallowness is the finding; the interaction mostly stops. |
 | 43 | The Page That Disagrees | Kernel | keep | Every counterexample is the same query. | Good pacing. |
 | 44 | The One-Sentence Experiment | Kernel | transfer | One word moves the report, and the sentence can say why. | The clearest mechanism in the lab, in one line. |
-| 45 | The Story You Can Interrupt | Kernel | develop | Skipping is safe except once: the only “illustration” caveat sits in an aside. | Slow by design. |
+| 45 | The Story You Can Interrupt | Specimen | develop | Skipping is safe except once: the only “illustration” caveat sits in an aside. | Slow by design. |
 | 46 | The Broken Analogy | Kernel | keep | The switchboard breaks on persistence, which is the point of the model. | Satisfying snap; slightly toy-like. |
 | 47 | The Reader’s Hypothesis | Challenged | challenge | The mechanism is generic, and the selection is the bias it should expose. | Engaging, which makes the bias more dangerous. |
 | 48 | The Invisible Appendix | Kernel | keep | The hedges did not sink below the surface. | Readable; the soundings are a nice form. |
@@ -171,7 +171,7 @@ All of these are candidates for editorial review, not decisions. None changes a 
 | 53 | The Answer With a Past | Kernel | keep | No relation uses supersedes; the rejected alias is still unmarked. | Clear. |
 | 54 | The Duplicate Investigation | Kernel | keep | The same fix, found twice, and the records never link each other. | Aligning is satisfying. |
 | 55 | The Knowledge Fossil | Kernel | keep | 19 of 30 records never say when they stop applying. | Good excavation form. |
-| 56 | The Forked Interpretation | Kernel | develop | The published number took one branch, and the other would not change who won. | The fork makes a labelling choice tangible. |
+| 56 | The Forked Interpretation | Specimen | develop | The published number took one branch, and the other would not change who won. | The fork makes a labelling choice tangible. |
 | 57 | The Agent Leaves a Note | Kernel | keep | Private and reproducible identifiers look alike to patterns. | Redaction desk is strong. |
 | 58 | The Public Memory Loop | Retired direction | retire | Nothing beyond the rules; it says so. | A diagram of the loop would teach the same. |
 | 59 | The Portable Problem | Kernel | keep | Provenance is the first thing to go. | Memorable. |

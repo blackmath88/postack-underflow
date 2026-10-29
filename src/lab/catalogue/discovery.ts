@@ -153,9 +153,10 @@ export const DISCOVERY: LabEntry[] = [
     question: 'If you can move the weights behind a ranking, does the ranking turn out to rest on them?',
     proposition:
       'The problem-oriented index’s first results depend on its hand-set field weights: moderate changes to them would reorder the top result for many queries.',
-    manipulate: 'Six faders, one per record field (problem, aliases, symptoms, terms, context, solution), and the query.',
+    manipulate:
+      'Six faders, one per record field (problem, aliases, symptoms, terms, context, solution), an “All equal” key, and one query to look inside.',
     changes:
-      'The ranking re-sorts live; each score is split back into the fields it came from, arrows show movement against the frozen weights, and a line counts how many of the 27 frozen queries change their first result.',
+      'A meter of 27 lamps, one per frozen query, lights for each query whose first result differs from the frozen weights’ first result, and the changed queries are named. Below it, one query’s ranking re-sorts live, with each score split back into its fields.',
     unchanged: 'The postings, field lengths, tokenizer and BM25F formula of the frozen index. No score against the labels is shown, by design.',
     provenance: {
       idea: 'Four Words shows why each result matched, word by word. The weights behind those words (problem 3, aliases 2, symptoms 2, terms 2, context 1, solution 1) were fixed before the run and never shown as something you could touch.',
@@ -176,15 +177,18 @@ export const DISCOVERY: LabEntry[] = [
       ],
     },
     built:
-      'A mixing desk of six vertical faders over the frozen problem-oriented index, a ranked list with per-field score bars, and a count of first results that differ from the frozen weights. A banner says it is a demonstration, not an evaluation.',
+      'A mixing desk of six vertical faders under a meter bridge of 27 lamps, one per frozen query, each lit when that query’s first result moves. Below the desk, one query’s ranking with per-field score bars. A banner says it is a demonstration, not an evaluation.',
     happened:
-      'The proposition failed. Setting every weight to 1 changes the first result of only 1 of the 27 frozen queries; doubling any single weight changes at most 1; removing a field changes between 0 and 4. Only extreme settings move much: one field alone changes 7 to 18 first results. On this corpus the ranking rests on which words the records contain, far more than on how the fields are weighted.',
+      'The proposition failed. Setting every weight to 1 lights one lamp of 27, q26; doubling any single weight lights at most 1; removing a field lights between 0 and 4. Only extreme settings move much: one field alone lights 7 to 18. On this corpus the ranking rests on which words the records contain, far more than on how the fields are weighted.',
     uncertain:
       'The per-field bar split is our proportional attribution, not part of BM25F. A larger or less tidy corpus might be far more sensitive to weights.',
     falsifier: 'If moderate weight changes (all equal, or any one doubled) moved the first result for many queries. They move one at most.',
     simpler: 'A table of the 27 queries’ first results under four preset weightings would carry the finding without faders.',
     data: 'Frozen Four Words v1 problem-oriented index and the 27 queries (text only; labels are not used). Weights change in memory only.',
-    finding: 'The weights barely matter here: making every field equal changes the first result for 1 of 27 queries. The ranking rests on vocabulary, not on weighting.',
+    finding:
+      'The weights barely matter here: making every field equal changes the first result for 1 of 27 queries. The ranking rests on vocabulary, not on weighting.',
+    reflection:
+      'Putting the count first, as 27 lamps, turned the null result into something you do rather than read: you flatten the weights and wait for lights that mostly do not come. The per-field bars the kernel led with turned out to be the explanation, not the finding, so they moved below the desk. The plainer control, a table of first results under four presets, would carry the same numbers, but not the expectation that pulling a fader should do something.',
     related: ['03', '05', '06'],
   },
   {

@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { CATALOGUE } from '../src/lab/catalogue/index.ts'
 import { CONSTELLATIONS } from '../src/lab/catalogue/map.ts'
 
@@ -34,7 +34,11 @@ test('every entry answers the method’s questions', () => {
     for (const s of e.provenance.sources) if (s.url) assert.match(s.url, /^https:\/\//, `${e.n}: ${s.label}`)
     assert.ok(e.finding.length <= 220, `${e.n}: the finding should be short enough to browse`)
     for (const r of e.related) assert.ok(/^\d\d$/.test(r) && r !== e.n && Number(r) <= 60, `${e.n}: related ${r}`)
-    if (e.status === 'specimen') assert.ok(e.assessment, `${e.n}: a specimen needs an assessment`)
+    if (e.status === 'specimen') {
+      assert.ok(e.assessment, `${e.n}: a specimen needs an assessment`)
+      assert.ok(e.reflection && e.reflection.length > 40, `${e.n}: a specimen needs a reflection`)
+      assert.ok(existsSync(new URL(`../scripts/specimens/${e.n}.mjs`, import.meta.url)), `${e.n}: a specimen needs a behaviour check`)
+    }
   }
 })
 

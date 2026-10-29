@@ -23,8 +23,10 @@ export const CLASSIFICATION: LabEntry[] = [
     question: 'What changes when a classification has to wait above the rod before it counts?',
     proposition:
       'If a placement only counts once a reviser drops it below the rod, a simple rule (the source must use the term’s words) would let most of the frozen index’s placements through and hold back the doubtful ones.',
-    manipulate: 'Choose a guide card, choose the reviser’s rule, and drop cards below the rod or lift them back.',
-    changes: 'Which cards are held by the rod, and so what a patron opening that guide would find. Under the strict rule, refused cards say which word the source never uses.',
+    manipulate:
+      'Hand the review of all 80 cards to the word rule, open any of the 16 drawers, drop a held card on judgement, or lift a rodded one back.',
+    changes:
+      'Which cards the rod holds, which drawer fronts are stamped empty, and what a patron opening a drawer finds. Held cards say which word their source never uses.',
     unchanged: 'The 80 term placements on the 30 frozen records, and the frozen index, which serves all of them as if they were accepted.',
     provenance: {
       idea: 'The project’s research describes card catalogues that kept provisional placements apart from accepted ones. Every v1 record says it has not been reviewed by a person.',
@@ -42,15 +44,18 @@ export const CLASSIFICATION: LabEntry[] = [
       priorArt: ['Library filing with revision “above the rod”, as reported', 'Pending-changes review on Wikipedia', 'Pull-request review before merge'],
     },
     built:
-      'A drawer per controlled term, with the cards that carry it hanging above a brass rod. Cards drop on the reviser’s judgement, or only if the source uses every word of the term.',
+      'A cabinet of 16 drawer fronts, one per controlled term, each counting the cards its brass rod holds. One key hands review to the word rule; the open drawer shows the reviser’s side, above and below the rod, beside the patron’s side, which shows only rodded cards.',
     happened:
-      'The word rule passes 50 of the 80 placements and holds 30. It holds the right card for asset-404, the vite#8073 issue that never says 404, but it also holds all five underscore-paths cards and both trailing-slash cards, because the sources write “_” and “trailingSlash”, not the words; for the same reason it holds Next.js’s basePath under base-path. On judgement alone, nothing stops any card dropping. Neither rule is a reviser.',
+      'The word rule passes 50 of the 80 placements and holds 30. It holds the right card for asset-404, the vite#8073 issue that never says 404, but it also holds all five underscore-paths cards and both trailing-slash cards, because the sources write “_” and “trailingSlash”, not the words; for the same reason it holds Next.js’s basePath under base-path. Two drawers end empty for a patron: underscore-paths (0 of 5) and trailing-slash (0 of 2), while search keeps serving every card in them. On judgement alone, nothing stops any card dropping. Neither rule is a reviser.',
     uncertain:
       'Whether the provisional-placement practice existed as reported is unchecked. A reviser reading the source would decide differently from either rule, and we did not do that reading.',
     falsifier: 'If the word rule held back only placements that a reading of the source also rejects. It holds correct ones too.',
     simpler: 'A column “reviewed: no” on every record already says what the rod says, without the drawer.',
     data: 'Frozen Four Words v1: the 30 records’ controlled terms and the baseline index’s per-source term counts. Read-only.',
-    finding: 'A word check would hold 30 of 80 placements above the rod: rightly asset-404 on vite#8073, but also every underscore-paths card, because the sources write “_”.',
+    finding:
+      'A word check would hold 30 of 80 placements above the rod: rightly vite#8073 under asset-404, but also every underscore-paths card, because the sources write “_”, so a patron finds that drawer empty.',
+    reflection:
+      'In the kernel the empty drawer appeared only after choosing a guide, switching the rule and pressing a button; showing the whole cabinet makes the consequence countable, two empty drawers of 16, and putting the patron’s side beside the reviser’s shows who pays for a cautious rule. Turning the rule from a mode into one action removed a choice that taught nothing. The plainer control, a “reviewed: no” column, says the cards are unreviewed; it cannot show that a rule strict enough to stand in for review empties drawers that are filed correctly.',
     related: ['13', '14', '20', '31'],
   },
   {
@@ -264,8 +269,10 @@ export const CLASSIFICATION: LabEntry[] = [
     question: 'What is left on the scale when only reproduced or tested evidence is allowed?',
     proposition:
       'For the corpus’s best-documented fix, .nojekyll, the evidence includes at least some reproduction or test, so tightening the rules of evidence changes the balance rather than emptying it.',
-    manipulate: 'Choose which sites the claim is about, which kinds of proof the scale admits, and reclassify any exhibit.',
-    changes: 'Which exhibits sit on which pan, how the beam tilts, and the verdict under it.',
+    manipulate:
+      'Choose what your scale admits (every kind of proof, or only reproduced or regression-tested proof), which sites the claim is about, and what to call each exhibit.',
+    changes:
+      'Your scale’s pans, beam and dial, beside a scale that admits every kind; the verdict; and which exhibits are set aside on the bench.',
     unchanged: 'The six evidence notes, read live from the frozen records, and the side each takes.',
     provenance: {
       idea: 'Records carry evidence kinds: official-docs, reporter-confirmed, community-report and merged-fix. None is a reproduction.',
@@ -280,15 +287,18 @@ export const CLASSIFICATION: LabEntry[] = [
       ],
       priorArt: ['Levels of evidence in evidence-based medicine', 'Reproducible bug reports and minimal repro templates', 'Regression tests attached to bug fixes'],
     },
-    built: 'An SVG balance over six exhibits about .nojekyll, with a scope selector, three admission switches and a reclassify control per exhibit.',
+    built:
+      'Two SVG balances side by side over six exhibits about .nojekyll: the left admits every kind of proof, the right admits what your rule admits, and each has a dial that reads only its beam. A scope selector and a control per exhibit to call it something stronger.',
     happened:
-      'The proposition fails. All six exhibits are reports, so admitting only reproduced or tested proof empties both pans, and the empty scale is drawn exactly like the 3-to-3 balance for “any GitHub Pages site”. The scope decides more than the proof: about branch sites it tips 3 to 0 for, about Actions sites 3 to 0 against. Reclassifying an exhibit as reproduced moves the beam, and the record still shows nothing was reproduced.',
+      'The proposition fails. All six exhibits are reports, so admitting only reproduced or tested proof empties both pans of your scale, and it is drawn at exactly the same angle as the 3-to-3 balance beside it: both dials read level. The scope decides more than the proof: about branch sites it tips 3 to 0 for, about Actions sites 3 to 0 against. Calling an exhibit reproduced moves the beam, and the record still shows nothing was reproduced.',
     uncertain:
       'The #129 commenters say they tested; we class that as a report because we did not see it. Running .nojekyll ourselves would add the first reproduction, and we did not.',
     falsifier: 'If any exhibit, read from its record, showed a reproduction or a test. None does.',
     simpler: 'A count of evidence kinds per record (the one in the data line) gives the emptiness without the scale.',
     data: 'Six evidence notes from five frozen v1 records. Read-only.',
     finding: 'All six exhibits for .nojekyll are reports. With only reproduction admitted the scale is empty, and an empty scale looks exactly like a balanced one.',
+    reflection:
+      'On its own, an empty level scale needed a sentence to seem strange; beside the full one, the two drawings are identical, and the verdict only has to read the dials. The kernel’s three admission switches collapsed to the two states that matter, so they became one choice. Reclassifying was weaker than expected: it shows only that declaring something stronger moves the beam. A count of evidence kinds gives the emptiness, but not that the instrument reports nothing as balance.',
     related: ['19', '20', '15', '16'],
   },
   {
