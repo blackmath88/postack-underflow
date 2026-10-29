@@ -47,7 +47,7 @@
 
 ## What the index adds, and what it does not
 
-**What the maintainer's index already does.** The repository already has a hand-made index: the firmware table and the symptom → fix → reports table in `docs/pf1007l-start-here.md`. Eight records draw on its rows. The records do not replace it.
+**What the maintainer's index already does.** The repository already has a hand-made index: the firmware table and the symptom → fix → reports table in `docs/pf1007l-start-here.md`. Nine records draw on that page. The records do not replace it.
 
 **What the records add:**
 1. **Ordinary-language entry.** Someone who does not know the term `ums` can still reach the right row. The cost is aliases written by the record writer.
