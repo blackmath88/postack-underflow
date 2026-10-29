@@ -22,3 +22,11 @@ export const LUMPESAMMLIG = `https://github.com/blackmath88/lumpesammlig/tree/${
 export const LUMPESAMMLIG_CONCEPT = `https://github.com/blackmath88/lumpesammlig/blob/${LUMPESAMMLIG_REV}/docs/CONCEPT.md`
 export const IMPOSSIBLE_INDEX_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/012-impossible-index`
 export const SWITCHBOARD_STUDY = `https://github.com/blackmath88/lumpesammlig/tree/${LUMPESAMMLIG_REV}/src/samples/013-switchboard`
+
+// History family (31–40).
+/** PR #5's structured research synthesis, pinned to the PR's head commit. */
+export const PR5_RESEARCH = `${REPO_URL}/blob/66287f0b0f1054c9ea5b88914a1ff13bb576ce77/docs/research/PHYSICAL-INFORMATION-SYSTEMS.json`
+export const COMMUNITY_PAGE = 'https://blackmath88.github.io/postack-underflow/community/'
+export const RESEARCH_HISTORY_FILE = repoFile('src/data/research-history.ts')
+export const MOTTE_FLAGS_FILE = repoFile('src/features/motte/history.ts')
+export const RECORDS_SCHEMA = repoFile('src/lib/records.ts')
