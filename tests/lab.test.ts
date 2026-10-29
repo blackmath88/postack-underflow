@@ -57,3 +57,12 @@ test('constellations only name catalogued experiments', () => {
   const ns = new Set(CATALOGUE.map((e) => e.n))
   for (const c of CONSTELLATIONS) for (const m of c.members) assert.ok(ns.has(m), `${c.title}: ${m}`)
 })
+
+test('route heads match the catalogue', async () => {
+  const { HEADS } = await import('../src/lab/catalogue/heads.ts')
+  assert.deepEqual(Object.keys(HEADS).sort(), CATALOGUE.map((e) => e.n))
+  for (const e of CATALOGUE) {
+    assert.equal(HEADS[e.n]!.title, e.title, `${e.n} title`)
+    assert.equal(HEADS[e.n]!.question, e.question, `${e.n} question`)
+  }
+})
