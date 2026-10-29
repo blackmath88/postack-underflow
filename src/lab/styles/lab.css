@@ -515,3 +515,9 @@ main > .lab-index {
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }
+
+.lab-reflection {
+  max-width: 44rem;
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-3);
+}

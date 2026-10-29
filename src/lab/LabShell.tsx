@@ -154,6 +154,13 @@ function Notebook({ entry }: { entry: LabEntry }) {
         </p>
       )}
 
+      {entry.reflection && (
+        <>
+          <h3>Reflection after development</h3>
+          <p className="lab-reflection">{entry.reflection}</p>
+        </>
+      )}
+
       {entry.assessment && (
         <>
           <h3>Assessment after building</h3>
