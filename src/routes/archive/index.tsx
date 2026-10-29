@@ -35,6 +35,7 @@ const DOCS: Array<[string, string, string]> = [
   ['The photo-frame case', 'docs/research/CASE-PHOTO-FRAME.md', 'How the repository was identified, and what it shows.'],
   ['Reflection', 'docs/REFLECTION.md', 'What building the essay changed, and what we would test next.'],
   ['Editorial inventory', 'docs/editorial/CONTENT-INVENTORY.md', 'What stayed on the surface, what moved, and why.'],
+  ['The longer story', 'docs/editorial/previous-surface/', 'The full text of the story pages before they were shortened.'],
   ['Architecture decisions', 'docs/adr/', 'Accepted and proposed ADRs.'],
   ['Verification', 'docs/VERIFICATION.md', 'What was checked in a real browser, and what was not.'],
 ]

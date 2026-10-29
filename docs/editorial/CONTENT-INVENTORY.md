@@ -2,6 +2,8 @@
 
 **2026-10-28 · branch `feat/irresistible-story`.** This file records which content stays on the surface of each page, which moves to a margin note or to the archive, and which is removed as duplication. The decisions came first; the word count followed from them. Frozen Four Words v1 data and its results were not changed. Neither was Motte (`src/features/motte/`).
 
+The full text of the pages before this pass is kept in [`previous-surface/`](previous-surface/README.md), so any cut passage can be brought back in its original wording.
+
 ## The three levels
 | Level | What it holds | Where it lives |
 |---|---|---|
