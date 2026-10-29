@@ -43,7 +43,6 @@ export const SWITCHBOARD_FILE = repoFile('src/components/Switchboard.tsx')
 export const SITE_CONVERGENCE = 'https://blackmath88.github.io/postack-underflow/convergence/'
 export const PROBLEM_DESK_FILE = repoFile('src/data/problem-desk.ts')
 export const HISTORY_FILE = repoFile('src/data/research-history.ts')
-export const QUERIES_FILE = repoFile('corpus/queries.json')
 export const MEMORY_FIXTURES_FILE = repoFile('src/lab/data/memory-fixtures.ts')
 export const LAB_CATALOGUE_DIR = repoFile('src/lab/catalogue/')
 export const PHOTO_FRAME_README =
